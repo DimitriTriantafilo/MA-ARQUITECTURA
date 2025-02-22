@@ -1,55 +1,24 @@
 
 <style>
-    .main {
-        height: 120px;
-        background-color: gray;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);/* Distribuye los elementos */
-    }
-
-    .logo-container {
-        display: flex;
-        justify-content: center; /* Centra la imagen horizontalmente */
-        align-self: center;
-        justify-self: center;
-        grid-column: 2;
-    }
-  
-    .logo {
-        width: 120px; /* Establece el tamaño base */
-        height: auto;
-        transition: transform 0.3s ease-in-out; /* Agrega una transición suave */
-    }
-
-    .logo:hover {
-        transform: scale(0.9); /* Aumenta el tamaño al hacer hover */
-    }
-
-    .menu{
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     gap: 20px;
-     span{
-        display: flex;
-        align-items: center;
-     };
-     li{
-        list-style-type: none;
-        color: white;
-     }
-    }
-
+    
 </style>
   
 <nav class="main">
+
+    @if(isMobile){
+        <span class="menuButton">
+          MENU  
+        </span>
+    }
     <section class="logo-container">
         <img class="logo" src="assets/logo-blanco.png" alt="Logo" width="120" height="auto">
 
     </section>
-    <ul class="menu">
-        <li>Nosotros</li>
-        <li>&#64;ma-arquitectura</li>
-        <li>Contacto</li>
-    </ul>
+    @if(!isMobile){
+        <ul class="menu" >
+            <li>Nosotros</li>
+            <li>&#64;ma-arquitectura</li>
+            <li>Contacto</li>
+        </ul>
+    }
 </nav>

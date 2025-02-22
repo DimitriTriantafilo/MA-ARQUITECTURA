@@ -1,0 +1,46 @@
+@import '../../../assets/styles/variables.scss';
+.menuButton{
+    color: $primary-font-color;
+    justify-self: center;
+}
+.main {
+    height: 90px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);/* Distribuye los elementos */
+    align-items: center;
+    background-color: rgba($deep-onyx , 0.4);
+    border: red solid 1px;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center; /* Centra la imagen horizontalmente */
+    align-self: center;
+    justify-self: center;
+    grid-column: 2;
+}
+
+.logo {
+    width: 90px; /* Establece el tamaño base */
+    height: auto;
+    transition: transform 0.3s ease-in-out; /* Agrega una transición suave */
+}
+
+.logo:hover {
+    transform: scale(0.9); /* Aumenta el tamaño al hacer hover */
+}
+
+.menu{
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ gap: 20px;
+ span{
+    display: flex;
+    align-items: center;
+ };
+ li{
+    list-style-type: none;
+    color: var(--primary-font-color);
+ }
+}

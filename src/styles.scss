@@ -1,4 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 body{
     margin: 0px;
+    font-family: 'mainFont', sans-serif;
 }
+
+@font-face {
+    font-family: 'mainFont';
+    src: url('assets/fonts/Cormorant-Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'mainFont';
+    src: url('assets/fonts/Cormorant-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+  }
