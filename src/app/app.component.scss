@@ -1,4 +1,5 @@
 $deep-onyx: #474642;
+$darker-onyx: #393936;
 $elegant-charcoal: #777978;
 $whitecliff-beige: #DFD9CD;
 $stone-white: #E3E2DE;
@@ -14,10 +15,131 @@ $golden-basketry: #AD9371;
   --secondary-font-color: $whitecliff-beige;	
 }
 .main{
-    background-color:  $elegant-charcoal ;
+    background-color: $darker-onyx ;
     min-height: 100vh;
     width: 100%;
 }
+
+body{
+  margin: 0px;
+  width: 100%;
+}
+app-topbar{
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 1;
+  transition: top 0.45s ease-in-out;
+}
+
+.hidden {
+top: -100px; /* Mueve el topbar fuera de la pantalla */
+}
+
+/* Mostrar al pasar el mouse */
+app-topbar:hover {
+top: 0 !important;
+}
+
+.featuredImg {
+position: relative;
+width: 100%;
+height: 75vh;
+overflow: hidden; /* Evita bordes indeseados */
+
+iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 56.25vw; /* Relación 16:9 */
+  transform: translate(-50%, -50%);
+}
+}
+.main{
+  display: flex;
+  flex-direction: column;
+}
+.lema{
+  margin: 0px;
+  font-size: 90px;
+  font-weight: 500;
+  margin-top: 50px;
+  text-align: center;
+  color: $medici-gray;
+}
+
+.projects-container{
+  display: grid;
+  grid-auto-rows: 100px;
+  grid-template-columns: repeat(auto-fill, minmax(30%, 1fr)); /* Tres columnas */
+  gap: 20px; /* Espacio entre items */
+
+  padding: 4.30%;
+}
+
+.welcome-container {
+  z-index: 10;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100vh;
+background-color: rgba($deep-onyx , 1);
+display: flex;
+align-items: flex-start;
+justify-content: center;
+overflow: hidden;
+animation: shrinkDisappear 3s ease-in-out forwards;
+}
+
+
+.welcome-text {
+position: absolute;
+color: $whitecliff-beige;
+font-size: 100px;
+top: 40vh;
+transition: font-size 1.5s ease-in-out;
+}
+
+.welcome-logo {
+/* transition: font-size 1.5s ease-in-out; */
+animation: shrinkLogo 3s ease-in-out forwards;
+}
+
+@keyframes shrinkDisappear {
+0% {
+  height: 100vh;
+}
+80% {
+  background-color: rgba($deep-onyx , 1);
+
+}
+100% {
+   height: 90px;
+   background-color: rgba($deep-onyx , 0.4);
+   display: none;
+}
+}
+
+@keyframes fadeOut {
+0% {
+  opacity: 1;
+  font-size: 5rem;
+}
+100% {
+  opacity: 0;
+}
+}
+
+@keyframes shrinkLogo {
+  0% {
+    width: 250px;
+  }
+  100% {
+    width: 90px;
+  }
+  }
 
 
 

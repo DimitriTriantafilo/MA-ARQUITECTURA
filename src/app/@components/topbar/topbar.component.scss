@@ -9,7 +9,6 @@
     grid-template-columns: repeat(3, 1fr);/* Distribuye los elementos */
     align-items: center;
     background-color: rgba($deep-onyx , 0.4);
-    border: red solid 1px;
 }
 
 .logo-container {
@@ -44,3 +43,12 @@
     color: var(--primary-font-color);
  }
 }
+
+.hidden {
+    top: -100px; /* Oculta el topbar */
+  }
+  
+  /* Al pasar el mouse, se muestra */
+  .main:hover {
+    top: 0 !important;
+  }

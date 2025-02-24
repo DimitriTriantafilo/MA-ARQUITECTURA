@@ -1,0 +1,41 @@
+@import '../../../assets/styles/variables.scss';
+
+
+
+  .nosotros{
+    background-color: $stone-white;
+    padding: 40px;
+    padding-top: 90px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .profile-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    color: $deep-onyx;
+    
+  }
+
+  .profile{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 40%;
+    padding-right: 10%;
+    padding-left: 10%;
+
+    justify-content: center;
+    h1{
+        margin: 0px;
+        font-size: 100px;
+        font-weight: 500;
+    }
+    p{
+        font-size: 40px;
+        font-weight: 300;
+    }
+  }
