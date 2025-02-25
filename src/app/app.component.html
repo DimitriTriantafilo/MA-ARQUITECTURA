@@ -39,6 +39,7 @@
  <section class="projects-container">
   @for (project of projects; track $index) {
     <app-project-display
+    (click)="openProjectDetail(project)"
     [ngStyle]="{  
       'grid-row': 'span ' + (project.rowSpan ? project.rowSpan : 2),
       'grid-column': 'span ' + (project.colSpan ? project.colSpan : 1),

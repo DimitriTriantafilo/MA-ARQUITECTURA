@@ -1,0 +1,39 @@
+<span class="closeButton" (click)="dialogRef.close()">CERRAR</span>
+<div class="project-landig" [ngStyle]="{'background-image': 'url(' + data.showImg + ')'}" >
+  <div class="overlay"></div>
+
+  <span class="name">{{ data.name}}</span>
+  <span  class="m2">{{ data.m2 }}</span>
+</div>
+
+<section class="images-container">
+  @for (image of data.images; track $index) {
+    @if( image.description ) {
+      <div
+      class="comented"
+      [ngStyle]="{  
+      'grid-row': 'span 4',
+      'grid-column': 'span 3',
+      width: '100%'}">
+        <div class="comentedImage"
+        [ngStyle]="{'background-image': 'url(' + image.src + ')'}" >
+       </div>
+
+        <span class="description">
+          {{image.description}}
+        </span>
+    </div>
+    }
+    @else {
+      <img class="image"
+      src="{{image.src}}"
+      alt="{{'Foto del proyecto'}}"
+       [ngStyle]="{
+      'grid-row': 'span ' + ( image.featured ? 3 : image.rowSpan ? image.rowSpan : 2),
+      'grid-column': 'span ' + (image.featured ? 3 : image.colSpan ? image.colSpan : 1),
+      }" >
+    }
+   
+  }
+
+ </section>

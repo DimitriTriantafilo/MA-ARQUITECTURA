@@ -4,6 +4,8 @@ import { TopbarComponent } from './@components/topbar/topbar.component';
 import { ProjectDisplayComponent } from './@components/project-display/project-display.component';
 import { CommonModule } from '@angular/common';
 import { NosotrosComponent } from './@components/nosotros/nosotros.component';
+import { ProjectDetailDialogComponent } from './@components/project-detail-dialog/project-detail-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, CommonModule,  TopbarComponent, ProjectDisplayComponent, NosotrosComponent],
@@ -14,12 +16,25 @@ export class AppComponent {
 
   showWelcome = true;
 
-  constructor() {
+  constructor(private dialog: MatDialog) {
     setTimeout(() => {
       this.showWelcome = false;
     }, 6000); // Se oculta después de 3 segundos
   }
 
+  openProjectDetail(project: Project){
+    console.log(project);
+    let dialogRef = this.dialog.open(ProjectDetailDialogComponent, {
+      width: '100%',
+      data: project,
+      panelClass: 'full-width-dialog',
+      maxWidth: '100%',
+      enterAnimationDuration: '500ms',
+      height: '100%',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {})
+  }
 
   projects: Project[] = [
 {
@@ -31,7 +46,14 @@ export class AppComponent {
     type: 'image',
     link: '12',
   },
-  images: ['https://img'],
+  images: [{src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", rowSpan: 3, colSpan: 1},
+    {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", description: 'Esta Imágen muestra la fachada del edificio, trabajado con mucho cariño por obreros apacionados, diseñado para el confort y etc'},
+    {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg"},
+    {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", colSpan: 2},
+    {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", featured: true},
+    {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", colSpan: 2},
+    {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", rowSpan: 3, colSpan: 1}
+  ],
   description: 'hola',
   },
 
@@ -44,7 +66,14 @@ export class AppComponent {
       type: 'image',
       link: '12',
     },
-    images: ['https://img'],
+    images: [{src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", rowSpan: 3, colSpan: 1},
+      {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", description: 'Esta Imágen muestra la fachada del edificio, trabajado con mucho cariño por obreros apacionados, diseñado para el confort y etc'},
+      {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg"},
+      {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", rowSpan: 3},
+      {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", rowSpan: 3, colSpan: 2},
+      {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", featured  : true},
+      {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", rowSpan: 3, colSpan: 1}
+    ],
     description: 'hola',
     },
 
@@ -57,7 +86,13 @@ export class AppComponent {
         type: 'image',
         link: '12',
       },
-      images: ['https://img'],
+      images: [{src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", rowSpan: 3, colSpan: 1},
+        {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", description: 'Esta Imágen muestra la fachada del edificio, trabajado con mucho cariño por obreros apacionados, diseñado para el confort y etc'},
+        {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", rowSpan: 3, colSpan: 1},
+        {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", colSpan: 2},
+        {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", rowSpan: 3, colSpan: 1},
+        {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", colSpan: 2},
+        {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", rowSpan: 3, colSpan: 1} ],
       description: 'hola',
       },
 
@@ -71,7 +106,14 @@ export class AppComponent {
           type: 'image',
           link: '12',
         },
-        images: ['https://img'],
+        images: [{src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", rowSpan: 3, colSpan: 1},
+          {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", description: 'Esta Imágen muestra la fachada del edificio, trabajado con mucho cariño por obreros apacionados, diseñado para el confort y etc'},
+          {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", rowSpan: 3, colSpan: 1},
+          {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", colSpan: 2},
+          {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", rowSpan: 3, colSpan: 1},
+          {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", colSpan: 2},
+          {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", rowSpan: 3, colSpan: 1},
+        ],
         description: 'hola',
         },
 
@@ -85,7 +127,14 @@ export class AppComponent {
             type: 'image',
             link: '12',
           },
-          images: ['https://img'],
+          images: [{src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", rowSpan: 3, colSpan: 1},
+            {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", description: 'Esta Imágen muestra la fachada del edificio, trabajado con mucho cariño por obreros apacionados, diseñado para el confort y etc'},
+            {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", rowSpan: 3, colSpan: 1},
+            {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", colSpan: 2},
+            {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", rowSpan: 3, colSpan: 1},
+            {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", colSpan: 2},
+            {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", rowSpan: 3, colSpan: 1}
+          ],
           description: 'hola',
           },
 
@@ -98,7 +147,14 @@ export class AppComponent {
               type: 'image',
               link: '12',
             },
-            images: ['https://img'],
+            images: [{src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", rowSpan: 3, colSpan: 1},
+              {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", description: 'Esta Imágen muestra la fachada del edificio, trabajado con mucho cariño por obreros apacionados, diseñado para el confort y etc'},
+              {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", rowSpan: 3, colSpan: 1},
+              {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", colSpan: 2},
+              {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", rowSpan: 3, colSpan: 1},
+              {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", colSpan: 2},
+              {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", rowSpan: 3, colSpan: 1}
+            ],
             description: 'hola',
             },
 
@@ -112,7 +168,14 @@ export class AppComponent {
                 type: 'image',
                 link: '12',
               },
-              images: ['https://img'],
+              images: [{src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", rowSpan: 3, colSpan: 1},
+                {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", description: 'Esta Imágen muestra la fachada del edificio, trabajado con mucho cariño por obreros apacionados, diseñado para el confort y etc'},
+                {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", rowSpan: 3, colSpan: 1},
+                {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", colSpan: 2},
+                {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", rowSpan: 3, colSpan: 1},
+                {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", colSpan: 2},
+                {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", rowSpan: 3, colSpan: 1}
+              ],
               description: 'hola',
               },
 
@@ -126,7 +189,14 @@ export class AppComponent {
                   type: 'image',
                   link: '12',
                 },
-                images: ['https://img'],
+                images: [{src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", rowSpan: 3, colSpan: 1},
+                  {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", description: 'Esta Imágen muestra la fachada del edificio, trabajado con mucho cariño por obreros apacionados, diseñado para el confort y etc'},
+                  {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", rowSpan: 3, colSpan: 1},
+                  {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", colSpan: 2},
+                  {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", rowSpan: 3, colSpan: 1},
+                  {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", colSpan: 2},
+                  {src: "https://img.freepik.com/vector-gratis/casa-encantadora-ilustracion-arbol_1308-176337.jpg", rowSpan: 3, colSpan: 1}
+                ],
                 description: 'hola',
                 },
   
@@ -163,8 +233,16 @@ export interface Project {
     type: 'image' | 'video';
     link: string;
   };
-  images: string[];
+  images: Image[];
   description: string;
   rowSpan?: number;
   colSpan?: number;
+  }
+
+  export interface Image {
+    rowSpan?: number;
+    colSpan?: number;
+    src: string;
+    description?: string;
+    featured?: boolean;
   }

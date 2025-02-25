@@ -6,6 +6,11 @@ $stone-white: #E3E2DE;
 $medici-gray: #AFB8B5;
 $golden-basketry: #AD9371;
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
 
 :host {
 	/*/ INPUTS /*/
@@ -62,9 +67,9 @@ iframe {
 }
 .lema{
   margin: 0px;
-  font-size: 90px;
-  font-weight: 500;
-  margin-top: 50px;
+  font-size: 100px;
+  font-weight: bolder;
+  margin-top: 70px;
   text-align: center;
   color: $medici-gray;
 }
@@ -90,7 +95,7 @@ display: flex;
 align-items: flex-start;
 justify-content: center;
 overflow: hidden;
-animation: shrinkDisappear 3s ease-in-out forwards;
+animation: shrinkDisappear 3.5s ease-in-out forwards;
 }
 
 
@@ -98,8 +103,11 @@ animation: shrinkDisappear 3s ease-in-out forwards;
 position: absolute;
 color: $whitecliff-beige;
 font-size: 100px;
-top: 40vh;
+top: 30vh;
 transition: font-size 1.5s ease-in-out;
+animation: fadeOut 2s ease-in-out forwards;
+white-space: nowrap;
+
 }
 
 .welcome-logo {
@@ -125,10 +133,15 @@ animation: shrinkLogo 3s ease-in-out forwards;
 @keyframes fadeOut {
 0% {
   opacity: 1;
-  font-size: 5rem;
+  font-size: 80px;
+}
+30% {
+  opacity: 1;
 }
 100% {
   opacity: 0;
+  font-size: 500px;
+
 }
 }
 
@@ -142,4 +155,27 @@ animation: shrinkLogo 3s ease-in-out forwards;
   }
 
 
+  ::ng-deep .full-width-dialog .mat-mdc-dialog-container {
+    border-radius: 0px !important;
+    max-width: 100vw !important;
+    box-sizing: border-box !important;
 
+  }
+  
+  ::ng-deep .full-width-dialog .mat-mdc-dialog-surface {
+    box-sizing: border-box !important;
+
+    border-radius: 0px !important;
+  }
+  :host ::ng-deep  .mat-mdc-dialog-surface {
+    border-radius: 0px !important;
+  }
+
+  ::ng-deep .mat-mdc-dialog-container,
+  ::ng-deep .mat-mdc-dialog-container *,
+  ::ng-deep .mat-mdc-dialog-surface,
+  ::ng-deep .mat-mdc-dialog-surface * {
+      box-sizing: border-box !important;
+     
+  }
+ 
