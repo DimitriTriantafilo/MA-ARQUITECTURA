@@ -7,14 +7,16 @@
 </div>
 
 <section class="images-container">
-  @for (image of data.images; track $index) {
+  @for (image of data.images; track $index; let  i = $index) {
     @if( image.description ) {
       <div
       class="comented"
       [ngStyle]="{  
       'grid-row': 'span 4',
       'grid-column': 'span 3',
-      width: '100%'}">
+      width: '100%'}"
+        [ngClass]="{ 'reverse': i % 2 !== 0 }"
+        >
         <div class="comentedImage"
         [ngStyle]="{'background-image': 'url(' + image.src + ')'}" >
        </div>
@@ -26,6 +28,7 @@
     }
     @else {
       <img class="image"
+      loading="lazy"
       src="{{image.src}}"
       alt="{{'Foto del proyecto'}}"
        [ngStyle]="{

@@ -10,8 +10,18 @@
     background-position: center; /* Centrar la imagen */
     cursor: pointer;
     border-radius: 2px;
+    overflow: hidden;
 }
-
+.img{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    object-fit: cover;
+    border-radius: 2px;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+}
 .name{
     opacity: 0;
     font-size: 55px;
@@ -62,6 +72,7 @@
     background-color: rgba(0, 0, 0, 0.3); 
     transition: background-color 0.3s ease-in-out;
     border-radius: 2px;
+    z-index: 2;
 
 }
 .project-display:hover .overlay {

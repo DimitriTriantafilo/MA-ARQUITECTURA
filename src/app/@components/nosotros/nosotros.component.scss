@@ -1,14 +1,35 @@
 @import '../../../assets/styles/variables.scss';
 
 
-
+  .container{
+    position: relative;
+  }
   .nosotros{
-    background-color: $stone-white;
-    padding: 40px;
+    background-color: transparent;
+    padding: 90px 40px 90px 40px;
     padding-top: 90px;
+    
     display: flex;
     flex-direction: column;
     gap: 40px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .nosotros-title{
+    align-self: center;
+    font-size: 200px;
+    font-weight: 1000;
+    color: $deep-onyx;
+    margin: 0px;
+    margin-bottom: 100px;
+    font-style: italic;
+    letter-spacing: 5px;
+    color: $golden-basketry;
+    span {
+      display: inline-block; // Permite aplicar padding o margin
+      margin-left: 200px; // Ajusta el valor según lo que necesites
+    }
   }
 
   .profile-container{
@@ -34,8 +55,133 @@
         font-size: 100px;
         font-weight: 500;
     }
+    h1::first-letter {
+      color: $golden-basketry; /* Cambia el color a lo que desees */
+      font-size: 120%; /* Puedes ajustar el tamaño de la letra si lo deseas */
+      font-weight: bold; /* Cambia el peso de la fuente si lo deseas */
+      letter-spacing: 5px;
+  }
     p{
         font-size: 40px;
         font-weight: 300;
     }
+  }
+
+  
+  .background{
+    background-color: $stone-white;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .square {
+    position: absolute;
+    width: 300px; // Ajusta el tamaño
+    height: 300px; // Ajusta el tamaño
+    background-color: rgba(255, 255, 255, 0.5); // Color con opacidad
+    border-radius: 10px; // Bordes redondeados
+    rotate: -45deg;
+    top: calc(random() * 100%); // Ajusta la posición
+    left: calc(random() * 100%); // Ajusta la posición
+    animation: float 30s ease-in-out infinite; // Agrega animación
+  }
+
+  .square2 {
+    position: absolute;
+    width: 300px; // Ajusta el tamaño
+    height: 300px; // Ajusta el tamaño
+    background-color: rgba(255, 255, 255, 0.5); // Color con opacidad
+    border-radius: 10px; // Bordes redondeados
+    top: 20%; // Ajusta la posición
+    left: 60%; // Ajusta la posición
+    animation: float 15s ease-in-out infinite; // Agrega animación
+  }
+
+  .square3 {
+    position: absolute;
+    width: 300px; // Ajusta el tamaño
+    height: 300px; // Ajusta el tamaño
+    background-color: rgba(255, 255, 255, 0.5); // Color con opacidad
+    border-radius: 10px; // Bordes redondeados
+    rotate: 45deg;
+    top: 70%; // Ajusta la posición
+    left: 50%; // Ajusta la posición
+    animation: float 25s ease-in-out infinite; // Agrega animación
+  }
+
+  // Estilo para los rectángulos
+  .rectangle {
+    rotate: -45deg;
+    position: absolute;
+    width: 800px; // Ajusta el tamaño
+    height: 100px; // Ajusta el tamaño
+    background-color: rgba(255, 255, 255, 0.5); // Color con opacidad
+    border-radius: 10px; // Bordes redondeados
+    top: calc(20%); // Ajusta la posición
+    left: calc(10%); // Ajusta la posición
+    animation: float 18s ease-in-out infinite; // Agrega animación
+  }
+
+  .rectangle2 {
+    rotate: -45deg;
+    position: absolute;
+    width: 800px; // Ajusta el tamaño
+    height: 100px; // Ajusta el tamaño
+    background-color: rgba(255, 255, 255, 0.5); // Color con opacidad
+    border-radius: 10px; // Bordes redondeados
+    top: calc(80%); // Ajusta la posición
+    left: calc(10%); // Ajusta la posición
+    animation: float 20s ease-in-out infinite; // Agrega animación
+  }
+
+  .rectangle3 {
+    rotate: 45deg;
+    position: absolute;
+    width: 400px; // Ajusta el tamaño
+    height: 60px; // Ajusta el tamaño
+    background-color: rgba(255, 255, 255, 0.5); // Color con opacidad
+    border-radius: 10px; // Bordes redondeados
+    top: calc(50%); // Ajusta la posición
+    left: calc(60%); // Ajusta la posición
+    animation: float 20s ease-in-out infinite; // Agrega animación
+  }
+
+  .footer{
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 33%;
+   
+}
+
+.footer2{
+  position: absolute;
+  bottom: -10px;
+  left: 33%;
+  width: 33%;
+ 
+}
+
+.footer3{
+  position: absolute;
+  bottom: -10px;
+  left: 66%;
+  width: 34%;
+ 
+}
+
+
+
+  // Animación para dar un efecto de flotación
+  @keyframes float {
+    0% { transform: translateY(0);  transform: translateX(0); }
+    
+    30% { transform: translateY(-90px); transform: translatex(200px); }
+    60% { transform: translateY(-400px); transform: translatex(300px); }
+    100% { transform: translateY(0px);  transform: translatex(0px); }
+
   }

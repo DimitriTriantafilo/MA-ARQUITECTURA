@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-nosotros',
@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NosotrosComponent implements OnInit {
 
-  constructor() { }
+  constructor(private el: ElementRef) {
+
+   }
 
   ngOnInit() {
   }
+ 
 
 }

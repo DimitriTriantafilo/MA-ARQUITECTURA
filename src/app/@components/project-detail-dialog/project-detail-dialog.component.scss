@@ -116,6 +116,10 @@
     border-radius: 2px;
 }
 
+.reverse {
+    flex-direction: row-reverse;
+}
+
 .description{
     font-size: 50px;
     font-weight: lighter;

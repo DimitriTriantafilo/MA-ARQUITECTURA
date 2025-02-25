@@ -1,4 +1,4 @@
-<div class="project-display" [ngStyle]="{'background-image': 'url(' + project.showImg + ')'}" >
+<div class="project-display" >
   <div class="overlay">
     <h1 class="name">{{ project.name}}</h1>
     <div class="locationAndM2">
@@ -6,6 +6,7 @@
       <span  class="m2">{{ project.m2 }}</span>
     </div>
   </div>
+  <img src="{{ project.showImg }}" alt="{{ project.name }}" class="img" loading="lazy">
 </div>
 
   

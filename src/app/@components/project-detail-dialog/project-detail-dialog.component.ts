@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
   ]
 })
 export class ProjectDetailDialogComponent implements OnInit {
+[x: string]: any;
   dialogRef = inject(MatDialogRef<ProjectDetailDialogComponent>);
   readonly data = inject<Project>(MAT_DIALOG_DATA);
 
