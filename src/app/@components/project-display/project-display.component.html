@@ -1,12 +1,17 @@
-<div class="project-display" >
+<div class="project-display">
   <div class="overlay">
-    <h1 class="name">{{ project.name}}</h1>
+    <h1 class="name">{{ project.name }}</h1>
     <div class="locationAndM2">
-      <span  class="location">{{ project.location }}</span>
-      <span  class="m2">{{ project.m2 }}</span>
+      <span class="location">{{ project.location }}</span>
+      <span class="m2">{{ project.m2 }}</span>
     </div>
   </div>
-  <img src="{{ project.showImg }}" alt="{{ project.name }}" class="img" loading="lazy">
+  <img
+    ngSrc="{{ project.showImg }}"
+    alt="{{ project.name }}"
+    class="img"
+    [loading]="index > 3 ? 'lazy' : undefined"
+    [fill]="true"
+    [priority]="index < 3"
+  />
 </div>
-
-  

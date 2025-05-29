@@ -4,15 +4,12 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-topbar',
   imports: [],
   templateUrl: './topbar.component.html',
-  styleUrl: './topbar.component.scss'
+  styleUrl: './topbar.component.scss',
 })
 export class TopbarComponent implements OnInit {
-  isMobile: boolean = true;
-  
+  isMobile: boolean = false;
+
   constructor() {}
 
-  ngOnInit() {
-
-  }
-
+  ngOnInit() {}
 }

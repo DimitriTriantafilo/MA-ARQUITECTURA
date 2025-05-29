@@ -1,24 +1,42 @@
+<style></style>
 
-<style>
-    
-</style>
-  
 <nav class="main">
-
+  <ul class="menu">
     @if(isMobile){
-        <span class="menuButton">
-          MENU  
-        </span>
+    <span class="menuButton"> MENU </span>
     }
-    <section class="logo-container">
-        <img class="logo" src="assets/logo-blanco.png" alt="Logo" width="120" height="auto">
+    <span>ES / EN</span>
 
-    </section>
-    @if(!isMobile){
-        <ul class="menu" >
-            <li>Nosotros</li>
-            <li>&#64;ma-arquitectura</li>
-            <li>Contacto</li>
-        </ul>
-    }
+    <a target="_blank">
+      <img
+        class="icons mail"
+        src="assets/mail.png"
+        alt="Logo"
+        width="40"
+        height="auto"
+      />
+    </a>
+    <a href="https://www.instagram.com/ma.arquitectura/">
+      <img
+        class="icons ig"
+        src="assets/ig-logo.png"
+        alt="Logo"
+        width="23"
+        height="auto"
+      />
+    </a>
+  </ul>
+
+  <section class="logo-container">
+    <img
+      class="logo"
+      src="assets/logo-blanco.png"
+      alt="Logo"
+      width="120"
+      height="auto"
+    />
+  </section>
+  @if(!isMobile){
+  <span class="nosotros">NOSOTROS</span>
+  }
 </nav>

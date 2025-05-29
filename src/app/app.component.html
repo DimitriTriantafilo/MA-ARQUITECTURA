@@ -7,49 +7,50 @@
 <!-- * * * * * * * to get started with your project! * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
-<style>
- 
-</style>
+<style></style>
 
 <main class="main">
- <app-topbar [class.hidden]="isHidden"></app-topbar>
- <div class="welcome-container">
-
-  <img class="welcome-logo" src="assets/logo-blanco.png" alt="Logo" width="120" height="auto">
- <span class="welcome-text">
-  MA - ARQUITECTURA
- </span>
-</div>
- <section class="featuredImg">
-  <iframe 
-    width="100%" 
-    height="100%" 
-    src="https://www.youtube.com/embed/Bi5S56d1HFg?autoplay=1&controls=0&modestbranding=1&rel=0&loop=1&playlist=Bi5S56d1HFg&mute=1" 
-    title="YouTube video"
-    frameborder="0"
-    allow="autoplay; encrypted-media; fullscreen"
-    allowfullscreen>
-  </iframe>
-</section>
- <article>
-    <h1 class="lema" id="lema" (click)="scrollToItem('lema')">
-      NUESTROS PROYECTOS
-    </h1>
- </article>
- <section class="projects-container">
-  @for (project of projects; track $index) {
+  <app-topbar [class.hidden]="isHidden"></app-topbar>
+  <div class="welcome-container">
+    <img
+      class="welcome-logo"
+      src="assets/logo-blanco.png"
+      alt="Logo"
+      width="120"
+      height="auto"
+    />
+    <span class="welcome-text"> MA - ARQUITECTURA </span>
+  </div>
+  <section class="featuredImg">
+    <iframe
+      width="100%"
+      height="100%"
+      src="https://www.youtube.com/embed/Bi5S56d1HFg?autoplay=1&controls=0&modestbranding=1&rel=0&loop=1&playlist=Bi5S56d1HFg&mute=1"
+      title="YouTube video"
+      frameborder="0"
+      allow="autoplay; encrypted-media; fullscreen"
+      allowfullscreen
+    >
+    </iframe>
+  </section>
+  <article>
+    <h1 class="lema" id="lema" (click)="scrollToItem('lema')">PROYECTOS</h1>
+  </article>
+  <section class="projects-container">
+    @for (project of projects; track $index) {
     <app-project-display
-    (click)="openProjectDetail(project)"
-    [ngStyle]="{  
-      'grid-row': 'span ' + (project.rowSpan ? project.rowSpan : 2),
-      'grid-column': 'span ' + (project.colSpan ? project.colSpan : 1),
-      'min-height': '20vh'
-    }"
-    [project]="project"></app-project-display>
-  }
-
- </section>
- <app-nosotros></app-nosotros>
+      (click)="openProjectDetail(project)"
+      [ngStyle]="{
+        'grid-row': 'span ' + (project.rowSpan ? project.rowSpan : 2),
+        'grid-column': 'span ' + (project.colSpan ? project.colSpan : 1),
+        'min-height': '20vh'
+      }"
+      [project]="project"
+      [index]="$index"
+    ></app-project-display>
+    }
+  </section>
+  <app-nosotros></app-nosotros>
 </main>
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
@@ -59,6 +60,5 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
 
 <router-outlet />

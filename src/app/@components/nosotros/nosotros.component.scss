@@ -1,204 +1,207 @@
-@import '../../../assets/styles/variables.scss';
+@import "../../../assets/styles/variables.scss";
 
+.container {
+  position: relative;
+}
+.nosotros {
+  background-color: transparent;
+  padding: 90px 40px 90px 40px;
+  padding-top: 90px;
 
-  .container{
-    position: relative;
-  }
-  .nosotros{
-    background-color: transparent;
-    padding: 90px 40px 90px 40px;
-    padding-top: 90px;
-    
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    position: relative;
-    z-index: 2;
-  }
-
-  .nosotros-title{
-    align-self: center;
-    font-size: 200px;
-    font-weight: 1000;
-    color: $deep-onyx;
-    margin: 0px;
-    margin-bottom: 100px;
-    font-style: italic;
-    letter-spacing: 5px;
-    color: $golden-basketry;
-    span {
-      display: inline-block; // Permite aplicar padding o margin
-      margin-left: 200px; // Ajusta el valor según lo que necesites
-    }
-  }
-
-  .profile-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 40px;
-    color: $deep-onyx;
-    
-  }
-
-  .profile{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 40%;
-    padding-right: 10%;
-    padding-left: 10%;
-
-    justify-content: center;
-    h1{
-        margin: 0px;
-        font-size: 100px;
-        font-weight: 500;
-    }
-    h1::first-letter {
-      color: $golden-basketry; /* Cambia el color a lo que desees */
-      font-size: 120%; /* Puedes ajustar el tamaño de la letra si lo deseas */
-      font-weight: bold; /* Cambia el peso de la fuente si lo deseas */
-      letter-spacing: 5px;
-  }
-    p{
-        font-size: 40px;
-        font-weight: 300;
-    }
-  }
-
-  
-  .background{
-    background-color: $stone-white;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    z-index: 1;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .square {
-    position: absolute;
-    width: 300px; // Ajusta el tamaño
-    height: 300px; // Ajusta el tamaño
-    background-color: rgba(255, 255, 255, 0.2); // Color con opacidad
-    border-radius: 10px; // Bordes redondeados
-    rotate: -45deg;
-    top: calc(random() * 100%); // Ajusta la posición
-    left: calc(random() * 100%); // Ajusta la posición
-    animation: float 30s ease-in-out infinite; // Agrega animación
-  }
-
-  .square2 {
-    position: absolute;
-    width: 300px; // Ajusta el tamaño
-    height: 300px; // Ajusta el tamaño
-    background-color: rgba(255, 255, 255, 0.2); // Color con opacidad
-    border-radius: 10px; // Bordes redondeados
-    top: 20%; // Ajusta la posición
-    left: 60%; // Ajusta la posición
-    animation: float 35s ease-in-out infinite; // Agrega animación
-  }
-
-  .square3 {
-    position: absolute;
-    width: 300px; // Ajusta el tamaño
-    height: 300px; // Ajusta el tamaño
-    background-color: rgba(255, 255, 255, 0.2); // Color con opacidad
-    border-radius: 10px; // Bordes redondeados
-    rotate: 45deg;
-    top: 70%; // Ajusta la posición
-    left: 50%; // Ajusta la posición
-    animation: float 35s ease-in-out infinite; // Agrega animación
-  }
-
-  // Estilo para los rectángulos
-  .rectangle {
-    rotate: -45deg;
-    position: absolute;
-    width: 800px; // Ajusta el tamaño
-    height: 100px; // Ajusta el tamaño
-    background-color: rgba(255, 255, 255, 0.2); // Color con opacidad
-    border-radius: 10px; // Bordes redondeados
-    top: calc(20%); // Ajusta la posición
-    left: calc(10%); // Ajusta la posición
-    animation: float 18s ease-in-out infinite; // Agrega animación
-  }
-
-  .rectangle2 {
-    rotate: -45deg;
-    position: absolute;
-    width: 800px; // Ajusta el tamaño
-    height: 100px; // Ajusta el tamaño
-    background-color: rgba(255, 255, 255, 0.2); // Color con opacidad
-    border-radius: 10px; // Bordes redondeados
-    top: calc(80%); // Ajusta la posición
-    left: calc(10%); // Ajusta la posición
-    animation: float 20s ease-in-out infinite; // Agrega animación
-  }
-
-  .rectangle3 {
-    rotate: 45deg;
-    position: absolute;
-    width: 400px; // Ajusta el tamaño
-    height: 60px; // Ajusta el tamaño
-    background-color: rgba(255, 255, 255, 0.2); // Color con opacidad
-    border-radius: 10px; // Bordes redondeados
-    top: calc(50%); // Ajusta la posición
-    left: calc(60%); // Ajusta la posición
-    animation: float 20s ease-in-out infinite; // Agrega animación
-  }
-
-  .footer{
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 33%;
-   
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  position: relative;
+  z-index: 2;
 }
 
-.footer2{
+.nosotros-title {
+  align-self: center;
+  font-size: 100px;
+  font-weight: 300;
+  color: $deep-onyx;
+  margin: 0px;
+  margin-bottom: 50px;
+  font-family: "ivnm";
+  letter-spacing: 5px;
+  color: $golden-basketry;
+  span {
+    display: inline-block; // Permite aplicar padding o margin
+    margin-left: 200px; // Ajusta el valor según lo que necesites
+  }
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  color: $deep-onyx;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 40%;
+  padding-right: 10%;
+  padding-left: 10%;
+
+  justify-content: center;
+  h1 {
+    font-family: "ivnm";
+    margin: 0px;
+    font-size: 100px;
+    font-weight: 400;
+    line-height: 95px;
+  }
+  h1::first-letter {
+    color: $golden-basketry; /* Cambia el color a lo que desees */
+    font-size: 120%; /* Puedes ajustar el tamaño de la letra si lo deseas */
+    font-weight: bold; /* Cambia el peso de la fuente si lo deseas */
+    letter-spacing: 5px;
+  }
+  p {
+    font-size: 40px;
+    font-weight: 300;
+  }
+}
+
+.background {
+  background-color: $stone-white;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  z-index: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.square {
+  position: absolute;
+  width: 300px; // Ajusta el tamaño
+  height: 300px; // Ajusta el tamaño
+  background-color: rgba(255, 255, 255, 0.2); // Color con opacidad
+  border-radius: 10px; // Bordes redondeados
+  rotate: -45deg;
+  top: calc(random() * 100%); // Ajusta la posición
+  left: calc(random() * 100%); // Ajusta la posición
+  animation: float 30s ease-in-out infinite; // Agrega animación
+}
+
+.square2 {
+  position: absolute;
+  width: 300px; // Ajusta el tamaño
+  height: 300px; // Ajusta el tamaño
+  background-color: rgba(255, 255, 255, 0.2); // Color con opacidad
+  border-radius: 10px; // Bordes redondeados
+  top: 20%; // Ajusta la posición
+  left: 60%; // Ajusta la posición
+  animation: float 35s ease-in-out infinite; // Agrega animación
+}
+
+.square3 {
+  position: absolute;
+  width: 300px; // Ajusta el tamaño
+  height: 300px; // Ajusta el tamaño
+  background-color: rgba(255, 255, 255, 0.2); // Color con opacidad
+  border-radius: 10px; // Bordes redondeados
+  rotate: 45deg;
+  top: 70%; // Ajusta la posición
+  left: 50%; // Ajusta la posición
+  animation: float 35s ease-in-out infinite; // Agrega animación
+}
+
+// Estilo para los rectángulos
+.rectangle {
+  rotate: -45deg;
+  position: absolute;
+  width: 800px; // Ajusta el tamaño
+  height: 100px; // Ajusta el tamaño
+  background-color: rgba(255, 255, 255, 0.2); // Color con opacidad
+  border-radius: 10px; // Bordes redondeados
+  top: calc(20%); // Ajusta la posición
+  left: calc(10%); // Ajusta la posición
+  animation: float 18s ease-in-out infinite; // Agrega animación
+}
+
+.rectangle2 {
+  rotate: -45deg;
+  position: absolute;
+  width: 800px; // Ajusta el tamaño
+  height: 100px; // Ajusta el tamaño
+  background-color: rgba(255, 255, 255, 0.2); // Color con opacidad
+  border-radius: 10px; // Bordes redondeados
+  top: calc(80%); // Ajusta la posición
+  left: calc(10%); // Ajusta la posición
+  animation: float 20s ease-in-out infinite; // Agrega animación
+}
+
+.rectangle3 {
+  rotate: 45deg;
+  position: absolute;
+  width: 400px; // Ajusta el tamaño
+  height: 60px; // Ajusta el tamaño
+  background-color: rgba(255, 255, 255, 0.2); // Color con opacidad
+  border-radius: 10px; // Bordes redondeados
+  top: calc(50%); // Ajusta la posición
+  left: calc(60%); // Ajusta la posición
+  animation: float 20s ease-in-out infinite; // Agrega animación
+}
+
+.footer {
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 33%;
+}
+
+.footer2 {
   position: absolute;
   bottom: -10px;
   left: 33%;
   width: 33%;
- 
 }
 
-.footer3{
+.footer3 {
   position: absolute;
   bottom: -10px;
   left: 66%;
   width: 34%;
- 
 }
 
-
-
-  // Animación para dar un efecto de flotación
-  @keyframes float {
-    0% { transform: translateY(0);  transform: translateX(0); }
-    
-    30% { transform: translateY(-90px); transform: translatex(200px); }
-    60% { transform: translateY(-400px); transform: translatex(300px); }
-    100% { transform: translateY(0px);  transform: translatex(0px); }
-
+// Animación para dar un efecto de flotación
+@keyframes float {
+  0% {
+    transform: translateY(0);
+    transform: translateX(0);
   }
 
+  30% {
+    transform: translateY(-90px);
+    transform: translatex(200px);
+  }
+  60% {
+    transform: translateY(-400px);
+    transform: translatex(300px);
+  }
+  100% {
+    transform: translateY(0px);
+    transform: translatex(0px);
+  }
+}
 
-
-.logo-container{
+.logo-container {
   position: relative;
   width: 900px;
   height: 900px;
   margin-top: 10%;
 }
 
-.line1{
+.line1 {
   background-color: rgba(255, 255, 255, 0.35);
   width: 5%;
   height: 45%;
@@ -207,12 +210,11 @@
   left: 10%;
   left: 25%;
   animation: rebuild 35s ease-in-out infinite; // Agrega animación
-
 }
 
-.line2{
+.line2 {
   background-color: rgba(255, 255, 255, 0.35);
-    width: 5%;
+  width: 5%;
   height: 30%;
   position: absolute;
   top: 14%;
@@ -220,11 +222,9 @@
   left: 35%;
   transform: rotate(-45deg) !important;
   animation: rebuild2 35s ease-in-out infinite; // Agrega animación
-
 }
 
-
-.line3{
+.line3 {
   background-color: rgba(255, 255, 255, 0.35);
   width: 5%;
   height: 42%;
@@ -234,24 +234,22 @@
   left: 60%;
   transform: rotate(45deg);
   animation: rebuild3 35s ease-in-out infinite; // Agrega animación
-
 }
 
-.line4{
+.line4 {
   background-color: rgba(255, 255, 255, 0.35);
   width: 5%;
   height: 75%;
   position: absolute;
   top: 23%;
   left: 36%;
-    left: 51%;
+  left: 51%;
 
   transform: rotate(45deg);
   animation: rebuild4 35s ease-in-out infinite; // Agrega animación
-
 }
 
-.line5{
+.line5 {
   background-color: rgba(255, 255, 255, 0.35);
   width: 5%;
   height: 45%;
@@ -260,10 +258,9 @@
   left: 62%;
   left: 77%;
   animation: rebuild5 35s ease-in-out infinite; // Agrega animación
-
 }
 
-.line6{
+.line6 {
   background-color: rgba(255, 255, 255, 0.35);
   width: 5%;
   height: 20%;
@@ -274,57 +271,138 @@
 
   transform: rotate(-45deg);
   animation: rebuild6 35s ease-in-out infinite; // Agrega animación
-
 }
 
-
-
 @keyframes rebuild {
-  0% { transform: translateY(-1000px) !important ;  transform: translateX(-900px);  }
-  45% { transform: translateY(0px) !important; transform: translatex(0px); rotate: 0deg; }
+  0% {
+    transform: translateY(-1000px) !important ;
+    transform: translateX(-900px);
+  }
+  45% {
+    transform: translateY(0px) !important;
+    transform: translatex(0px);
+    rotate: 0deg;
+  }
 
-
-  50% { transform: translateY(0px) !important; transform: translatex(0px); rotate: 0deg; }
-  100% { transform: translateY(-1000px) !important ;  transform: translateX(-900px);  }
+  50% {
+    transform: translateY(0px) !important;
+    transform: translatex(0px);
+    rotate: 0deg;
+  }
+  100% {
+    transform: translateY(-1000px) !important ;
+    transform: translateX(-900px);
+  }
 }
 
 @keyframes rebuild2 {
-  0% { transform: translateY(-1000px) !important ;  transform: translateX(-900px); rotate: 90deg }
-  45% { transform: translateY(0px) !important; transform: translatex(0px); rotate: 0deg; }
+  0% {
+    transform: translateY(-1000px) !important ;
+    transform: translateX(-900px);
+    rotate: 90deg;
+  }
+  45% {
+    transform: translateY(0px) !important;
+    transform: translatex(0px);
+    rotate: 0deg;
+  }
 
-
-  50% { transform: translateY(0px) !important; transform: translatex(0px); rotate: 0deg; }
-  100% { transform: translateY(-1000px) !important ;  transform: translateX(-900px);rotate: 90deg;  }
+  50% {
+    transform: translateY(0px) !important;
+    transform: translatex(0px);
+    rotate: 0deg;
+  }
+  100% {
+    transform: translateY(-1000px) !important ;
+    transform: translateX(-900px);
+    rotate: 90deg;
+  }
 }
 @keyframes rebuild3 {
-  0% { transform: translateY(0px) !important ;  transform: translateX(-1500px); rotate: 45deg }
-  45% { transform: translateY(0px) !important; transform: translatex(0px); rotate: 45deg; }
+  0% {
+    transform: translateY(0px) !important ;
+    transform: translateX(-1500px);
+    rotate: 45deg;
+  }
+  45% {
+    transform: translateY(0px) !important;
+    transform: translatex(0px);
+    rotate: 45deg;
+  }
 
-
-  50% { transform: translateY(0px) !important; transform: translatex(0px); rotate: 45deg; }
-  100% { transform: translateY(0px) !important ;  transform: translateX(-1500px); rotate: 45deg }
+  50% {
+    transform: translateY(0px) !important;
+    transform: translatex(0px);
+    rotate: 45deg;
+  }
+  100% {
+    transform: translateY(0px) !important ;
+    transform: translateX(-1500px);
+    rotate: 45deg;
+  }
 }
 
-
-
 @keyframes rebuild4 {
-  0% { transform: translateY(-800px) !important ;  transform: translateX(1000px); rotate: 20deg }
-  45% { transform: translateY(0px) !important; transform: translatex(0px); rotate: 45deg; }
-  50% { transform: translateY(0px) !important; transform: translatex(0px); rotate: 45deg; }
-  100% { transform: translateY(-800px) !important ;  transform: translateX(1000px); rotate: 20deg }
+  0% {
+    transform: translateY(-800px) !important ;
+    transform: translateX(1000px);
+    rotate: 20deg;
+  }
+  45% {
+    transform: translateY(0px) !important;
+    transform: translatex(0px);
+    rotate: 45deg;
+  }
+  50% {
+    transform: translateY(0px) !important;
+    transform: translatex(0px);
+    rotate: 45deg;
+  }
+  100% {
+    transform: translateY(-800px) !important ;
+    transform: translateX(1000px);
+    rotate: 20deg;
+  }
 }
 
 @keyframes rebuild5 {
-  0% { transform: translateY(700px) !important ;  transform: translateX(700px) }
-  45% { transform: translateY(0px) !important; transform: translatex(0px) }
-  50% { transform: translateY(0px) !important; transform: translatex(0px) }
-  100% { transform: translateY(70px) !important ;  transform: translateX(700px) }
+  0% {
+    transform: translateY(700px) !important ;
+    transform: translateX(700px);
+  }
+  45% {
+    transform: translateY(0px) !important;
+    transform: translatex(0px);
+  }
+  50% {
+    transform: translateY(0px) !important;
+    transform: translatex(0px);
+  }
+  100% {
+    transform: translateY(70px) !important ;
+    transform: translateX(700px);
+  }
 }
 
-
 @keyframes rebuild6 {
-  0% { transform: translateY(700px) !important ;  transform: translateX(-800px);  rotate: -45deg;  }
-  45% { transform: translateY(0px) !important; transform: translatex(0px);  rotate: -45deg;  }
-  50% { transform: translateY(0px) !important; transform: translatex(0px);  rotate: -45deg; }
-  100% { transform: translateY(70px) !important ;  transform: translateX(-800px); rotate: -45deg;   }
+  0% {
+    transform: translateY(700px) !important ;
+    transform: translateX(-800px);
+    rotate: -45deg;
+  }
+  45% {
+    transform: translateY(0px) !important;
+    transform: translatex(0px);
+    rotate: -45deg;
+  }
+  50% {
+    transform: translateY(0px) !important;
+    transform: translatex(0px);
+    rotate: -45deg;
+  }
+  100% {
+    transform: translateY(70px) !important ;
+    transform: translateX(-800px);
+    rotate: -45deg;
+  }
 }

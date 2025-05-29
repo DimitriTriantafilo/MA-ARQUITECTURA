@@ -1,54 +1,77 @@
-@import '../../../assets/styles/variables.scss';
-.menuButton{
-    color: $primary-font-color;
-    justify-self: center;
+@import "../../../assets/styles/variables.scss";
+.menuButton {
+  color: $primary-font-color;
+  justify-self: center;
 }
 .main {
-    height: 90px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);/* Distribuye los elementos */
-    align-items: center;
-    background-color: rgba($deep-onyx , 0.4);
+  height: 90px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Distribuye los elementos */
+  align-items: center;
+  background-color: rgba($deep-onyx, 0.65);
 }
 
 .logo-container {
-    display: flex;
-    justify-content: center; /* Centra la imagen horizontalmente */
-    align-self: center;
-    justify-self: center;
-    grid-column: 2;
+  display: flex;
+  justify-content: center; /* Centra la imagen horizontalmente */
+  align-self: center;
+  justify-self: center;
+  grid-column: 2;
 }
 
 .logo {
-    width: 90px; /* Establece el tamaño base */
-    height: auto;
-    transition: transform 0.3s ease-in-out; /* Agrega una transición suave */
+  width: 90px; /* Establece el tamaño base */
+  height: auto;
+  transition: transform 0.3s ease-in-out; /* Agrega una transición suave */
 }
 
 .logo:hover {
-    transform: scale(0.9); /* Aumenta el tamaño al hacer hover */
+  transform: scale(0.9); /* Aumenta el tamaño al hacer hover */
 }
 
-.menu{
- display: flex;
- justify-content: center;
- align-items: center;
- gap: 20px;
- span{
+.menu {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  margin: 0px;
+  span {
+    font-size: 15px;
     display: flex;
     align-items: center;
- };
- li{
+    cursor: pointer;
+  }
+  a {
+    cursor: pointer;
+    text-decoration: none;
     list-style-type: none;
     color: var(--primary-font-color);
- }
+    font-family: "modeco";
+  }
 }
 
 .hidden {
-    top: -100px; /* Oculta el topbar */
-  }
-  
-  /* Al pasar el mouse, se muestra */
-  .main:hover {
-    top: 0 !important;
-  }
+  top: -100px; /* Oculta el topbar */
+}
+
+/* Al pasar el mouse, se muestra */
+.main:hover {
+  top: 0 !important;
+}
+
+.nosotros {
+  text-align: right;
+  padding-right: 40px;
+  font-size: 19px;
+  font-family: "modeco";
+  cursor: pointer;
+  color: var(--primary-font-color);
+  font-family: "modeco";
+  font-weight: 100;
+}
+.mail {
+  margin-top: 1px;
+}
+.ig {
+  margin-top: 4px;
+}
