@@ -47,6 +47,7 @@
     list-style-type: none;
     color: var(--primary-font-color);
     font-family: "modeco";
+    font-display: swap;
   }
 }
 
@@ -62,11 +63,11 @@
 .nosotros {
   text-align: right;
   padding-right: 40px;
-  font-size: 19px;
+  font-size: 18px;
   font-family: "modeco";
   cursor: pointer;
   color: var(--primary-font-color);
-  font-family: "modeco";
+  font-display: swap;
   font-weight: 100;
 }
 .mail {

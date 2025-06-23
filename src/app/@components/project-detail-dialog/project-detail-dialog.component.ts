@@ -1,19 +1,20 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { Project } from '../../app.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-project-detail-dialog',
   templateUrl: './project-detail-dialog.component.html',
   styleUrls: ['./project-detail-dialog.component.scss'],
-  imports: [ 
-    MatDialogModule,
-    CommonModule
-  ]
+  imports: [MatDialogModule, CommonModule, NgOptimizedImage],
 })
 export class ProjectDetailDialogComponent implements OnInit {
-[x: string]: any;
+  [x: string]: any;
   dialogRef = inject(MatDialogRef<ProjectDetailDialogComponent>);
   readonly data = inject<Project>(MAT_DIALOG_DATA);
 
@@ -21,10 +22,9 @@ export class ProjectDetailDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     console.log(this.data);
   }
-
 }

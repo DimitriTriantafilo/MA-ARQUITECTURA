@@ -24,6 +24,15 @@ body {
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: "Modeco";
+  src: local("Modeco"),
+    url("assets/fonts/ModecoTrial-Regular.otf") format("truetype"),
+    url("assets/fonts/ModecoTrial-Regular.otf") format("truetype");
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+}
 html,
 body {
   height: 100%;

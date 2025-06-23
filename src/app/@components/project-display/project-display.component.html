@@ -1,13 +1,16 @@
+<link rel="preconnect" href="https://res.cloudinary.com" />
 <div class="project-display">
   <div class="overlay">
     <h1 class="name">{{ project.name }}</h1>
     <div class="locationAndM2">
       <span class="location">{{ project.location }}</span>
-      <span class="m2">{{ project.m2 }}</span>
+      <span class="m2" *ngIf="project.m2">{{ project.m2 }}m<sup>2</sup></span>
     </div>
   </div>
   <img
-    ngSrc="{{ project.showImg }}"
+    [ngSrc]="
+      'c_fill,g_auto,h_1000,w_1950/q_auto:good/f_auto/' + project.showImg
+    "
     alt="{{ project.name }}"
     class="img"
     [loading]="index > 3 ? 'lazy' : undefined"

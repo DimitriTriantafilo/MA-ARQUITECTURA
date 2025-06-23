@@ -33,7 +33,7 @@ app-topbar {
   position: fixed;
   top: 0px;
   width: 100%;
-  z-index: 2;
+  z-index: 3;
   transition: top 0.45s ease-in-out;
 }
 
@@ -77,6 +77,8 @@ app-topbar:hover {
   justify-content: center;
   cursor: pointer;
   font-family: "modeco";
+  font-display: swap;
+  will-change: transform; /* Ayuda al navegador a optimizar */
 }
 
 .projects-container {
@@ -149,9 +151,11 @@ app-topbar:hover {
 @keyframes shrinkLogo {
   0% {
     width: 250px;
+    height: 250px;
   }
   100% {
     width: 90px;
+    height: 90px;
   }
 }
 

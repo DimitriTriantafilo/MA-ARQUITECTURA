@@ -1,42 +1,40 @@
+<link rel="preconnect" href="https://res.cloudinary.com" />
+
 <span class="closeButton" (click)="dialogRef.close()">CERRAR</span>
-<div class="project-landig" [ngStyle]="{'background-image': 'url(' + data.showImg + ')'}" >
+<div
+  class="project-landig"
+  [ngStyle]="{
+    'background-image':
+      'url(' +
+      'https://res.cloudinary.com/dskkynwxb/c_fill,g_auto,h_1000,w_1950/q_auto:good/f_auto/' +
+      data.showImg +
+      ')'
+  }"
+>
   <div class="overlay"></div>
 
-  <span class="name">{{ data.name}}</span>
-  <span  class="m2">{{ data.m2 }}</span>
+  <span class="name">{{ data.name }}</span>
+  <span class="m2" *ngIf="data.m2">{{ data.m2 }}m<sup>2</sup></span>
 </div>
 
 <section class="images-container">
-  @for (image of data.images; track $index; let  i = $index) {
-    @if( image.description ) {
-      <div
-      class="comented"
-      [ngStyle]="{  
-      'grid-row': 'span 4',
-      'grid-column': 'span 3',
-      width: '100%'}"
-        [ngClass]="{ 'reverse': i % 2 !== 0 }"
-        >
-        <div class="comentedImage"
-        [ngStyle]="{'background-image': 'url(' + image.src + ')'}" >
-       </div>
+  @for (image of data.images; track $index; let i = $index) {
+  <div
+    [ngStyle]="{
+      'grid-row':
+        'span ' + (image.featured ? 3 : image.rowSpan ? image.rowSpan : 3),
+      'grid-column':
+        'span ' + (image.featured ? 3 : image.colSpan ? image.colSpan : 1),
+      position: 'relative'
+    }"
+  >
+    <img
+      class="image"
+      [ngSrc]="'c_fill,g_auto,h_550,w_550/q_auto:good/f_auto/' + image.src"
+      alt="{{ 'Foto del proyecto' }}"
+      [fill]="true"
+    />
+  </div>
 
-        <span class="description">
-          {{image.description}}
-        </span>
-    </div>
-    }
-    @else {
-      <img class="image"
-      loading="lazy"
-      src="{{image.src}}"
-      alt="{{'Foto del proyecto'}}"
-       [ngStyle]="{
-      'grid-row': 'span ' + ( image.featured ? 3 : image.rowSpan ? image.rowSpan : 2),
-      'grid-column': 'span ' + (image.featured ? 3 : image.colSpan ? image.colSpan : 1),
-      }" >
-    }
-   
   }
-
- </section>
+</section>
