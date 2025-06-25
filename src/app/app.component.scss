@@ -180,3 +180,9 @@ app-topbar:hover {
 ::ng-deep .mat-mdc-dialog-surface * {
   box-sizing: border-box !important;
 }
+
+@media (max-width: 600px) {
+  .projects-container {
+    grid-template-columns: 1fr !important; /* Una sola columna en pantallas pequeñas */
+  }
+}
