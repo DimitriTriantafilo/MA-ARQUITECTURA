@@ -1,5 +1,5 @@
-@import "../../../assets/styles/variables.scss";
-
+@use "../../../assets/styles/variables.scss" as *;
+@use "sass:math";
 .container {
   position: relative;
 }

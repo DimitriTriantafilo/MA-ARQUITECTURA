@@ -8,6 +8,7 @@ import { ProjectDetailDialogComponent } from './@components/project-detail-dialo
 import { MatDialog } from '@angular/material/dialog';
 import { CloudinaryModule } from '@cloudinary/ng';
 import { CloudinaryService } from './cloudinary.service';
+import { TranslatePipe } from './transltate/translate.pipe';
 @Component({
   selector: 'app-root',
   imports: [
@@ -17,6 +18,7 @@ import { CloudinaryService } from './cloudinary.service';
     ProjectDisplayComponent,
     NosotrosComponent,
     CloudinaryModule,
+    TranslatePipe,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

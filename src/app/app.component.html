@@ -22,7 +22,7 @@
       decoding="sync"
       style="will-change: transform, width"
     /> -->
-    <span class="welcome-text"> MA - ARQUITECTURA </span>
+    <span class="welcome-text"> {{ "title" | translate }} </span>
   </div>
   <section class="featuredImg">
     <iframe
@@ -43,7 +43,7 @@
       [style.content-visibility]="'auto'"
       (click)="scrollToItem('lema')"
     >
-      PROYECTOS
+      {{ "proyects" | translate }}
     </h1>
   </article>
   <section class="projects-container">
@@ -60,7 +60,7 @@
     ></app-project-display>
     }
   </section>
-  <app-nosotros></app-nosotros>
+  <app-nosotros id="aboutUs"></app-nosotros>
 </main>
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->

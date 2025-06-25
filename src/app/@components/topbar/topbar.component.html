@@ -5,7 +5,7 @@
     @if(isMobile){
     <span class="menuButton"> MENU </span>
     }
-    <span>ES / EN</span>
+    <span (click)="changeLanguage()">ES / EN</span>
 
     <a target="_blank">
       <img
@@ -16,7 +16,7 @@
         height="auto"
       />
     </a>
-    <a href="https://www.instagram.com/ma.arquitectura/">
+    <a target="_blank" href="https://www.instagram.com/_ma.arquitectura/">
       <img
         class="icons ig"
         src="assets/ig-logo.png"
@@ -37,6 +37,8 @@
     />
   </section>
   @if(!isMobile){
-  <span class="nosotros">NOSOTROS</span>
+  <span class="nosotros" (click)="scrollToItem('aboutUs')">{{
+    "aboutUs" | translate
+  }}</span>
   }
 </nav>
