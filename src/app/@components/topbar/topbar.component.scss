@@ -76,3 +76,12 @@
 .ig {
   margin-top: 4px;
 }
+
+@media (max-width: 600px) {
+  .main {
+    height: 12vw;
+  }
+  .logo {
+    width: 12vw;
+  }
+}

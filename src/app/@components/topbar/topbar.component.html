@@ -5,14 +5,18 @@
     @if(isMobile){
     <span class="menuButton"> MENU </span>
     }
-    <span (click)="changeLanguage()">ES / EN</span>
+    <span (click)="changeLanguage()"
+      ><p>ES</p>
+      /
+      <p>EN</p>
+    </span>
 
     <a target="_blank">
       <img
         class="icons mail"
         src="assets/mail.png"
         alt="Logo"
-        width="40"
+        width="35vw"
         height="auto"
       />
     </a>
@@ -21,7 +25,7 @@
         class="icons ig"
         src="assets/ig-logo.png"
         alt="Logo"
-        width="23"
+        width="20vw"
         height="auto"
       />
     </a>

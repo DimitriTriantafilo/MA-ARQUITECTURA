@@ -5,8 +5,7 @@
 }
 .nosotros {
   background-color: transparent;
-  padding: 90px 40px 90px 40px;
-  padding-top: 90px;
+  padding: 0px 40px 90px 40px;
 
   display: flex;
   flex-direction: column;
@@ -83,22 +82,58 @@
 }
 
 @media (max-width: 600px) {
+  .title {
+    font-size: 14vw;
+  }
   .nosotros {
-    padding: 90px 5px;
+    &-title {
+      font-size: 14vw;
+    }
+    padding: 20px 5px;
+  }
+  p {
+    font-size: 6vw;
+    text-align: center;
+    padding: 30px;
   }
   .profile {
-    p {
-      font-size: 20px;
-    }
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+
     h1 {
-      font-size: 50px;
+      font-size: 9vw;
       font-weight: 500;
-      line-height: 60px;
+      line-height: 12vw;
     }
 
     &-img {
       width: 40%;
       height: 40%;
+    }
+  }
+  .profile-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-container:nth-child(odd) {
+    h1 {
+      text-align: left;
+    }
+
+    p {
+      text-align: left;
+      padding: 16px 25% 0px 5%;
+    }
+  }
+  .profile-container:nth-child(even) {
+    h1 {
+      text-align: right;
+    }
+    p {
+      text-align: right;
+      padding: 25px 5% 0px 25%;
     }
   }
 }

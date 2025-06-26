@@ -1,6 +1,8 @@
 <link rel="preconnect" href="https://res.cloudinary.com" />
 
-<span class="closeButton" (click)="dialogRef.close()">CERRAR</span>
+<span class="closeButton" (click)="dialogRef.close()">{{
+  "close" | translate
+}}</span>
 <div
   class="project-landig"
   [ngStyle]="{

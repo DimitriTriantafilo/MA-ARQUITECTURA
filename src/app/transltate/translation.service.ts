@@ -13,7 +13,6 @@ export class TranslationService {
     this.currentLang.set(lang);
   }
   changeLanguage(): void {
-    console.log(this.currentLang());
     this.currentLang() == 'es'
       ? this.currentLang.set('en')
       : this.currentLang.set('es');
