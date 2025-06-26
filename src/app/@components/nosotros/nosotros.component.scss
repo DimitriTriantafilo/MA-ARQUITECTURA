@@ -13,6 +13,7 @@
   gap: 40px;
   position: relative;
   z-index: 2;
+  overflow: hidden;
 }
 
 .nosotros-title {
@@ -63,9 +64,42 @@
     font-weight: bold; /* Cambia el peso de la fuente si lo deseas */
     letter-spacing: 5px;
   }
+
   p {
     font-size: 40px;
     font-weight: 300;
+  }
+}
+
+.profile:nth-child(odd) {
+  h1 {
+    text-align: left;
+  }
+}
+.profile:nth-child(even) {
+  h1 {
+    text-align: right;
+  }
+}
+
+@media (max-width: 600px) {
+  .nosotros {
+    padding: 90px 5px;
+  }
+  .profile {
+    p {
+      font-size: 20px;
+    }
+    h1 {
+      font-size: 50px;
+      font-weight: 500;
+      line-height: 60px;
+    }
+
+    &-img {
+      width: 40%;
+      height: 40%;
+    }
   }
 }
 

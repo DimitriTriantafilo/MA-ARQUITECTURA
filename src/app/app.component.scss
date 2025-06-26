@@ -183,6 +183,8 @@ app-topbar:hover {
 
 @media (max-width: 600px) {
   .projects-container {
+    gap: 14px;
+    grid-auto-rows: 60px;
     grid-template-columns: 1fr !important; /* Una sola columna en pantallas pequeñas */
   }
 }

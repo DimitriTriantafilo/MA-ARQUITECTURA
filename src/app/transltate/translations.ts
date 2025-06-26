@@ -17,7 +17,7 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'buttons.save': 'Save',
     'buttons.cancel': 'Cancel',
     aboutUs: 'STUDIO',
-    proyects: 'PROYECTS',
+    proyects: 'PROJECTS',
     title: 'MA - ARQUITECTURE',
     manuDescription:
       "El Caniche, co-founder of MA, earned his FADU degree. With his adventurous spirit, he has been a great representative of AMLS. Focusing on transgenders and tantric sex, he brings a fundamental corporate dimension to the studio, essential for the company's growth.",

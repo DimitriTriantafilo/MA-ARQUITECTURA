@@ -125,3 +125,17 @@
   color: white;
   width: 50%;
 }
+
+@media (max-width: 600px) {
+  .images-container {
+    grid-template-columns: 1fr !important; /* Una sola columna en pantallas pequeñas */
+    gap: 0px;
+    padding: 0px;
+  }
+  .name {
+    font-size: 50px;
+  }
+  .m2 {
+    font-size: 25px;
+  }
+}
