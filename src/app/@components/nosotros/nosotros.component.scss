@@ -86,10 +86,11 @@
     font-size: 14vw;
   }
   .nosotros {
+    padding: 20px 5px;
+
     &-title {
       font-size: 14vw;
     }
-    padding: 20px 5px;
   }
   p {
     font-size: 6vw;
@@ -158,8 +159,8 @@
   background-color: rgba(255, 255, 255, 0.2); // Color con opacidad
   border-radius: 10px; // Bordes redondeados
   rotate: -45deg;
-  top: calc(random() * 100%); // Ajusta la posición
-  left: calc(random() * 100%); // Ajusta la posición
+  top: calc(math.random() * 100%); // Ajusta la posición
+  left: calc(math.random() * 100%); // Ajusta la posición
   animation: float 30s ease-in-out infinite; // Agrega animación
 }
 

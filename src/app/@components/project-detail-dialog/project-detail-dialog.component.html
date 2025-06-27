@@ -1,8 +1,15 @@
 <link rel="preconnect" href="https://res.cloudinary.com" />
 
+@if(innerWidth < 600){
+<div class="closeButton" (click)="dialogRef.close()">
+  <mat-icon>close</mat-icon>
+</div>
+} @else {
 <span class="closeButton" (click)="dialogRef.close()">{{
   "close" | translate
 }}</span>
+}
+
 <div
   class="project-landig"
   [ngStyle]="{

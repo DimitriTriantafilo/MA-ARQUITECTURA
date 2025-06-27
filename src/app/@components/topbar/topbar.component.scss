@@ -9,6 +9,7 @@
   grid-template-columns: repeat(3, 1fr); /* Distribuye los elementos */
   align-items: center;
   background-color: rgba($deep-onyx, 0.65);
+  color: white;
 }
 
 .logo-container {
@@ -46,7 +47,7 @@
     text-decoration: none;
     list-style-type: none;
     color: var(--primary-font-color);
-    font-family: "modeco";
+    font-family: "modeco", sans-serif;
     font-display: swap;
   }
 }
@@ -64,7 +65,7 @@
   text-align: right;
   padding-right: 40px;
   font-size: 18px;
-  font-family: "modeco";
+  font-family: "modeco", sans-serif;
   cursor: pointer;
   color: var(--primary-font-color);
   font-display: swap;

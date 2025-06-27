@@ -1,0 +1,34 @@
+@use "../../../assets/styles/variables.scss" as *;
+
+.footer {
+  width: 100%;
+  height: 30px;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  z-index: 2;
+  display: flex;
+  justify-content: flex-end;
+}
+.trapezoid-footer {
+  width: 150px;
+  height: 40px;
+  position: relative;
+  color: white;
+  text-align: center;
+  line-height: 50px;
+}
+
+.trapezoid-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba($deep-onyx, 0.95);
+  transform: perspective(50px) rotateX(10deg);
+  transform-origin: bottom;
+  z-index: -1;
+  border-radius: 4px 4px 0 0;
+}
