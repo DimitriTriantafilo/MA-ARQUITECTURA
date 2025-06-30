@@ -19,18 +19,25 @@ body {
 }
 
 @font-face {
-  font-family: "modeco";
+  font-family: "modeco", sans-serif;
   src: url("assets/fonts/ModecoTrial-Regular.otf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: "Modeco";
+  font-family: "modeco", sans-serif;
   src: local("Modeco"),
     url("assets/fonts/ModecoTrial-Regular.otf") format("truetype"),
     url("assets/fonts/ModecoTrial-Regular.otf") format("truetype");
   font-display: swap;
   font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "manrope";
+  src: url("assets/fonts/Manrope.ttf") format("truetype");
+  font-weight: normal;
   font-style: normal;
 }
 html,

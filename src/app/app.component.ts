@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CloudinaryModule } from '@cloudinary/ng';
 import { CloudinaryService } from './cloudinary.service';
 import { TranslatePipe } from './transltate/translate.pipe';
+import { FooterComponent } from './@components/footer/footer.component';
 @Component({
   selector: 'app-root',
   imports: [
@@ -25,7 +26,7 @@ import { TranslatePipe } from './transltate/translate.pipe';
 })
 export class AppComponent {
   showWelcome = true;
-
+  loadVideo: boolean = false;
   constructor(
     private dialog: MatDialog,
     private cloudinaryService: CloudinaryService
@@ -36,6 +37,9 @@ export class AppComponent {
   }
 
   ngOnInit() {
+    setTimeout(() => {
+      this.loadVideo = true;
+    }, 4000);
     // this.optimizeProjectImages();
   }
 

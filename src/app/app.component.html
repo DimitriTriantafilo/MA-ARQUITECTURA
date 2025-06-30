@@ -25,16 +25,18 @@
     <span class="welcome-text"> {{ "title" | translate }} </span>
   </div>
   <section class="featuredImg">
-    <iframe
-      loading="lazy"
-      width="100%"
-      height="100%"
-      src="https://www.youtube.com/embed/Bi5S56d1HFg?autoplay=1&controls=0&modestbranding=1&rel=0&loop=1&playlist=Bi5S56d1HFg&mute=1"
-      title="YouTube video"
-      frameborder="0"
-      allow="autoplay; encrypted-media"
-      allowfullscreen
-    ></iframe>
+    <ng-container *ngIf="loadVideo">
+      <iframe
+        loading="lazy"
+        width="100%"
+        height="100%"
+        src="https://www.youtube.com/embed/Bi5S56d1HFg?autoplay=1&controls=0&modestbranding=1&rel=0&loop=1&playlist=Bi5S56d1HFg&mute=1"
+        title="YouTube video"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen
+      ></iframe>
+    </ng-container>
   </section>
   <article>
     <h1
@@ -60,16 +62,8 @@
     ></app-project-display>
     }
   </section>
-  <div class="division"></div>
   <app-nosotros id="aboutUs"></app-nosotros>
+  <!-- <app-footer></app-footer> -->
 </main>
-
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
 <router-outlet />
