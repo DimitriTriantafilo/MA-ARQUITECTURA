@@ -8,12 +8,13 @@ import {
   animate,
   transition,
 } from '@angular/animations';
+import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'app-topbar',
   templateUrl: './topbar.component.html',
   styleUrl: './topbar.component.scss',
-  imports: [TranslatePipe],
+  imports: [TranslatePipe, MatMenuModule],
   animations: [
     trigger('languageChange', [
       state(

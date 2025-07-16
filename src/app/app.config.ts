@@ -15,6 +15,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
     provideAnimationsAsync(),
-    provideCloudinaryLoader('https://res.cloudinary.com/dskkynwxb/'),
+    provideCloudinaryLoader('https://res.cloudinary.com/dskkynwxb/'), provideAnimationsAsync(),
   ],
 };
