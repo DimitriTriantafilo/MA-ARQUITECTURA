@@ -9,12 +9,12 @@ import {
   transition,
 } from '@angular/animations';
 import { MatMenuModule } from '@angular/material/menu';
-
+import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-topbar',
   templateUrl: './topbar.component.html',
   styleUrl: './topbar.component.scss',
-  imports: [TranslatePipe, MatMenuModule],
+  imports: [TranslatePipe, MatMenuModule, MatIconModule],
   animations: [
     trigger('languageChange', [
       state(

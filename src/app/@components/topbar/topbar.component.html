@@ -1,6 +1,24 @@
 <style></style>
 
 <nav class="main">
+  <div class="menu-container">
+    <button mat-mini-fab [matMenuTriggerFor]="menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+
+  <section class="logo-container">
+    <img
+      class="logo"
+      src="assets/logo-blanco.png"
+      alt="Logo"
+      width="120"
+      height="auto"
+    />
+  </section>
+  @if(!isMobile){
+
+  <!-- <button mat-button>Menu</button> -->
   <ul class="menu">
     @if(isMobile){
     <span class="menuButton"> MENU </span>
@@ -25,22 +43,6 @@
       />
     </a>
   </ul>
-
-  <section class="logo-container">
-    <img
-      class="logo"
-      src="assets/logo-blanco.png"
-      alt="Logo"
-      width="120"
-      height="auto"
-    />
-  </section>
-  @if(!isMobile){
-  <span class="nosotros" (click)="scrollToItem('aboutUs')">{{
-    "aboutUs" | translate
-  }}</span>
-  <button mat-button [matMenuTriggerFor]="menu">Menu</button>
-
   }
 </nav>
 
