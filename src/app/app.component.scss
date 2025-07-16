@@ -20,7 +20,9 @@ $golden-basketry: #ad9371;
   --secondary-font-color: $whitecliff-beige;
 }
 .main {
-  background-color: $darker-onyx;
+  // background-color: $darker-onyx;
+  // background-color: #f1f1f1;
+  background-color: #f4f4f4;
   min-height: 100vh;
   width: 100%;
 }
@@ -69,9 +71,11 @@ app-topbar:hover {
   margin: 0;
   font-size: clamp(2rem, 8vw, 70px); /* Mejor responsividad */
   min-height: 15vh; /* Cambia height a min-height */
-  font-weight: 100;
+  // font-weight: 200;
+  font-weight: 400;
   text-align: center;
-  color: $medici-gray;
+  // color: $medici-gray;
+  color: #756860;
   display: flex;
   align-items: center;
   justify-content: center;

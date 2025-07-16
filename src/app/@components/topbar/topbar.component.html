@@ -5,10 +5,14 @@
     @if(isMobile){
     <span class="menuButton"> MENU </span>
     }
-    <span (click)="changeLanguage()"
-      ><p>ES</p>
-      /
-      <p>EN</p>
+    <span (click)="changeLanguage()" class="language-switcher">
+      <div
+        class="language-options"
+        [class.spanish]="translationService.currentLang() === 'es'"
+      >
+        <p>ES</p>
+        <p>EN</p>
+      </div>
     </span>
 
     <a target="_blank" href="https://www.instagram.com/_ma.arquitectura/">

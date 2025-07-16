@@ -37,10 +37,15 @@
   gap: 10px;
   margin: 0px;
   span {
-    font-size: 15px;
+    font-size: 16px;
     display: flex;
     align-items: center;
     cursor: pointer;
+    transition: font-size 0.3s ease;
+  }
+  span:hover {
+    font-size: 18px;
+    font-weight: 400;
   }
   a {
     cursor: pointer;
@@ -49,6 +54,9 @@
     color: var(--primary-font-color);
     font-family: "modeco", sans-serif;
     font-display: swap;
+    img:hover {
+      width: 29px;
+    }
   }
 }
 
@@ -85,4 +93,34 @@
   .logo {
     width: 12vw;
   }
+}
+
+.language-switcher {
+  display: inline-block;
+  height: 20px; /* Altura de una línea */
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.language-options {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+.language-options p {
+  margin: 0;
+  padding: 0 5px;
+  line-height: 20px; /* Mismo que la altura del contenedor */
+  height: 20px;
+}
+
+/* Cuando está en español */
+.language-options.spanish {
+  transform: translateY(10px); /* Mueve hacia arriba para mostrar ES */
+}
+
+/* Cuando no está en español (inglés por defecto) */
+.language-options:not(.spanish) {
+  transform: translateY(-10px); /* Muestra EN */
 }

@@ -3,7 +3,7 @@ import { AvailableLanguages, TRANSLATIONS } from './translations';
 
 @Injectable({ providedIn: 'root' })
 export class TranslationService {
-  private currentLang = signal<AvailableLanguages>('es');
+  public currentLang = signal<AvailableLanguages>('es');
   private translations = TRANSLATIONS;
 
   public readonly currentLanguage: Signal<AvailableLanguages> =
