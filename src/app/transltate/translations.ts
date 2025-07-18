@@ -8,8 +8,13 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     proyects: 'PROYECTOS',
     title: 'MA - ARQUITECTURA',
     close: 'CERRAR',
+    estudioDescription:
+      ' En MA creamos proyectos para el habitar que permanezcan en el tiempo. Diseñamos espacios con sentido, resaltando lo esencial en cada uno. Estamos en la búsqueda constante de equilibrio y armonía. Proyectamos a medida y gusto de cada cliente. Construimos espacios de lujo, adaptándonos al presupuesto de cada cliente. En MA, somos mucho más que arquitectura: somos arte, innovación y diseño.',
+    agusDescription:
+      '“Nos gusta estar en los detalles, para que cada cliente se sienta cómodo y acompañado durante todo el proceso de diseño y construcción”',
+    // Agrega aquí todas tus traducciones en español
     manuDescription:
-      'El Caniche, co-fundador de MA, obtuvo su título FADU. Con su espíritu aventurero, ha sido un gran representante del AMLS. Enfocado en los travestis y el sexo tántrico, aporta una dimensión corporativa fundamental al estudio, esencial para el crecimiento de la empresa.',
+      ' “Creemos que la arquitectura se basa en generar espacios únicos de permanencia, donde el diseño y la innovación son protagonistas.”',
     // Agrega aquí todas tus traducciones en español
   },
   en: {

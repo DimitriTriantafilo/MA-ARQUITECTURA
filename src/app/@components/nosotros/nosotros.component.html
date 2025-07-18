@@ -27,9 +27,10 @@
 
   <div class="nosotros">
     <h1 class="nosotros-title">{{ "aboutUs" | translate }}</h1>
+    <h2>{{ "estudioDescription" | translate }}</h2>
     <div class="profile-container">
       @if(innerWidth > 600){
-      <img src="assets/manu.png" class="profile-img" alt="Foto manu" />
+      <img src="assets/manu.jpg" class="profile-img" alt="Foto manu" />
       <div class="profile">
         <h1>
           MANUEL <br />
@@ -41,7 +42,7 @@
       </div>
       } @else {
       <div class="profile">
-        <img src="assets/manu.png" class="profile-img" alt="Foto manu" />
+        <img src="assets/manu.jpg" class="profile-img" alt="Foto manu" />
 
         <h1>
           MANUEL <br />
@@ -56,7 +57,7 @@
 
     <div class="profile-container">
       @if(innerWidth > 600){
-      <img class="profile-img" src="../../../assets/agus.png" alt="Foto Agus" />
+      <img class="profile-img" src="../../../assets/agus.jpg" alt="Foto Agus" />
 
       <div class="profile">
         <h1>
@@ -64,7 +65,7 @@
           RUIZ
         </h1>
         <p>
-          {{ "manuDescription" | translate }}
+          {{ "agusDescription" | translate }}
         </p>
       </div>
       } @else {
@@ -76,12 +77,12 @@
 
         <img
           class="profile-img"
-          src="../../../assets/agus.png"
+          src="../../../assets/agus.jpg"
           alt="Foto Agus"
         />
       </div>
       <p>
-        {{ "manuDescription" | translate }}
+        {{ "agusDescription" | translate }}
       </p>
       }
     </div>

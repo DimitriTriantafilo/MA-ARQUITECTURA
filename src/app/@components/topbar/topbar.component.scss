@@ -12,22 +12,40 @@
   color: white;
 }
 
+.logo-switcher {
+  align-self: center;
+
+  overflow: hidden;
+  display: block;
+  align-items: center;
+  justify-content: center;
+  height: 90px;
+  cursor: pointer;
+}
 .logo-container {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center; /* Centra la imagen horizontalmente */
-  align-self: center;
-  justify-self: center;
-  grid-column: 2;
+  transition: transform 0.3s ease;
 }
 
 .logo {
   width: 90px; /* Establece el tamaño base */
   height: auto;
-  transition: transform 0.3s ease-in-out; /* Agrega una transición suave */
+  transition: all 0.4s ease-in-out; /* Agrega una transición suave */
 }
 
-.logo:hover {
-  transform: scale(0.9); /* Aumenta el tamaño al hacer hover */
+.logo-switcher:hover .logo {
+  opacity: 0; /* Aumenta el tamaño al hacer hover */
+}
+
+.marca {
+  font-family: "modeco";
+  transition: transform 0.7s ease-in-out; /* Agrega una transición suave */
+}
+.logo-switcher:hover .marca {
+  transform: translateY(-70px);
 }
 
 .menu {
