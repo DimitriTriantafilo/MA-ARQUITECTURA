@@ -134,3 +134,53 @@
 .language-options:not(.spanish) {
   transform: translateY(-10px); /* Muestra EN */
 }
+
+.burgerMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 0vw;
+  height: 100vh;
+  justify-content: space-around;
+  background-color: rgba($darker-onyx, 0.97);
+  overflow: hidden;
+  transition: width 0.4s ease;
+
+  &-option {
+    width: 100%;
+    color: $stone-white;
+    font-size: 40px;
+    text-align: center;
+    cursor: pointer;
+    opacity: 0;
+    font-family: "ivnm";
+    transition: all 0.3s ease;
+    line-height: 70px;
+    font-weight: BOLDER;
+    letter-spacing: 10px;
+    border-bottom: 1px rgba($stone-white, 0.2) solid;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &-option:hover {
+    font-size: 60px;
+  }
+}
+
+.activeMenu {
+  width: 40vw;
+  & .burgerMenu-option {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .activeMenu {
+    width: 100vw;
+  }
+}

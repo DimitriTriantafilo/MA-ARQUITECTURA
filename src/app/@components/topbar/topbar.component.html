@@ -2,7 +2,7 @@
 
 <nav class="main">
   <div class="menu-container">
-    <button mat-mini-fab [matMenuTriggerFor]="menu">
+    <button (click)="toggleMenu($event)">
       <mat-icon>menu</mat-icon>
     </button>
   </div>
@@ -46,7 +46,23 @@
   }
 </nav>
 
-<mat-menu #menu="matMenu">
-  <button mat-menu-item>Item 1</button>
-  <button mat-menu-item>Item 2</button>
-</mat-menu>
+<div #burgerMenu class="burgerMenu" [ngClass]="openMenu ? 'activeMenu' : null">
+  <div
+    class="burgerMenu-option"
+    (click)="scrollToItem('lema'); openMenu = false"
+  >
+    {{ "proyects" | translate }}
+  </div>
+  <div
+    class="burgerMenu-option"
+    (click)="scrollToItem('aboutUs'); openMenu = false"
+  >
+    {{ "aboutUs" | translate }}
+  </div>
+  <div class="burgerMenu-option">
+    NUESTROS <br />
+    SERVICIOS
+  </div>
+  <div class="burgerMenu-option">CONTACTO</div>
+  <div class="burgerMenu-option">INICIO</div>
+</div>

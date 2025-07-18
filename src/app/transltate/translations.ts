@@ -4,7 +4,7 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     greeting: 'Hola, {{name}}!',
     'buttons.save': 'Guardar',
     'buttons.cancel': 'Cancelar',
-    aboutUs: 'NOSOTROS',
+    aboutUs: 'ESTUDIO',
     proyects: 'PROYECTOS',
     title: 'MA - ARQUITECTURA',
     close: 'CERRAR',
