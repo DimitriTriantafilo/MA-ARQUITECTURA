@@ -49,55 +49,9 @@ app-topbar:hover {
   top: 0 !important;
 }
 
-.featuredImg {
-  position: relative;
-  width: 100%;
-  height: 85vh;
-  overflow: hidden; /* Evita bordes indeseados */
-
-  iframe {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 56.25vw; /* Relación 16:9 */
-    transform: translate(-50%, -50%);
-  }
-}
 .main {
   display: flex;
   flex-direction: column;
-}
-.lema {
-  margin: 0;
-  font-size: clamp(2rem, 8vw, 70px); /* Mejor responsividad */
-  min-height: 15vh; /* Cambia height a min-height */
-  // font-weight: 200;
-  font-weight: 400;
-  text-align: center;
-  // color: $medici-gray;
-  color: #756860;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-family: "modeco", system-ui, sans-serif; /* Fallback añadido */
-  font-display: swap;
-  /* Eliminado will-change: transform */
-  contain: layout; /* Mejor para rendimiento */
-}
-
-.projects-container {
-  display: grid;
-  grid-auto-rows: 100px;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(30%, 1fr)
-  ); /* Tres columnas */
-  gap: 20px; /* Espacio entre items */
-
-  padding: 4.3%;
-  padding-top: 0px;
 }
 
 .welcome-container {

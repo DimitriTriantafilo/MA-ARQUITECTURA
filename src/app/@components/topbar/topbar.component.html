@@ -7,7 +7,7 @@
     </button>
   </div>
 
-  <section class="logo-switcher">
+  <section class="logo-switcher" routerLink="/">
     <div class="logo-container">
       <img
         class="logo"
@@ -50,13 +50,11 @@
 </nav>
 
 <div #burgerMenu class="burgerMenu" [ngClass]="openMenu ? 'activeMenu' : null">
-  <div
-    class="burgerMenu-option"
-    (click)="scrollToItem('lema'); openMenu = false"
-  >
+  <div class="burgerMenu-option" [routerLink]="['/proyectos']">
     {{ "proyects" | translate }}
   </div>
   <div
+    [routerLink]="['/estudio']"
     class="burgerMenu-option"
     (click)="scrollToItem('aboutUs'); openMenu = false"
   >
@@ -67,5 +65,5 @@
     SERVICIOS
   </div>
   <div class="burgerMenu-option">CONTACTO</div>
-  <div class="burgerMenu-option">INICIO</div>
+  <div class="burgerMenu-option" routerLink="/">INICIO</div>
 </div>

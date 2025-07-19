@@ -43,41 +43,53 @@
 .profile {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 70px;
   width: 40%;
   padding-right: 10%;
   padding-left: 10%;
 
   justify-content: center;
-  h1 {
-    font-family: "ivnm";
-    font-display: swap;
-    margin: 0px;
-    font-size: 100px;
-    font-weight: 400;
-    line-height: 95px;
+  &-nameRoleContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    h1 {
+      font-family: "ivnm";
+      font-display: swap;
+      margin: 0px;
+      font-size: 40px;
+      font-weight: 500;
+      text-align: right;
+    }
+    h1::first-letter {
+      color: $golden-basketry; /* Cambia el color a lo que desees */
+      font-size: 120%; /* Puedes ajustar el tamaño de la letra si lo deseas */
+      font-weight: bold; /* Cambia el peso de la fuente si lo deseas */
+      letter-spacing: 5px;
+    }
   }
-  h1::first-letter {
-    color: $golden-basketry; /* Cambia el color a lo que desees */
-    font-size: 120%; /* Puedes ajustar el tamaño de la letra si lo deseas */
-    font-weight: bold; /* Cambia el peso de la fuente si lo deseas */
-    letter-spacing: 5px;
-  }
-
   p {
     font-size: 40px;
     font-weight: 300;
+    margin: 0px;
   }
 }
 
-.profile:nth-child(odd) {
+.profile:nth-child(odd) .profile-nameRoleContainer {
   h1 {
     text-align: left;
   }
+  p {
+    text-align: left;
+  }
 }
-.profile:nth-child(even) {
+.profile:nth-child(even) .profile-nameRoleContainer {
   h1 {
     text-align: right;
+  }
+  p {
+    text-align: right;
+    // padding: 25px 5% 0px 25%;
   }
 }
 

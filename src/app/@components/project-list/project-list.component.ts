@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { TranslatePipe } from '../../transltate/translate.pipe';
 import { Project } from '../../app.component';
-import { projects } from '../../app.config';
 import { ProjectDisplayComponent } from '../project-display/project-display.component';
 import { CommonModule } from '@angular/common';
 import { CloudinaryService } from '../../cloudinary.service';
+import { projects } from '../../app.routes';
 
 @Component({
   selector: 'app-project-list',

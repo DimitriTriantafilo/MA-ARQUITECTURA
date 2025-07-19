@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
-import { generateSlug } from './app.routes';
+import { generateSlug, projects } from './app.routes';
 import { Project } from './app.component';
-import { projects } from './app.config';
 
 export const serverRoutes: Routes = [
   ...projects.map((project: Project) => ({

@@ -19,11 +19,18 @@ import {
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-topbar',
   templateUrl: './topbar.component.html',
   styleUrl: './topbar.component.scss',
-  imports: [TranslatePipe, MatMenuModule, MatIconModule, CommonModule],
+  imports: [
+    TranslatePipe,
+    MatMenuModule,
+    MatIconModule,
+    CommonModule,
+    RouterModule,
+  ],
   animations: [
     trigger('languageChange', [
       state(

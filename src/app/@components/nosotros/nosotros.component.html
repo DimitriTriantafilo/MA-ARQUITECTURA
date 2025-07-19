@@ -27,25 +27,28 @@
 
   <div class="nosotros">
     <h1 class="nosotros-title">{{ "aboutUs" | translate }}</h1>
+
+    <img src="assets/estudio-arquitectura.jpg" alt="Foto estudio" />
+
     <h2>{{ "estudioDescription" | translate }}</h2>
     <div class="profile-container">
       @if(innerWidth > 600){
       <img src="assets/manu.jpg" class="profile-img" alt="Foto manu" />
       <div class="profile">
-        <h1>
-          MANUEL <br />
-          VEIGA
-        </h1>
         <p>
           {{ "manuDescription" | translate }}
         </p>
+        <div class="profile-nameRoleContainer">
+          <h1>- MANUEL VEIGA</h1>
+          <p>Cofounder</p>
+        </div>
       </div>
       } @else {
       <div class="profile">
         <img src="assets/manu.jpg" class="profile-img" alt="Foto manu" />
 
         <h1>
-          MANUEL <br />
+          - MANUEL <br />
           VEIGA
         </h1>
       </div>
@@ -57,21 +60,22 @@
 
     <div class="profile-container">
       @if(innerWidth > 600){
-      <img class="profile-img" src="../../../assets/agus.jpg" alt="Foto Agus" />
 
       <div class="profile">
-        <h1>
-          AGUSTINA <br />
-          RUIZ
-        </h1>
         <p>
           {{ "agusDescription" | translate }}
         </p>
+        <div class="profile-nameRoleContainer">
+          <h1>- AGUSTINA RUIZ</h1>
+          <p>Cofounder</p>
+        </div>
       </div>
+      <img class="profile-img" src="../../../assets/agus.jpg" alt="Foto Agus" />
+
       } @else {
       <div class="profile">
         <h1>
-          AGUSTINA <br />
+          - AGUSTINA <br />
           RUIZ
         </h1>
 
