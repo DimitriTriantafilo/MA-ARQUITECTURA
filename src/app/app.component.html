@@ -1,18 +1,7 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-<style></style>
-
 <main class="main">
   <app-topbar [class.hidden]="isHidden"></app-topbar>
   <div class="welcome-container">
-    <!-- <img
+    <img
       class="welcome-logo"
       src="assets/logo-blanco.png"
       alt="Logo"
@@ -21,49 +10,9 @@
       fetchpriority="high"
       decoding="sync"
       style="will-change: transform, width"
-    /> -->
+    />
     <span class="welcome-text"> {{ "title" | translate }} </span>
   </div>
-  <section class="featuredImg">
-    <ng-container *ngIf="loadVideo">
-      <iframe
-        loading="lazy"
-        width="100%"
-        height="100%"
-        src="https://www.youtube.com/embed/Bi5S56d1HFg?autoplay=1&controls=0&modestbranding=1&rel=0&loop=1&playlist=Bi5S56d1HFg&mute=1"
-        title="YouTube video"
-        frameborder="0"
-        allow="autoplay; encrypted-media"
-        allowfullscreen
-      ></iframe>
-    </ng-container>
-  </section>
-  <article>
-    <h1
-      class="lema"
-      id="lema"
-      [style.content-visibility]="'auto'"
-      (click)="scrollToItem('lema')"
-    >
-      {{ "proyects" | translate }}
-    </h1>
-  </article>
-  <section class="projects-container">
-    @for (project of projects; track $index) {
-    <app-project-display
-      (click)="openProjectDetail(project)"
-      [ngStyle]="{
-        'grid-row': 'span ' + (project.rowSpan ? project.rowSpan : 3),
-        'grid-column': 'span ' + (project.colSpan ? project.colSpan : 1),
-        'min-height': '20vh'
-      }"
-      [project]="project"
-      [index]="$index"
-    ></app-project-display>
-    }
-  </section>
-  <app-nosotros id="aboutUs"></app-nosotros>
-  <!-- <app-footer></app-footer> -->
-</main>
 
-<router-outlet />
+  <router-outlet />
+</main>
