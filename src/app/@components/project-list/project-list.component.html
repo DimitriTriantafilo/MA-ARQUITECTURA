@@ -1,0 +1,18 @@
+<article>
+  <h1 class="lema" id="lema" [style.content-visibility]="'auto'">
+    {{ "proyects" | translate }}
+  </h1>
+</article>
+<section class="projects-container">
+  @for (project of projects; track $index) {
+  <app-project-display
+    [ngStyle]="{
+      'grid-row': 'span ' + (project.rowSpan ? project.rowSpan : 3),
+      'grid-column': 'span ' + (project.colSpan ? project.colSpan : 1),
+      'min-height': '20vh'
+    }"
+    [project]="project"
+    [index]="$index"
+  ></app-project-display>
+  }
+</section>

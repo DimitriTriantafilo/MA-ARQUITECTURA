@@ -1,0 +1,15 @@
+.featuredImg {
+  position: relative;
+  width: 100%;
+  height: 85vh;
+  overflow: hidden; /* Evita bordes indeseados */
+
+  iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 56.25vw; /* Relación 16:9 */
+    transform: translate(-50%, -50%);
+  }
+}

@@ -1,0 +1,33 @@
+.lema {
+  background-color: #e3e2de;
+  margin: 0;
+  font-size: clamp(2rem, 8vw, 70px); /* Mejor responsividad */
+  min-height: 15vh; /* Cambia height a min-height */
+  // font-weight: 200;
+  font-weight: 400;
+  text-align: center;
+  // color: $medici-gray;
+  color: #756860;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-family: "modeco", system-ui, sans-serif; /* Fallback añadido */
+  font-display: swap;
+  /* Eliminado will-change: transform */
+  contain: layout; /* Mejor para rendimiento */
+}
+
+.projects-container {
+  background-color: #e3e2de;
+  display: grid;
+  grid-auto-rows: 100px;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(30%, 1fr)
+  ); /* Tres columnas */
+  gap: 20px; /* Espacio entre items */
+
+  padding: 4.3%;
+  padding-top: 0px;
+}
