@@ -50,13 +50,17 @@
 </nav>
 
 <div #burgerMenu class="burgerMenu" [ngClass]="openMenu ? 'activeMenu' : null">
-  <div class="burgerMenu-option" [routerLink]="['/proyectos']">
+  <div
+    class="burgerMenu-option"
+    [routerLink]="['/proyectos']"
+    (click)="openMenu = false"
+  >
     {{ "proyects" | translate }}
   </div>
   <div
     [routerLink]="['/estudio']"
     class="burgerMenu-option"
-    (click)="scrollToItem('aboutUs'); openMenu = false"
+    (click)="openMenu = false"
   >
     {{ "aboutUs" | translate }}
   </div>
@@ -65,5 +69,7 @@
     SERVICIOS
   </div>
   <div class="burgerMenu-option">CONTACTO</div>
-  <div class="burgerMenu-option" routerLink="/">INICIO</div>
+  <div class="burgerMenu-option" routerLink="/" (click)="openMenu = false">
+    INICIO
+  </div>
 </div>

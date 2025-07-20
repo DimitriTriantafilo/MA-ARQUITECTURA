@@ -2,34 +2,31 @@
 @use "sass:math";
 .container {
   position: relative;
+  background-color: $deep-onyx;
 }
 .nosotros {
   background-color: transparent;
-  padding: 50px 40px 90px 40px;
-
+  padding: 50px 40px 0px 40px;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 150px;
   position: relative;
   z-index: 2;
   overflow: hidden;
 }
-
-.nosotros-title {
-  align-self: center;
+.title {
+  width: 100%;
+  padding: 100px 0 0 0;
+  margin: 0;
+  text-align: center;
   font-size: 100px;
   font-weight: 300;
   color: $deep-onyx;
-  margin: 0px;
-  margin-bottom: 50px;
+
   font-family: "ivnm";
   font-display: swap;
   letter-spacing: 5px;
   color: $golden-basketry;
-  span {
-    display: inline-block; // Permite aplicar padding o margin
-    margin-left: 200px; // Ajusta el valor según lo que necesites
-  }
 }
 
 .profile-container {
@@ -47,7 +44,7 @@
   width: 40%;
   padding-right: 10%;
   padding-left: 10%;
-
+  color: $stone-white;
   justify-content: center;
   &-nameRoleContainer {
     display: flex;
@@ -152,7 +149,7 @@
 }
 
 .background {
-  background-color: $stone-white;
+  // background-color: $stone-white;
   position: absolute;
   height: 100%;
   width: 100%;
@@ -282,7 +279,7 @@
   position: relative;
   width: 900px;
   height: 900px;
-  margin-top: 10%;
+  margin-top: 95%;
 }
 
 .line1 {
@@ -489,4 +486,66 @@
     transform: translateX(-800px);
     rotate: -45deg;
   }
+}
+
+.parallax-container {
+  position: relative;
+  overflow: hidden;
+  width: 40%; // Ajusta según tu diseño
+  height: 100%; // Ajusta según tu diseño
+}
+
+.parallax-container2 {
+  position: relative;
+  overflow: hidden;
+  width: 100%; // Ajusta según tu diseño
+  height: 60vw; // Ajusta según tu diseño
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+
+    z-index: 1;
+  }
+  .profile-img {
+    position: absolute;
+    width: 100%;
+    height: 110%;
+    object-fit: cover;
+    transition: transform 0.3s ease-out;
+    will-change: transform;
+    z-index: 0;
+  }
+  h2 {
+    z-index: 2;
+    color: $stone-white;
+    width: 80%;
+    line-height: 2;
+    /* align-self: flex-end; */
+    font-size: 40px;
+    font-weight: lighter;
+    font-family: "modeco";
+    transition: transform 0.1s ease-out;
+    will-change: transform;
+    text-align: center;
+  }
+}
+
+.profile-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.3s ease-out;
+  will-change: transform;
+}
+
+// Añade esta clase cuando el usuario haga scroll
+.parallax-effect {
+  transform: translateY(
+    calc(var(--scroll-y) * 0.1)
+  ); // Ajusta 0.3 para cambiar la velocidad
 }

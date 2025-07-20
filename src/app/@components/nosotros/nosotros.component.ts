@@ -36,4 +36,22 @@ export class NosotrosComponent implements OnInit {
       this.innerWidth = window.innerWidth;
     }
   }
+
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll() {
+    const scrollY = window.scrollY;
+    document.documentElement.style.setProperty('--scroll-y', `${scrollY}px`);
+
+    const parallaxImages = document.querySelectorAll('.profile-img');
+    parallaxImages.forEach((img) => {
+      const rect = img.getBoundingClientRect();
+      const offset = rect.top - window.innerHeight;
+
+      if (offset < 0) {
+        img.classList.add('parallax-effect');
+      } else {
+        img.classList.remove('parallax-effect');
+      }
+    });
+  }
 }

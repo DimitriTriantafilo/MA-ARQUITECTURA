@@ -24,16 +24,24 @@
       <div class="line6"></div>
     </div>
   </div>
+  <h1 class="title">{{ "aboutUs" | translate }}</h1>
 
   <div class="nosotros">
-    <h1 class="nosotros-title">{{ "aboutUs" | translate }}</h1>
-
-    <img src="assets/estudio-arquitectura.jpg" alt="Foto estudio" />
-
-    <h2>{{ "estudioDescription" | translate }}</h2>
+    <div class="parallax-container2">
+      <img
+        class="profile-img"
+        src="assets/estudio-arquitectura.jpg"
+        alt="Foto estudio"
+      />
+      <h2>{{ "estudioDescription" | translate }}</h2>
+      <div class="overlay"></div>
+    </div>
     <div class="profile-container">
       @if(innerWidth > 600){
-      <img src="assets/manu.jpg" class="profile-img" alt="Foto manu" />
+      <div class="parallax-container">
+        <img src="assets/manu.jpg" class="profile-img" alt="Foto manu" />
+      </div>
+
       <div class="profile">
         <p>
           {{ "manuDescription" | translate }}
@@ -45,8 +53,9 @@
       </div>
       } @else {
       <div class="profile">
-        <img src="assets/manu.jpg" class="profile-img" alt="Foto manu" />
-
+        <div class="parallax-container">
+          <img src="assets/manu.jpg" class="profile-img" alt="Foto manu" />
+        </div>
         <h1>
           - MANUEL <br />
           VEIGA
@@ -70,20 +79,26 @@
           <p>Cofounder</p>
         </div>
       </div>
-      <img class="profile-img" src="../../../assets/agus.jpg" alt="Foto Agus" />
-
+      <div class="parallax-container">
+        <img
+          class="profile-img"
+          src="../../../assets/agus.jpg"
+          alt="Foto Agus"
+        />
+      </div>
       } @else {
       <div class="profile">
         <h1>
           - AGUSTINA <br />
           RUIZ
         </h1>
-
-        <img
-          class="profile-img"
-          src="../../../assets/agus.jpg"
-          alt="Foto Agus"
-        />
+        <div class="parallax-container">
+          <img
+            class="profile-img"
+            src="../../../assets/agus.jpg"
+            alt="Foto Agus"
+          />
+        </div>
       </div>
       <p>
         {{ "agusDescription" | translate }}

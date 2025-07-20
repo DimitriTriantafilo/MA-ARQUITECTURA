@@ -4,11 +4,12 @@ import { Project } from '../../app.component';
 import { ProjectDisplayComponent } from '../project-display/project-display.component';
 import { CommonModule } from '@angular/common';
 import { CloudinaryService } from '../../cloudinary.service';
-import { projects } from '../../app.routes';
+import { generateSlug, projects } from '../../app.routes';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-project-list',
-  imports: [TranslatePipe, ProjectDisplayComponent, CommonModule],
+  imports: [TranslatePipe, ProjectDisplayComponent, CommonModule, RouterModule],
   templateUrl: './project-list.component.html',
   styleUrl: './project-list.component.scss',
 })
@@ -16,6 +17,7 @@ export class ProjectListComponent {
   projects: Project[] = projects;
   constructor(private cloudinaryService: CloudinaryService) {}
 
+  generateSlug = generateSlug;
   //   optimizeProjectImages() {
   //   this.projects = this.projects.map((project) => ({
   //     ...project,
