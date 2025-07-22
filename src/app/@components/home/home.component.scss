@@ -13,3 +13,120 @@
     transform: translate(-50%, -50%);
   }
 }
+
+.videoOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 85vh;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 2;
+}
+
+.fullWidthImage {
+  width: 100%;
+  height: 100vh;
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+.homeContainer {
+  position: relative;
+}
+.backgroundImagesContainer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 0;
+}
+.contentContainer {
+  position: relative;
+  z-index: 1; /* Mayor que backgroundImagesContainer */
+}
+
+.contentContainer div {
+  color: white;
+  font-size: 40px;
+
+  position: relative; /* Cada div HOLA */
+}
+
+.project-landig {
+  width: 100%;
+  min-height: 95vh;
+  background-repeat: no-repeat; /* No repetir la imagen */
+  background-size: cover; /* Cubrir todo el contenedor sin deformar */
+  background-position: center; /* Centrar la imagen */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10%;
+  position: relative;
+  justify-content: center;
+  color: white;
+  padding-bottom: 5%;
+}
+.project-landig:nth-child(even) {
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.name {
+  font-size: 70px;
+  font-weight: 400;
+  color: white;
+  margin-top: 15px;
+  padding-left: 70px;
+  padding-right: 70px;
+  z-index: 2;
+  font-family: "modeco", sans-serif;
+}
+.m2 {
+  transition: 0.6s ease-in-out;
+  justify-self: flex-end;
+  font-weight: lighter;
+  padding-bottom: 10px;
+  padding: 0px 70px;
+  opacity: 1;
+  font-size: 40px;
+  margin-right: 0px;
+  font-family: "manrope";
+  z-index: 2;
+}
+.divisor {
+  height: 90px;
+  width: 1.5px;
+  margin: 0px 70px;
+  background-color: white;
+  opacity: 1;
+}
+
+@media (max-width: 600px) {
+  .featuredImg {
+    height: 55vw;
+  }
+  .name {
+    font-size: 50px;
+    align-self: flex-start;
+    margin-top: 20%;
+    padding-left: 20px;
+  }
+  .m2 {
+    font-size: 25px;
+    margin-right: 40px;
+  }
+}

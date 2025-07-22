@@ -9,7 +9,7 @@
   <img class="footer" src="assets/ciudad.png" alt="base">
   <img class="footer2" src="assets/ciudad.png" alt="base">
   <img class="footer3" src="assets/ciudad.png" alt="base"> -->
-
+    @if(innerWidth > 600){
     <div class="logo-container">
       <div class="line1"></div>
 
@@ -23,18 +23,19 @@
 
       <div class="line6"></div>
     </div>
+    }
   </div>
-  <h1 class="title">{{ "aboutUs" | translate }}</h1>
+  <h1 class="title">{{ "studio" | translate }}</h1>
 
   <div class="nosotros">
     <div class="parallax-container2">
       <img
-        class="profile-img"
+        class="profile-img2"
         src="assets/estudio-arquitectura.jpg"
         alt="Foto estudio"
       />
       <h2>{{ "estudioDescription" | translate }}</h2>
-      <div class="overlay"></div>
+      <div class="overlay2"></div>
     </div>
     <div class="profile-container">
       @if(innerWidth > 600){
@@ -57,12 +58,14 @@
           <img src="assets/manu.jpg" class="profile-img" alt="Foto manu" />
         </div>
         <h1>
-          - MANUEL <br />
+          MANUEL <br />
           VEIGA
         </h1>
       </div>
       <p>
-        {{ "manuDescription" | translate }}
+        {{ "manuDescription" | translate }} <br />
+        <br />
+        Manuel Veiga, Cofounder -
       </p>
       }
     </div>
@@ -89,7 +92,7 @@
       } @else {
       <div class="profile">
         <h1>
-          - AGUSTINA <br />
+          AGUSTINA <br />
           RUIZ
         </h1>
         <div class="parallax-container">
@@ -101,7 +104,9 @@
         </div>
       </div>
       <p>
-        {{ "agusDescription" | translate }}
+        {{ "agusDescription" | translate }} <br />
+        <br />
+        - Agustina Ruiz, Cofounder
       </p>
       }
     </div>
