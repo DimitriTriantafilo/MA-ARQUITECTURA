@@ -4,13 +4,11 @@ import {
   OnDestroy,
   OnInit,
   ViewChild,
-  HostListener,
   ChangeDetectorRef,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Project } from '../../app.component';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { TranslatePipe } from '../../transltate/translate.pipe';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
@@ -20,7 +18,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   imports: [
     CommonModule,
     NgOptimizedImage,
-    TranslatePipe,
     MatIconModule,
     MatProgressSpinnerModule,
   ],

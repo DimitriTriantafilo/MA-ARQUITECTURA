@@ -151,7 +151,7 @@
 // Añade esta clase cuando el usuario haga scroll
 .parallax-effect {
   transform: translateY(
-    calc(var(--scroll-y) * 0.05)
+    calc(var(--scroll-y) * 0.09)
   ); // Ajusta 0.3 para cambiar la velocidad
 }
 
@@ -370,27 +370,6 @@
   top: calc(50%); // Ajusta la posición
   left: calc(60%); // Ajusta la posición
   animation: float 20s ease-in-out infinite; // Agrega animación
-}
-
-.footer {
-  position: absolute;
-  bottom: -10px;
-  left: 0;
-  width: 33%;
-}
-
-.footer2 {
-  position: absolute;
-  bottom: -10px;
-  left: 33%;
-  width: 33%;
-}
-
-.footer3 {
-  position: absolute;
-  bottom: -10px;
-  left: 66%;
-  width: 34%;
 }
 
 // Animación para dar un efecto de flotación

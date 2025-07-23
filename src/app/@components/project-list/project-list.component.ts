@@ -3,7 +3,6 @@ import { TranslatePipe } from '../../transltate/translate.pipe';
 import { Project } from '../../app.component';
 import { ProjectDisplayComponent } from '../project-display/project-display.component';
 import { CommonModule } from '@angular/common';
-import { CloudinaryService } from '../../cloudinary.service';
 import { generateSlug, projects } from '../../app.routes';
 import { RouterModule } from '@angular/router';
 
@@ -15,7 +14,7 @@ import { RouterModule } from '@angular/router';
 })
 export class ProjectListComponent {
   projects: Project[] = projects;
-  constructor(private cloudinaryService: CloudinaryService) {}
+  constructor() {}
 
   generateSlug = generateSlug;
   //   optimizeProjectImages() {
