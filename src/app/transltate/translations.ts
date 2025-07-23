@@ -9,7 +9,7 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     title: 'MA - ARQUITECTURA',
     close: 'CERRAR',
     estudioDescription:
-      ' En MA creamos proyectos para el habitar que permanezcan en el tiempo. Diseñamos espacios con sentido, resaltando lo esencial en cada uno. Estamos en la búsqueda constante de equilibrio y armonía. Proyectamos a medida y gusto de cada cliente. Construimos espacios de lujo, adaptándonos al presupuesto de cada cliente. En MA, somos mucho más que arquitectura: somos arte, innovación y diseño.',
+      'EN MA CREAMOS PROYECTOS PARA EL HABITAR QUE PERMANEZCAN EN EL TIEMPO DISEÑAMOS ESPACIOS CON SENTIDO, RESALTANDO LO <strong>ESENCIAL</strong> EN CADA UNO.<br> ESTAMOS EN LA BÚSQUEDA CONSTANTE DE <strong>EQUILIBRIO</strong> Y <strong>ARMONÍA</strong> PROYECTAMOS A MEDIDA Y GUSTO DE CADA CLIENTE.<br> CONSTRUIMOS ESPACIOS DE <strong>LUJO</strong> ADAPTÁNDONOS AL PRESUPUESTO DE CADA CLIENTE.<br> EN MA, SOMOS MUCHO MÁS QUE ARQUITECTURA: SOMOS <strong>ARTE</strong>, <strong>INNOVACIÓN</strong> Y <strong>DISEÑO</strong>.',
     agusDescription:
       '“Nos gusta estar en los detalles, para que cada cliente se sienta cómodo y acompañado durante todo el proceso de diseño y construcción”',
     // Agrega aquí todas tus traducciones en español

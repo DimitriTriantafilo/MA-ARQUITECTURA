@@ -1,11 +1,6 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import {
-  Component,
-  ElementRef,
-  HostListener,
-  Inject,
-  PLATFORM_ID,
-} from '@angular/core';
+import { Component, ElementRef, Inject, PLATFORM_ID } from '@angular/core';
+import { WindowSizeService } from '../../window-size.service';
 
 @Component({
   selector: 'app-home',
@@ -14,25 +9,15 @@ import {
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-  public innerWidth: number = 0;
-  public innerHeight: number = 0;
+  public innerWidth: number;
+  public innerHeight: number;
 
   constructor(
     private el: ElementRef,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) {}
-  @HostListener('window:resize', ['$event'])
-  onResize() {
-    if (isPlatformBrowser(this.platformId)) {
-      this.innerWidth = window.innerWidth;
-      this.innerHeight = window.innerHeight;
-    }
-  }
-
-  ngOnInit() {
-    if (isPlatformBrowser(this.platformId)) {
-      this.innerWidth = window.innerWidth;
-      this.innerHeight = window.innerHeight;
-    }
+    @Inject(PLATFORM_ID) private platformId: Object,
+    public windowSize: WindowSizeService
+  ) {
+    this.innerWidth = this.windowSize.innerWidth();
+    this.innerHeight = this.windowSize.innerHeight();
   }
 }

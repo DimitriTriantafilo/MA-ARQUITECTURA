@@ -5,12 +5,19 @@ import {
   OnInit,
   ViewChild,
   ChangeDetectorRef,
+  Inject,
+  PLATFORM_ID,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Project } from '../../app.component';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import {
+  CommonModule,
+  isPlatformBrowser,
+  NgOptimizedImage,
+} from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { WindowSizeService } from '../../window-size.service';
 
 @Component({
   selector: 'app-project-detail',
@@ -34,19 +41,39 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
   hasCalculatedDimensions: boolean = false; // Bandera de control
   isLoadingImage: boolean = false;
   currentImageLoaded: boolean = false;
+  public innerWidth: number;
+  public innerHeight: number;
 
   @ViewChild('carrousel') carrouselRef?: ElementRef<HTMLDivElement>;
   private imageLoaders: Map<string, HTMLImageElement> = new Map();
 
   constructor(
     private route: ActivatedRoute,
-    private cdRef: ChangeDetectorRef
-  ) {}
+    private cdRef: ChangeDetectorRef,
+    @Inject(PLATFORM_ID) private platformId: Object,
+    public windowSize: WindowSizeService
+  ) {
+    this.innerWidth = this.windowSize.innerWidth();
+    this.innerHeight = this.windowSize.innerHeight();
+  }
 
   ngOnInit() {
     this.data = this.route.snapshot.data['project'];
+    // Ya no es necesario asignar innerWidth/innerHeight manualmente
   }
 
+  /**
+   * Cierra el carrusel de imágenes.
+   *
+   * Este método se encarga de cerrar el carrusel de imágenes, restableciendo los flags
+   * relacionados con la visualización y carga de imágenes. Además, reinicia el estado de carga
+   * de la imagen actual y oculta el carrusel.
+   */
+  closeCarrousel() {
+    this.openCarrouselFlag = false;
+    this.isLoadingImage = false;
+    this.currentImageLoaded = false;
+  }
   openCarrousel(imageIndex: number) {
     this.currentImageIndex = imageIndex;
     this.openCarrouselFlag = true;

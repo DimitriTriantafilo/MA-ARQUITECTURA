@@ -137,6 +137,9 @@
     transition: transform 0.1s ease-out;
     will-change: transform;
     text-align: left;
+    strong {
+      font-weight: bolder !important;
+    }
   }
 }
 
@@ -605,4 +608,13 @@
     transform: translateX(-800px);
     rotate: -45deg;
   }
+}
+
+.nosotros h2 strong,
+.nosotros h2 b {
+  font-weight: 900 !important;
+  color: #ad9371 !important; /* dorado */
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.15);
+  background: none !important;
+  font-family: inherit !important;
 }

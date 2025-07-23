@@ -172,6 +172,13 @@ app-topbar:hover {
       rgba(227, 226, 222, 1) 51%
     );
   }
+
+  @keyframes shrinkLogo {
+    100% {
+      width: 30px;
+      height: 30px;
+    }
+  }
 }
 
 // :ng-deep.cdk-overlay-pane {

@@ -5,7 +5,11 @@
   [ngStyle]="{
     'background-image':
       'url(' +
-      'https://res.cloudinary.com/dskkynwxb/c_fill,g_auto,h_1000,w_1950/q_auto:good/f_auto/' +
+      'https://res.cloudinary.com/dskkynwxb/c_fill,g_auto,h_' +
+      innerHeight +
+      ',w_' +
+      innerWidth +
+      '/q_auto:good/f_auto/' +
       data?.showImg +
       ')'
   }"
@@ -28,12 +32,26 @@
     }"
     (click)="openCarrousel($index)"
   >
+    @if(innerWidth > 600){
     <img
       class="image"
       [ngSrc]="'c_fill,g_auto,h_550,w_550/q_auto:good/f_auto/' + image.src"
       alt="{{ 'Foto del proyecto' }}"
       [fill]="true"
     />
+    } @else {
+    <img
+      class="image"
+      [ngSrc]="
+        'c_fill,g_auto,h_550,w_' +
+        innerWidth +
+        '/q_auto:good/f_auto/' +
+        image.src
+      "
+      alt="{{ 'Foto del proyecto' }}"
+      [fill]="true"
+    />
+    }
   </div>
 
   }

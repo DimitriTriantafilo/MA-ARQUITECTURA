@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { TranslatePipe } from '../../transltate/translate.pipe';
 import { isPlatformBrowser } from '@angular/common';
+import { WindowSizeService } from '../../window-size.service';
 
 @Component({
   selector: 'app-nosotros',
@@ -17,24 +18,18 @@ import { isPlatformBrowser } from '@angular/common';
   standalone: true, // Make sure this is set if you're using standalone components
 })
 export class NosotrosComponent implements OnInit {
-  public innerWidth: number = 0;
+  public innerWidth: number;
 
   constructor(
     private el: ElementRef,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) {}
-
-  @HostListener('window:resize', ['$event'])
-  onResize() {
-    if (isPlatformBrowser(this.platformId)) {
-      this.innerWidth = window.innerWidth;
-    }
+    @Inject(PLATFORM_ID) private platformId: Object,
+    public windowSize: WindowSizeService
+  ) {
+    this.innerWidth = this.windowSize.innerWidth();
   }
 
   ngOnInit() {
-    if (isPlatformBrowser(this.platformId)) {
-      this.innerWidth = window.innerWidth;
-    }
+    // Ya no es necesario asignar innerWidth manualmente
   }
 
   @HostListener('window:scroll', ['$event'])
