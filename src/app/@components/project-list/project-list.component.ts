@@ -17,19 +17,4 @@ export class ProjectListComponent {
   constructor() {}
 
   generateSlug = generateSlug;
-  //   optimizeProjectImages() {
-  //   this.projects = this.projects.map((project) => ({
-  //     ...project,
-  //     showImg: this.cloudinaryService.getOptimizedThumbnail(project.showImg),
-  //     mainFeature: {
-  //       ...project.mainFeature,
-  //       link: this.cloudinaryService.getOptimizedDetailImage(
-  //         project.mainFeature.link
-  //       ),
-  //     },
-  //     images: project.images.map((img) => ({
-  //       src: this.cloudinaryService.getOptimizedGalleryImage(img.src),
-  //     })),
-  //   }));
-  // }
 }
