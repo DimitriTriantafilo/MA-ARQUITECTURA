@@ -204,4 +204,14 @@
   .activeMenu {
     width: 100vw;
   }
+  .burgerMenu {
+    &-option {
+      font-size: 8vw;
+      line-height: 1.4;
+      letter-spacing: 2px;
+    }
+    &-option:hover {
+      font-size: 8.5vw;
+    }
+  }
 }
