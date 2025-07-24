@@ -610,11 +610,11 @@
   }
 }
 
-.nosotros h2 strong,
-.nosotros h2 b {
+:host ::ng-deep .nosotros h2 strong,
+:host ::ng-deep .nosotros h2 b {
   font-weight: 900 !important;
-  color: #ad9371 !important; /* dorado */
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.15);
+  color: inherit !important;
+  text-shadow: 0 5px 6px rgba(0, 0, 1, 11.15);
   background: none !important;
   font-family: inherit !important;
 }

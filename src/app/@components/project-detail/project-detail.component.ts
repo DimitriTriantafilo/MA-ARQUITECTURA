@@ -75,6 +75,9 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
     this.currentImageLoaded = false;
   }
   openCarrousel(imageIndex: number) {
+    if (this.innerWidth < 600) {
+      return;
+    }
     this.currentImageIndex = imageIndex;
     this.openCarrouselFlag = true;
     this.isLoadingImage = true;

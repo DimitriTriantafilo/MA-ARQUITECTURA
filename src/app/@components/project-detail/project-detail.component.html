@@ -1,6 +1,7 @@
 <link rel="preconnect" href="https://res.cloudinary.com" />
 
 <div
+  *ngIf="innerWidth && innerHeight"
   class="project-landig"
   [ngStyle]="{
     'background-image':
@@ -20,7 +21,7 @@
   <span class="m2" *ngIf="data?.m2">{{ data?.m2 }}m<sup>2</sup></span>
 </div>
 
-<section class="images-container">
+<section class="images-container" *ngIf="innerWidth && innerHeight">
   @for (image of data?.images; track $index; let i = $index) {
   <div
     [ngStyle]="{
