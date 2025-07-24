@@ -1,18 +1,21 @@
 <main class="main">
   <app-topbar [class.hidden]="isHidden"></app-topbar>
-  <div class="welcome-container">
+  <div
+    class="welcome-container"
+    *ngIf="showWelcome"
+    [class.mobile]="isMobile"
+    [class.desktop]="!isMobile"
+  >
     <img
       class="welcome-logo"
       src="assets/logo-blanco.png"
       alt="Logo"
-      width="250"
-      height="250"
+      [ngClass]="{ 'mobile-logo': isMobile, 'desktop-logo': !isMobile }"
       fetchpriority="high"
       decoding="sync"
       style="will-change: transform, width"
     />
     <span class="welcome-text"> {{ "title" | translate }} </span>
   </div>
-
   <router-outlet />
 </main>

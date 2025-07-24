@@ -1,9 +1,10 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, Inject, PLATFORM_ID } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TopbarComponent } from './@components/topbar/topbar.component';
 import { CommonModule } from '@angular/common';
 import { CloudinaryModule } from '@cloudinary/ng';
 import { TranslatePipe } from './transltate/translate.pipe';
+import { isPlatformBrowser } from '@angular/common';
 @Component({
   selector: 'app-root',
   imports: [
@@ -18,11 +19,15 @@ import { TranslatePipe } from './transltate/translate.pipe';
 })
 export class AppComponent {
   showWelcome = true;
+  isMobile = false;
   loadVideo: boolean = false;
-  constructor() {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.isMobile = window.innerWidth <= 600;
+    }
     setTimeout(() => {
       this.showWelcome = false;
-    }, 6000); // Se oculta después de 3 segundos
+    }, 3500); // Se oculta después de la animación
   }
 
   title = 'ma-arquitectura-landing';
