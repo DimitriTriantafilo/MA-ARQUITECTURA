@@ -9,15 +9,16 @@ import { WindowSizeService } from '../../window-size.service';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-  public innerWidth: number;
-  public innerHeight: number;
-
   constructor(
     private el: ElementRef,
     @Inject(PLATFORM_ID) private platformId: Object,
     public windowSize: WindowSizeService
-  ) {
-    this.innerWidth = this.windowSize.innerWidth();
-    this.innerHeight = this.windowSize.innerHeight();
+  ) {}
+
+  get innerWidth() {
+    return this.windowSize.innerWidth();
+  }
+  get innerHeight() {
+    return this.windowSize.innerHeight();
   }
 }

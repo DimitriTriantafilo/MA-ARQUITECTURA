@@ -65,14 +65,14 @@
     }
   }
   span {
-    font-size: 16px;
+    font-size: 1rem; /* 16px */
     display: flex;
     align-items: center;
     cursor: pointer;
     transition: font-size 0.3s ease;
   }
   span:hover {
-    font-size: 18px;
+    font-size: 1.125rem; /* 18px */
     font-weight: 400;
   }
   a {
@@ -100,7 +100,7 @@
 .nosotros {
   text-align: right;
   padding-right: 40px;
-  font-size: 18px;
+  font-size: 1.125rem; /* 18px */
   font-family: "modeco", sans-serif;
   cursor: pointer;
   color: var(--primary-font-color);
@@ -170,7 +170,7 @@
   &-option {
     width: 100%;
     color: $stone-white;
-    font-size: 40px;
+    font-size: 2.5rem; /* 40px */
     text-align: center;
     cursor: pointer;
     opacity: 0;
@@ -186,7 +186,7 @@
     align-items: center;
   }
   &-option:hover {
-    font-size: 60px;
+    font-size: 3.75rem; /* 60px */
   }
 }
 

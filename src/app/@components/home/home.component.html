@@ -14,79 +14,84 @@
 </section>
 
 <!-- </div> -->
-<div class="videoOverlay"></div>
-
-<div
-  class="project-landig"
-  [ngStyle]="{
-    'background-image':
-      'url(https://res.cloudinary.com/dskkynwxb/c_fill,g_auto,w_' +
-      innerWidth +
-      ',h_' +
-      innerHeight +
-      '/q_auto:good/f_auto/v1747077944/lenbzej6vc7ro5raomzg.jpg)'
-  }"
->
-  <div class="overlay"></div>
-
-  <span class="name">{{ "Reforma Ayacucho" }}</span>
-  <div class="divisor"></div>
-  <span class="m2">SAAVEDRA</span>
+<div class="videoOverlay">
+  <div class="cover"></div>
+  <span> PROYECTOS PARA EL HABITAR </span>
 </div>
 
-<div
-  class="project-landig"
-  [ngStyle]="{
-    'background-image':
-      'url(https://res.cloudinary.com/dskkynwxb/c_fill,g_auto,w_' +
-      innerWidth +
-      ',h_' +
-      innerHeight +
-      '/q_auto:good/f_auto/v1747070360/xaks7ffpmupmhqrs0xwc.jpg)'
-  }"
->
-  <div class="overlay"></div>
+<ng-container *ngIf="innerWidth > 0 && innerHeight > 0">
+  <div
+    class="project-landig"
+    [ngStyle]="{
+      'background-image':
+        'url(https://res.cloudinary.com/dskkynwxb/c_fill,g_auto,w_' +
+        innerWidth +
+        ',h_' +
+        innerHeight +
+        '/q_auto:good/f_auto/v1747077944/lenbzej6vc7ro5raomzg.jpg)'
+    }"
+  >
+    <div class="overlay"></div>
 
-  <span class="name">{{ "Cocina Migueletes" }}</span>
-  <div class="divisor"></div>
+    <span class="name">{{ "Reforma Ayacucho" }}</span>
+    <div class="divisor"></div>
+    <span class="m2">SAAVEDRA</span>
+  </div>
 
-  <span class="m2">BELGRANO</span>
-</div>
+  <div
+    class="project-landig"
+    [ngStyle]="{
+      'background-image':
+        'url(https://res.cloudinary.com/dskkynwxb/c_fill,g_auto,w_' +
+        innerWidth +
+        ',h_' +
+        innerHeight +
+        '/q_auto:good/f_auto/v1747070360/xaks7ffpmupmhqrs0xwc.jpg)'
+    }"
+  >
+    <div class="overlay"></div>
 
-<div
-  class="project-landig"
-  [ngStyle]="{
-    'background-image':
-      'url(https://res.cloudinary.com/dskkynwxb/c_fill,g_auto,w_' +
-      innerWidth +
-      ',h_' +
-      innerHeight +
-      '/q_auto:good/f_auto/v1747137660/xzdrqiss0g7gjvwb7krk.jpg)'
-  }"
->
-  <div class="overlay"></div>
+    <span class="name">{{ "Cocina Migueletes" }}</span>
+    <div class="divisor"></div>
 
-  <span class="name">{{ "Reforma BNB" }}</span>
-  <div class="divisor"></div>
+    <span class="m2">BELGRANO</span>
+  </div>
 
-  <span class="m2">COLEGIALES</span>
-</div>
+  <div
+    class="project-landig"
+    [ngStyle]="{
+      'background-image':
+        'url(https://res.cloudinary.com/dskkynwxb/c_fill,g_auto,w_' +
+        innerWidth +
+        ',h_' +
+        innerHeight +
+        '/q_auto:good/f_auto/v1747137660/xzdrqiss0g7gjvwb7krk.jpg)'
+    }"
+  >
+    <div class="overlay"></div>
 
-<div
-  class="project-landig"
-  [ngStyle]="{
-    'background-image':
-      'url(https://res.cloudinary.com/dskkynwxb/c_fill,g_auto,w_' +
-      innerWidth +
-      ',h_' +
-      innerHeight +
-      '/q_auto:good/f_auto/v1747143609/qqe5bsjfzwd03max8c9x.jpg)'
-  }"
->
-  <div class="overlay"></div>
+    <span class="name">{{ "Reforma BNB" }}</span>
+    <div class="divisor"></div>
 
-  <span class="name">{{ "Casa Igor" }}</span>
-  <div class="divisor"></div>
+    <span class="m2">COLEGIALES</span>
+  </div>
 
-  <span class="m2">PALERMO</span>
-</div>
+  <div
+    class="project-landig"
+    [ngStyle]="{
+      'background-image':
+        'url(https://res.cloudinary.com/dskkynwxb/c_fill,g_auto,w_' +
+        innerWidth +
+        ',h_' +
+        innerHeight +
+        '/q_auto:good/f_auto/v1747143609/qqe5bsjfzwd03max8c9x.jpg)'
+    }"
+  >
+    <div class="overlay"></div>
+
+    <span class="name">{{ "Casa Igor" }}</span>
+    <div class="divisor"></div>
+
+    <span class="m2">PALERMO</span>
+  </div>
+</ng-container>

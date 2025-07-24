@@ -82,7 +82,7 @@ app-topbar:hover {
 .welcome-text {
   position: absolute;
   color: $whitecliff-beige;
-  font-size: 15px;
+  font-size: 0.9375rem; // 15px -> 0.9375rem
   top: 30vh;
   transition: font-size 4s ease-in-out;
   animation: fadeOut 2s ease-in-out forwards;
@@ -114,7 +114,7 @@ app-topbar:hover {
   }
   100% {
     opacity: 0;
-    font-size: 400px;
+    font-size: 25rem; // 400px -> 25rem
   }
 }
 

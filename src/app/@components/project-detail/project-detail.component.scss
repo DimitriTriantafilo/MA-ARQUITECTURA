@@ -33,7 +33,7 @@
 }
 
 .name {
-  font-size: 150px;
+  font-size: 9.375rem;
   font-weight: 400;
   color: white;
   margin-top: 15px;
@@ -47,14 +47,14 @@
   font-weight: lighter;
   padding-bottom: 10px;
   opacity: 1;
-  font-size: 110px;
+  font-size: 6.875rem;
   margin-right: 70px;
   font-family: "manrope";
   z-index: 2;
 }
 .location {
   opacity: 1;
-  font-size: 35px;
+  font-size: 2.1875rem;
   margin-bottom: 10px;
   margin-left: 20px;
 }
@@ -74,7 +74,7 @@
   border-radius: 20px;
   padding: 10px;
   color: white;
-  font-size: 30px;
+  font-size: 1.875rem;
   transition: 0.3s ease-in-out; /* Agrega una transición suave */
 }
 
@@ -128,7 +128,7 @@
 }
 
 .description {
-  font-size: 50px;
+  font-size: 3.125rem;
   font-weight: lighter;
   padding: 20px;
   color: white;
@@ -223,7 +223,7 @@
   .closeButton {
     top: 15px;
     right: 15px;
-    font-size: 15px;
+    font-size: 0.9375rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -242,7 +242,7 @@
     padding-left: 20px;
   }
   .m2 {
-    font-size: 25px;
+    font-size: 1.5625rem;
     margin-right: 40px;
   }
 }
