@@ -1,22 +1,14 @@
-<link rel="preconnect" href="https://res.cloudinary.com" />
-
-<div
-  *ngIf="innerWidth && innerHeight"
-  class="project-landig"
-  [ngStyle]="{
-    'background-image':
-      'url(' +
-      'https://res.cloudinary.com/dskkynwxb/c_fill,g_auto,h_' +
-      innerHeight +
-      ',w_' +
-      innerWidth +
-      '/q_auto:good/f_auto/' +
-      data?.showImg +
-      ')'
-  }"
->
+<!-- Imagen principal como <img> para SEO -->
+<div *ngIf="innerWidth && innerHeight" class="project-landig">
+  <img
+    [src]="getMainImageUrl()"
+    [alt]="'Imagen principal de ' + data?.name"
+    class="main-image"
+    loading="eager"
+    fetchpriority="high"
+    decoding="sync"
+  />
   <div class="overlay"></div>
-
   <span class="name">{{ data?.name }}</span>
   <span class="m2" *ngIf="data?.m2">{{ data?.m2 }}m<sup>2</sup></span>
 </div>
@@ -25,36 +17,35 @@
   @for (image of data?.images; track $index; let i = $index) {
   <div
     [ngStyle]="{
-      'grid-row':
-        'span ' + (image.featured ? 3 : image.rowSpan ? image.rowSpan : 3),
-      'grid-column':
-        'span ' + (image.featured ? 3 : image.colSpan ? image.colSpan : 1),
+      'grid-row': 'span ' + calculateImageRows(image, i),
+      'grid-column': 'span ' + calculateImageColumns(image, i),
       position: 'relative'
     }"
     (click)="openCarrousel($index)"
+    class="image-container"
   >
-    @if(innerWidth > 600){
+    @if(!breakpoint.isMobile()){
     <img
-      class="image"
-      [ngSrc]="'c_fill,g_auto,h_550,w_550/q_auto:good/f_auto/' + image.src"
-      alt="{{ 'Foto del proyecto' }}"
-      [fill]="true"
+      class="image-desktop"
+      [src]="getGalleryImageUrl(image.src)"
+      [alt]="'Imagen de ' + data?.name + ' - Foto ' + (i + 1)"
+      [loading]="i < 6 ? 'eager' : 'lazy'"
+      decoding="async"
+      [attr.fetchpriority]="i < 3 ? 'high' : i < 6 ? 'auto' : 'low'"
     />
-    } @else {
+    } @else if(innerWidth > 0 && getGalleryImageUrl(image.src)) {
     <img
-      class="image"
-      [ngSrc]="
-        'c_fill,g_auto,h_550,w_' +
-        innerWidth +
-        '/q_auto:good/f_auto/' +
-        image.src
-      "
-      alt="{{ 'Foto del proyecto' }}"
-      [fill]="true"
+      class="image-mobile"
+      [src]="getGalleryImageUrl(image.src)"
+      [alt]="'Imagen de ' + data?.name + ' - Foto ' + (i + 1)"
+      [width]="innerWidth"
+      [height]="300"
+      [loading]="i < 4 ? 'eager' : 'lazy'"
+      decoding="async"
+      [attr.fetchpriority]="i < 2 ? 'high' : i < 4 ? 'auto' : 'low'"
     />
     }
   </div>
-
   }
 </section>
 
@@ -77,9 +68,10 @@
         currentImageLoaded ? 'url(' + getCurrentImageUrl() + ')' : 'none'
       "
     >
-      @if(isLoadingImage){
+      @if(isLoadingImage || !currentImageLoaded){
       <div class="loading-overlay">
-        <mat-spinner diameter="50" strokeWidth="5"></mat-spinner>
+        <mat-spinner diameter="60" strokeWidth="6"></mat-spinner>
+        <p class="loading-text">Cargando imagen...</p>
       </div>
       }
     </section>

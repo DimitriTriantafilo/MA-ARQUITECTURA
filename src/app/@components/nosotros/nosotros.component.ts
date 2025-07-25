@@ -9,24 +9,22 @@ import {
 import { TranslatePipe } from '../../transltate/translate.pipe';
 import { isPlatformBrowser } from '@angular/common';
 import { WindowSizeService } from '../../window-size.service';
+import { BreakpointService } from '../../breakpoint.service';
 
 @Component({
   selector: 'app-nosotros',
   templateUrl: './nosotros.component.html',
   styleUrls: ['./nosotros.component.scss'],
   imports: [TranslatePipe],
-  standalone: true, // Make sure this is set if you're using standalone components
+  standalone: true,
 })
 export class NosotrosComponent implements OnInit {
-  public innerWidth: number;
-
   constructor(
     private el: ElementRef,
     @Inject(PLATFORM_ID) private platformId: Object,
-    public windowSize: WindowSizeService
-  ) {
-    this.innerWidth = this.windowSize.innerWidth();
-  }
+    public windowSize: WindowSizeService,
+    public breakpoint: BreakpointService
+  ) {}
 
   ngOnInit() {
     // Ya no es necesario asignar innerWidth manualmente

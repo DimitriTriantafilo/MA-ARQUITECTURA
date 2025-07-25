@@ -10,24 +10,18 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Project } from '../../app.component';
-import {
-  CommonModule,
-  isPlatformBrowser,
-  NgOptimizedImage,
-} from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { WindowSizeService } from '../../window-size.service';
+import { BreakpointService } from '../../breakpoint.service';
+import { CloudinaryService } from '../../cloudinary.service';
+import { ImagePreloadService } from '../../image-preload.service';
 
 @Component({
   selector: 'app-project-detail',
   standalone: true,
-  imports: [
-    CommonModule,
-    NgOptimizedImage,
-    MatIconModule,
-    MatProgressSpinnerModule,
-  ],
+  imports: [CommonModule, MatIconModule, MatProgressSpinnerModule],
   templateUrl: './project-detail.component.html',
   styleUrls: ['./project-detail.component.scss'],
 })
@@ -51,7 +45,10 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private cdRef: ChangeDetectorRef,
     @Inject(PLATFORM_ID) private platformId: Object,
-    public windowSize: WindowSizeService
+    public windowSize: WindowSizeService,
+    public breakpoint: BreakpointService,
+    private cloudinaryService: CloudinaryService,
+    private imagePreloadService: ImagePreloadService
   ) {
     this.innerWidth = this.windowSize.innerWidth();
     this.innerHeight = this.windowSize.innerHeight();
@@ -60,6 +57,19 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.data = this.route.snapshot.data['project'];
     // Ya no es necesario asignar innerWidth/innerHeight manualmente
+    // Precarga imágenes críticas del carrusel
+    if (this.data?.images) {
+      const carouselUrls = this.data.images
+        .slice(0, 3)
+        .map((img) =>
+          this.cloudinaryService.generateCarouselUrl(
+            img.src,
+            this.fixedWidth,
+            this.fixedHeight
+          )
+        );
+      this.imagePreloadService.preloadCarouselImages(carouselUrls);
+    }
   }
 
   /**
@@ -75,7 +85,7 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
     this.currentImageLoaded = false;
   }
   openCarrousel(imageIndex: number) {
-    if (this.innerWidth < 600) {
+    if (this.breakpoint.isMobile()) {
       return;
     }
     this.currentImageIndex = imageIndex;
@@ -105,15 +115,17 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const imageUrl = this.generateImageUrl();
+    const imageUrl = this.getCurrentImageUrl();
     const img = new Image();
 
     img.onload = () => {
-      this.isLoadingImage = false;
-      this.currentImageLoaded = true;
-      this.cdRef.detectChanges();
-      this.imageLoaders.set(imageUrl, img);
-      console.log('loaded: ', this.isLoadingImage);
+      // Esperar un poco más para que el background-image se renderice
+      setTimeout(() => {
+        this.isLoadingImage = false;
+        this.currentImageLoaded = true;
+        this.cdRef.detectChanges();
+        this.imageLoaders.set(imageUrl, img);
+      }, 100); // Pequeño delay para asegurar que el background-image esté visible
     };
 
     img.onerror = () => {
@@ -134,8 +146,15 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
   }
 
   getCurrentImageUrl(): string {
-    if (!this.currentImageLoaded) return '';
-    return this.generateImageUrl();
+    if (!this.data?.images || this.currentImageIndex >= this.data.images.length)
+      return '';
+
+    const currentImage = this.data.images[this.currentImageIndex];
+    return this.cloudinaryService.generateCarouselUrl(
+      currentImage.src,
+      this.fixedWidth,
+      this.fixedHeight
+    );
   }
 
   nextImage(): void {
@@ -147,7 +166,7 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
       setTimeout(() => {
         this.currentImageIndex++;
         this.isChangingImage = false;
-        this.preloadCurrentImage(); // <-- Añade esta línea
+        this.preloadCurrentImage();
       }, 300);
     }
   }
@@ -161,7 +180,7 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
       setTimeout(() => {
         this.currentImageIndex--;
         this.isChangingImage = false;
-        this.preloadCurrentImage(); // <-- Añade esta línea
+        this.preloadCurrentImage();
       }, 300);
     }
   }
@@ -185,4 +204,102 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {}
+
+  // Métodos para generar URLs de imágenes
+  getMainImageUrl(): string {
+    if (!this.data?.showImg || !this.innerWidth || !this.innerHeight) return '';
+    return this.cloudinaryService.generateBackgroundUrl(
+      this.data.showImg,
+      this.innerWidth,
+      this.innerHeight
+    );
+  }
+
+  getGalleryImageUrl(imageSrc: string): string {
+    if (!imageSrc || !this.innerWidth) return '';
+
+    if (this.breakpoint.isMobile()) {
+      return this.cloudinaryService.generateMobileUrl(
+        imageSrc,
+        this.innerWidth
+      );
+    } else {
+      // Calcula el ancho real de cada columna del grid
+      const containerWidth = Math.floor((this.innerWidth * 0.92 - 80) / 3); // 92% del ancho, menos padding y gap
+      return this.cloudinaryService.generateGalleryUrl(
+        imageSrc,
+        containerWidth
+      );
+    }
+  }
+
+  /**
+   * Calcula dinámicamente las filas que debe ocupar una imagen basado en su proporción
+   */
+  calculateImageRows(image: any, index: number): number {
+    // Si la imagen está marcada como destacada, ocupa más filas
+    if (image.featured) {
+      return 3; // 3 filas para imágenes destacadas
+    }
+
+    // Si tiene rowSpan definido, lo usa
+    if (image.rowSpan) {
+      return image.rowSpan;
+    }
+
+    // Calcula basado en la proporción de la imagen
+    // Para imágenes más anchas que altas, menos filas
+    // Para imágenes más altas que anchas, más filas
+    const aspectRatio = this.getImageAspectRatio(image);
+
+    if (aspectRatio > 1.8) {
+      // Imagen muy ancha (panorámica)
+      return 1;
+    } else if (aspectRatio > 1.4) {
+      // Imagen ancha
+      return 1;
+    } else if (aspectRatio < 0.7) {
+      // Imagen muy alta
+      return 3;
+    } else if (aspectRatio < 0.9) {
+      // Imagen alta
+      return 2;
+    } else {
+      // Imagen cuadrada o ligeramente rectangular
+      return 1;
+    }
+  }
+
+  /**
+   * Obtiene la proporción de una imagen (ancho/alto)
+   * Si no está disponible, usa una proporción por defecto
+   */
+  private getImageAspectRatio(image: any): number {
+    // Si la imagen tiene dimensiones definidas, las usa
+    if (image.width && image.height) {
+      return image.width / image.height;
+    }
+
+    // Si no, intenta calcular basado en el nombre o usa un valor por defecto
+    // Puedes agregar lógica específica aquí si conoces las proporciones de tus imágenes
+    return 1.3; // Proporción por defecto (ligeramente ancha)
+  }
+
+  /**
+   * Calcula las columnas que debe ocupar una imagen
+   */
+  calculateImageColumns(image: any, index: number): number {
+    // Si la imagen está marcada como destacada, ocupa más columnas
+    if (image.featured) {
+      return 3; // 3 columnas para imágenes destacadas
+    }
+
+    // Si tiene colSpan definido, lo usa
+    if (image.colSpan) {
+      return image.colSpan;
+    }
+
+    // Por defecto, una columna
+    return 1;
+  }
 }

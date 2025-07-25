@@ -1,74 +1,175 @@
 import { Injectable } from '@angular/core';
-import { Cloudinary, CloudinaryImage } from '@cloudinary/url-gen';
-import { fill, scale, thumbnail } from '@cloudinary/url-gen/actions/resize';
-import { quality } from '@cloudinary/url-gen/actions/delivery';
-import { auto as autoFormat } from '@cloudinary/url-gen/qualifiers/format';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class CloudinaryService {
-  private cld: Cloudinary;
+  private readonly CLOUDINARY_URL = 'https://res.cloudinary.com/dskkynwxb';
+  private readonly CLOUDINARY_CLOUD_NAME = 'dskkynwxb';
 
-  constructor() {
-    this.cld = new Cloudinary({
-      cloud: {
-        cloudName: 'dskkynwxb',
-      },
-      url: {
-        secure: true,
-      },
+  /**
+   * Genera una URL optimizada de Cloudinary para imágenes
+   */
+  generateImageUrl(
+    imageId: string,
+    options: {
+      width?: number;
+      height?: number;
+      quality?: string;
+      format?: string;
+      crop?: string;
+    } = {}
+  ): string {
+    const {
+      width,
+      height,
+      quality = 'q_auto:good',
+      format = 'f_auto',
+      crop = 'c_fill,g_auto',
+    } = options;
+
+    let url = `${this.CLOUDINARY_URL}/${crop}`;
+
+    if (width && height) {
+      url += `,h_${height},w_${width}`;
+    } else if (width) {
+      url += `,w_${width}`;
+    } else if (height) {
+      url += `,h_${height}`;
+    }
+
+    url += `/${quality}/${format}/${imageId}`;
+
+    return url;
+  }
+
+  /**
+   * Genera URL para imagen de fondo responsiva optimizada
+   */
+  generateBackgroundUrl(
+    imageId: string,
+    width: number,
+    height: number
+  ): string {
+    // Usa el ancho real del viewport para optimizar el tamaño
+    const optimizedWidth = Math.min(width, 1920); // Máximo 1920px para evitar archivos muy grandes
+    const optimizedHeight = Math.min(height, 1080); // Máximo 1080px
+
+    return this.generateImageUrl(imageId, {
+      width: optimizedWidth,
+      height: optimizedHeight,
+      crop: 'c_fill,g_auto',
+      quality: 'q_auto:best',
     });
   }
 
-  // Extrae el public ID de una URL de Cloudinary
-  private extractPublicId(fullUrl: string): string {
-    try {
-      const url = new URL(fullUrl);
-      const pathParts = url.pathname.split('/');
-      const uploadIndex = pathParts.indexOf('upload');
+  /**
+   * Genera URL para imagen de galería optimizada
+   */
+  generateGalleryUrl(imageId: string, containerWidth?: number): string {
+    // Si tenemos el ancho del contenedor, lo usamos para optimizar
+    const size = containerWidth ? Math.min(containerWidth, 800) : 550;
 
-      if (uploadIndex === -1 || uploadIndex >= pathParts.length - 2) {
-        return fullUrl; // Si no es URL válida de Cloudinary
-      }
-
-      return pathParts[uploadIndex + 2].split('.')[0];
-    } catch {
-      return fullUrl; // Si no es URL válida
-    }
+    return this.generateImageUrl(imageId, {
+      width: size,
+      height: size,
+      crop: 'c_fill,g_auto',
+      quality: 'q_auto:good',
+    });
   }
 
-  // Optimiza imagen para vista previa (proyectos)
-  getOptimizedThumbnail(fullUrl: string): string {
-    const publicId = this.extractPublicId(fullUrl);
-    return this.cld
-      .image(publicId)
-      .resize(fill().width(500).height(500).gravity('auto'))
-      .delivery(quality('auto:good'))
-      .format('auto')
-      .toURL();
+  /**
+   * Genera URL para imagen de proyecto destacado optimizada
+   */
+  generateFeaturedUrl(imageId: string, viewportWidth?: number): string {
+    // Usa el ancho del viewport para optimizar el tamaño
+    const width = viewportWidth ? Math.min(viewportWidth, 1200) : 1200;
+    const height = Math.round(width * 0.6); // Proporción 5:3
+
+    return this.generateImageUrl(imageId, {
+      width,
+      height,
+      crop: 'c_fill,g_auto',
+      quality: 'q_auto:best',
+    });
   }
 
-  // Optimiza imagen para vista detallada
-  getOptimizedDetailImage(fullUrl: string): string {
-    const publicId = this.extractPublicId(fullUrl);
-    return this.cld
-      .image(publicId)
-      .resize(scale().width(1200))
-      .delivery(quality('auto:best'))
-      .format('auto')
-      .toURL();
+  /**
+   * Genera URL para imagen móvil optimizada
+   */
+  generateMobileUrl(imageId: string, width: number): string {
+    // Para móvil, usamos el ancho real del dispositivo
+    const optimizedWidth = Math.min(width, 600); // Máximo 600px para móvil
+
+    return this.generateImageUrl(imageId, {
+      width: optimizedWidth,
+      crop: 'c_fill,g_auto',
+      quality: 'q_auto:good',
+    });
   }
 
-  // Para imágenes en galería
-  getOptimizedGalleryImage(fullUrl: string, width: number = 800): string {
-    const publicId = this.extractPublicId(fullUrl);
-    return this.cld
-      .image(publicId)
-      .resize(scale().width(width))
-      .delivery(quality('auto:good'))
-      .format('auto')
-      .resize(scale().width(width))
-      .toURL();
+  /**
+   * Genera URL para imagen de carrusel optimizada
+   */
+  generateCarouselUrl(
+    imageId: string,
+    containerWidth?: number,
+    containerHeight?: number
+  ): string {
+    // Usa las dimensiones reales del contenedor del carrusel
+    const width = containerWidth ? Math.min(containerWidth, 1200) : 1200;
+    const height = containerHeight ? Math.min(containerHeight, 800) : 800;
+
+    return this.generateImageUrl(imageId, {
+      width,
+      height,
+      crop: 'c_fill,g_auto',
+      quality: 'q_auto:best',
+    });
+  }
+
+  /**
+   * Genera URL para thumbnail optimizado
+   */
+  generateThumbnailUrl(imageId: string, size: number = 200): string {
+    return this.generateImageUrl(imageId, {
+      width: size,
+      height: size,
+      crop: 'c_fill,g_auto',
+      quality: 'q_auto:low',
+    });
+  }
+
+  /**
+   * Genera URL para imagen con lazy loading progresivo
+   */
+  generateProgressiveUrl(
+    imageId: string,
+    width: number,
+    height: number
+  ): string {
+    return (
+      this.generateImageUrl(imageId, {
+        width,
+        height,
+        crop: 'c_fill,g_auto',
+        quality: 'q_auto:good',
+      }) + ',fl_progressive'
+    );
+  }
+
+  /**
+   * Genera URL para imagen con ancho responsivo
+   */
+  generateResponsiveUrl(
+    imageId: string,
+    viewportWidth: number,
+    maxWidth: number = 1920
+  ): string {
+    const optimizedWidth = Math.min(viewportWidth, maxWidth);
+
+    return this.generateImageUrl(imageId, {
+      width: optimizedWidth,
+      crop: 'c_fill,g_auto',
+      quality: 'q_auto:good',
+    });
   }
 }

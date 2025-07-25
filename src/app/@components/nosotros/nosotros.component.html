@@ -5,7 +5,7 @@
     <div class="rectangle2"></div>
     <div class="rectangle3"></div>
     <div class="square3"></div>
-    @if(innerWidth > 600){
+    @if(!breakpoint.isMobile()){
     <div class="logo-container">
       <div class="line1"></div>
 
@@ -34,7 +34,7 @@
       <div class="overlay2"></div>
     </div>
     <div class="profile-container">
-      @if(innerWidth > 600){
+      @if(!breakpoint.isMobile()){
       <div class="parallax-container">
         <img src="assets/manu.jpg" class="profile-img" alt="Foto manu" />
       </div>
@@ -67,7 +67,7 @@
     </div>
 
     <div class="profile-container">
-      @if(innerWidth > 600){
+      @if(!breakpoint.isMobile()){
 
       <div class="profile">
         <p>
