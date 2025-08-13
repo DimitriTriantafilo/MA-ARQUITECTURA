@@ -45,6 +45,7 @@
   padding-left: 10%;
   color: $stone-white;
   justify-content: center;
+
   &-nameRoleContainer {
     display: flex;
     flex-direction: column;
@@ -617,4 +618,26 @@
   text-shadow: 0 5px 6px rgba(0, 0, 1, 11.15);
   background: none !important;
   font-family: inherit !important;
+}
+
+// Ajustes específicos para Joaquín y Agostina usando clases específicas
+.joaquin-profile,
+.agostina-profile {
+  justify-content: flex-start !important;
+  padding-top: 25% !important;
+}
+
+// Ajustes para alinear descripciones de Manuel y Joaquín a la derecha
+.joaquin-profile p,
+.manu-profile p {
+  text-align: right !important;
+}
+
+// Ajustes para mobile también
+@media (max-width: 600px) {
+  .joaquin-profile,
+  .agostina-profile {
+    justify-content: flex-start !important;
+    padding-top: 20% !important;
+  }
 }

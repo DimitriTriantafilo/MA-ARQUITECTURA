@@ -61,9 +61,12 @@ export interface Project {
     link: string;
   };
   images: Image[];
-  description: string;
+  description?: string;
+  year?: number;
   rowSpan?: number;
   colSpan?: number;
+  plantaPreviaSrc?: string;
+  plantaSrc?: string;
 }
 
 export interface Image {

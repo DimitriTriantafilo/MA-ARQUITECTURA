@@ -23,7 +23,7 @@
 }
 .name {
   opacity: 0;
-  font-size: 3.4375rem;
+  font-size: 2.5rem; /* Reducido de 3.4375rem */
   font-weight: 500;
   font-family: "modeco", sans-serif;
 
@@ -40,27 +40,33 @@
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
+  align-items: baseline; /* Cambiar a baseline para alineación perfecta */
 }
 .m2 {
   opacity: 0;
   transition: 0.6s ease-in-out;
   justify-self: flex-end;
   display: flex;
-  align-items: flex-end;
+  align-items: baseline; /* Cambiar a baseline */
 
-  margin-right: -5px;
-  font-size: 1.25rem;
+  margin-right: 0; /* Ajustado */
+  font-size: 1.25rem; /* Mismo tamaño que location */
   font-weight: lighter;
   padding-bottom: 15px;
   font-family: "manrope";
+  line-height: 1; /* Asegurar alineación perfecta */
+  vertical-align: baseline; /* Forzar alineación de línea base */
 }
 .location {
   opacity: 0;
   transition: 0.6s ease-in-out;
   margin-left: 10px;
-  font-size: 1.875rem;
+  font-size: 1.25rem; /* Mismo tamaño que m2 */
   font-weight: lighter;
-  margin-bottom: -10px;
+  padding-bottom: 15px; /* Mismo padding que m2 */
+  font-family: "manrope"; /* Misma fuente que m2 */
+  line-height: 1; /* Asegurar alineación perfecta */
+  vertical-align: baseline; /* Forzar alineación de línea base */
 }
 .overlay {
   display: flex;
@@ -83,17 +89,22 @@
   .name {
     opacity: 1;
     padding-left: 30px;
+    font-size: 2.5rem; /* Aumentado ligeramente en hover */
   }
   .m2 {
     opacity: 1;
-    font-size: 20px;
+    font-size: 1.5rem; /* Aumentado ligeramente en hover */
     margin-right: 30px;
+    line-height: 1; /* Mantener alineación */
+    vertical-align: baseline; /* Mantener alineación */
   }
   .location {
     opacity: 1;
-    font-size: 35px;
-    margin-bottom: 30px;
+    font-size: 1.5rem; /* Mismo tamaño que m2 en hover */
+    margin-bottom: 15px; /* Ajustado */
     margin-left: 20px;
+    line-height: 1; /* Mantener alineación */
+    vertical-align: baseline; /* Mantener alineación */
   }
 }
 
@@ -118,16 +129,21 @@
     }
     .m2 {
       opacity: 1;
-      font-size: 2.1875rem;
+      font-size: 1rem; /* Reducido y consistente */
       margin-right: 30px;
-      font-size: 20px;
+      padding-bottom: 10px; /* Ajustado para móvil */
+      line-height: 1; /* Mantener alineación */
+      vertical-align: baseline; /* Mantener alineación */
     }
     .location {
       opacity: 1;
       font-weight: lighter;
       margin-bottom: 10px;
       margin-left: 20px;
-      font-size: 0.9375rem;
+      font-size: 1rem; /* Mismo tamaño que m2 */
+      padding-bottom: 10px; /* Mismo padding que m2 */
+      line-height: 1; /* Mantener alineación */
+      vertical-align: baseline; /* Mantener alineación */
     }
   }
 }

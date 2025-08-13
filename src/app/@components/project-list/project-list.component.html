@@ -7,11 +7,7 @@
   @for (project of projects; track $index) {
   <app-project-display
     [routerLink]="'/' + generateSlug(project.name)"
-    [ngStyle]="{
-      'grid-row': 'span ' + (project.rowSpan ? project.rowSpan : 3),
-      'grid-column': 'span ' + (project.colSpan ? project.colSpan : 1),
-      'min-height': '20vh'
-    }"
+    [ngStyle]="getProjectGridStyle(project)"
     [project]="project"
     [index]="$index"
   ></app-project-display>

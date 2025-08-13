@@ -1,16 +1,18 @@
+@import "../../../assets/styles/variables.scss";
+
 .featuredImg {
   position: relative;
   width: 100%;
-  height: 85vh;
+  height: 100vh; /* Pantalla completa */
   overflow: hidden; /* Evita bordes indeseados */
 
   iframe {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 56.25vw; /* Relación 16:9 */
-    transform: translate(-50%, -50%);
+    height: 100%;
+    object-fit: cover; /* Cubre todo el contenedor, puede recortar pero no deja espacios */
   }
 }
 
@@ -29,7 +31,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 85vh;
+  height: 100vh; /* Pantalla completa */
 
   z-index: 2;
   display: flex;
@@ -37,8 +39,21 @@
   justify-content: center;
   span {
     color: white;
-    font-size: 6rem;
+    font-size: 3rem;
     z-index: 3;
+    font-family: "manrope";
+    font-style: italic;
+    align-self: flex-end;
+    margin-bottom: 30px;
+    opacity: 0;
+    transform: translateY(50px) scale(0.8);
+    filter: blur(5px);
+    animation: heroTextAnimation 2s ease-out forwards;
+    animation-play-state: paused;
+
+    &.in-view {
+      animation-play-state: running;
+    }
   }
 }
 
@@ -52,6 +67,7 @@
 }
 .homeContainer {
   position: relative;
+  overflow-x: hidden; /* Evita scroll horizontal en toda la página */
 }
 .backgroundImagesContainer {
   position: absolute;
@@ -62,6 +78,7 @@
 .contentContainer {
   position: relative;
   z-index: 1; /* Mayor que backgroundImagesContainer */
+  overflow-x: hidden; /* Evita scroll horizontal */
 }
 
 .contentContainer div {
@@ -69,6 +86,12 @@
   font-size: 2.5rem; /* 40px */
 
   position: relative; /* Cada div HOLA */
+  overflow: hidden; /* Evita scroll horizontal en cada sección */
+}
+
+.project-wrapper {
+  width: 100%;
+  overflow: hidden; /* Contenedor wrapper para evitar scroll horizontal */
 }
 
 .project-landig {
@@ -85,6 +108,17 @@
   justify-content: center;
   color: white;
   padding-bottom: 5%;
+  overflow: hidden; /* Evita scroll horizontal en hover */
+
+  &.clickable {
+    cursor: pointer;
+    transition: transform 0.3s ease, filter 0.3s ease;
+
+    &:hover {
+      transform: scale(1.02);
+      filter: brightness(1.1);
+    }
+  }
 }
 .project-landig:nth-child(even) {
   flex-direction: column;
@@ -115,26 +149,47 @@
   z-index: 2;
   font-family: "modeco", system-ui, sans-serif; /* Fallback añadido */
   font-display: swap;
+  opacity: 0; /* Comienza invisible */
+  transform: translateY(30px); /* Comienza desplazado hacia abajo */
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+
+  &.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 .m2 {
-  transition: 0.6s ease-in-out;
   justify-self: flex-end;
   font-weight: lighter;
   padding-bottom: 10px;
   padding: 0px 70px;
-  opacity: 1;
+  opacity: 0; /* Comienza invisible */
   font-size: 2.5rem; /* 40px */
   margin-right: 0px;
   font-family: "modeco", system-ui, sans-serif; /* Fallback añadido */
   font-display: swap;
   z-index: 2;
+  transform: translateY(30px); /* Comienza desplazado hacia abajo */
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+
+  &.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 .divisor {
   height: 90px;
   width: 1.5px;
   margin: 0px 70px;
   background-color: white;
-  opacity: 1;
+  opacity: 0; /* Comienza invisible */
+  transform: translateY(30px); /* Comienza desplazado hacia abajo */
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+
+  &.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 600px) {
@@ -159,5 +214,199 @@
     font-size: 1.5625rem; /* 25px */
     margin-right: 40px;
     padding: 0px 20px;
+  }
+}
+
+/* Nueva sección con 3 imágenes verticales */
+.project-vertical {
+  width: 100%;
+  min-height: 95vh;
+  display: flex;
+  flex-direction: row; /* Cambiado a row para desktop */
+  gap: 5px;
+  padding: 5px;
+  box-sizing: border-box;
+  background-color: $deep-onyx; /* Fondo dark onyx */
+  overflow: hidden; /* Evita scroll horizontal en hover */
+}
+
+.vertical-image-container {
+  position: relative;
+  width: calc((100% - 10px) / 3); /* Ancho calculado: (100% - gaps) / 3 */
+  height: 95vh; /* Altura fija para desktop */
+  overflow: hidden;
+  border-radius: 4px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+
+  &.clickable {
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.02);
+      filter: brightness(1.1);
+    }
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+  }
+
+  .image-title {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 500;
+    font-family: "modeco", system-ui, sans-serif;
+    z-index: 2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  &.center-container {
+    .project-info {
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      color: white;
+      z-index: 2;
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+
+      .name {
+        font-size: 4.375rem; /* Igual que las imágenes horizontales */
+        font-weight: 400;
+        font-family: "modeco", system-ui, sans-serif;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        margin: 0;
+        padding: 0;
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 0.8s ease-out forwards;
+        animation-play-state: paused;
+
+        &.in-view {
+          animation-play-state: running;
+        }
+      }
+
+      .divisor {
+        height: 90px; /* Igual que las imágenes horizontales */
+        width: 1.5px;
+        background-color: white;
+        opacity: 0;
+        margin: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 0.8s ease-out forwards;
+        animation-play-state: paused;
+
+        &.in-view {
+          animation-play-state: running;
+        }
+      }
+
+      .m2 {
+        font-size: 2.5rem; /* Igual que las imágenes horizontales */
+        font-weight: lighter;
+        font-family: "modeco", system-ui, sans-serif;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        margin: 0;
+        padding: 0;
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 0.8s ease-out forwards;
+        animation-play-state: paused;
+
+        &.in-view {
+          animation-play-state: running;
+        }
+      }
+    }
+  }
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroTextAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(50px) scale(0.8);
+    filter: blur(5px);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(25px) scale(0.9);
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .project-vertical {
+    padding: 0;
+    gap: 0;
+    flex-direction: column; /* Cambiado a column para móvil */
+  }
+
+  .vertical-image-container {
+    width: 100%; /* Ancho completo en móvil */
+    height: 95vh; /* Altura completa como las otras secciones */
+
+    .image-title {
+      font-size: 1.125rem;
+      bottom: 15px;
+      left: 15px;
+    }
+
+    &.center-container {
+      .project-info {
+        right: 15px;
+
+        .name {
+          font-size: 3.125rem; /* Igual que las imágenes horizontales en móvil */
+        }
+
+        .divisor {
+          height: 60px; /* Ajustado para móvil */
+        }
+
+        .m2 {
+          font-size: 1.5625rem; /* Igual que las imágenes horizontales en móvil */
+        }
+      }
+    }
   }
 }

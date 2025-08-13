@@ -19,6 +19,13 @@ import { BreakpointService } from '../../breakpoint.service';
   standalone: true,
 })
 export class NosotrosComponent implements OnInit {
+  get innerWidth() {
+    return this.windowSize.innerWidth();
+  }
+  get innerHeight() {
+    return this.windowSize.innerHeight();
+  }
+
   constructor(
     private el: ElementRef,
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -46,5 +53,43 @@ export class NosotrosComponent implements OnInit {
         img.classList.remove('parallax-effect');
       }
     });
+  }
+
+  getOptimizedImageUrl(
+    publicId: string,
+    width: number,
+    height: number
+  ): string {
+    return `https://res.cloudinary.com/dskkynwxb/c_scale,w_${width},h_${height}/q_auto:good/f_auto/${publicId}`;
+  }
+
+  getVerticalImageWidth(): number {
+    // Para profile-img2, usamos el 45% del ancho de la pantalla (como en el CSS)
+    const containerWidth = Math.floor(this.innerWidth * 0.45);
+    // Limitamos el ancho máximo para optimizar el consumo de red
+    return Math.min(containerWidth, 800);
+  }
+
+  getVerticalImageHeight(): number {
+    // Para profile-img2, calculamos una altura proporcional
+    // Usamos una relación de aspecto típica de imagen vertical
+    const containerWidth = this.getVerticalImageWidth();
+    // Relación de aspecto 16:9 (más natural para fotos de estudio)
+    return Math.floor(containerWidth * 0.5625); // 9/16 = 0.5625
+  }
+
+  getProfileImageWidth(): number {
+    // Para profile-img, usamos el 30% del ancho de la pantalla (como en el CSS)
+    const containerWidth = Math.floor(this.innerWidth * 0.3);
+    // Limitamos el ancho máximo para optimizar el consumo de red
+    return Math.min(containerWidth, 600);
+  }
+
+  getProfileImageHeight(): number {
+    // Para profile-img, calculamos una altura proporcional
+    // Usamos una relación de aspecto típica de retrato
+    const containerWidth = this.getProfileImageWidth();
+    // Relación de aspecto 3:4 (más natural para fotos de perfil)
+    return Math.floor(containerWidth * 1.33); // 4/3 = 1.33
   }
 }
