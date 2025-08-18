@@ -72,7 +72,13 @@
     NUESTROS <br />
     SERVICIOS
   </div>
-  <div class="burgerMenu-option">CONTACTO</div>
+  <div
+    class="burgerMenu-option"
+    routerLink="/contacto"
+    (click)="openMenu = false"
+  >
+    CONTACTO
+  </div>
   <div class="burgerMenu-option" routerLink="/" (click)="openMenu = false">
     INICIO
   </div>

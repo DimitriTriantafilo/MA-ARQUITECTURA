@@ -7,6 +7,7 @@ import { NosotrosComponent } from './@components/nosotros/nosotros.component';
 import { HomeComponent } from './@components/home/home.component';
 import { ProjectDetailComponent } from './@components/project-detail/project-detail.component';
 import { ServiciosComponent } from './@components/servicios/servicios.component';
+import { ContactoComponent } from './@components/contacto/contacto.component';
 
 export const projects: Project[] = [
   {
@@ -734,6 +735,10 @@ export const projects: Project[] = [
 ];
 
 export const routes: Routes = [
+  {
+    path: 'contacto',
+    component: ContactoComponent,
+  },
   {
     path: '',
     component: HomeComponent,
