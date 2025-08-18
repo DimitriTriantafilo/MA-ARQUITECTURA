@@ -67,6 +67,7 @@ export interface Project {
   colSpan?: number;
   plantaPreviaSrc?: string;
   plantaSrc?: string;
+  style?: string;
 }
 
 export interface Image {

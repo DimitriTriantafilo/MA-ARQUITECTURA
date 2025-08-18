@@ -1,0 +1,44 @@
+<div class="services-container">
+  <!-- Columna izquierda -->
+  <div class="left-column">
+    <h1 class="services-title">SERVICIOS</h1>
+    <div class="services-image">
+      <img
+        [src]="getServicesImageUrl()"
+        alt="Servicios de arquitectura"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  </div>
+
+  <!-- Columna derecha -->
+  <div class="right-column">
+    <!-- <div class="services-info">
+      <p class="info-text">
+        NOS FALTA DESCRIBIR CADA UNO PERO ARMA ESTE FORMATO, APRETANDO EL "+"
+        SALDRÍA LA DESCRIPCIÓN DE CADA UNO
+      </p>
+    </div> -->
+
+    <div class="services-list">
+      @for (service of services; track service.id) {
+      <div class="service-item">
+        <div class="service-header" (click)="toggleService(service.id)">
+          <span class="service-name">{{ service.name }}</span>
+          <button class="expand-button" [class.expanded]="service.isExpanded">
+            <mat-icon>{{ service.isExpanded ? "remove" : "add" }}</mat-icon>
+          </button>
+        </div>
+
+        <div class="service-description" [class.expanded]="service.isExpanded">
+          <p>{{ service.description }}</p>
+        </div>
+      </div>
+
+      @if (!$last) {
+      <div class="service-separator"></div>
+      } }
+    </div>
+  </div>
+</div>

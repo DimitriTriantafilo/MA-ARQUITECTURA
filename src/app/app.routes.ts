@@ -6,6 +6,7 @@ import { ProjectListComponent } from './@components/project-list/project-list.co
 import { NosotrosComponent } from './@components/nosotros/nosotros.component';
 import { HomeComponent } from './@components/home/home.component';
 import { ProjectDetailComponent } from './@components/project-detail/project-detail.component';
+import { ServiciosComponent } from './@components/servicios/servicios.component';
 
 export const projects: Project[] = [
   {
@@ -48,7 +49,8 @@ export const projects: Project[] = [
 
       { src: 'v1754400083/eb55eqkui7bu7aumeocc.jpg' },
     ],
-
+    description:
+      'Este monoambiente en el barrio de Caballito, destinado a alquiler temporario, fue concebido para integrar de forma armónica y confortable las áreas de dormir, comer, trabajar y estar en un único ambiente, optimizando al máximo su funcionalidad. Se diseñó una plataforma integral de madera de inspiración japonesa que incorpora cama y sofá con guardado inferior, resolviendo la ausencia de placard. El área de trabajo se ubicó junto a un muro, con módulos de almacenamiento y espacio de colgado adicional. La pureza de líneas, la sencillez formal y la atención al detalle, combinadas con texturas cálidas de madera, configuran un estilo Japandi contemporáneo, equilibrado y acogedor, ideal para un uso residencial',
     plantaSrc: 'v1754509834/lvr1gv3yvppletvggvju.png',
   },
 
@@ -94,6 +96,8 @@ export const projects: Project[] = [
       { src: 'v1747070353/ab4nejhthqtyi2yruiwc.jpg' },
     ],
     plantaSrc: 'v1754511260/erq1gey2hvbwzeqpeori.png',
+    description:
+      'Este departamento de dos ambientes fue intervenido para ampliar tanto su espacio físico como su percepción visual. Se integró el balcón a la cocina, generando mayor luminosidad y una sensación de amplitud en el living-comedor. En el dormitorio, se incorporó un placard a medida y un maquillador con espacio de guardado adicional. La selección de tonos tierra y madera en los muebles y muros unifica el conjunto, consolidando el estilo mediterráneo buscado.',
   },
   {
     name: 'AYACUCHO',
@@ -138,6 +142,8 @@ export const projects: Project[] = [
       { src: 'v1747076525/prvwm98ro2meeve3tict.jpg' },
     ],
     plantaSrc: 'v1754504400/ody5qddxnhjbfcvvj5h0.png',
+    description:
+      'Este departamento de época en Recoleta fue renovado integralmente para optimizar funcionalidad, luminosidad y confort. La cocina se reconfiguró para integrar todos los elementos, ganar almacenamiento y unificar el espacio con una paleta blanca. El baño intermedio se amplió y el de la suite se modernizó con revestimientos símil Calacatta y pisos símil cemento. Los muebles en madera otorgan la calidez necesaria. Además se resolvieron necesidades de almacenamiento y confort en las áreas de living y dormitorios. En estos últimos, se reubicaron tomacorrientes y se diseñaron muebles específicos complementándolos con los existentes para optimizar el uso cotidiano y la armonía espacial',
   },
 
   {
@@ -253,6 +259,8 @@ export const projects: Project[] = [
       },
     ],
     plantaSrc: '/v1754509330/u36d8cud9bs3b93bzekb.png',
+    description:
+      'Este departamento en San Fernando fue sometido a una transformación integral. La cocina se amplió e integró con el lavadero, permitiendo incorporar al interior las vistas panorámicas de la ciudad. La paleta cromática seleccionada aporta serenidad y modernidad, reforzando la luminosidad del conjunto. En el baño en suite, la reubicación estratégica de los artefactos permitió incorporar una doble bacha y optimizar su funcionalidad a la vez que se potenció la amplitud mediante el uso de tonos claros. El baño intermedio y el toilette mantuvieron la coherencia cromática, incorporando porcelanato símil terrazo que añade textura y tridimensionalidad a los espacios.',
   },
 
   {
@@ -301,6 +309,8 @@ export const projects: Project[] = [
     ],
     plantaSrc: 'v1754501785/wb5cubozukvrhgbyw8ek.png',
     plantaPreviaSrc: 'v1754501612/v02s910xgool2xrmcdxv.png',
+    description:
+      'En esta reforma se reorganizaron los espacios comunes para integrarlos a la cocina, generando una mayor amplitud visual y funcional, al tiempo que se otorgó mayor privacidad a la habitación y al baño. A pedido de la clienta, se incorporó una paleta de azules que recorre todo el departamento, combinada con tonos madera que aportan calidez y refuerzan una sensación de calma y equilibrio en los ambientes. Sumamos vigas de madera en los clielorrasos del living que completan el estilo mediterráneo del conjunto.',
   },
 
   {
@@ -397,6 +407,8 @@ export const projects: Project[] = [
       { src: 'v1754419116/qregldrxjhmvgmj4loav.jpg' },
     ],
     plantaSrc: 'v1754501912/z1d4j6nv4abhw8ubrrtq.png',
+    description:
+      'La intervención consistió en una actualización integral del espacio, reemplazando el parquet original por porcelanatos símil madera en todo el departamento, incluidos los baños. Esta elección de revestimiento, aplicada de manera continua, contribuye a una percepción de mayor amplitud y coherencia visual en cada ambiente. En los baños, se optó por revestimientos en tonos beige y neutros, aportando una atmósfera cálida y serena. El patio fue completamente renovado, incorporando un nuevo sistema de techado en Kiri natural y un cielorraso en chapa traslúcida. El espacio se complementa con mobiliario a medida —incluyendo sillón y mesa— pensado para adaptarse a distintas situaciones de uso, tanto sociales como cotidianas.',
   },
 
   {
@@ -470,6 +482,8 @@ export const projects: Project[] = [
       { src: 'v1747140772/jcwwry5yyfw6uyeueute.jpg' },
     ],
     plantaSrc: 'v1754570933/du7xojskllpgddhdbt7i.png',
+    description:
+      'En este proyecto se integraron, en un espacio reducido, un consultorio de psicología y una vivienda, optimizando cada metro cuadrado con soluciones funcionales y estéticamente armoniosas. Un mueble multifuncional oculta cama y placard, incorpora un sofá desmontable y se complementa con una mesa de uso dual y una biblioteca de gran capacidad. Los tonos cálidos de la madera aportan la serenidad y calidez necesarias para vincular el ámbito profesional con el doméstico.',
   },
 
   {
@@ -507,6 +521,8 @@ export const projects: Project[] = [
       { src: 'v1747080542/n2srvzl0inrsx1u7yndm.jpg' },
     ],
     plantaSrc: 'v1754502733/fykm9wedwmetcqsntejb.png',
+    description:
+      'La reforma optimizó la cocina integrando un area de coffee break a pedido del cliente, comedor diario y lavadero en un solo ambiente, mediante la reubicación del área y la redefinición de circulaciones.  En el living, una gran biblioteca a medida alberga la colección de libros del cliente, que funciona a su vez como divisor con el comedor. El dormitorio para dos niños incorpora zona de juego y un mueble cama multifuncional con guardado, resuelto en tonos azules que aportan vida al espacio.',
   },
 
   {
@@ -536,6 +552,8 @@ export const projects: Project[] = [
       { src: 'v1747141708/krvuvy9q8gtnnr1c1dcj.jpg' },
     ],
     plantaSrc: 'v1754588230/v0wxzpmixsaylgw24wmw.png',
+    description:
+      'En este departamento de tres ambientes se optimizó la funcionalidad de la cocina y se renovó por completo el baño. La supresión de la habitación de servicio y la reubicación del lavadero permitieron ampliar significativamente la cocina, que se resolvió con una paleta clara con algunos detalles en madera para darle modernidad. En el baño, los revestimientos en tonos tierra crean una atmósfera serena, equilibrada por una mesada y estantería en guatambú natural junto a un mueble blanco laqueado, generando armonía entre calma y modernidad.',
   },
   {
     name: 'CASA WIM',
@@ -547,7 +565,8 @@ export const projects: Project[] = [
       link: 'v1754942701/ipo4oxlyv7kdjxz4gt4r.jpg',
     },
     rowSpan: 3,
-
+    description:
+      'Ubicada en un entorno rural, Casa WIM fue proyectada con una fuerte intención de abrirse al paisaje y aprovechar al máximo las orientaciones naturales. Una gran galería se convierte en el elemento articulador del proyecto, conectando todos los espacios interiores y permitiendo que el exterior forme parte activa de la vida diaria. El lenguaje mediterráneo, con sus líneas simples y materiales nobles, le otorga a la casa una identidad moderna, pero a la vez profundamente arraigada al espíritu del campo. Los interiores dialogan con el entorno a través de una estética limpia y atemporal, generando una atmósfera serena y luminosa, donde el verde se vuelve protagonista. Casa WIM es un refugio contemporáneo que valora lo esencial: la conexión con la naturaleza, la funcionalidad de los espacios y la calidez del habitar.',
     images: [
       { src: 'v1754942701/ipo4oxlyv7kdjxz4gt4r.jpg' },
 
@@ -726,6 +745,10 @@ export const routes: Routes = [
   {
     path: 'estudio',
     component: NosotrosComponent,
+  },
+  {
+    path: 'servicios',
+    component: ServiciosComponent,
   },
   ...projects.map((project) => ({
     path: generateSlug(project.name),

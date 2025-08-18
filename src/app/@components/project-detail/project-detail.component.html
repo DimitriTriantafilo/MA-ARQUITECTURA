@@ -13,6 +13,85 @@
   <span class="m2" *ngIf="data?.m2">{{ data?.m2 }}m<sup>2</sup></span>
 </div>
 
+<section class="planta-container" *ngIf="data?.plantaSrc || data?.description">
+  <!-- Plano del proyecto                                                              -->
+  <div class="planta-image-container" *ngIf="data?.plantaSrc">
+    <img
+      [src]="getPlantaImageUrl()"
+      [alt]="'Plano de ' + data?.name"
+      class="planta-image"
+      loading="lazy"
+      decoding="async"
+    />
+    <div class="planta-info">
+      <span class="planta-label">Planta baja</span>
+      <span class="planta-scale">1:200</span>
+    </div>
+  </div>
+
+  <!-- Información del proyecto -->
+  <div
+    class="project-info"
+    *ngIf="data?.description || data?.m2 || data?.location || data?.year"
+  >
+    <!-- Especificaciones del proyecto -->
+    <div class="project-specs">
+      <div class="specs-container">
+        <!-- Elemento M² -->
+        <div
+          class="spec-item"
+          [class]="getSpecItemAlignment('m2')"
+          *ngIf="data?.m2"
+        >
+          <span class="spec-value">{{ data?.m2 }}M²</span>
+        </div>
+
+        <!-- Divisor después del elemento M² -->
+        <div class="specs-divider" *ngIf="data?.m2"></div>
+
+        <!-- Elemento Location -->
+        <div
+          class="spec-item"
+          [class]="getSpecItemAlignment('location')"
+          *ngIf="data?.location"
+        >
+          <span class="spec-value">{{ data?.location }}</span>
+        </div>
+
+        <!-- Divisor después del elemento Location -->
+        <div class="specs-divider" *ngIf="data?.location"></div>
+
+        <!-- Elemento Year -->
+        <div
+          class="spec-item"
+          [class]="getSpecItemAlignment('year')"
+          *ngIf="data?.year"
+        >
+          <span class="spec-value">{{ data?.year }}</span>
+        </div>
+
+        <!-- Divisor después del elemento Year -->
+        <div class="specs-divider" *ngIf="data?.year"></div>
+
+        <!-- Elemento Style -->
+        <div
+          class="spec-item"
+          [class]="getSpecItemAlignment('style')"
+          *ngIf="data?.mainFeature?.type === 'image'"
+        >
+          <span class="spec-value">{{
+            data?.style || "MADERA & TONOS BLANCOS"
+          }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Descripción del proyecto -->
+    <div class="project-description" *ngIf="data?.description">
+      <p>{{ data?.description }}</p>
+    </div>
+  </div>
+</section>
 <section class="images-container" *ngIf="innerWidth && innerHeight">
   @for (image of data?.images; track $index; let i = $index) {
   <div

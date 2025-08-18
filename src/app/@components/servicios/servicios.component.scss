@@ -1,0 +1,224 @@
+@use "../../../assets/styles/variables.scss" as *;
+
+.services-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f4efe8;
+  color: black;
+  font-family: "modeco";
+  width: 100%;
+}
+
+.left-column {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  padding: 60px 40px;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+.services-title {
+  font-family: "modeco";
+  font-size: 4rem;
+  font-weight: 300;
+  margin: 0;
+  line-height: 1;
+  letter-spacing: 0.15em;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.services-image {
+  width: 100%;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 8px 10px 0; /* Agregar padding para que se vea la sombra */
+
+  img {
+    width: 100%;
+    height: 100%;
+    max-width: 500px;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 8px 8px 0px rgb(158, 162, 140);
+  }
+}
+
+.right-column {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  padding: 60px 40px 60px 20px;
+  justify-content: center;
+  gap: 40px;
+}
+
+.services-info {
+  .info-text {
+    font-family: "manrope";
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #666;
+    margin: 0;
+    // max-width: 400px;
+    margin-bottom: 30px;
+  }
+}
+
+.services-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  //   max-width: 450px;
+}
+
+.service-item {
+  .service-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.02);
+    }
+  }
+
+  .service-name {
+    font-family: "modeco";
+    font-size: 1.8rem;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .expand-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20px;
+
+    mat-icon {
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+      transition: transform 0.3s ease;
+      color: #333;
+    }
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    &.expanded {
+      mat-icon {
+        transform: rotate(45deg);
+      }
+    }
+  }
+
+  .service-description {
+    padding: 0 0 15px 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    transform: translateY(-10px);
+
+    &.expanded {
+      max-height: 200px;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    p {
+      font-family: "modeco";
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #666;
+      margin: 0;
+      padding: 15px 0 0 0;
+    }
+  }
+}
+
+.service-separator {
+  height: 1px;
+  background-color: black;
+  width: 100%;
+  opacity: 0.2;
+  margin: 5px 0;
+}
+
+// Responsive design
+@media (max-width: 1024px) {
+  .services-container {
+    flex-direction: column;
+  }
+
+  .left-column,
+  .right-column {
+    width: 100%;
+    padding: 40px 30px;
+    gap: 30px;
+  }
+
+  .services-title {
+    font-size: 3rem;
+    text-align: center;
+  }
+
+  .services-image {
+    height: 300px;
+
+    img {
+      max-width: 100%;
+      max-height: 300px;
+    }
+  }
+
+  .services-list {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .left-column,
+  .right-column {
+    width: 100%;
+    padding: 30px 20px;
+    gap: 25px;
+  }
+
+  .services-title {
+    font-size: 2.5rem;
+  }
+
+  .service-name {
+    font-size: 1.4rem;
+  }
+
+  .info-text {
+    font-size: 0.85rem;
+  }
+
+  .services-image {
+    height: 250px;
+
+    img {
+      max-height: 250px;
+    }
+  }
+}

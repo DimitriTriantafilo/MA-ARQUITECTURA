@@ -64,7 +64,11 @@
   >
     {{ "studio" | translate }}
   </div>
-  <div class="burgerMenu-option">
+  <div
+    class="burgerMenu-option"
+    [routerLink]="['/servicios']"
+    (click)="openMenu = false"
+  >
     NUESTROS <br />
     SERVICIOS
   </div>

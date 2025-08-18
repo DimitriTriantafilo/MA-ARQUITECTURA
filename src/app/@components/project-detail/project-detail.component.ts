@@ -7,8 +7,10 @@ import {
   ChangeDetectorRef,
   Inject,
   PLATFORM_ID,
+  AfterViewInit,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { projects } from '../../app.routes';
 import { Project } from '../../app.component';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
@@ -25,7 +27,9 @@ import { ImagePreloadService } from '../../image-preload.service';
   templateUrl: './project-detail.component.html',
   styleUrls: ['./project-detail.component.scss'],
 })
-export class ProjectDetailComponent implements OnInit, OnDestroy {
+export class ProjectDetailComponent
+  implements OnInit, OnDestroy, AfterViewInit
+{
   data?: Project;
   currentImageIndex: number = 0;
   openCarrouselFlag: boolean = false;
@@ -37,12 +41,14 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
   currentImageLoaded: boolean = false;
   public innerWidth: number;
   public innerHeight: number;
+  private plantaObserver: IntersectionObserver | null = null;
 
   @ViewChild('carrousel') carrouselRef?: ElementRef<HTMLDivElement>;
   private imageLoaders: Map<string, HTMLImageElement> = new Map();
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private cdRef: ChangeDetectorRef,
     @Inject(PLATFORM_ID) private platformId: Object,
     public windowSize: WindowSizeService,
@@ -55,21 +61,36 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.innerWidth = window.innerWidth;
+    this.innerHeight = window.innerHeight;
+
+    // Obtener el proyecto desde los datos de la ruta
     this.data = this.route.snapshot.data['project'];
-    // Ya no es necesario asignar innerWidth/innerHeight manualmente
-    // Precarga imágenes críticas del carrusel
-    if (this.data?.images) {
-      const carouselUrls = this.data.images
-        .slice(0, 3)
-        .map((img) =>
-          this.cloudinaryService.generateCarouselUrl(
-            img.src,
-            this.fixedWidth,
-            this.fixedHeight
-          )
-        );
-      this.imagePreloadService.preloadCarouselImages(carouselUrls);
+
+    if (!this.data) {
+      this.router.navigate(['/']);
+    } else {
+      // Precarga imágenes críticas del carrusel
+      if (this.data.images) {
+        const carouselUrls = this.data.images
+          .slice(0, 3)
+          .map((img) =>
+            this.cloudinaryService.generateCarouselUrl(
+              img.src,
+              this.fixedWidth,
+              this.fixedHeight
+            )
+          );
+        this.imagePreloadService.preloadCarouselImages(carouselUrls);
+      }
     }
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.setupPlantaObserver();
+      this.cdRef.detectChanges();
+    }, 100);
   }
 
   /**
@@ -203,7 +224,35 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    if (this.plantaObserver) {
+      this.plantaObserver.disconnect();
+    }
+  }
+
+  private setupPlantaObserver() {
+    const plantaContainer = document.querySelector('.planta-container');
+
+    if (plantaContainer) {
+      this.plantaObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              // Agregar clase para activar animaciones
+              plantaContainer.classList.add('in-view');
+              this.plantaObserver?.disconnect();
+            }
+          });
+        },
+        {
+          threshold: 0.3,
+          rootMargin: '0px 0px -100px 0px',
+        }
+      );
+
+      this.plantaObserver.observe(plantaContainer);
+    }
+  }
 
   // Métodos para generar URLs de imágenes
   getMainImageUrl(): string {
@@ -212,6 +261,19 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
       this.data.showImg,
       this.innerWidth,
       this.innerHeight
+    );
+  }
+
+  getPlantaImageUrl(): string {
+    if (!this.data?.plantaSrc || !this.innerWidth) return '';
+
+    // Calcula el ancho para el plano (aproximadamente 40% del ancho de pantalla)
+    const plantaWidth = Math.floor(this.innerWidth * 0.4);
+    const plantaHeight = Math.floor(plantaWidth * 0.7); // Proporción aproximada para planos
+
+    return this.cloudinaryService.generateGalleryUrl(
+      this.data.plantaSrc,
+      plantaWidth
     );
   }
 
@@ -301,5 +363,30 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
 
     // Por defecto, una columna
     return 1;
+  }
+
+  /**
+   * Determina si un elemento de especificación debe ir a la izquierda o derecha
+   * basado en su posición en la lista de elementos visibles
+   */
+  getSpecItemAlignment(
+    elementType: 'm2' | 'location' | 'year' | 'style'
+  ): 'left' | 'right' {
+    const visibleElements: ('m2' | 'location' | 'year' | 'style')[] = [];
+
+    // Construir lista de elementos visibles en orden
+    if (this.data?.m2) visibleElements.push('m2');
+    if (this.data?.location) visibleElements.push('location');
+    if (this.data?.year) visibleElements.push('year');
+    if (this.data?.mainFeature?.type === 'image') visibleElements.push('style');
+
+    // Encontrar el índice del elemento actual
+    const elementIndex = visibleElements.indexOf(elementType);
+
+    // Si el elemento no está en la lista o no es visible, retornar 'left' por defecto
+    if (elementIndex === -1) return 'left';
+
+    // Alternar entre izquierda (índice par) y derecha (índice impar)
+    return elementIndex % 2 === 0 ? 'left' : 'right';
   }
 }
