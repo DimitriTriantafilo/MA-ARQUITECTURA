@@ -1,12 +1,14 @@
+import { environment } from '../../environments/environment';
+
 export const EMAIL_CONFIG = {
   // EmailJS Configuration
-  EMAILJS_PUBLIC_KEY: 'YOUR_EMAILJS_PUBLIC_KEY', // Replace with your actual EmailJS public key
-  EMAILJS_SERVICE_ID: 'YOUR_EMAILJS_SERVICE_ID', // Replace with your EmailJS service ID
-  EMAILJS_TEMPLATE_ID: 'YOUR_EMAILJS_TEMPLATE_ID', // Replace with your EmailJS template ID
+  EMAILJS_PUBLIC_KEY: environment.emailjs.publicKey,
+  EMAILJS_SERVICE_ID: environment.emailjs.serviceId,
+  EMAILJS_TEMPLATE_ID: environment.emailjs.templateId,
 
   // reCAPTCHA Configuration
-  RECAPTCHA_SITE_KEY: 'YOUR_RECAPTCHA_SITE_KEY', // Replace with your reCAPTCHA site key
+  RECAPTCHA_SITE_KEY: environment.recaptcha.siteKey,
 
   // Email Configuration
-  TO_EMAIL: 'Info.maarquitectura@gmail.com',
+  TO_EMAIL: environment.email.toEmail,
 };

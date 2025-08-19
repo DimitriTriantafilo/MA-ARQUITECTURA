@@ -8,7 +8,6 @@ import {
   ViewChild,
 } from '@angular/core';
 import { TranslationService } from '../../transltate';
-import { TranslatePipe } from '../../transltate/translate.pipe';
 import {
   trigger,
   state,
@@ -20,16 +19,17 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { TranslatePipe } from '../../transltate/translate.pipe';
 @Component({
   selector: 'app-topbar',
   templateUrl: './topbar.component.html',
   styleUrl: './topbar.component.scss',
   imports: [
-    TranslatePipe,
     MatMenuModule,
     MatIconModule,
     CommonModule,
     RouterModule,
+    TranslatePipe,
   ],
   animations: [
     trigger('languageChange', [

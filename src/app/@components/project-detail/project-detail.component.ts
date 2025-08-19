@@ -61,8 +61,10 @@ export class ProjectDetailComponent
   }
 
   ngOnInit() {
-    this.innerWidth = window.innerWidth;
-    this.innerHeight = window.innerHeight;
+    if (isPlatformBrowser(this.platformId)) {
+      this.innerWidth = window.innerWidth;
+      this.innerHeight = window.innerHeight;
+    }
 
     // Obtener el proyecto desde los datos de la ruta
     this.data = this.route.snapshot.data['project'];
@@ -87,10 +89,12 @@ export class ProjectDetailComponent
   }
 
   ngAfterViewInit() {
-    setTimeout(() => {
-      this.setupPlantaObserver();
-      this.cdRef.detectChanges();
-    }, 100);
+    if (isPlatformBrowser(this.platformId)) {
+      setTimeout(() => {
+        this.setupPlantaObserver();
+        this.cdRef.detectChanges();
+      }, 100);
+    }
   }
 
   /**
@@ -231,6 +235,7 @@ export class ProjectDetailComponent
   }
 
   private setupPlantaObserver() {
+    if (!isPlatformBrowser(this.platformId)) return;
     const plantaContainer = document.querySelector('.planta-container');
 
     if (plantaContainer) {

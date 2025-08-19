@@ -11,12 +11,7 @@ body {
   font-style: normal;
 }
 
-@font-face {
-  font-family: "blair";
-  src: url("assets/fonts/Blair\ ITC\ Medium.otf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
+/* Removed unused Blair font to reduce bundle size */
 
 @font-face {
   font-family: "modeco", sans-serif;

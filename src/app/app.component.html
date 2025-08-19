@@ -1,6 +1,6 @@
 <main class="main">
   <app-topbar [class.hidden]="isHidden"></app-topbar>
-  <div
+  <!-- <div
     class="welcome-container"
     *ngIf="showWelcome"
     [class.mobile]="isMobile"
@@ -8,14 +8,16 @@
   >
     <img
       class="welcome-logo"
-      src="assets/logo-blanco.png"
-      alt="Logo"
+      src="assets/logo-blanco.webp"
+      alt="MA Arquitectura"
+      width="220"
+      height="120"
       [ngClass]="{ 'mobile-logo': isMobile, 'desktop-logo': !isMobile }"
       fetchpriority="high"
       decoding="sync"
-      style="will-change: transform, width"
+      loading="eager"
+      style="will-change: transform; contain: layout style paint"
     />
-    <!-- <span class="welcome-text"> {{ "title" | translate }} </span> -->
-  </div>
+  </div> -->
   <router-outlet />
 </main>

@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import {
   FormsModule,
   ReactiveFormsModule,
@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { EMAIL_CONFIG } from '../../config/email.config';
+import { PLATFORM_ID } from '@angular/core';
 
 declare var emailjs: any;
 declare var grecaptcha: any;
@@ -27,7 +28,10 @@ export class ContactoComponent implements OnInit, OnDestroy {
   submitError = false;
   recaptchaResponse: string = '';
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
     this.contactForm = this.fb.group({
       nombre: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
@@ -37,8 +41,10 @@ export class ContactoComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.loadEmailJS();
-    this.loadRecaptcha();
+    if (isPlatformBrowser(this.platformId)) {
+      this.loadEmailJS();
+      this.loadRecaptcha();
+    }
   }
 
   ngOnDestroy() {
@@ -47,6 +53,7 @@ export class ContactoComponent implements OnInit, OnDestroy {
 
   private loadEmailJS() {
     // Load EmailJS from CDN
+    if (!isPlatformBrowser(this.platformId)) return;
     const script = document.createElement('script');
     script.src =
       'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
@@ -58,6 +65,7 @@ export class ContactoComponent implements OnInit, OnDestroy {
 
   private loadRecaptcha() {
     // Load reCAPTCHA from CDN
+    if (!isPlatformBrowser(this.platformId)) return;
     const script = document.createElement('script');
     script.src = `https://www.google.com/recaptcha/api.js?render=${EMAIL_CONFIG.RECAPTCHA_SITE_KEY}`;
     document.head.appendChild(script);
@@ -70,7 +78,9 @@ export class ContactoComponent implements OnInit, OnDestroy {
 
       try {
         // Verify reCAPTCHA
-        const recaptchaToken = await this.verifyRecaptcha();
+        const recaptchaToken = isPlatformBrowser(this.platformId)
+          ? await this.verifyRecaptcha()
+          : '';
         if (!recaptchaToken) {
           throw new Error('reCAPTCHA verification failed');
         }
@@ -113,9 +123,9 @@ export class ContactoComponent implements OnInit, OnDestroy {
 
   private async sendEmail(recaptchaToken: string): Promise<void> {
     const templateParams = {
-      from_name: this.contactForm.value.nombre,
-      from_email: this.contactForm.value.email,
-      from_phone: this.contactForm.value.telefono,
+      name: this.contactForm.value.nombre,
+      email: this.contactForm.value.email,
+      phone: this.contactForm.value.telefono,
       message: this.contactForm.value.mensaje,
       recaptcha_token: recaptchaToken,
       to_email: EMAIL_CONFIG.TO_EMAIL,

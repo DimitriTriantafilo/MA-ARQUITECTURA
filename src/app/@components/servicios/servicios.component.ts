@@ -1,5 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { PLATFORM_ID } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { WindowSizeService } from '../../window-size.service';
 import { BreakpointService } from '../../breakpoint.service';
@@ -26,15 +27,18 @@ export class ServiciosComponent implements OnInit, OnDestroy {
   constructor(
     public windowSize: WindowSizeService,
     public breakpoint: BreakpointService,
-    private cloudinaryService: CloudinaryService
+    private cloudinaryService: CloudinaryService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.innerWidth = this.windowSize.innerWidth();
     this.innerHeight = this.windowSize.innerHeight();
   }
 
   ngOnInit() {
-    this.innerWidth = window.innerWidth;
-    this.innerHeight = window.innerHeight;
+    if (isPlatformBrowser(this.platformId)) {
+      this.innerWidth = window.innerWidth;
+      this.innerHeight = window.innerHeight;
+    }
   }
 
   ngOnDestroy() {

@@ -4,11 +4,13 @@
       loading="lazy"
       width="100%"
       height="100%"
-      src="https://www.youtube.com/embed/Bi5S56d1HFg?autoplay=1&controls=0&modestbranding=1&rel=0&loop=1&playlist=Bi5S56d1HFg&mute=1&playsinline=1&showinfo=0"
+      src="https://www.youtube.com/embed/Bi5S56d1HFg?autoplay=1&controls=0&modestbranding=1&rel=0&loop=1&playlist=Bi5S56d1HFg&mute=1&playsinline=1&showinfo=0&enablejsapi=0&origin=http://localhost:4000&widget_referrer=http://localhost:4000"
       title="YouTube video"
       frameborder="0"
       allow="autoplay; encrypted-media; fullscreen"
       allowfullscreen
+      style="contain: layout style paint"
+      sandbox="allow-scripts allow-same-origin allow-presentation"
     ></iframe>
   </ng-container>
 </section>
@@ -16,7 +18,12 @@
 <!-- </div> -->
 <div class="videoOverlay">
   <div class="cover"></div>
-  <span> CREAMOS ESPACIOS QUE SE VIVEN </span>
+  <span
+    class="hero-text"
+    style="will-change: transform; contain: layout style paint"
+  >
+    CREAMOS ESPACIOS QUE SE VIVEN
+  </span>
 </div>
 
 <ng-container *ngIf="innerWidth > 0 && innerHeight > 0">

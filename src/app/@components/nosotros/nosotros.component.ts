@@ -1,3 +1,4 @@
+import { TranslatePipe } from '../../transltate/translate.pipe';
 import {
   Component,
   ElementRef,
@@ -6,7 +7,6 @@ import {
   PLATFORM_ID,
   Inject,
 } from '@angular/core';
-import { TranslatePipe } from '../../transltate/translate.pipe';
 import { isPlatformBrowser } from '@angular/common';
 import { WindowSizeService } from '../../window-size.service';
 import { BreakpointService } from '../../breakpoint.service';

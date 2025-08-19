@@ -7,6 +7,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="logo-negro.ico" />
     <link rel="preconnect" href="https://res.cloudinary.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Preload critical resources -->
+    <link
+      rel="preload"
+      href="assets/logo-blanco.webp"
+      as="image"
+      type="image/webp"
+      fetchpriority="high"
+    />
+
+    <!-- DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="//res.cloudinary.com" />
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="//www.youtube.com" />
+
+    <!-- Preconnect for critical resources -->
+    <link rel="preconnect" href="https://www.youtube.com" crossorigin />
+
     <meta
       name="description"
       content="MA Arquitectura: Proyectos de arquitectura, diseño y construcción. Descubre nuestros proyectos destacados y conoce nuestro estudio."
@@ -21,13 +42,21 @@
       content="https://res.cloudinary.com/dskkynwxb/image/upload/v1747077944/lenbzej6vc7ro5raomzg.jpg"
     />
     <meta property="og:type" content="website" />
+
+    <!-- Optimize font loading -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap&display=block"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+      crossorigin="anonymous"
     />
     <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+      crossorigin="anonymous"
     />
   </head>
   <body>

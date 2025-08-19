@@ -1,10 +1,11 @@
-@import "../../../assets/styles/variables.scss";
+@use "../../../assets/styles/variables.scss" as *;
 
 .featuredImg {
   position: relative;
   width: 100%;
   height: 100vh; /* Pantalla completa */
   overflow: hidden; /* Evita bordes indeseados */
+  contain: layout style paint;
 
   iframe {
     position: absolute;
@@ -13,6 +14,8 @@
     width: 100%;
     height: 100%;
     object-fit: cover; /* Cubre todo el contenedor, puede recortar pero no deja espacios */
+    contain: layout style paint;
+    will-change: transform;
   }
 }
 
@@ -50,9 +53,17 @@
     filter: blur(5px);
     animation: heroTextAnimation 2s ease-out forwards;
     animation-play-state: paused;
+    contain: layout style paint;
+    will-change: transform, opacity, filter;
 
     &.in-view {
       animation-play-state: running;
+    }
+
+    &.hero-text {
+      font-display: swap;
+      font-feature-settings: "liga" 1, "kern" 1;
+      text-rendering: optimizeLegibility;
     }
   }
 }

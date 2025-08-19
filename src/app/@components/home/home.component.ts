@@ -54,7 +54,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     width: number,
     height: number
   ): string {
-    return `https://res.cloudinary.com/dskkynwxb/c_scale,w_${width},h_${height}/q_auto:good/f_auto/${publicId}`;
+    return `https://res.cloudinary.com/dskkynwxb/c_scale,w_${width},h_${height}/q_auto:good/f_auto,fl_force_strip,fl_progressive/${publicId}`;
   }
 
   // Funciones de navegación para proyectos
