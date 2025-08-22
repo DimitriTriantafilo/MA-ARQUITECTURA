@@ -50,7 +50,7 @@ export const projects: Project[] = [
     ],
     description:
       'Este monoambiente en el barrio de Caballito, destinado a alquiler temporario, fue concebido para integrar de forma armónica y confortable las áreas de dormir, comer, trabajar y estar en un único ambiente, optimizando al máximo su funcionalidad. Se diseñó una plataforma integral de madera de inspiración japonesa que incorpora cama y sofá con guardado inferior, resolviendo la ausencia de placard. El área de trabajo se ubicó junto a un muro, con módulos de almacenamiento y espacio de colgado adicional. La pureza de líneas, la sencillez formal y la atención al detalle, combinadas con texturas cálidas de madera, configuran un estilo Japandi contemporáneo, equilibrado y acogedor, ideal para un uso residencial',
-    plantaSrc: 'v1754509834/lvr1gv3yvppletvggvju.png',
+    plantaSrc: 'v1755786054/broeewc34haztfuuvcri.png',
   },
 
   {
@@ -94,7 +94,8 @@ export const projects: Project[] = [
 
       { src: 'v1747070353/ab4nejhthqtyi2yruiwc.jpg' },
     ],
-    plantaSrc: 'v1754511260/erq1gey2hvbwzeqpeori.png',
+    plantaPreviaSrc: 'v1755786105/khmzqngtdf4uxkjsmb9y.png',
+    plantaSrc: 'v1755786123/gzmzzmnioaepnhd2lmxo.png',
     description:
       'Este departamento de dos ambientes fue intervenido para ampliar tanto su espacio físico como su percepción visual. Se integró el balcón a la cocina, generando mayor luminosidad y una sensación de amplitud en el living-comedor. En el dormitorio, se incorporó un placard a medida y un maquillador con espacio de guardado adicional. La selección de tonos tierra y madera en los muebles y muros unifica el conjunto, consolidando el estilo mediterráneo buscado.',
   },
@@ -140,7 +141,8 @@ export const projects: Project[] = [
 
       { src: 'v1747076525/prvwm98ro2meeve3tict.jpg' },
     ],
-    plantaSrc: 'v1754504400/ody5qddxnhjbfcvvj5h0.png',
+    plantaPreviaSrc: 'v1755785779/v0obc3siwuvf3ayf4kup.png',
+    plantaSrc: 'v1755785797/p9w9h9japwlhk0rldvpz.png',
     description:
       'Este departamento de época en Recoleta fue renovado integralmente para optimizar funcionalidad, luminosidad y confort. La cocina se reconfiguró para integrar todos los elementos, ganar almacenamiento y unificar el espacio con una paleta blanca. El baño intermedio se amplió y el de la suite se modernizó con revestimientos símil Calacatta y pisos símil cemento. Los muebles en madera otorgan la calidez necesaria. Además se resolvieron necesidades de almacenamiento y confort en las áreas de living y dormitorios. En estos últimos, se reubicaron tomacorrientes y se diseñaron muebles específicos complementándolos con los existentes para optimizar el uso cotidiano y la armonía espacial',
   },
@@ -171,7 +173,7 @@ export const projects: Project[] = [
 
       { src: 'v1747144970/jgk1vcclfziznl9qmxt5.jpg' },
     ],
-    plantaSrc: 'v1754586778/kma9g3qfijhtzbjec0jw.png',
+    plantaSrc: 'v1755785892/im3pldsi5y6xhieucrh5.png',
   },
   {
     name: 'REFORMA SANFER',
@@ -257,7 +259,8 @@ export const projects: Project[] = [
         src: 'v1754487758/benkloncyfayusf2a5zs.jpg',
       },
     ],
-    plantaSrc: '/v1754509330/u36d8cud9bs3b93bzekb.png',
+    plantaSrc: 'v1755785968/argb0r1hhjunblffnnym.png',
+    plantaPreviaSrc: 'v1755785951/ip5pn2xzcn8c0wkkprxw.png',
     description:
       'Este departamento en San Fernando fue sometido a una transformación integral. La cocina se amplió e integró con el lavadero, permitiendo incorporar al interior las vistas panorámicas de la ciudad. La paleta cromática seleccionada aporta serenidad y modernidad, reforzando la luminosidad del conjunto. En el baño en suite, la reubicación estratégica de los artefactos permitió incorporar una doble bacha y optimizar su funcionalidad a la vez que se potenció la amplitud mediante el uso de tonos claros. El baño intermedio y el toilette mantuvieron la coherencia cromática, incorporando porcelanato símil terrazo que añade textura y tridimensionalidad a los espacios.',
   },
@@ -306,14 +309,14 @@ export const projects: Project[] = [
 
       { src: 'v1754406924/kc7bl7kvr7z8pohiw65y.jpg' },
     ],
-    plantaSrc: 'v1754501785/wb5cubozukvrhgbyw8ek.png',
-    plantaPreviaSrc: 'v1754501612/v02s910xgool2xrmcdxv.png',
+    plantaSrc: 'v1755785866/lwe6gyvcvi4nan0b9nkp.png',
+    plantaPreviaSrc: 'v1755785850/ne3ijqntce8hxisqyayi.png',
     description:
       'En esta reforma se reorganizaron los espacios comunes para integrarlos a la cocina, generando una mayor amplitud visual y funcional, al tiempo que se otorgó mayor privacidad a la habitación y al baño. A pedido de la clienta, se incorporó una paleta de azules que recorre todo el departamento, combinada con tonos madera que aportan calidez y refuerzan una sensación de calma y equilibrio en los ambientes. Sumamos vigas de madera en los clielorrasos del living que completan el estilo mediterráneo del conjunto.',
   },
 
   {
-    name: 'IGOR',
+    name: 'REFORMA IGOR',
     m2: '260',
     location: 'Villa Ballester',
     showImg: 'v1754402953/j9nvyhxngxppr4mr99dv.jpg',
@@ -357,8 +360,10 @@ export const projects: Project[] = [
 
       { src: 'v1754402962/gvtxrcihmygkwtmyxame.jpg' },
     ],
-    plantaSrc: 'v1754507113/ix7mz3yq7sl0ogjshpn1.png',
-    plantaPreviaSrc: 'v1754507113/gruhlcnb5ojblcqo7zco.png',
+    plantaSrc: 'v1755786023/kfqjwhub0yr7xfc2uwyz.png',
+    plantaPreviaSrc: 'v1755786005/kxngzutffiovu6yb9lfg.png',
+    description:
+      'En Villa Ballester, esta casa y su quincho fueron repensados como un todo, buscando que cada espacio ganara en funcionalidad, calidez y carácter. La intervención abarcó cocina, baños, pisos y el quincho, con una mirada integral que equilibrara lo existente con lo nuevo. La cocina se abrió hacia el living-comedor mediante una barra de encuentro, con mesadas de cuarzo que aportan modernidad y frentes que dialogan con la estética original de la vivienda. Los baños fueron renovados con un lenguaje sereno y cálido. En el de las niñas, los tonos claros amplifican el espacio y transmiten frescura. El quincho, completamente demolido y reconstruido, ahora ofrece confort en cualquier estación gracias a su aislamiento térmico. Su lenguaje estético se inspira en la simplicidad escandinava, con una cocina y un sector de parrilla que respiran claridad y orden. El baño, reubicado para optimizar la circulación, adopta una paleta neutra que integra de forma sutil y coherente todo el conjunto.',
   },
   {
     name: 'REFORMA FRENCH',
@@ -405,13 +410,13 @@ export const projects: Project[] = [
 
       { src: 'v1754419116/qregldrxjhmvgmj4loav.jpg' },
     ],
-    plantaSrc: 'v1754501912/z1d4j6nv4abhw8ubrrtq.png',
+    plantaSrc: 'v1755785680/suo2g3xhd8q1z4eoqukz.png',
     description:
       'La intervención consistió en una actualización integral del espacio, reemplazando el parquet original por porcelanatos símil madera en todo el departamento, incluidos los baños. Esta elección de revestimiento, aplicada de manera continua, contribuye a una percepción de mayor amplitud y coherencia visual en cada ambiente. En los baños, se optó por revestimientos en tonos beige y neutros, aportando una atmósfera cálida y serena. El patio fue completamente renovado, incorporando un nuevo sistema de techado en Kiri natural y un cielorraso en chapa traslúcida. El espacio se complementa con mobiliario a medida —incluyendo sillón y mesa— pensado para adaptarse a distintas situaciones de uso, tanto sociales como cotidianas.',
   },
 
   {
-    name: 'INFANTA V',
+    name: 'Café Infanta Victoria',
     m2: '290',
     location: 'Villa Ballester',
     showImg: 'v1754421886/jxppbimotom9kg22bgox.jpg',
@@ -452,7 +457,9 @@ export const projects: Project[] = [
 
       { src: 'v1754421911/vzcyvlkhrzaytyharmny.jpg' },
     ],
-    plantaSrc: 'v1754570116/j3ydisc0m5b7wxmsvixn.png',
+    plantaSrc: 'v1755785737/xon2qoujt0ocarpd3z77.png',
+    description:
+      'Ubicada en una casona antigua del centro de Villa Ballester, esta cafetería se diseñó en sintonía con la identidad del edificio, realzando su carácter original y sumando elementos contemporáneos. Intentando mantener la identidad del lugar, recuperamos la bovedilla existente y los pisos de madera fueron restaurados, contrastandolos con calcáreos en el área posterior.Los toques modernos se fueron generando con el nuevo mobiliario y el mostrador con tono menta, otorgando serenidad y personalidad. Hacia el fondo, una pared del mismo color refuerza la idea y el carácter del ambiente. El hierro y la vegetación, presentes en detalles sobre la barra y el muro principal, introducen un contraste moderno que dialoga con lo histórico, aportando frescura y vitalidad al conjunto.',
   },
   {
     name: 'CONSULTORIO DEVOTO',
@@ -480,7 +487,7 @@ export const projects: Project[] = [
 
       { src: 'v1747140772/jcwwry5yyfw6uyeueute.jpg' },
     ],
-    plantaSrc: 'v1754570933/du7xojskllpgddhdbt7i.png',
+    plantaSrc: 'v1755785624/z3rbalszv4wnnuwl62cb.png',
     description:
       'En este proyecto se integraron, en un espacio reducido, un consultorio de psicología y una vivienda, optimizando cada metro cuadrado con soluciones funcionales y estéticamente armoniosas. Un mueble multifuncional oculta cama y placard, incorpora un sofá desmontable y se complementa con una mesa de uso dual y una biblioteca de gran capacidad. Los tonos cálidos de la madera aportan la serenidad y calidez necesarias para vincular el ámbito profesional con el doméstico.',
   },
@@ -519,7 +526,7 @@ export const projects: Project[] = [
 
       { src: 'v1747080542/n2srvzl0inrsx1u7yndm.jpg' },
     ],
-    plantaSrc: 'v1754502733/fykm9wedwmetcqsntejb.png',
+    plantaSrc: 'v1755718988/djfe24sp0qbqtg73cgi3.png',
     description:
       'La reforma optimizó la cocina integrando un area de coffee break a pedido del cliente, comedor diario y lavadero en un solo ambiente, mediante la reubicación del área y la redefinición de circulaciones.  En el living, una gran biblioteca a medida alberga la colección de libros del cliente, que funciona a su vez como divisor con el comedor. El dormitorio para dos niños incorpora zona de juego y un mueble cama multifuncional con guardado, resuelto en tonos azules que aportan vida al espacio.',
   },
@@ -550,7 +557,8 @@ export const projects: Project[] = [
 
       { src: 'v1747141708/krvuvy9q8gtnnr1c1dcj.jpg' },
     ],
-    plantaSrc: 'v1754588230/v0wxzpmixsaylgw24wmw.png',
+    plantaPreviaSrc: 'v1755785578/ikqefu6xraztxjin2fdn.png',
+    plantaSrc: 'v1755785597/wtqzr1gtft1inppx3rj5.png',
     description:
       'En este departamento de tres ambientes se optimizó la funcionalidad de la cocina y se renovó por completo el baño. La supresión de la habitación de servicio y la reubicación del lavadero permitieron ampliar significativamente la cocina, que se resolvió con una paleta clara con algunos detalles en madera para darle modernidad. En el baño, los revestimientos en tonos tierra crean una atmósfera serena, equilibrada por una mesada y estantería en guatambú natural junto a un mueble blanco laqueado, generando armonía entre calma y modernidad.',
   },
@@ -635,7 +643,7 @@ export const projects: Project[] = [
       { src: 'v1754942711/rio5nkpmjmvxtxp2dqte.jpg' },
     ],
 
-    plantaSrc: 'v1754944961/l8udeeaqjjn58gqbakgs.png',
+    plantaSrc: 'v1755786648/o6xjd9pty6fmovr82uki.png',
   },
 
   {
@@ -662,7 +670,7 @@ export const projects: Project[] = [
 
       { src: 'v1747142267/vvxfowj2xfbzo9erq6es.jpg' },
     ],
-    plantaSrc: 'v1754577318/n9v9ksecoi0ir4vznrsx.png',
+    plantaSrc: 'v1755785551/pigvzs9wcrkxled4cogb.png',
   },
   {
     name: 'COCINA SANTANA',
@@ -701,35 +709,37 @@ export const projects: Project[] = [
         src: 'v1754412378/xjzmqsyzoedhfearqw4c.jpg',
       },
     ],
-    plantaSrc: '/v1754493632/tjyws5fqndjhgdzfonjw.png',
+    plantaSrc: 'v1755785516/dzi1owb9ehyxxvxeakki.png',
+    description:
+      'Ubicada en la planta baja de la vivienda, esta cocina requería mayor espacio de guardado y una mejor entrada de luz. La eliminación de un baño de servicio permitió ampliarla, integrando un nuevo sector para la heladera dentro de la cocina y generando un respaldo para el lavadero contiguo.El antiguo lugar de la heladera se transformó en un rincón de coffee break, que complementa al comedor diario y suma un gesto de confort cotidiano.La combinación de tonos blancos, piedras claras y madera aporta luminosidad y calidez, equilibrando funcionalidad y estética.',
   },
 
-  {
-    name: 'FERRETI',
-    m2: '',
-    location: '',
-    showImg: 'v1747145251/gpnv7jqyzq09hbtimolj.jpg',
-    mainFeature: {
-      type: 'image',
-      link: 'v1747145251/gpnv7jqyzq09hbtimolj.jpg',
-    },
-    rowSpan: 2, // Ocupa 1 fila según el diseño
-    images: [
-      {
-        src: 'v1747145249/f2hxm8tsse8c3vzuoef8.jpg',
-      },
-      {
-        src: 'v1747145256/jdsglb6hu39lh3tre4m6.jpg',
-      },
-      {
-        src: 'v1747145251/gpnv7jqyzq09hbtimolj.jpg',
-      },
-      {
-        src: 'v1747145250/cvl6unxgvpupnmfe7l3e.jpg',
-      },
-    ],
-    description: 'hola',
-  },
+  // {
+  //   name: 'FERRETI',
+  //   m2: '',
+  //   location: '',
+  //   showImg: 'v1747145251/gpnv7jqyzq09hbtimolj.jpg',
+  //   mainFeature: {
+  //     type: 'image',
+  //     link: 'v1747145251/gpnv7jqyzq09hbtimolj.jpg',
+  //   },
+  //   rowSpan: 2, // Ocupa 1 fila según el diseño
+  //   images: [
+  //     {
+  //       src: 'v1747145249/f2hxm8tsse8c3vzuoef8.jpg',
+  //     },
+  //     {
+  //       src: 'v1747145256/jdsglb6hu39lh3tre4m6.jpg',
+  //     },
+  //     {
+  //       src: 'v1747145251/gpnv7jqyzq09hbtimolj.jpg',
+  //     },
+  //     {
+  //       src: 'v1747145250/cvl6unxgvpupnmfe7l3e.jpg',
+  //     },
+  //   ],
+  //   description: 'hola',
+  // },
 ];
 
 export const routes: Routes = [

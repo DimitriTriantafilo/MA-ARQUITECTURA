@@ -1,22 +1,15 @@
 <div class="contact-container">
+  <!-- Título de la página -->
+  <h1 class="contact-title">
+    {{ "contact" | translate }}
+  </h1>
+
   <!-- Top Contact Information & Social Media -->
   <div class="contact-header">
     <div class="contact-info">
-      <span>Colegiales, Buenos Aires, Argentina</span>
+      <span>{{ "contactAddress" | translate }}</span>
       <span class="separator">|</span>
-      <span>Info.maarquitectura&#64;gmail.com</span>
-    </div>
-
-    <div class="social-media">
-      <a href="#" class="social-icon">
-        <mat-icon>facebook</mat-icon>
-      </a>
-      <a href="#" class="social-icon">
-        <mat-icon>camera_alt</mat-icon>
-      </a>
-      <a href="#" class="social-icon">
-        <mat-icon>email</mat-icon>
-      </a>
+      <span>{{ "contactEmail" | translate }}</span>
     </div>
   </div>
 
@@ -33,7 +26,7 @@
           <input
             type="text"
             formControlName="nombre"
-            placeholder="Nombre*"
+            [placeholder]="'name' | translate"
             [class.error]="
               contactForm.get('nombre')?.invalid &&
               contactForm.get('nombre')?.touched
@@ -49,7 +42,7 @@
           <input
             type="email"
             formControlName="email"
-            placeholder="Correo electrónico*"
+            [placeholder]="'email' | translate"
             [class.error]="
               contactForm.get('email')?.invalid &&
               contactForm.get('email')?.touched
@@ -62,7 +55,11 @@
         </div>
 
         <div class="form-field">
-          <input type="tel" formControlName="telefono" placeholder="Teléfono" />
+          <input
+            type="tel"
+            formControlName="telefono"
+            [placeholder]="'phone' | translate"
+          />
           <div class="field-line"></div>
         </div>
       </div>
@@ -72,7 +69,7 @@
         <div class="form-field message-field">
           <textarea
             formControlName="mensaje"
-            placeholder="Mensaje"
+            [placeholder]="'message' | translate"
             [class.error]="
               contactForm.get('mensaje')?.invalid &&
               contactForm.get('mensaje')?.touched
@@ -89,22 +86,22 @@
           class="submit-button"
           [disabled]="isSubmitting || contactForm.invalid"
         >
-          <span *ngIf="!isSubmitting">ENVIAR</span>
-          <span *ngIf="isSubmitting">Enviando...</span>
+          <span *ngIf="!isSubmitting">{{ "send" | translate }}</span>
+          <span *ngIf="isSubmitting">{{ "sending" | translate }}</span>
         </button>
 
         <!-- reCAPTCHA v3 invisible -->
         <div class="recaptcha-info">
           <small
-            >Este sitio está protegido por reCAPTCHA y se aplican la
-            <a href="https://policies.google.com/privacy" target="_blank"
-              >Política de Privacidad</a
-            >
-            y
-            <a href="https://policies.google.com/terms" target="_blank"
-              >Términos de Servicio</a
-            >
-            de Google.
+            >{{ "recaptchaInfo" | translate }}
+            <a href="https://policies.google.com/privacy" target="_blank">{{
+              "privacyPolicy" | translate
+            }}</a>
+            {{ "and" | translate }}
+            <a href="https://policies.google.com/terms" target="_blank">{{
+              "termsOfService" | translate
+            }}</a>
+            {{ "recaptchaInfoEnd" | translate }}
           </small>
         </div>
       </div>
@@ -114,10 +111,10 @@
   <!-- Success/Error Messages -->
   <div class="message-container" *ngIf="submitSuccess || submitError">
     <div class="success-message" *ngIf="submitSuccess">
-      ¡Mensaje enviado correctamente! Nos pondremos en contacto contigo pronto.
+      {{ "messageSent" | translate }}
     </div>
     <div class="error-message" *ngIf="submitError">
-      Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo.
+      {{ "messageError" | translate }}
     </div>
   </div>
 </div>

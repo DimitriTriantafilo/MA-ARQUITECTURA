@@ -77,6 +77,20 @@ export class CloudinaryService {
   }
 
   /**
+   * Genera URL para planos optimizada respetando la relación de aspecto
+   */
+  generatePlantaUrl(imageId: string, containerWidth?: number): string {
+    // Para planos, solo especificamos el ancho y dejamos que Cloudinary mantenga la relación de aspecto
+    const width = containerWidth ? Math.min(containerWidth, 1200) : 600;
+
+    return this.generateImageUrl(imageId, {
+      width: width,
+      crop: 'c_scale,w_auto',
+      quality: 'q_auto:good',
+    });
+  }
+
+  /**
    * Genera URL para imagen de proyecto destacado optimizada
    */
   generateFeaturedUrl(imageId: string, viewportWidth?: number): string {

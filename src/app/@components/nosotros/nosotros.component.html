@@ -5,7 +5,7 @@
     <div class="rectangle2"></div>
     <div class="rectangle3"></div>
     <div class="square3"></div>
-    @if(!breakpoint.isMobile()){
+    <!-- @if(!breakpoint.isMobile()){
     <div class="logo-container">
       <div class="line1"></div>
 
@@ -19,7 +19,7 @@
 
       <div class="line6"></div>
     </div>
-    }
+    } -->
   </div>
   <h1 class="title">{{ "studio" | translate }}</h1>
 
@@ -29,7 +29,7 @@
         class="profile-img2"
         [src]="
           getOptimizedImageUrl(
-            'v1754422999/vc5ib3vcwwprcmkl2nbc.jpg',
+            'v1755638600/swkhhfdil4l3xp1txzpt.jpg',
             getVerticalImageWidth(),
             getVerticalImageHeight()
           )
@@ -39,7 +39,7 @@
         decoding="async"
       />
       <h2 [innerHTML]="'estudioDescription' | translate"></h2>
-      <div class="overlay2"></div>
+      <!-- <div class="overlay2"></div> -->
     </div>
     <div class="profile-container">
       @if(!breakpoint.isMobile()){
@@ -47,7 +47,7 @@
         <img
           [src]="
             getOptimizedImageUrl(
-              'v1754422994/kpfcne5qnk33spwucomu.jpg',
+              'v1755638595/kyf3gpvbyrqmorglc71g.jpg',
               getProfileImageWidth(),
               getProfileImageHeight()
             )
@@ -64,8 +64,8 @@
           {{ "manuDescription" | translate }}
         </p>
         <div class="profile-nameRoleContainer">
-          <h1>- MANUEL VEIGA</h1>
-          <p>Cofounder</p>
+          <h1>- Arq. MANUEL VEIGA</h1>
+          <p>{{ "cofounder" | translate }}</p>
         </div>
       </div>
       } @else {
@@ -74,7 +74,7 @@
           <img
             [src]="
               getOptimizedImageUrl(
-                'v1754422994/kpfcne5qnk33spwucomu.jpg',
+                'v1755638595/kyf3gpvbyrqmorglc71g.jpg',
                 getProfileImageWidth(),
                 getProfileImageHeight()
               )
@@ -86,14 +86,14 @@
           />
         </div>
         <h1>
-          MANUEL <br />
+          Arq. MANUEL <br />
           VEIGA
         </h1>
       </div>
       <p>
         {{ "manuDescription" | translate }} <br />
         <br />
-        Manuel Veiga, Cofounder -
+        Arq. Manuel Veiga, Cofounder -
       </p>
       }
     </div>
@@ -106,8 +106,8 @@
           {{ "agusDescription" | translate }}
         </p>
         <div class="profile-nameRoleContainer">
-          <h1>- AGUSTINA RUIZ</h1>
-          <p>Cofounder</p>
+          <h1>- Arq. AGUSTINA RUIZ</h1>
+          <p>{{ "cofounder" | translate }}</p>
         </div>
       </div>
       <div class="parallax-container">
@@ -115,7 +115,7 @@
           class="profile-img"
           [src]="
             getOptimizedImageUrl(
-              'v1754422996/optzolsrfufohodxgphu.jpg',
+              'v1755638600/oi4xa9rh5rgpaffwlbuu.jpg',
               getProfileImageWidth(),
               getProfileImageHeight()
             )
@@ -128,7 +128,7 @@
       } @else {
       <div class="profile">
         <h1>
-          AGUSTINA <br />
+          Arq.AGUSTINA <br />
           RUIZ
         </h1>
         <div class="parallax-container">
@@ -136,7 +136,7 @@
             class="profile-img"
             [src]="
               getOptimizedImageUrl(
-                'v1754422996/optzolsrfufohodxgphu.jpg',
+                'v1755638600/oi4xa9rh5rgpaffwlbuu.jpg',
                 getProfileImageWidth(),
                 getProfileImageHeight()
               )
@@ -150,121 +150,53 @@
       <p>
         {{ "agusDescription" | translate }} <br />
         <br />
-        - Agustina Ruiz, Cofounder
+        - Arq. Agustina Ruiz, Cofounder
       </p>
       }
     </div>
 
-    <div class="profile-container">
-      @if(!breakpoint.isMobile()){
-      <div class="parallax-container">
-        <img
-          [src]="
-            getOptimizedImageUrl(
-              'v1754422996/rm5zowclmt7bqtocubfa.jpg',
-              getProfileImageWidth(),
-              getProfileImageHeight()
-            )
-          "
-          class="profile-img"
-          alt="Foto Joaquín"
-          loading="lazy"
-          decoding="async"
-        />
-      </div>
-
-      <div class="profile joaquin-profile">
-        <p>
-          {{ "joaquinDescription" | translate }}
-        </p>
-        <div class="profile-nameRoleContainer">
-          <h1>- JOAQUÍN CALLE</h1>
+    <div class="team-section">
+      <h2 class="team-title">NUESTRO EQUIPO:</h2>
+      <div class="team-members">
+        <div class="team-member">
+          <div class="team-member-image">
+            <img
+              [src]="
+                getOptimizedImageUrl(
+                  'v1755638601/yzwg8bx2rlgfxhmszpth.jpg',
+                  getProfileImageWidth(),
+                  getProfileImageHeight()
+                )
+              "
+              alt="Foto Joaquín"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="team-member-info">
+            <h3>-Arq. Joaquin Calle Proyectista</h3>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="team-member-image">
+            <img
+              [src]="
+                getOptimizedImageUrl(
+                  'v1755638598/qpcnifg0b0luslkwuhq5.jpg',
+                  getProfileImageWidth(),
+                  getProfileImageHeight()
+                )
+              "
+              alt="Foto Agostina"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="team-member-info">
+            <h3>-Arq. Agostina Petri Sobrestante</h3>
+          </div>
         </div>
       </div>
-      } @else {
-      <div class="profile">
-        <div class="parallax-container">
-          <img
-            [src]="
-              getOptimizedImageUrl(
-                'v1754422996/rm5zowclmt7bqtocubfa.jpg',
-                getProfileImageWidth(),
-                getProfileImageHeight()
-              )
-            "
-            class="profile-img"
-            alt="Foto Joaquín"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-        <h1>
-          JOAQUÍN <br />
-          CALLE
-        </h1>
-      </div>
-      <p>
-        {{ "joaquinDescription" | translate }} <br />
-        <br />
-        Joaquín Calle, Cofounder -
-      </p>
-      }
-    </div>
-
-    <div class="profile-container">
-      @if(!breakpoint.isMobile()){
-
-      <div class="profile agostina-profile">
-        <p>
-          {{ "agostinaDescription" | translate }}
-        </p>
-        <div class="profile-nameRoleContainer">
-          <h1>- AGOSTINA PETRI</h1>
-        </div>
-      </div>
-      <div class="parallax-container">
-        <img
-          class="profile-img"
-          [src]="
-            getOptimizedImageUrl(
-              'v1754423000/j2dlumu1wyvsn5vbyil5.jpg',
-              getProfileImageWidth(),
-              getProfileImageHeight()
-            )
-          "
-          alt="Foto Agostina"
-          loading="lazy"
-          decoding="async"
-        />
-      </div>
-      } @else {
-      <div class="profile">
-        <h1>
-          AGOSTINA <br />
-          PETRI
-        </h1>
-        <div class="parallax-container">
-          <img
-            class="profile-img"
-            [src]="
-              getOptimizedImageUrl(
-                'v1754423000/j2dlumu1wyvsn5vbyil5.jpg',
-                getProfileImageWidth(),
-                getProfileImageHeight()
-              )
-            "
-            alt="Foto Agostina"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-      </div>
-      <p>
-        {{ "agostinaDescription" | translate }} <br />
-        <br />
-        - Agostina Petri, Cofounder
-      </p>
-      }
     </div>
   </div>
 </main>

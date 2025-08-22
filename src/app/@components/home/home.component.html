@@ -22,11 +22,132 @@
     class="hero-text"
     style="will-change: transform; contain: layout style paint"
   >
-    CREAMOS ESPACIOS QUE SE VIVEN
+    {{ "heroText" | translate }}
   </span>
 </div>
 
 <ng-container *ngIf="innerWidth > 0 && innerHeight > 0">
+  <div class="project-wrapper">
+    <div
+      class="project-landig clickable"
+      (click)="navigateToCasaWim()"
+      (mouseenter)="onProjectHover($event)"
+      (mouseleave)="onProjectLeave($event)"
+    >
+      <img
+        [src]="
+          'https://res.cloudinary.com/dskkynwxb/c_fill,g_auto,w_' +
+          innerWidth +
+          ',h_' +
+          innerHeight +
+          '/q_auto:good/f_auto/v1754942701/ipo4oxlyv7kdjxz4gt4r.jpg'
+        "
+        alt="Imagen de Reforma BNB"
+        width="100%"
+        height="100%"
+        loading="lazy"
+        style="object-fit: cover; position: absolute; inset: 0; z-index: 0"
+      />
+      <div class="overlay"></div>
+      <span class="name">{{ "casaWim" | translate }}</span>
+      <div class="divisor"></div>
+      <span class="m2">{{ "sanAndresGiles" | translate }}</span>
+    </div>
+  </div>
+
+  <ng-container *ngIf="innerWidth > 0 && innerHeight > 0">
+    <!-- Desktop: 3 imágenes en fila -->
+    <div class="project-vertical" *ngIf="innerWidth > 600">
+      <div
+        class="vertical-image-container clickable"
+        (click)="navigateToReformaSanfer()"
+        (mouseenter)="onProjectHover($event)"
+        (mouseleave)="onProjectLeave($event)"
+      >
+        <img
+          [src]="
+            getOptimizedImageUrl(
+              'v1754489409/frmnllkumg1734je5ut2.jpg',
+              getVerticalImageWidth(),
+              getVerticalImageHeight()
+            )
+          "
+          alt="Imagen vertical 1"
+          loading="lazy"
+          decoding="async"
+        />
+        <div class="image-overlay"></div>
+      </div>
+      <div
+        class="vertical-image-container clickable"
+        (click)="navigateToReformaSanfer()"
+        (mouseenter)="onProjectHover($event)"
+        (mouseleave)="onProjectLeave($event)"
+      >
+        <img
+          [src]="
+            getOptimizedImageUrl(
+              'v1754426259/hgwhwj3gfs79vkoezeqe.jpg',
+              getVerticalImageWidth(),
+              getVerticalImageHeight()
+            )
+          "
+          alt="Imagen vertical 2"
+          loading="lazy"
+          decoding="async"
+        />
+        <div class="image-overlay"></div>
+      </div>
+      <div
+        class="vertical-image-container center-container clickable"
+        (click)="navigateToReformaSanfer()"
+        (mouseenter)="onProjectHover($event)"
+        (mouseleave)="onProjectLeave($event)"
+      >
+        <img
+          [src]="
+            getOptimizedImageUrl(
+              'v1754426272/y4wu2k4zhdgojclsei8f.jpg',
+              getVerticalImageWidth(),
+              getVerticalImageHeight()
+            )
+          "
+          alt="Imagen vertical 3"
+          loading="lazy"
+          decoding="async"
+        />
+        <div class="image-overlay"></div>
+        <div class="project-info">
+          <span class="name">{{ "reformaSanfer" | translate }}</span>
+          <div class="divisor"></div>
+          <span class="m2">{{ "sanFernando" | translate }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Móvil: 1 imagen como las otras secciones -->
+    <div class="project-landig" *ngIf="innerWidth <= 600">
+      <img
+        [src]="
+          'https://res.cloudinary.com/dskkynwxb/c_fill,g_auto,w_' +
+          innerWidth +
+          ',h_' +
+          innerHeight +
+          '/q_auto:good/f_auto/v1754489409/frmnllkumg1734je5ut2.jpg'
+        "
+        alt="Imagen de Proyecto Vertical"
+        width="100%"
+        height="100%"
+        loading="lazy"
+        style="object-fit: cover; position: absolute; inset: 0; z-index: 0"
+      />
+      <div class="overlay"></div>
+      <span class="name">{{ "reformaSanfer" | translate }}</span>
+      <div class="divisor"></div>
+      <span class="m2">{{ "sanFernando" | translate }}</span>
+    </div>
+  </ng-container>
+
   <div class="project-wrapper">
     <div
       class="project-landig clickable"
@@ -49,9 +170,9 @@
         style="object-fit: cover; position: absolute; inset: 0; z-index: 0"
       />
       <div class="overlay"></div>
-      <span class="name">Reforma Migueletes</span>
+      <span class="name">{{ "reformaMigueletes" | translate }}</span>
       <div class="divisor"></div>
-      <span class="m2">Colegiales</span>
+      <span class="m2">{{ "colegiales" | translate }}</span>
     </div>
   </div>
 
@@ -119,9 +240,9 @@
         />
         <div class="image-overlay"></div>
         <div class="project-info">
-          <span class="name">REFORMA BNB</span>
+          <span class="name">{{ "reformaBnb" | translate }}</span>
           <div class="divisor"></div>
-          <span class="m2">VILLA CRESPO</span>
+          <span class="m2">{{ "villaCrespo" | translate }}</span>
         </div>
       </div>
     </div>
@@ -143,9 +264,9 @@
         style="object-fit: cover; position: absolute; inset: 0; z-index: 0"
       />
       <div class="overlay"></div>
-      <span class="name">REFORMA BNB</span>
+      <span class="name">{{ "reformaBnb" | translate }}</span>
       <div class="divisor"></div>
-      <span class="m2">VILLA CRESPO</span>
+      <span class="m2">{{ "villaCrespo" | translate }}</span>
     </div>
   </ng-container>
 
@@ -164,140 +285,21 @@
           innerHeight +
           '/q_auto:good/f_auto/v1754402953/j9nvyhxngxppr4mr99dv.jpg'
         "
-        alt="Imagen de Casa Igor"
+        alt="Imagen de Reforma Igor"
         width="100%"
         height="100%"
         loading="lazy"
         style="object-fit: cover; position: absolute; inset: 0; z-index: 0"
       />
       <div class="overlay"></div>
-      <span class="name">CASA IGOR</span>
+      <span class="name">{{ "casaIgor" | translate }}</span>
       <div class="divisor"></div>
-      <span class="m2">VILLA BALLESTER</span>
+      <span class="m2">{{ "villaBallester" | translate }}</span>
     </div>
   </div>
 
   <!-- Nueva sección con 3 imágenes verticales -->
-  <ng-container *ngIf="innerWidth > 0 && innerHeight > 0">
-    <!-- Desktop: 3 imágenes en fila -->
-    <div class="project-vertical" *ngIf="innerWidth > 600">
-      <div
-        class="vertical-image-container clickable"
-        (click)="navigateToReformaSanfer()"
-        (mouseenter)="onProjectHover($event)"
-        (mouseleave)="onProjectLeave($event)"
-      >
-        <img
-          [src]="
-            getOptimizedImageUrl(
-              'v1754489409/frmnllkumg1734je5ut2.jpg',
-              getVerticalImageWidth(),
-              getVerticalImageHeight()
-            )
-          "
-          alt="Imagen vertical 1"
-          loading="lazy"
-          decoding="async"
-        />
-        <div class="image-overlay"></div>
-      </div>
-      <div
-        class="vertical-image-container clickable"
-        (click)="navigateToReformaSanfer()"
-        (mouseenter)="onProjectHover($event)"
-        (mouseleave)="onProjectLeave($event)"
-      >
-        <img
-          [src]="
-            getOptimizedImageUrl(
-              'v1754426259/hgwhwj3gfs79vkoezeqe.jpg',
-              getVerticalImageWidth(),
-              getVerticalImageHeight()
-            )
-          "
-          alt="Imagen vertical 2"
-          loading="lazy"
-          decoding="async"
-        />
-        <div class="image-overlay"></div>
-      </div>
-      <div
-        class="vertical-image-container center-container clickable"
-        (click)="navigateToReformaSanfer()"
-        (mouseenter)="onProjectHover($event)"
-        (mouseleave)="onProjectLeave($event)"
-      >
-        <img
-          [src]="
-            getOptimizedImageUrl(
-              'v1754426272/y4wu2k4zhdgojclsei8f.jpg',
-              getVerticalImageWidth(),
-              getVerticalImageHeight()
-            )
-          "
-          alt="Imagen vertical 3"
-          loading="lazy"
-          decoding="async"
-        />
-        <div class="image-overlay"></div>
-        <div class="project-info">
-          <span class="name">REFORMA SANFER</span>
-          <div class="divisor"></div>
-          <span class="m2">SAN FERNANDO</span>
-        </div>
-      </div>
-    </div>
 
-    <!-- Móvil: 1 imagen como las otras secciones -->
-    <div class="project-landig" *ngIf="innerWidth <= 600">
-      <img
-        [src]="
-          'https://res.cloudinary.com/dskkynwxb/c_fill,g_auto,w_' +
-          innerWidth +
-          ',h_' +
-          innerHeight +
-          '/q_auto:good/f_auto/v1754489409/frmnllkumg1734je5ut2.jpg'
-        "
-        alt="Imagen de Proyecto Vertical"
-        width="100%"
-        height="100%"
-        loading="lazy"
-        style="object-fit: cover; position: absolute; inset: 0; z-index: 0"
-      />
-      <div class="overlay"></div>
-      <span class="name">REFORMA SANFER</span>
-      <div class="divisor"></div>
-      <span class="m2">SAN FERNANDO</span>
-    </div>
-  </ng-container>
-
-  <div class="project-wrapper">
-    <div
-      class="project-landig clickable"
-      (click)="navigateToCasaWim()"
-      (mouseenter)="onProjectHover($event)"
-      (mouseleave)="onProjectLeave($event)"
-    >
-      <img
-        [src]="
-          'https://res.cloudinary.com/dskkynwxb/c_fill,g_auto,w_' +
-          innerWidth +
-          ',h_' +
-          innerHeight +
-          '/q_auto:good/f_auto/v1754942701/ipo4oxlyv7kdjxz4gt4r.jpg'
-        "
-        alt="Imagen de Reforma BNB"
-        width="100%"
-        height="100%"
-        loading="lazy"
-        style="object-fit: cover; position: absolute; inset: 0; z-index: 0"
-      />
-      <div class="overlay"></div>
-      <span class="name">CASA WIM</span>
-      <div class="divisor"></div>
-      <span class="m2">SAN ANDRÉS DE GILES</span>
-    </div>
-  </div>
   <!-- <div class="project-landig">
     <img
       [src]="

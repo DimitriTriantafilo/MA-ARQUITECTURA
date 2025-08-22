@@ -10,6 +10,7 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 import { EMAIL_CONFIG } from '../../config/email.config';
 import { PLATFORM_ID } from '@angular/core';
+import { TranslatePipe } from '../../transltate/translate.pipe';
 
 declare var emailjs: any;
 declare var grecaptcha: any;
@@ -17,7 +18,13 @@ declare var grecaptcha: any;
 @Component({
   selector: 'app-contacto',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, MatIconModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    TranslatePipe,
+  ],
   templateUrl: './contacto.component.html',
   styleUrls: ['./contacto.component.scss'],
 })

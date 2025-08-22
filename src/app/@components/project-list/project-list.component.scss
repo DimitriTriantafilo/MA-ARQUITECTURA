@@ -1,7 +1,7 @@
 .lema {
   background-color: #e3e2de;
-  margin: 90px 0 45px 0;
-  font-size: clamp(2rem, 8vw, 100px); /* Mejor responsividad */
+  margin: 90px 0 0px 0;
+  font-size: clamp(1rem, 3.5vw, 100px); /* Mejor responsividad */
   min-height: 15vh; /* Cambia height a min-height */
   // font-weight: 200;
   font-weight: 400;
@@ -11,17 +11,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  font-family: "modeco", system-ui, sans-serif; /* Fallback añadido */
+  font-family: "levenim"; /* Fallback añadido */
   font-display: swap;
   /* Eliminado will-change: transform */
   contain: layout; /* Mejor para rendimiento */
+  cursor: default;
 }
 
 .projects-container {
   background-color: #e3e2de;
   display: grid;
-  grid-auto-rows: 100px; /* Aumentado para respetar rowSpan */
+  grid-auto-rows: 140px; /* Aumentado para respetar rowSpan */
   grid-template-columns: repeat(3, 1fr); /* Tres columnas fijas */
   gap: 20px; /* Espacio entre items */
 

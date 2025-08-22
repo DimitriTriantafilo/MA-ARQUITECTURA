@@ -2,48 +2,57 @@
 @use "sass:math";
 .container {
   position: relative;
-  background-color: $deep-onyx;
+  background-color: #e3e2de; /* Mismo color que project-list */
+  min-height: 100vh;
 }
 .nosotros {
   background-color: transparent;
-  padding: 50px 40px 20% 40px;
+  padding: 4% 20px 10% 20px;
   display: flex;
   flex-direction: column;
-  gap: 150px;
+  gap: 120px;
   position: relative;
   z-index: 2;
   overflow: hidden;
+  width: 90%;
+  max-width: 1600px;
+  margin: 0 auto;
 }
 .title {
-  width: 100%;
-  padding: 100px 0 35px 0;
-  margin: 0;
+  background-color: #e3e2de;
+  margin: 110px 0px 0px 0px;
+  font-size: clamp(1rem, 3.5vw, 100px);
+  min-height: 15vh;
+  font-weight: 400;
   text-align: center;
-  font-size: 6.25rem;
-  font-weight: 300;
-
-  font-family: "ivnm";
+  color: #756860;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "levenim";
   font-display: swap;
-  letter-spacing: 5px;
-  color: $golden-basketry;
+  contain: layout;
+  cursor: default;
 }
 
 .profile-container {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
   // margin-bottom: 40px;
   color: whitesmoke;
+  gap: 60px;
 }
 
 .profile {
   display: flex;
   flex-direction: column;
-  gap: 70px;
+  gap: 50px;
   width: 40%;
-  padding-right: 10%;
-  padding-left: 10%;
-  color: $stone-white;
+  padding-right: 5%;
+  padding-left: 5%;
+  color: #756860;
   justify-content: center;
 
   &-nameRoleContainer {
@@ -54,21 +63,23 @@
       font-family: "ivnm";
       font-display: swap;
       margin: 0px;
-      font-size: 2.5rem;
+      font-size: 2rem;
       font-weight: 500;
       text-align: right;
+      color: #756860;
     }
     h1::first-letter {
-      color: $golden-basketry; /* Cambia el color a lo que desees */
+      color: rgb(158, 162, 140); /* Mismo color que el resto del texto */
       font-size: 120%; /* Puedes ajustar el tamaño de la letra si lo deseas */
       font-weight: bold; /* Cambia el peso de la fuente si lo deseas */
       letter-spacing: 5px;
     }
   }
   p {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 300;
     margin: 0px;
+    color: #756860;
   }
 }
 
@@ -93,7 +104,7 @@
 .parallax-container {
   position: relative;
   overflow: visible;
-  width: 30%; // Ajusta según tu diseño
+  width: 25%;
   height: 100%; // Ajusta según tu diseño
 }
 
@@ -101,14 +112,14 @@
   position: relative;
   overflow: hidden;
   width: 100%;
-  height: 65vh;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   overflow: visible;
+  gap: 80px;
   .overlay2 {
     position: absolute;
-    width: 45%;
+    width: 35%;
     right: 0;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.4);
@@ -117,7 +128,7 @@
   .profile-img2 {
     right: 0;
     position: absolute;
-    width: 45%;
+    width: 35%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease-out;
@@ -126,20 +137,21 @@
   }
   h2 {
     z-index: 2;
-    color: #e3e2de;
+    color: #756860;
     text-align: left;
-    width: 60%;
+    width: 50%;
     line-height: 2;
     align-self: center;
     justify-self: flex-start;
-    font-size: 1.875rem;
+    font-size: 1.5rem;
     font-weight: lighter;
     font-family: "modeco";
     transition: transform 0.1s ease-out;
     will-change: transform;
     text-align: left;
     strong {
-      font-weight: bolder !important;
+      font-weight: 300 !important;
+      color: rgb(158, 162, 140) !important;
     }
   }
 }
@@ -159,26 +171,88 @@
   ); // Ajusta 0.3 para cambiar la velocidad
 }
 
+// Estilos para la sección de equipo
+.team-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 100px;
+  padding: 40px 0;
+}
+
+.team-title {
+  font-family: "levenim";
+  font-size: clamp(1.5rem, 3vw, 3rem);
+  font-weight: 400;
+  color: #756860;
+  text-align: left;
+  align-self: flex-start;
+  margin: 0;
+}
+
+.team-members {
+  display: flex;
+  justify-content: flex-start;
+  gap: 80px;
+  width: 100%;
+}
+
+.team-member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 300px;
+}
+
+.team-member-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+}
+
+.team-member-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease-out;
+  will-change: transform;
+}
+
+.team-member-info h3 {
+  font-family: "ivnm";
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #756860;
+  text-align: center;
+  margin: 0;
+  line-height: 1.4;
+}
+
 @media (max-width: 600px) {
   .title {
     font-size: 14vw;
   }
   .nosotros {
-    padding: 20px 20px;
-    gap: 120px;
+    padding: 20px 15px;
+    gap: 80px;
+    width: 95%;
 
     &-title {
       font-size: 14vw;
     }
   }
   p {
-    font-size: 4.5vw;
+    font-size: 3.5vw;
     text-align: center;
     // align-self: flex-end;
     // margin: 0;
     font-weight: 300;
     z-index: 2;
-    padding: 30px;
+    padding: 20px;
+    color: #756860;
   }
   .profile {
     flex-direction: row;
@@ -186,11 +260,12 @@
     align-items: center;
     gap: 5px;
     h1 {
-      font-size: 9vw;
+      font-size: 7vw;
       font-weight: 500;
-      line-height: 12vw;
+      line-height: 9vw;
       margin: 0;
       align-self: flex-end;
+      color: #756860;
     }
 
     &-img {
@@ -204,6 +279,7 @@
   .profile-container {
     flex-direction: column;
     align-items: center;
+    gap: 40px;
     img {
       width: 115%;
     }
@@ -241,14 +317,14 @@
     }
   }
   .parallax-container {
-    width: 40%;
+    width: 35%;
   }
 
   .parallax-container2 {
     position: relative;
     overflow: visible;
     width: 100%; // Ajusta según tu diseño
-    height: 60vw; // Ajusta según tu diseño
+    height: 45vw; // Volvemos a 45vw para mantener proporciones originales
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
@@ -279,16 +355,47 @@
       left: 0%;
       text-align: left;
       z-index: 2;
-      color: $stone-white;
+      color: #756860;
       width: 80%;
       line-height: 2;
       /* align-self: flex-end; */
-      font-size: 3vw;
+      font-size: 2.5vw;
       font-weight: lighter;
       font-family: "modeco";
       transition: transform 0.1s ease-out;
       will-change: transform;
     }
+  }
+
+  // Estilos responsivos para la sección de equipo
+  .team-section {
+    gap: 30px;
+    padding: 30px 0;
+  }
+
+  .team-title {
+    font-size: clamp(1.2rem, 4vw, 2rem);
+    text-align: center;
+    align-self: center;
+  }
+
+  .team-members {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .team-member {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .team-member-image {
+    width: 150px;
+    height: 150px;
+  }
+
+  .team-member-info h3 {
+    font-size: 1rem;
   }
 }
 
@@ -613,11 +720,11 @@
 
 :host ::ng-deep .nosotros h2 strong,
 :host ::ng-deep .nosotros h2 b {
-  font-weight: 900 !important;
-  color: inherit !important;
-  text-shadow: 0 5px 6px rgba(0, 0, 1, 11.15);
+  font-weight: 600 !important;
+  font-style: italic;
   background: none !important;
   font-family: inherit !important;
+  font-size: 1.45rem;
 }
 
 // Ajustes específicos para Joaquín y Agostina usando clases específicas

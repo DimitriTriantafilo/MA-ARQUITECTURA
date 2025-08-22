@@ -26,43 +26,135 @@
 .planta {
   &-container {
     display: flex;
-    flex-direction: row;
-    gap: 80px;
-    padding: 100px 6%;
-    background-color: $darker-onyx;
-    min-height: 600px;
+    flex-direction: column;
+    gap: 40px;
+    padding: 100px 6% 80px 6%;
+    background-color: #e3e2de;
+    /* min-height: 600px; */
+    max-height: 90vh;
+    align-items: stretch; /* Hace que los elementos hijos se estiren */
+  }
+}
+
+/* Color de fondo para toda la página */
+:host {
+  background-color: #e3e2de;
+  min-height: 100vh;
+}
+
+.planta-content {
+  display: flex;
+  flex-direction: row;
+  gap: 60px;
+  width: 100%;
+  align-items: stretch; /* Hace que los elementos hijos se estiren */
+  min-height: 100%; /* Asegura que ocupe al menos toda la altura disponible */
+}
+
+.right-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+  gap: 30px;
+  align-items: flex-end;
+  justify-content: space-around; /* Distribuye el espacio entre la descripción y la info del proyecto */
+  min-height: 100%; /* Asegura que ocupe al menos toda la altura disponible */
+}
+
+.planta-section {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Alinea el contenido al inicio */
+  gap: 20px; /* Reducido de 40px a 20px para mejor proporción */
+  height: 100%; /* Ocupa toda la altura disponible */
+
+  /* Cuando hay planta previa, alinear a la izquierda */
+  &.has-previa {
     align-items: flex-start;
   }
 }
 
 .planta-image-container {
-  flex: 0 0 45%;
+  width: 70%; /* Reducido de 80% a 70% para hacer la imagen más pequeña */
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
+
   opacity: 0;
   transform: scale(0.95);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Cuando hay planta previa, ajustar el tamaño de ambas imágenes */
+.planta-section.has-previa .planta-image-container {
+  width: 60%;
+  max-height: 40vh;
+}
+
+/* Solo cuando hay planta previa, alinear a la izquierda */
+.planta-section.has-previa .planta-previa,
+.planta-section.has-previa .planta-proyecto {
+  align-self: flex-start;
 }
 
 .planta-image {
   width: 100%;
   height: auto;
   max-width: 100%;
+  min-width: 200px;
   object-fit: contain;
-  border: 1px solid white;
   border-radius: 2px;
+  display: block;
+}
+
+/* Solo cuando hay planta previa, limitar la altura de las imágenes */
+.planta-section.has-previa .planta-image {
+  max-height: 35vh;
+}
+
+.planta-fallback {
+  width: 100%;
+  max-width: 300px;
+  min-width: 200px;
+  height: 200px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.05);
+  margin-bottom: 20px;
+}
+
+.fallback-content {
+  text-align: center;
+  color: white;
+
+  span {
+    display: block;
+    font-family: "manrope", sans-serif;
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+
+  small {
+    display: block;
+    font-family: "manrope", sans-serif;
+    font-size: 0.7rem;
+    color: #969591;
+    word-break: break-all;
+  }
 }
 
 .planta-info {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   width: 100%;
   margin-top: 20px;
-  color: white;
+  color: #969591;
   font-family: "manrope", sans-serif;
-  font-size: 0.85rem;
+  font-size: 1.4rem;
 }
 
 .planta-label {
@@ -74,11 +166,13 @@
 }
 
 .project-info {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 60px;
-  color: white;
+  gap: 20px;
+  color: #969591;
+  align-self: flex-end;
+  text-align: right;
+  width: 100%; /* Ocupa todo el ancho disponible */
 }
 
 .project-specs {
@@ -90,10 +184,10 @@
 .specs-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 0;
+  align-items: flex-end;
+  gap: 20px;
   position: relative;
-  min-height: 120px;
+  min-height: auto;
 }
 
 .spec-item {
@@ -101,19 +195,11 @@
   align-items: center;
   position: relative;
   opacity: 0;
-  width: 100%;
+  width: auto;
   margin-bottom: 0;
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-
-  &.left {
-    justify-content: flex-start;
-    transform: translateX(-80px);
-  }
-
-  &.right {
-    justify-content: flex-end;
-    transform: translateX(80px);
-  }
+  justify-content: flex-end;
+  transform: translateX(80px);
 }
 
 // Animaciones cuando la sección entra en vista
@@ -124,16 +210,10 @@
     transition-delay: 0.3s;
   }
 
-  .spec-item.left {
+  .spec-item {
     opacity: 1;
     transform: translateX(0);
     transition-delay: 0.5s;
-  }
-
-  .spec-item.right {
-    opacity: 1;
-    transform: translateX(0);
-    transition-delay: 0.7s;
   }
 
   .project-description {
@@ -143,19 +223,11 @@
   }
 }
 
-.specs-divider {
-  width: 100%;
-  height: 1px;
-  background-color: white;
-  opacity: 0.4;
-  margin: 20px 0;
-}
-
 .spec-value {
   font-family: "manrope", sans-serif;
-  font-size: 1.6rem;
-  font-weight: 500;
-  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #969591;
   line-height: 1.1;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -165,13 +237,14 @@
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  text-align: right;
+  color: #969591;
 
   p {
     font-family: "manrope", sans-serif;
-    font-size: 1.4rem;
-    align-self: flex-end;
-    line-height: 1.7;
-    color: white;
+    font-size: 1.2rem;
+    // line-height: 1.7;
+    color: #969591;
     font-weight: 300;
     margin: 0;
   }
@@ -259,7 +332,7 @@
   grid-template-columns: repeat(3, 1fr); /* Exactamente 3 columnas fijas */
   gap: 40px; /* Espacio entre items */
   padding: 4%;
-  background-color: $darker-onyx;
+  background-color: #e3e2de;
   will-change: transform;
   transform: translateZ(0);
   align-items: start; /* Alinea elementos al inicio */
@@ -472,6 +545,50 @@
     min-height: auto !important;
   }
 
+  .planta-content {
+    flex-direction: column !important;
+    gap: 30px !important;
+  }
+
+  .right-content {
+    align-items: center !important;
+    gap: 20px !important;
+  }
+
+  .planta-section {
+    flex: none !important;
+    width: 100% !important;
+  }
+
+  .planta-image {
+    max-width: 250px !important;
+  }
+
+  .project-description {
+    text-align: center !important;
+    color: #969591 !important;
+  }
+
+  .project-info {
+    align-self: center !important;
+    text-align: center !important;
+  }
+
+  .project-description p {
+    font-size: 1.1rem !important;
+    color: #969591 !important;
+  }
+
+  .specs-container {
+    flex-direction: column !important;
+    gap: 10px !important;
+    align-items: center !important;
+  }
+
+  .spec-item {
+    transform: translateY(20px) !important;
+  }
+
   .planta-image-container {
     flex: none !important;
     width: 100% !important;
@@ -500,12 +617,8 @@
       transition-delay: 0.1s !important;
     }
 
-    .spec-item.left {
+    .spec-item {
       transition-delay: 0.2s !important;
-    }
-
-    .spec-item.right {
-      transition-delay: 0.4s !important;
     }
 
     .project-description {

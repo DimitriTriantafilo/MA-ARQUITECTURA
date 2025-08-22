@@ -1,44 +1,114 @@
 <div class="services-container">
-  <!-- Columna izquierda -->
-  <div class="left-column">
-    <h1 class="services-title">SERVICIOS</h1>
-    <div class="services-image">
-      <img
-        [src]="getServicesImageUrl()"
-        alt="Servicios de arquitectura"
-        loading="lazy"
-        decoding="async"
-      />
-    </div>
-  </div>
+  <!-- Título de servicios con la misma tipografía y tamaño que contacto -->
+  <h1 class="services-title">
+    {{ "services" | translate }}
+  </h1>
 
-  <!-- Columna derecha -->
-  <div class="right-column">
-    <!-- <div class="services-info">
+  <!-- Contenido principal -->
+  <div class="services-content">
+    <!-- Columna izquierda -->
+    <div class="left-column">
+      <div class="services-image">
+        <img
+          [src]="getServicesImageUrl()"
+          alt="Servicios de arquitectura"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </div>
+
+    <!-- Columna derecha -->
+    <div class="right-column">
+      <!-- <div class="services-info">
       <p class="info-text">
         NOS FALTA DESCRIBIR CADA UNO PERO ARMA ESTE FORMATO, APRETANDO EL "+"
         SALDRÍA LA DESCRIPCIÓN DE CADA UNO
       </p>
     </div> -->
 
-    <div class="services-list">
-      @for (service of services; track service.id) {
-      <div class="service-item">
-        <div class="service-header" (click)="toggleService(service.id)">
-          <span class="service-name">{{ service.name }}</span>
-          <button class="expand-button" [class.expanded]="service.isExpanded">
-            <mat-icon>{{ service.isExpanded ? "remove" : "add" }}</mat-icon>
-          </button>
+      <div class="services-list">
+        @for (service of services; track service.id) {
+        <div class="service-item">
+          <div class="service-header" (click)="toggleService(service.id)">
+            <span class="service-name">{{ service.name | translate }}</span>
+            <button class="expand-button" [class.expanded]="service.isExpanded">
+              <mat-icon>{{ service.isExpanded ? "remove" : "add" }}</mat-icon>
+            </button>
+          </div>
+
+          <div
+            class="service-description"
+            [class.expanded]="service.isExpanded"
+          >
+            <!-- Anteproyecto -->
+            <div
+              *ngIf="service.name === 'anteproyecto'"
+              class="service-content"
+            >
+              <p class="service-intro">{{ "anteproyectoIntro" | translate }}</p>
+              <p class="service-intro">
+                {{ "anteproyectoIntro2" | translate }}
+              </p>
+              <br />
+              <p class="service-desc">{{ "anteproyectoDesc" | translate }}</p>
+              <p class="service-desc">{{ "anteproyectoDesc2" | translate }}</p>
+              <br />
+              <p class="service-define">
+                {{ "anteproyectoDefine" | translate }}
+              </p>
+              <ul class="service-list">
+                <li>{{ "anteproyectoItem1" | translate }}</li>
+                <li>{{ "anteproyectoItem2" | translate }}</li>
+                <li>{{ "anteproyectoItem3" | translate }}</li>
+              </ul>
+            </div>
+
+            <!-- Proyecto -->
+            <div *ngIf="service.name === 'proyecto'" class="service-content">
+              <p class="service-intro">{{ "proyectoIntro" | translate }}</p>
+              <p class="service-intro">{{ "proyectoIntro2" | translate }}</p>
+              <br />
+              <p class="service-desc">{{ "proyectoDesc" | translate }}</p>
+              <br />
+              <p class="service-define">{{ "proyectoAborda" | translate }}</p>
+              <ul class="service-list">
+                <li>{{ "proyectoItem1" | translate }}</li>
+                <li>{{ "proyectoItem2" | translate }}</li>
+                <li>{{ "proyectoItem3" | translate }}</li>
+              </ul>
+            </div>
+
+            <!-- Dirección de Obra -->
+            <div
+              *ngIf="service.name === 'direccionObra'"
+              class="service-content"
+            >
+              <p class="service-intro">
+                {{ "direccionObraIntro" | translate }}
+              </p>
+              <p class="service-intro">
+                {{ "direccionObraIntro2" | translate }}
+              </p>
+              <br />
+              <p class="service-desc">{{ "direccionObraDesc" | translate }}</p>
+              <br />
+              <p class="service-define">
+                {{ "direccionObraEncarga" | translate }}
+              </p>
+              <ul class="service-list">
+                <li>{{ "direccionObraItem1" | translate }}</li>
+                <li>{{ "direccionObraItem2" | translate }}</li>
+                <li>{{ "direccionObraItem3" | translate }}</li>
+              </ul>
+            </div>
+          </div>
         </div>
 
-        <div class="service-description" [class.expanded]="service.isExpanded">
-          <p>{{ service.description }}</p>
-        </div>
+        @if (!$last) {
+        <div class="service-separator"></div>
+        } }
       </div>
-
-      @if (!$last) {
-      <div class="service-separator"></div>
-      } }
     </div>
   </div>
 </div>

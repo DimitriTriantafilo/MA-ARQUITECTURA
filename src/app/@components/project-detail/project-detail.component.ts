@@ -19,11 +19,17 @@ import { WindowSizeService } from '../../window-size.service';
 import { BreakpointService } from '../../breakpoint.service';
 import { CloudinaryService } from '../../cloudinary.service';
 import { ImagePreloadService } from '../../image-preload.service';
+import { TranslatePipe } from '../../transltate/translate.pipe';
 
 @Component({
   selector: 'app-project-detail',
   standalone: true,
-  imports: [CommonModule, MatIconModule, MatProgressSpinnerModule],
+  imports: [
+    CommonModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    TranslatePipe,
+  ],
   templateUrl: './project-detail.component.html',
   styleUrls: ['./project-detail.component.scss'],
 })
@@ -41,6 +47,7 @@ export class ProjectDetailComponent
   currentImageLoaded: boolean = false;
   public innerWidth: number;
   public innerHeight: number;
+  public plantaImageLoaded: boolean = false;
   private plantaObserver: IntersectionObserver | null = null;
 
   @ViewChild('carrousel') carrouselRef?: ElementRef<HTMLDivElement>;
@@ -270,16 +277,58 @@ export class ProjectDetailComponent
   }
 
   getPlantaImageUrl(): string {
-    if (!this.data?.plantaSrc || !this.innerWidth) return '';
+    if (!this.data?.plantaSrc || !this.innerWidth) {
+      console.log('No plantaSrc found in data:', this.data);
+      return '';
+    }
 
-    // Calcula el ancho para el plano (aproximadamente 40% del ancho de pantalla)
-    const plantaWidth = Math.floor(this.innerWidth * 0.4);
-    const plantaHeight = Math.floor(plantaWidth * 0.7); // Proporción aproximada para planos
+    // Calcula el ancho real del contenedor de la planta
+    // El contenedor planta-section tiene width: 50% y hay un gap de 60px
+    // La imagen tiene max-width: 80% dentro del contenedor
+    let containerWidth = Math.floor((this.innerWidth * 0.94 - 60) * 0.5 * 0.8); // 94% del ancho total, menos gap, 50% del contenedor, 80% de la imagen
 
-    return this.cloudinaryService.generateGalleryUrl(
+    // Si hay planta previa, ajustar el ancho para que ambas imágenes quepan mejor
+    if (this.data?.plantaPreviaSrc) {
+      containerWidth = Math.floor(containerWidth * 0.85); // Reducir un poco más cuando hay dos imágenes
+    }
+
+    const url = this.cloudinaryService.generatePlantaUrl(
       this.data.plantaSrc,
-      plantaWidth
+      containerWidth
     );
+
+    console.log('Generated planta URL:', url);
+    console.log('Original plantaSrc:', this.data.plantaSrc);
+    console.log('Calculated container width:', containerWidth);
+    console.log('Has planta previa:', !!this.data?.plantaPreviaSrc);
+
+    return url;
+  }
+
+  getPlantaPreviaImageUrl(): string {
+    if (!this.data?.plantaPreviaSrc || !this.innerWidth) return '';
+
+    // Calcula el ancho real del contenedor de la planta (mismo cálculo que getPlantaImageUrl)
+    let containerWidth = Math.floor((this.innerWidth * 0.94 - 60) * 0.5 * 0.8);
+
+    // Reducir el ancho para que ambas imágenes quepan mejor
+    containerWidth = Math.floor(containerWidth * 0.85);
+
+    return this.cloudinaryService.generatePlantaUrl(
+      this.data.plantaPreviaSrc,
+      containerWidth
+    );
+  }
+
+  onPlantaImageLoad(event: Event): void {
+    console.log('Planta image loaded successfully:', event);
+    this.plantaImageLoaded = true;
+  }
+
+  onPlantaImageError(event: Event): void {
+    console.error('Error loading planta image:', event);
+    console.log('PlantaSrc:', this.data?.plantaSrc);
+    console.log('Generated URL:', this.getPlantaImageUrl());
   }
 
   getGalleryImageUrl(imageSrc: string): string {

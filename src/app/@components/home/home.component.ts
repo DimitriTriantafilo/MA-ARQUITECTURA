@@ -9,10 +9,11 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { WindowSizeService } from '../../window-size.service';
+import { TranslatePipe } from '../../transltate/translate.pipe';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule],
+  imports: [CommonModule, TranslatePipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
@@ -59,15 +60,15 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
   // Funciones de navegación para proyectos
   navigateToReformaMigueletes() {
-    this.router.navigate(['/reforma-migueletes']);
+    this.router.navigate(['/migueletes']);
   }
 
   navigateToReformaBnb() {
-    this.router.navigate(['/reforma-bnb']);
+    this.router.navigate(['/bnb']);
   }
 
   navigateToCasaIgor() {
-    this.router.navigate(['/casa-igor']);
+    this.router.navigate(['/reforma-igor']);
   }
 
   navigateToReformaSanfer() {

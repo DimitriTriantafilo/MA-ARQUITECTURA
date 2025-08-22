@@ -13,82 +13,101 @@
   <span class="m2" *ngIf="data?.m2">{{ data?.m2 }}m<sup>2</sup></span>
 </div>
 
-<section class="planta-container" *ngIf="data?.plantaSrc || data?.description">
-  <!-- Plano del proyecto                                                              -->
-  <div class="planta-image-container" *ngIf="data?.plantaSrc">
-    <img
-      [src]="getPlantaImageUrl()"
-      [alt]="'Plano de ' + data?.name"
-      class="planta-image"
-      loading="lazy"
-      decoding="async"
-    />
-    <div class="planta-info">
-      <span class="planta-label">Planta baja</span>
-      <span class="planta-scale">1:200</span>
-    </div>
-  </div>
-
-  <!-- Información del proyecto -->
-  <div
-    class="project-info"
-    *ngIf="data?.description || data?.m2 || data?.location || data?.year"
-  >
-    <!-- Especificaciones del proyecto -->
-    <div class="project-specs">
-      <div class="specs-container">
-        <!-- Elemento M² -->
-        <div
-          class="spec-item"
-          [class]="getSpecItemAlignment('m2')"
-          *ngIf="data?.m2"
-        >
-          <span class="spec-value">{{ data?.m2 }}M²</span>
+<section
+  class="planta-container"
+  *ngIf="data?.plantaSrc || data?.plantaPreviaSrc || data?.description"
+>
+  <!-- Contenido principal: Plano y Descripción -->
+  <div class="planta-content">
+    <!-- Planos del proyecto (izquierda) -->
+    <div
+      class="planta-section"
+      [class.has-previa]="data?.plantaPreviaSrc"
+      *ngIf="data?.plantaSrc || data?.plantaPreviaSrc"
+    >
+      <!-- Planta Original (Previa) -->
+      <div
+        class="planta-image-container planta-previa"
+        *ngIf="data?.plantaPreviaSrc"
+      >
+        <img
+          [src]="getPlantaPreviaImageUrl()"
+          [alt]="'Plano original de ' + data?.name"
+          class="planta-image"
+          loading="lazy"
+          decoding="async"
+        />
+        <div class="planta-info">
+          <span class="planta-label">{{ "plantaOriginal" | translate }}</span>
         </div>
+      </div>
 
-        <!-- Divisor después del elemento M² -->
-        <div class="specs-divider" *ngIf="data?.m2"></div>
-
-        <!-- Elemento Location -->
-        <div
-          class="spec-item"
-          [class]="getSpecItemAlignment('location')"
-          *ngIf="data?.location"
-        >
-          <span class="spec-value">{{ data?.location }}</span>
+      <!-- Planta del Proyecto -->
+      <div
+        class="planta-image-container planta-proyecto"
+        *ngIf="data?.plantaSrc"
+      >
+        <img
+          [src]="getPlantaImageUrl()"
+          [alt]="'Plano de proyecto de ' + data?.name"
+          class="planta-image"
+          loading="lazy"
+          decoding="async"
+          (error)="onPlantaImageError($event)"
+          (load)="onPlantaImageLoad($event)"
+        />
+        <!-- Fallback si la imagen no carga -->
+        <div class="planta-fallback" *ngIf="!plantaImageLoaded">
+          <div class="fallback-content">
+            <span>Plano del proyecto</span>
+            <small>{{ data?.plantaSrc }}</small>
+          </div>
         </div>
-
-        <!-- Divisor después del elemento Location -->
-        <div class="specs-divider" *ngIf="data?.location"></div>
-
-        <!-- Elemento Year -->
-        <div
-          class="spec-item"
-          [class]="getSpecItemAlignment('year')"
-          *ngIf="data?.year"
-        >
-          <span class="spec-value">{{ data?.year }}</span>
-        </div>
-
-        <!-- Divisor después del elemento Year -->
-        <div class="specs-divider" *ngIf="data?.year"></div>
-
-        <!-- Elemento Style -->
-        <div
-          class="spec-item"
-          [class]="getSpecItemAlignment('style')"
-          *ngIf="data?.mainFeature?.type === 'image'"
-        >
-          <span class="spec-value">{{
-            data?.style || "MADERA & TONOS BLANCOS"
-          }}</span>
+        <div class="planta-info">
+          <span class="planta-label">{{ "plantaProyecto" | translate }}</span>
         </div>
       </div>
     </div>
 
-    <!-- Descripción del proyecto -->
-    <div class="project-description" *ngIf="data?.description">
-      <p>{{ data?.description }}</p>
+    <!-- Contenido derecho: Descripción e Info del proyecto -->
+    <div class="right-content">
+      <!-- Descripción del proyecto -->
+      <div class="project-description" *ngIf="data?.description">
+        <p>{{ data?.description }}</p>
+      </div>
+
+      <!-- Información del proyecto -->
+      <div
+        class="project-info"
+        *ngIf="data?.m2 || data?.location || data?.year"
+      >
+        <!-- Especificaciones del proyecto -->
+        <div class="project-specs">
+          <div class="specs-container">
+            <!-- Elemento M² -->
+            <div class="spec-item" *ngIf="data?.m2">
+              <span class="spec-value">{{ data?.m2 }}M²</span>
+            </div>
+
+            <!-- Elemento Location -->
+            <div class="spec-item" *ngIf="data?.location">
+              <span class="spec-value">{{ data?.location }}</span>
+            </div>
+
+            <!-- Elemento Year -->
+            <div class="spec-item" *ngIf="data?.year">
+              <span class="spec-value">{{ data?.year }}</span>
+            </div>
+
+            <!-- Elemento Style -->
+            <div class="spec-item" *ngIf="data?.mainFeature?.type === 'image'">
+              <span class="spec-value">{{
+                data?.style || ("defaultStyle" | translate)
+              }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -150,7 +169,7 @@
       @if(isLoadingImage || !currentImageLoaded){
       <div class="loading-overlay">
         <mat-spinner diameter="60" strokeWidth="6"></mat-spinner>
-        <p class="loading-text">Cargando imagen...</p>
+        <p class="loading-text">{{ "loadingImage" | translate }}</p>
       </div>
       }
     </section>

@@ -41,7 +41,7 @@
 }
 
 .marca {
-  font-family: "modeco";
+  font-family: "levenim";
   transition: transform 0.7s ease-in-out; /* Agrega una transición suave */
 }
 .logo-switcher:hover .marca {
@@ -62,6 +62,16 @@
       background-color: transparent;
       border: none;
       cursor: pointer;
+
+      .mat-icon {
+        transition: transform 0.3s ease;
+      }
+
+      &:hover .mat-icon {
+        transform: scale(
+          1.2
+        ); /* Escala de 24px a ~26px (24 * 1.08 = 25.92px) */
+      }
     }
   }
   span {

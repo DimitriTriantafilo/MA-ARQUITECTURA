@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { WindowSizeService } from '../../window-size.service';
 import { BreakpointService } from '../../breakpoint.service';
 import { CloudinaryService } from '../../cloudinary.service';
+import { TranslatePipe } from '../../transltate/translate.pipe';
 
 interface ServiceItem {
   id: string;
@@ -16,7 +17,7 @@ interface ServiceItem {
 @Component({
   selector: 'app-servicios',
   standalone: true,
-  imports: [CommonModule, MatIconModule],
+  imports: [CommonModule, MatIconModule, TranslatePipe],
   templateUrl: './servicios.component.html',
   styleUrls: ['./servicios.component.scss'],
 })
@@ -47,27 +48,18 @@ export class ServiciosComponent implements OnInit, OnDestroy {
   services: ServiceItem[] = [
     {
       id: 'anteproyecto',
-      name: 'ANTEPROYECTO',
+      name: 'anteproyecto',
       isExpanded: false,
-      description: 'Descripción del anteproyecto...',
     },
     {
-      id: 'proyecto-ejecutivo',
-      name: 'PROYECTO EJECUTIVO',
+      id: 'proyecto',
+      name: 'proyecto',
       isExpanded: false,
-      description: 'Descripción del proyecto ejecutivo...',
-    },
-    {
-      id: 'interiorismo',
-      name: 'INTERIORISMO',
-      isExpanded: false,
-      description: 'Descripción del interiorismo...',
     },
     {
       id: 'direccion-obra',
-      name: 'DIRECCIÓN DE OBRA',
+      name: 'direccionObra',
       isExpanded: false,
-      description: 'Descripción de la dirección de obra...',
     },
   ];
 
@@ -79,11 +71,20 @@ export class ServiciosComponent implements OnInit, OnDestroy {
       if (selectedService.isExpanded) {
         selectedService.isExpanded = false;
       } else {
-        // Si está cerrado, cerrar todos los demás y abrir este
-        this.services.forEach((service) => {
-          service.isExpanded = false;
-        });
-        selectedService.isExpanded = true;
+        // Si está cerrado, primero cerrar todos los demás
+        const currentlyExpanded = this.services.find((s) => s.isExpanded);
+
+        if (currentlyExpanded) {
+          // Si hay uno abierto, cerrarlo primero y luego abrir el nuevo después de un delay
+          currentlyExpanded.isExpanded = false;
+
+          setTimeout(() => {
+            selectedService.isExpanded = true;
+          }, 400); // Delay de 300ms para que se complete la animación de cierre
+        } else {
+          // Si no hay ninguno abierto, abrir directamente
+          selectedService.isExpanded = true;
+        }
       }
     }
   }
@@ -96,7 +97,7 @@ export class ServiciosComponent implements OnInit, OnDestroy {
     const imageHeight = 400; // Altura fija como está en el CSS
 
     return this.cloudinaryService.generateGalleryUrl(
-      'v1754422999/vc5ib3vcwwprcmkl2nbc.jpg',
+      'v1755638017/ibkmmeta5d4lmg5xo8j7.jpg',
       imageWidth
     );
   }
