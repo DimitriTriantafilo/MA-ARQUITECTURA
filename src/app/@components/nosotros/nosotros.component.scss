@@ -1,10 +1,29 @@
 @use "../../../assets/styles/variables.scss" as *;
-@use "sass:math";
+
+// Variables
+$primary-color: #756860;
+$accent-color: rgb(158, 162, 140);
+$bg-color: #e3e2de;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin parallax-transition {
+  transition: transform 0.3s ease-out;
+  will-change: transform;
+}
+
+// Estilos base
 .container {
   position: relative;
-  background-color: #e3e2de; /* Mismo color que project-list */
+  background-color: $bg-color;
   min-height: 100vh;
 }
+
 .nosotros {
   background-color: transparent;
   padding: 4% 20px 10% 20px;
@@ -18,29 +37,28 @@
   max-width: 1600px;
   margin: 0 auto;
 }
+
 .title {
-  background-color: #e3e2de;
-  margin: 110px 0px 0px 0px;
+  background-color: $bg-color;
+  margin: 110px 0 0 0;
   font-size: clamp(1rem, 3.5vw, 100px);
   min-height: 15vh;
   font-weight: 400;
   text-align: center;
-  color: #756860;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: $primary-color;
+  @include flex-center;
   font-family: "levenim";
   font-display: swap;
   contain: layout;
   cursor: default;
 }
 
+// Perfiles
 .profile-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  // margin-bottom: 40px;
   color: whitesmoke;
   gap: 60px;
 }
@@ -50,62 +68,58 @@
   flex-direction: column;
   gap: 50px;
   width: 40%;
-  padding-right: 5%;
-  padding-left: 5%;
-  color: #756860;
+  padding: 0 5%;
+  color: $primary-color;
   justify-content: center;
 
   &-nameRoleContainer {
     display: flex;
     flex-direction: column;
     gap: 5px;
+
     h1 {
       font-family: "ivnm";
       font-display: swap;
-      margin: 0px;
+      contain: layout;
+      margin: 0;
       font-size: 2rem;
       font-weight: 500;
       text-align: right;
-      color: #756860;
-    }
-    h1::first-letter {
-      color: rgb(158, 162, 140); /* Mismo color que el resto del texto */
-      font-size: 120%; /* Puedes ajustar el tamaño de la letra si lo deseas */
-      font-weight: bold; /* Cambia el peso de la fuente si lo deseas */
-      letter-spacing: 5px;
+      color: $primary-color;
+
+      &::first-letter {
+        color: $accent-color;
+        font-size: 120%;
+        font-weight: bold;
+        letter-spacing: 5px;
+      }
     }
   }
+
   p {
     font-size: 2rem;
     font-weight: 300;
-    margin: 0px;
-    color: #756860;
+    margin: 0;
+    color: $primary-color;
   }
 }
 
-.profile:nth-child(odd) .profile-nameRoleContainer {
-  h1 {
-    text-align: left;
-  }
-  p {
-    text-align: left;
-  }
+// Alineación de perfiles
+.profile:nth-child(odd) .profile-nameRoleContainer h1,
+.profile:nth-child(odd) .profile-nameRoleContainer p {
+  text-align: left;
 }
-.profile:nth-child(even) .profile-nameRoleContainer {
-  h1 {
-    text-align: right;
-  }
-  p {
-    text-align: right;
-    // padding: 25px 5% 0px 25%;
-  }
+.profile:nth-child(even) .profile-nameRoleContainer h1,
+.profile:nth-child(even) .profile-nameRoleContainer p {
+  text-align: right;
 }
 
+// Contenedores de parallax
 .parallax-container {
   position: relative;
   overflow: visible;
   width: 25%;
-  height: 100%; // Ajusta según tu diseño
+  height: 100%;
 }
 
 .parallax-container2 {
@@ -117,6 +131,7 @@
   justify-content: space-between;
   overflow: visible;
   gap: 80px;
+
   .overlay2 {
     position: absolute;
     width: 35%;
@@ -125,19 +140,20 @@
     background-color: rgba(0, 0, 0, 0.4);
     z-index: 1;
   }
+
   .profile-img2 {
     right: 0;
     position: absolute;
     width: 35%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease-out;
-    will-change: transform;
+    @include parallax-transition;
     z-index: 0;
   }
+
   h2 {
     z-index: 2;
-    color: #756860;
+    color: $primary-color;
     text-align: left;
     width: 50%;
     line-height: 2;
@@ -146,12 +162,11 @@
     font-size: 1.5rem;
     font-weight: lighter;
     font-family: "modeco";
-    transition: transform 0.1s ease-out;
-    will-change: transform;
-    text-align: left;
+    @include parallax-transition;
+
     strong {
       font-weight: 300 !important;
-      color: rgb(158, 162, 140) !important;
+      color: $accent-color !important;
     }
   }
 }
@@ -160,18 +175,14 @@
   width: 100%;
   height: auto;
   object-fit: cover;
-  transition: transform 0.3s ease-out;
-  will-change: transform;
+  @include parallax-transition;
 }
 
-// Añade esta clase cuando el usuario haga scroll
 .parallax-effect {
-  transform: translateY(
-    calc(var(--scroll-y) * 0.09)
-  ); // Ajusta 0.3 para cambiar la velocidad
+  transform: translateY(calc(var(--scroll-y) * 0.09));
 }
 
-// Estilos para la sección de equipo
+// Sección de equipo
 .team-section {
   display: flex;
   flex-direction: column;
@@ -184,7 +195,7 @@
   font-family: "levenim";
   font-size: clamp(1.5rem, 3vw, 3rem);
   font-weight: 400;
-  color: #756860;
+  color: $primary-color;
   text-align: left;
   align-self: flex-start;
   margin: 0;
@@ -206,66 +217,96 @@
 }
 
 .team-member-image {
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
   overflow: hidden;
   position: relative;
-}
 
-.team-member-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease-out;
-  will-change: transform;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    @include parallax-transition;
+  }
 }
 
 .team-member-info h3 {
   font-family: "ivnm";
   font-size: 1.2rem;
   font-weight: 400;
-  color: #756860;
+  color: $primary-color;
   text-align: center;
   margin: 0;
   line-height: 1.4;
 }
 
+// Elementos de fondo
+.background {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  z-index: 1;
+  overflow: hidden;
+  @include flex-center;
+}
+
+// Estilos específicos
+:host ::ng-deep .nosotros h2 strong,
+:host ::ng-deep .nosotros h2 b {
+  font-weight: 600 !important;
+  font-style: italic;
+  background: none !important;
+  font-family: inherit !important;
+  font-size: 1.45rem;
+}
+
+.joaquin-profile,
+.agostina-profile {
+  justify-content: flex-start !important;
+  padding-top: 25% !important;
+}
+
+.joaquin-profile p,
+.manu-profile p {
+  text-align: right !important;
+}
+
+// Responsive
 @media (max-width: 600px) {
   .title {
     font-size: 14vw;
   }
+
   .nosotros {
     padding: 20px 15px;
     gap: 80px;
     width: 95%;
-
-    &-title {
-      font-size: 14vw;
-    }
   }
+
   p {
     font-size: 3.5vw;
     text-align: center;
-    // align-self: flex-end;
-    // margin: 0;
     font-weight: 300;
     z-index: 2;
     padding: 20px;
-    color: #756860;
+    color: $primary-color;
   }
+
   .profile {
     flex-direction: row;
     width: 100%;
     align-items: center;
     gap: 5px;
+
     h1 {
       font-size: 7vw;
       font-weight: 500;
       line-height: 9vw;
       margin: 0;
       align-self: flex-end;
-      color: #756860;
+      color: $primary-color;
     }
 
     &-img {
@@ -276,16 +317,19 @@
       margin-top: 10px;
     }
   }
+
   .profile-container {
     flex-direction: column;
     align-items: center;
     gap: 40px;
+
     img {
       width: 115%;
     }
     h1 {
       z-index: 2;
     }
+
     p {
       #text {
         margin-bottom: 5px;
@@ -295,27 +339,28 @@
         margin: 10px 0;
       }
     }
+
+    &:nth-child(odd) {
+      h1 {
+        text-align: left;
+      }
+      p {
+        text-align: left;
+        padding: 16px 25% 0 5%;
+      }
+    }
+
+    &:nth-child(even) {
+      h1 {
+        text-align: right;
+      }
+      p {
+        text-align: right;
+        padding: 25px 5% 0 25%;
+      }
+    }
   }
 
-  .profile-container:nth-child(odd) {
-    h1 {
-      text-align: left;
-    }
-
-    p {
-      text-align: left;
-      padding: 16px 25% 0px 5%;
-    }
-  }
-  .profile-container:nth-child(even) {
-    h1 {
-      text-align: right;
-    }
-    p {
-      text-align: right;
-      padding: 25px 5% 0px 25%;
-    }
-  }
   .parallax-container {
     width: 35%;
   }
@@ -323,11 +368,12 @@
   .parallax-container2 {
     position: relative;
     overflow: visible;
-    width: 100%; // Ajusta según tu diseño
-    height: 45vw; // Volvemos a 45vw para mantener proporciones originales
+    width: 100%;
+    height: 45vw;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
+
     .overlay2 {
       position: absolute;
       width: 50%;
@@ -335,19 +381,19 @@
       top: 0;
       height: 100%;
       background-color: rgba(0, 0, 0, 0.4);
-
       z-index: 1;
     }
+
     .profile-img2 {
       position: absolute;
       width: 50%;
       height: 100%;
       right: 0;
       object-fit: cover;
-      transition: transform 0.3s ease-out;
-      will-change: transform;
+      @include parallax-transition;
       z-index: 0;
     }
+
     h2 {
       text-transform: uppercase;
       position: absolute;
@@ -355,19 +401,16 @@
       left: 0%;
       text-align: left;
       z-index: 2;
-      color: #756860;
+      color: $primary-color;
       width: 80%;
       line-height: 2;
-      /* align-self: flex-end; */
       font-size: 2.5vw;
       font-weight: lighter;
       font-family: "modeco";
-      transition: transform 0.1s ease-out;
-      will-change: transform;
+      @include parallax-transition;
     }
   }
 
-  // Estilos responsivos para la sección de equipo
   .team-section {
     gap: 30px;
     padding: 30px 0;
@@ -397,351 +440,7 @@
   .team-member-info h3 {
     font-size: 1rem;
   }
-}
 
-.background {
-  // background-color: $stone-white;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  z-index: 1;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.square {
-  position: absolute;
-  width: 300px; // Ajusta el tamaño
-  height: 300px; // Ajusta el tamaño
-  background-color: rgba(255, 255, 255, 0.2); // Color con opacidad
-  border-radius: 10px; // Bordes redondeados
-  rotate: -45deg;
-  top: calc(math.random() * 100%); // Ajusta la posición
-  left: calc(math.random() * 100%); // Ajusta la posición
-  animation: float 30s ease-in-out infinite; // Agrega animación
-}
-
-.square2 {
-  position: absolute;
-  width: 300px; // Ajusta el tamaño
-  height: 300px; // Ajusta el tamaño
-  background-color: rgba(255, 255, 255, 0.2); // Color con opacidad
-  border-radius: 10px; // Bordes redondeados
-  top: 20%; // Ajusta la posición
-  left: 60%; // Ajusta la posición
-  animation: float 35s ease-in-out infinite; // Agrega animación
-}
-
-.square3 {
-  position: absolute;
-  width: 300px; // Ajusta el tamaño
-  height: 300px; // Ajusta el tamaño
-  background-color: rgba(255, 255, 255, 0.2); // Color con opacidad
-  border-radius: 10px; // Bordes redondeados
-  rotate: 45deg;
-  top: 70%; // Ajusta la posición
-  left: 50%; // Ajusta la posición
-  animation: float 35s ease-in-out infinite; // Agrega animación
-}
-
-// Estilo para los rectángulos
-.rectangle {
-  rotate: -45deg;
-  position: absolute;
-  width: 800px; // Ajusta el tamaño
-  height: 100px; // Ajusta el tamaño
-  background-color: rgba(255, 255, 255, 0.2); // Color con opacidad
-  border-radius: 10px; // Bordes redondeados
-  top: calc(20%); // Ajusta la posición
-  left: calc(10%); // Ajusta la posición
-  animation: float 18s ease-in-out infinite; // Agrega animación
-}
-
-.rectangle2 {
-  rotate: -45deg;
-  position: absolute;
-  width: 800px; // Ajusta el tamaño
-  height: 100px; // Ajusta el tamaño
-  background-color: rgba(255, 255, 255, 0.2); // Color con opacidad
-  border-radius: 10px; // Bordes redondeados
-  top: calc(80%); // Ajusta la posición
-  left: calc(10%); // Ajusta la posición
-  animation: float 20s ease-in-out infinite; // Agrega animación
-}
-
-.rectangle3 {
-  rotate: 45deg;
-  position: absolute;
-  width: 400px; // Ajusta el tamaño
-  height: 60px; // Ajusta el tamaño
-  background-color: rgba(255, 255, 255, 0.2); // Color con opacidad
-  border-radius: 10px; // Bordes redondeados
-  top: calc(50%); // Ajusta la posición
-  left: calc(60%); // Ajusta la posición
-  animation: float 20s ease-in-out infinite; // Agrega animación
-}
-
-// Animación para dar un efecto de flotación
-@keyframes float {
-  0% {
-    transform: translateY(0);
-    transform: translateX(0);
-  }
-
-  30% {
-    transform: translateY(-90px);
-    transform: translatex(200px);
-  }
-  60% {
-    transform: translateY(-400px);
-    transform: translatex(300px);
-  }
-  100% {
-    transform: translateY(0px);
-    transform: translatex(0px);
-  }
-}
-
-.logo-container {
-  position: relative;
-  width: 850px;
-  height: 850px;
-  margin-top: 45%;
-}
-
-.line1 {
-  background-color: rgba(255, 255, 255, 0.35);
-  width: 5%;
-  height: 45%;
-  position: absolute;
-  top: 20%;
-  left: 10%;
-  left: 25%;
-  animation: rebuild 35s ease-in-out infinite; // Agrega animación
-}
-
-.line2 {
-  background-color: rgba(255, 255, 255, 0.35);
-  width: 5%;
-  height: 30%;
-  position: absolute;
-  top: 14%;
-  left: 20%;
-  left: 35%;
-  transform: rotate(-45deg) !important;
-  animation: rebuild2 35s ease-in-out infinite; // Agrega animación
-}
-
-.line3 {
-  background-color: rgba(255, 255, 255, 0.35);
-  width: 5%;
-  height: 42%;
-  position: absolute;
-  top: 5%;
-  left: 45%;
-  left: 60%;
-  transform: rotate(45deg);
-  animation: rebuild3 35s ease-in-out infinite; // Agrega animación
-}
-
-.line4 {
-  background-color: rgba(255, 255, 255, 0.35);
-  width: 5%;
-  height: 75%;
-  position: absolute;
-  top: 23%;
-  left: 36%;
-  left: 51%;
-
-  transform: rotate(45deg);
-  animation: rebuild4 35s ease-in-out infinite; // Agrega animación
-}
-
-.line5 {
-  background-color: rgba(255, 255, 255, 0.35);
-  width: 5%;
-  height: 45%;
-  position: absolute;
-  top: 35%;
-  left: 62%;
-  left: 77%;
-  animation: rebuild5 35s ease-in-out infinite; // Agrega animación
-}
-
-.line6 {
-  background-color: rgba(255, 255, 255, 0.35);
-  width: 5%;
-  height: 20%;
-  position: absolute;
-  top: 62%;
-  left: 54%;
-  left: 69%;
-
-  transform: rotate(-45deg);
-  animation: rebuild6 35s ease-in-out infinite; // Agrega animación
-}
-
-@keyframes rebuild {
-  0% {
-    transform: translateY(-1000px) !important ;
-    transform: translateX(-900px);
-  }
-  45% {
-    transform: translateY(0px) !important;
-    transform: translatex(0px);
-    rotate: 0deg;
-  }
-
-  50% {
-    transform: translateY(0px) !important;
-    transform: translatex(0px);
-    rotate: 0deg;
-  }
-  100% {
-    transform: translateY(-1000px) !important ;
-    transform: translateX(-900px);
-  }
-}
-
-@keyframes rebuild2 {
-  0% {
-    transform: translateY(-1000px) !important ;
-    transform: translateX(-900px);
-    rotate: 90deg;
-  }
-  45% {
-    transform: translateY(0px) !important;
-    transform: translatex(0px);
-    rotate: 0deg;
-  }
-
-  50% {
-    transform: translateY(0px) !important;
-    transform: translatex(0px);
-    rotate: 0deg;
-  }
-  100% {
-    transform: translateY(-1000px) !important ;
-    transform: translateX(-900px);
-    rotate: 90deg;
-  }
-}
-@keyframes rebuild3 {
-  0% {
-    transform: translateY(0px) !important ;
-    transform: translateX(-1500px);
-    rotate: 45deg;
-  }
-  45% {
-    transform: translateY(0px) !important;
-    transform: translatex(0px);
-    rotate: 45deg;
-  }
-
-  50% {
-    transform: translateY(0px) !important;
-    transform: translatex(0px);
-    rotate: 45deg;
-  }
-  100% {
-    transform: translateY(0px) !important ;
-    transform: translateX(-1500px);
-    rotate: 45deg;
-  }
-}
-
-@keyframes rebuild4 {
-  0% {
-    transform: translateY(-800px) !important ;
-    transform: translateX(1000px);
-    rotate: 20deg;
-  }
-  45% {
-    transform: translateY(0px) !important;
-    transform: translatex(0px);
-    rotate: 45deg;
-  }
-  50% {
-    transform: translateY(0px) !important;
-    transform: translatex(0px);
-    rotate: 45deg;
-  }
-  100% {
-    transform: translateY(-800px) !important ;
-    transform: translateX(1000px);
-    rotate: 20deg;
-  }
-}
-
-@keyframes rebuild5 {
-  0% {
-    transform: translateY(700px) !important ;
-    transform: translateX(700px);
-  }
-  45% {
-    transform: translateY(0px) !important;
-    transform: translatex(0px);
-  }
-  50% {
-    transform: translateY(0px) !important;
-    transform: translatex(0px);
-  }
-  100% {
-    transform: translateY(70px) !important ;
-    transform: translateX(700px);
-  }
-}
-
-@keyframes rebuild6 {
-  0% {
-    transform: translateY(700px) !important ;
-    transform: translateX(-800px);
-    rotate: -45deg;
-  }
-  45% {
-    transform: translateY(0px) !important;
-    transform: translatex(0px);
-    rotate: -45deg;
-  }
-  50% {
-    transform: translateY(0px) !important;
-    transform: translatex(0px);
-    rotate: -45deg;
-  }
-  100% {
-    transform: translateY(70px) !important ;
-    transform: translateX(-800px);
-    rotate: -45deg;
-  }
-}
-
-:host ::ng-deep .nosotros h2 strong,
-:host ::ng-deep .nosotros h2 b {
-  font-weight: 600 !important;
-  font-style: italic;
-  background: none !important;
-  font-family: inherit !important;
-  font-size: 1.45rem;
-}
-
-// Ajustes específicos para Joaquín y Agostina usando clases específicas
-.joaquin-profile,
-.agostina-profile {
-  justify-content: flex-start !important;
-  padding-top: 25% !important;
-}
-
-// Ajustes para alinear descripciones de Manuel y Joaquín a la derecha
-.joaquin-profile p,
-.manu-profile p {
-  text-align: right !important;
-}
-
-// Ajustes para mobile también
-@media (max-width: 600px) {
   .joaquin-profile,
   .agostina-profile {
     justify-content: flex-start !important;
