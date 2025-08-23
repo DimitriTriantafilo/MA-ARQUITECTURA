@@ -163,11 +163,12 @@ $bg-color: #e3e2de;
     font-weight: lighter;
     font-family: "modeco";
     @include parallax-transition;
+    white-space: 2px;
 
-    strong {
-      font-weight: 300 !important;
-      color: $accent-color !important;
-    }
+    // strong {
+    //   font-weight: 300 !important;
+    //   color: $accent-color !important;
+    // }
   }
 }
 
@@ -188,6 +189,7 @@ $bg-color: #e3e2de;
   flex-direction: column;
   align-items: center;
   gap: 100px;
+  margin-top: 80px;
   padding: 40px 0;
 }
 
@@ -253,14 +255,14 @@ $bg-color: #e3e2de;
 }
 
 // Estilos específicos
-:host ::ng-deep .nosotros h2 strong,
-:host ::ng-deep .nosotros h2 b {
-  font-weight: 600 !important;
-  font-style: italic;
-  background: none !important;
-  font-family: inherit !important;
-  font-size: 1.45rem;
-}
+// :host ::ng-deep .nosotros h2 strong,
+// :host ::ng-deep .nosotros h2 b {
+//   font-weight: 600 !important;
+//   font-style: italic;
+//   background: none !important;
+//   font-family: inherit !important;
+//   font-size: 1.45rem;
+// }
 
 .joaquin-profile,
 .agostina-profile {
@@ -277,10 +279,11 @@ $bg-color: #e3e2de;
 @media (max-width: 600px) {
   .title {
     font-size: 14vw;
+    margin: 40px 0px 0px 0px;
   }
 
   .nosotros {
-    padding: 20px 15px;
+    padding: 0px 15px;
     gap: 80px;
   }
 
@@ -371,11 +374,11 @@ $bg-color: #e3e2de;
     height: auto;
     min-height: auto;
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 20px;
-    padding: 20px 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 30px;
+    padding: 0px;
 
     .overlay2 {
       display: none; // Ocultamos el overlay en móvil
@@ -383,29 +386,32 @@ $bg-color: #e3e2de;
 
     .profile-img2 {
       position: relative;
-      width: 120px;
-      height: 160px;
-      object-fit: cover;
+      width: 100%;
+      height: auto; /* Altura automática para mantener proporción */
+      max-width: 400px; /* Limitar ancho máximo para evitar estiramiento */
+      object-fit: contain; /* Mantener proporción sin estirar */
       @include parallax-transition;
       z-index: 0;
       border-radius: 8px;
       flex-shrink: 0;
+      margin: 0 auto; /* Centrar la imagen */
     }
 
     h2 {
-      text-transform: uppercase;
+      text-transform: none; /* Remover uppercase en móvil */
       position: relative;
-      text-align: left;
+      text-align: justify;
       z-index: 2;
       color: $primary-color;
-      width: calc(100% - 140px);
+      width: 100%;
       line-height: 1.4;
-      font-size: 3.5vw;
+      font-size: 3vw; /* Achicado un poco el texto */
       font-weight: lighter;
       font-family: "modeco";
       @include parallax-transition;
       margin: 0;
-      padding: 0;
+      padding: 0 20px; /* Respetar el padding actual */
+      box-sizing: border-box;
     }
   }
 
