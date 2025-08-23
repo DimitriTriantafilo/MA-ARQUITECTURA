@@ -1,8 +1,10 @@
 <div class="project-display">
   <div class="overlay">
-    <h1 class="name">{{ project.name }}</h1>
-    <div class="locationAndM2">
+    <div class="project-info">
+      <h1 class="name">{{ project.name }}</h1>
       <span class="location">{{ project.location }}</span>
+    </div>
+    <div class="m2-container">
       <span class="m2" *ngIf="project.m2">{{ project.m2 }}m²</span>
     </div>
   </div>

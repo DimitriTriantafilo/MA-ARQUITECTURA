@@ -8,29 +8,49 @@
   color: black;
   font-family: "modeco";
   width: 100%;
-  overflow: visible;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto; /* Permitir scroll vertical si es necesario */
+  position: relative;
+  padding-bottom: 50px; /* Agregar padding bottom para evitar que se corte */
+  box-sizing: border-box; /* Incluir padding en el cálculo del ancho */
+}
+
+/* Asegurar que el fondo ocupe todo el ancho */
+.services-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: calc(-50vw + 50%);
+  width: 100vw;
+  height: 100%;
+  background-color: #e3e2de;
+  z-index: -1;
 }
 
 .services-content {
   display: flex;
   flex: 1;
+  box-sizing: border-box; /* Incluir padding en el cálculo del ancho */
 }
 
 .left-column {
   width: 50%;
   display: flex;
   flex-direction: column;
-  padding: 20px 40px;
-  gap: 40px;
+  padding: 20px 40px; /* Revertir al padding original */
+  gap: 40px; /* Revertir al gap original */
   justify-content: center;
   align-items: center;
+  box-sizing: border-box; /* Incluir padding en el cálculo del ancho */
 }
 
 .services-title {
   background-color: #e3e2de;
-  margin: 110px 0px 0px 0px;
-  font-size: clamp(1rem, 3.5vw, 100px);
-  min-height: 15vh;
+  margin: 110px 0px 0px 0px; /* Revertir al margen original */
+  font-size: clamp(1rem, 3.5vw, 100px); /* Revertir tamaño de fuente original */
+  min-height: 15vh; /* Revertir altura mínima original */
   font-weight: 400;
   text-align: center;
   color: #756860;
@@ -44,17 +64,19 @@
 }
 
 .services-image {
-  width: 100%;
-  height: 400px;
+  width: 100%; /* Usar todo el ancho disponible */
+  height: 200px; /* Altura fija más pequeña */
+  max-height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 8px 8px 10px 0; /* Agregar padding para que se vea la sombra */
+  box-sizing: border-box; /* Incluir padding en el cálculo del ancho */
 
   img {
     width: 100%;
     height: 100%;
-    max-width: 500px;
+    max-width: none; /* Remover límite de ancho máximo */
     object-fit: cover;
     border-radius: 4px;
     box-shadow: 8px 8px 0px rgb(158, 162, 140);
@@ -65,9 +87,10 @@
   width: 50%;
   display: flex;
   flex-direction: column;
-  padding: 20px 40px 60px 20px;
+  padding: 20px 40px 60px 20px; /* Revertir al padding original */
   justify-content: center;
-  gap: 40px;
+  gap: 40px; /* Revertir al gap original */
+  box-sizing: border-box; /* Incluir padding en el cálculo del ancho */
 }
 
 .services-info {
@@ -231,53 +254,123 @@
   .left-column,
   .right-column {
     width: 100%;
-    padding: 40px 30px;
-    gap: 30px;
+    padding: 40px 30px; /* Mantener padding original */
+    gap: 30px; /* Mantener gap original */
+    box-sizing: border-box; /* Incluir padding en el cálculo del ancho */
   }
 
   .services-title {
-    font-size: 14vw;
+    font-size: 12vw; /* Mantener tamaño original */
+    margin: 80px 0 20px 0; /* Mantener márgenes originales */
+    min-height: 10vh; /* Mantener altura mínima original */
   }
 
   .services-image {
-    height: 300px;
+    width: 100%; /* Usar todo el ancho disponible en tablet */
+    height: 250px; /* Altura fija más pequeña */
+    max-height: 250px;
+    padding: 8px 8px 10px 0;
+    box-sizing: border-box; /* Incluir padding en el cálculo del ancho */
 
     img {
       max-width: 100%;
-      max-height: 300px;
+      max-height: 250px;
+      object-fit: cover;
     }
   }
 
   .services-list {
     width: 100%;
   }
+
+  .service-name {
+    font-size: 1.6rem; /* Mantener tamaño original */
+  }
+
+  .service-description {
+    &.expanded {
+      max-height: 1000px; /* Mantener altura máxima original */
+    }
+  }
 }
 
 @media (max-width: 768px) {
+  .services-container {
+    padding-bottom: 50px; /* Mantener padding original */
+  }
+
   .left-column,
   .right-column {
     width: 100%;
-    padding: 30px 20px;
-    gap: 25px;
+    padding: 30px 20px; /* Mantener padding original */
+    gap: 25px; /* Mantener gap original */
+    box-sizing: border-box; /* Incluir padding en el cálculo del ancho */
   }
 
   .services-title {
-    font-size: 14vw;
+    font-size: 14vw; /* Mantener tamaño original */
+    margin: 60px 0 15px 0; /* Mantener márgenes originales */
+    min-height: 10vh; /* Mantener altura mínima original */
   }
 
   .service-name {
-    font-size: 1.4rem;
+    font-size: 1.4rem; /* Mantener tamaño original */
+    line-height: 1.2;
   }
 
   .info-text {
-    font-size: 0.85rem;
+    font-size: 0.85rem; /* Mantener tamaño original */
   }
 
   .services-image {
-    height: 250px;
+    width: 100%; /* Usar todo el ancho disponible en móvil */
+    height: 180px; /* Altura fija más pequeña */
+    max-height: 180px;
+    padding: 6px 6px 8px 0;
+    box-sizing: border-box; /* Incluir padding en el cálculo del ancho */
 
     img {
-      max-height: 250px;
+      max-height: 180px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+  }
+
+  .service-description {
+    &.expanded {
+      max-height: 1200px; /* Mantener altura máxima original */
+    }
+
+    .service-content {
+      padding: 15px 0 0 0; /* Mantener padding original */
+    }
+
+    .service-intro,
+    .service-desc,
+    .service-define {
+      font-size: 0.9rem; /* Mantener tamaño original */
+      line-height: 1.5;
+      margin: 0 0 8px 0; /* Mantener márgenes originales */
+    }
+
+    .service-list {
+      li {
+        font-size: 0.85rem; /* Mantener tamaño original */
+        line-height: 1.4;
+        margin: 6px 0; /* Mantener márgenes originales */
+        padding-left: 15px; /* Mantener padding original */
+      }
+    }
+  }
+
+  .expand-button {
+    padding: 4px; /* Mantener padding original */
+    margin-left: 15px; /* Mantener margen original */
+
+    mat-icon {
+      font-size: 18px; /* Mantener tamaño original */
+      width: 18px;
+      height: 18px;
     }
   }
 }

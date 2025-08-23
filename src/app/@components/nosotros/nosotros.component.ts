@@ -64,18 +64,27 @@ export class NosotrosComponent implements OnInit {
   }
 
   getVerticalImageWidth(): number {
-    // Para profile-img2, usamos el 45% del ancho de la pantalla (como en el CSS)
-    const containerWidth = Math.floor(this.innerWidth * 0.45);
-    // Limitamos el ancho máximo para optimizar el consumo de red
-    return Math.min(containerWidth, 800);
+    // Para profile-img2, usamos un ancho fijo más pequeño en móvil
+    if (this.innerWidth <= 600) {
+      // En móvil, usamos un ancho fijo más pequeño para evitar pixelación
+      return 300;
+    } else {
+      // En desktop, usamos el 35% del ancho de la pantalla
+      const containerWidth = Math.floor(this.innerWidth * 0.35);
+      return Math.min(containerWidth, 600);
+    }
   }
 
   getVerticalImageHeight(): number {
     // Para profile-img2, calculamos una altura proporcional
-    // Usamos una relación de aspecto típica de imagen vertical
     const containerWidth = this.getVerticalImageWidth();
-    // Relación de aspecto 16:9 (más natural para fotos de estudio)
-    return Math.floor(containerWidth * 0.5625); // 9/16 = 0.5625
+    if (this.innerWidth <= 600) {
+      // En móvil, usamos una relación de aspecto más cuadrada
+      return Math.floor(containerWidth * 0.75); // 3:4 ratio
+    } else {
+      // En desktop, usamos relación de aspecto 16:9
+      return Math.floor(containerWidth * 0.5625); // 9/16 = 0.5625
+    }
   }
 
   getProfileImageWidth(): number {

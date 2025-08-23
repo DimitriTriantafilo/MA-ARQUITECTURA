@@ -92,9 +92,23 @@ export class ServiciosComponent implements OnInit, OnDestroy {
   getServicesImageUrl(): string {
     if (!this.innerWidth) return '';
 
-    // Calcula el ancho para la imagen de servicios (aproximadamente 40% del ancho de pantalla)
-    const imageWidth = Math.floor(this.innerWidth * 0.4);
-    const imageHeight = 400; // Altura fija como está en el CSS
+    // Optimizar el cálculo para evitar pixelación
+    let imageWidth: number;
+    let imageHeight: number;
+
+    if (this.innerWidth <= 768) {
+      // En móvil, usar un ancho más pequeño
+      imageWidth = Math.min(Math.floor(this.innerWidth * 0.6), 300);
+      imageHeight = Math.floor(imageWidth * 0.6); // Aspect ratio 5:3
+    } else if (this.innerWidth <= 1024) {
+      // En tablet, usar un ancho proporcional pero limitado
+      imageWidth = Math.min(Math.floor(this.innerWidth * 0.5), 400);
+      imageHeight = Math.floor(imageWidth * 0.6);
+    } else {
+      // En desktop, usar el cálculo original pero con límites
+      imageWidth = Math.min(Math.floor(this.innerWidth * 0.4), 300);
+      imageHeight = Math.floor(imageWidth * 0.6);
+    }
 
     return this.cloudinaryService.generateGalleryUrl(
       'v1755638017/ibkmmeta5d4lmg5xo8j7.jpg',
