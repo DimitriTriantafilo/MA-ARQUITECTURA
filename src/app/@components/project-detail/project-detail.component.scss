@@ -3,14 +3,14 @@
 :host {
   width: 100%;
   height: 100vh;
+  background-color: #e3e2de;
+  min-height: 100vh;
 }
 
 .project-landig {
   width: 100%;
   min-height: 95vh;
-  background-repeat: no-repeat; /* No repetir la imagen */
-  background-size: cover; /* Cubrir todo el contenedor sin deformar */
-  background-position: center; /* Centrar la imagen */
+  background: no-repeat center/cover;
   display: flex;
   flex-direction: row;
   align-items: flex-end;
@@ -19,29 +19,18 @@
   justify-content: space-between;
   color: white;
   padding-bottom: 5%;
-  will-change: transform;
-  transform: translateZ(0);
-  overflow: hidden; /* Evita scroll horizontal */
-}
-.planta {
-  &-container {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    padding: 100px 6% 80px 6%;
-    background-color: #e3e2de;
-    /* min-height: 600px; */
-    // max-height: 90vh;
-    align-items: stretch; /* Hace que los elementos hijos se estiren */
-    box-sizing: border-box;
-    overflow-y: auto;
-  }
+  overflow: hidden;
 }
 
-/* Color de fondo para toda la página */
-:host {
+.planta-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 100px 6% 80px;
   background-color: #e3e2de;
-  min-height: 100vh;
+  align-items: stretch;
+  box-sizing: border-box;
+  overflow-y: auto;
 }
 
 .planta-content {
@@ -49,8 +38,8 @@
   flex-direction: row;
   gap: 60px;
   width: 100%;
-  align-items: stretch; /* Hace que los elementos hijos se estiren */
-  min-height: 100%; /* Asegura que ocupe al menos toda la altura disponible */
+  align-items: stretch;
+  min-height: 100%;
   box-sizing: border-box;
 }
 
@@ -60,8 +49,8 @@
   flex: 1 1;
   gap: 30px;
   align-items: flex-end;
-  justify-content: space-around; /* Distribuye el espacio entre la descripción y la info del proyecto */
-  min-height: 100%; /* Asegura que ocupe al menos toda la altura disponible */
+  justify-content: space-around;
+  min-height: 100%;
   box-sizing: border-box;
 }
 
@@ -70,37 +59,37 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* Alinea el contenido al inicio */
-  gap: 20px; /* Reducido de 40px a 20px para mejor proporción */
-  height: 100%; /* Ocupa toda la altura disponible */
+  justify-content: flex-start;
+  gap: 20px;
+  height: 100%;
 
-  /* Cuando hay planta previa, alinear a la izquierda */
   &.has-previa {
     align-items: flex-start;
+
+    .planta-image-container {
+      width: 60%;
+      max-height: 40vh;
+    }
+
+    .planta-previa,
+    .planta-proyecto {
+      align-self: flex-start;
+    }
+
+    .planta-image {
+      max-height: 35vh;
+    }
   }
 }
 
 .planta-image-container {
-  width: 70%; /* Reducido de 80% a 70% para hacer la imagen más pequeña */
+  width: 70%;
   position: relative;
   display: flex;
   flex-direction: column;
-
   opacity: 0;
   transform: scale(0.95);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-/* Cuando hay planta previa, ajustar el tamaño de ambas imágenes */
-.planta-section.has-previa .planta-image-container {
-  width: 60%;
-  max-height: 40vh;
-}
-
-/* Solo cuando hay planta previa, alinear a la izquierda */
-.planta-section.has-previa .planta-previa,
-.planta-section.has-previa .planta-proyecto {
-  align-self: flex-start;
 }
 
 .planta-image {
@@ -111,11 +100,6 @@
   object-fit: contain;
   border-radius: 2px;
   display: block;
-}
-
-/* Solo cuando hay planta previa, limitar la altura de las imágenes */
-.planta-section.has-previa .planta-image {
-  max-height: 35vh;
 }
 
 .planta-fallback {
@@ -176,7 +160,7 @@
   color: #969591;
   align-self: flex-end;
   text-align: right;
-  width: 100%; /* Ocupa todo el ancho disponible */
+  width: 100%;
 }
 
 .project-specs {
@@ -206,6 +190,32 @@
   transform: translateX(80px);
 }
 
+.spec-value {
+  font-family: "manrope", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #969591;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.project-description {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  text-align: right;
+  color: #969591;
+
+  p {
+    font-family: "manrope", sans-serif;
+    font-size: 1.2rem;
+    color: #969591;
+    font-weight: 300;
+    margin: 0;
+  }
+}
+
 // Animaciones cuando la sección entra en vista
 .planta-container.in-view {
   .planta-image-container {
@@ -227,40 +237,13 @@
   }
 }
 
-.spec-value {
-  font-family: "manrope", sans-serif;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #969591;
-  line-height: 1.1;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.project-description {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-  text-align: right;
-  color: #969591;
-
-  p {
-    font-family: "manrope", sans-serif;
-    font-size: 1.2rem;
-    // line-height: 1.7;
-    color: #969591;
-    font-weight: 300;
-    margin: 0;
-  }
-}
-
 .main-image {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Mantiene cover para la imagen principal */
+  object-fit: cover;
   z-index: 0;
   max-width: 100%;
   max-height: 100%;
@@ -286,6 +269,7 @@
   z-index: 2;
   font-family: "modeco", sans-serif;
 }
+
 .m2 {
   transition: 0.6s ease-in-out;
   justify-self: flex-end;
@@ -297,6 +281,7 @@
   font-family: "manrope";
   z-index: 2;
 }
+
 .location {
   opacity: 1;
   font-size: 2.1875rem;
@@ -320,26 +305,21 @@
   padding: 10px;
   color: white;
   font-size: 1.875rem;
-  transition: 0.3s ease-in-out; /* Agrega una transición suave */
-}
+  transition: 0.3s ease-in-out;
 
-.closeButton:hover {
-  font-size: 35px;
+  &:hover {
+    font-size: 35px;
+  }
 }
 
 .images-container {
   display: grid;
-  grid-auto-rows: minmax(
-    150px,
-    auto
-  ); /* Altura mínima de 150px, máxima automática */
-  grid-template-columns: repeat(3, 1fr); /* Exactamente 3 columnas fijas */
-  gap: 40px; /* Espacio entre items */
+  grid-auto-rows: minmax(150px, auto);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
   padding: 4%;
   background-color: #e3e2de;
-  will-change: transform;
-  transform: translateZ(0);
-  align-items: start; /* Alinea elementos al inicio */
+  align-items: start;
 }
 
 .image-container {
@@ -347,11 +327,6 @@
   overflow: hidden;
   border-radius: 2px;
   cursor: pointer;
-  will-change: transform;
-  transform: translateZ(0);
-  /* Altura automática para mantener proporción */
-  height: auto;
-  min-height: auto;
   display: flex;
   flex-direction: column;
 }
@@ -359,38 +334,23 @@
 .image {
   height: 100%;
   width: 100%;
-  background-repeat: no-repeat; /* No repetir la imagen */
-  background-size: cover; /* Cubrir todo el contenedor sin deformar */
-  background-position: center; /* Centrar la imagen */
+  background: no-repeat center/cover;
   border-radius: 2px;
   cursor: pointer;
-  will-change: transform;
-  transform: translateZ(0);
 }
 
-.image-desktop {
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  object-fit: contain; /* Muestra la imagen completa sin cortar */
-  display: block;
-  border-radius: 2px;
-  cursor: pointer;
-  will-change: transform;
-  transform: translateZ(0);
-  flex: 1; /* Ocupa todo el espacio disponible */
-}
-
+.image-desktop,
 .image-mobile {
   width: 100%;
   height: auto;
-  max-width: 100%;
-  object-fit: contain; /* Muestra la imagen completa sin cortar */
+  object-fit: contain;
   display: block;
   border-radius: 2px;
   cursor: pointer;
-  will-change: transform;
-  transform: translateZ(0);
+}
+
+.image-desktop {
+  flex: 1;
 }
 
 .comented {
@@ -399,17 +359,14 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  align-items: center;
   gap: 10%;
-  padding: 20px 0px;
+  padding: 20px 0;
 }
 
 .comentedImage {
   width: 40%;
   height: 80%;
-  background-repeat: no-repeat; /* No repetir la imagen */
-  background-size: cover; /* Cubrir todo el contenedor sin deformar */
-  background-position: center; /* Centrar la imagen */
+  background: no-repeat center/cover;
   border-radius: 2px;
 }
 
@@ -438,8 +395,7 @@
   justify-content: center;
   flex-direction: row;
   gap: 5px;
-  will-change: transform;
-  transform: translateZ(0);
+
   &-content {
     width: 80%;
     height: 80vh;
@@ -448,20 +404,18 @@
     align-items: center;
     justify-content: center;
   }
+
   .carrousel-imgContainer {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-size: contain; /* Cambiado de cover a contain para mostrar imagen completa */
-    background-position: center;
-    background-repeat: no-repeat; /* Evita que se repita la imagen */
+    background: no-repeat center/contain;
     transition: opacity 0.3s ease;
-    will-change: transform;
-    transform: translateZ(0);
 
     &.changing {
-      opacity: 0;
+      opacity: 0.7;
     }
+
     .loading-overlay {
       position: absolute;
       top: 0;
@@ -488,10 +442,6 @@
         opacity: 0.9;
       }
     }
-
-    &.changing {
-      opacity: 0.7;
-    }
   }
 
   .nav-button {
@@ -509,8 +459,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    will-change: transform;
-    transform: translateZ(0);
 
     &:disabled {
       opacity: 0.3;
@@ -528,11 +476,11 @@
 }
 
 @media (max-width: 600px) {
- 
   .project-landig {
     min-height: 100vh;
-    gap: 0px;
+    gap: 0;
   }
+
   .closeButton {
     top: 15px;
     right: 15px;
@@ -601,12 +549,10 @@
     flex-direction: column !important;
     gap: 10px !important;
     align-items: flex-end !important;
-    box-sizing: border-box !important;
   }
 
   .spec-item {
     transform: translateY(20px) !important;
-    box-sizing: border-box !important;
   }
 
   .planta-image-container {
@@ -617,23 +563,19 @@
 
   .project-info {
     gap: 40px !important;
-    box-sizing: border-box !important;
   }
 
   .project-specs {
     gap: 0 !important;
-    box-sizing: border-box !important;
   }
 
   .specs-container {
     gap: 10px !important;
     min-height: auto !important;
-    box-sizing: border-box !important;
   }
 
   .spec-item {
     margin-bottom: 0 !important;
-    box-sizing: border-box !important;
   }
 
   .planta-container.in-view {
@@ -663,16 +605,14 @@
   }
 
   .images-container {
-    grid-template-columns: 1fr !important; /* Una sola columna en pantallas pequeñas */
+    grid-template-columns: 1fr !important;
     gap: 7px;
-    padding: 0px;
-    grid-auto-rows: auto; /* Altura automática para móvil */
+    padding: 0;
+    grid-auto-rows: auto;
   }
 
   .image-container {
     width: 100%;
-    height: auto;
-    min-height: auto;
   }
 
   .name {
@@ -681,6 +621,7 @@
     margin-top: 20%;
     padding-left: 20px;
   }
+
   .m2 {
     font-size: 1.5625rem;
     margin-right: 40px;
