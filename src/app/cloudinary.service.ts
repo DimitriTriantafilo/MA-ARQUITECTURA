@@ -72,7 +72,7 @@ export class CloudinaryService {
       width: size,
       height: size,
       crop: 'c_fill,g_auto',
-      quality: 'q_auto:good',
+      quality: 'q_auto:best', // Mejorado para mejor calidad
     });
   }
 
@@ -86,7 +86,7 @@ export class CloudinaryService {
     return this.generateImageUrl(imageId, {
       width: width,
       crop: 'c_scale,w_auto',
-      quality: 'q_auto:good',
+      quality: 'q_auto:best', // Mejorado para mejor calidad
     });
   }
 
@@ -111,12 +111,12 @@ export class CloudinaryService {
    */
   generateMobileUrl(imageId: string, width: number): string {
     // Para móvil, usamos el ancho real del dispositivo
-    const optimizedWidth = Math.min(width, 600); // Máximo 600px para móvil
+    const optimizedWidth = Math.min(width, 800); // Aumentado para mejor calidad
 
     return this.generateImageUrl(imageId, {
       width: optimizedWidth,
       crop: 'c_fill,g_auto',
-      quality: 'q_auto:good',
+      quality: 'q_auto:best', // Mejorado para mejor calidad
     });
   }
 

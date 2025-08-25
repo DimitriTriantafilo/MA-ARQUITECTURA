@@ -416,7 +416,7 @@ export const projects: Project[] = [
   },
 
   {
-    name: 'Café Infanta Victoria',
+    name: 'CAFÉ INFANTA VICTORIA',
     m2: '290',
     location: 'Villa Ballester',
     showImg: 'v1754421886/jxppbimotom9kg22bgox.jpg',

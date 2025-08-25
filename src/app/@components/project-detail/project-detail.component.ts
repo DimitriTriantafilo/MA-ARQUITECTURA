@@ -283,9 +283,16 @@ export class ProjectDetailComponent
     }
 
     // Calcula el ancho real del contenedor de la planta
-    // El contenedor planta-section tiene width: 50% y hay un gap de 60px
-    // La imagen tiene max-width: 80% dentro del contenedor
-    let containerWidth = Math.floor((this.innerWidth * 0.94 - 60) * 0.5 * 0.8); // 94% del ancho total, menos gap, 50% del contenedor, 80% de la imagen
+    let containerWidth: number;
+
+    if (this.breakpoint.isMobile()) {
+      // En móvil, usar un ancho más grande para mejor calidad
+      containerWidth = Math.min(this.innerWidth * 0.9, 600); // 90% del ancho de pantalla, máximo 600px
+    } else {
+      // El contenedor planta-section tiene width: 50% y hay un gap de 60px
+      // La imagen tiene max-width: 80% dentro del contenedor
+      containerWidth = Math.floor((this.innerWidth * 0.94 - 60) * 0.5 * 0.8);
+    }
 
     // Si hay planta previa, ajustar el ancho para que ambas imágenes quepan mejor
     if (this.data?.plantaPreviaSrc) {
@@ -308,8 +315,16 @@ export class ProjectDetailComponent
   getPlantaPreviaImageUrl(): string {
     if (!this.data?.plantaPreviaSrc || !this.innerWidth) return '';
 
-    // Calcula el ancho real del contenedor de la planta (mismo cálculo que getPlantaImageUrl)
-    let containerWidth = Math.floor((this.innerWidth * 0.94 - 60) * 0.5 * 0.8);
+    // Calcula el ancho real del contenedor de la planta
+    let containerWidth: number;
+
+    if (this.breakpoint.isMobile()) {
+      // En móvil, usar un ancho más grande para mejor calidad
+      containerWidth = Math.min(this.innerWidth * 0.9, 600); // 90% del ancho de pantalla, máximo 600px
+    } else {
+      // Mismo cálculo que getPlantaImageUrl
+      containerWidth = Math.floor((this.innerWidth * 0.94 - 60) * 0.5 * 0.8);
+    }
 
     // Reducir el ancho para que ambas imágenes quepan mejor
     containerWidth = Math.floor(containerWidth * 0.85);
@@ -335,6 +350,7 @@ export class ProjectDetailComponent
     if (!imageSrc || !this.innerWidth) return '';
 
     if (this.breakpoint.isMobile()) {
+      // En móvil, usar el ancho completo de la pantalla para mejor calidad
       return this.cloudinaryService.generateMobileUrl(
         imageSrc,
         this.innerWidth

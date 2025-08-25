@@ -101,9 +101,7 @@
 
             <!-- Elemento Style -->
             <div class="spec-item" *ngIf="data?.mainFeature?.type === 'image'">
-              <span class="spec-value">{{
-                data?.style || ("defaultStyle" | translate)
-              }}</span>
+              <span class="spec-value">{{ data?.style || "" }}</span>
             </div>
           </div>
         </div>

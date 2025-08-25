@@ -27,7 +27,7 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     cofounder: 'Cofounder',
     loadingImage: 'Cargando imagen...',
     // Proyectos
-    reformaMigueletes: 'Reforma Migueletes',
+    reformaMigueletes: 'REFORMA MIGUELETES',
     reformaBnb: 'REFORMA BNB',
     reformaSanfer: 'REFORMA SANFER',
     casaIgor: 'REFORMA IGOR',
@@ -140,7 +140,7 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     cofounder: 'Cofounder',
     loadingImage: 'Loading image...',
     // Proyectos
-    reformaMigueletes: 'Reforma Migueletes',
+    reformaMigueletes: 'REFORMA MIGUELETES',
     reformaBnb: 'REFORMA BNB',
     reformaSanfer: 'REFORMA SANFER',
     casaIgor: 'REFORMA IGOR',

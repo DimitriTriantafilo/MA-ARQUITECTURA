@@ -60,14 +60,16 @@ export class NosotrosComponent implements OnInit {
     width: number,
     height: number
   ): string {
-    return `https://res.cloudinary.com/dskkynwxb/c_scale,w_${width},h_${height}/q_auto:good/f_auto/${publicId}`;
+    // Mejorar calidad para móvil
+    const quality = this.innerWidth <= 600 ? 'q_auto:best' : 'q_auto:good';
+    return `https://res.cloudinary.com/dskkynwxb/c_scale,w_${width},h_${height}/${quality}/f_auto/${publicId}`;
   }
 
   getVerticalImageWidth(): number {
     // Para profile-img2, usamos un ancho fijo más pequeño en móvil
     if (this.innerWidth <= 600) {
-      // En móvil, usamos un ancho fijo más pequeño para evitar pixelación
-      return 300;
+      // En móvil, aumentamos el ancho para mejor calidad
+      return 600; // Aumentado para mejor calidad
     } else {
       // En desktop, usamos el 35% del ancho de la pantalla
       const containerWidth = Math.floor(this.innerWidth * 0.35);
@@ -79,8 +81,8 @@ export class NosotrosComponent implements OnInit {
     // Para profile-img2, calculamos una altura proporcional
     const containerWidth = this.getVerticalImageWidth();
     if (this.innerWidth <= 600) {
-      // En móvil, usamos una relación de aspecto más cuadrada
-      return Math.floor(containerWidth * 0.75); // 3:4 ratio
+      // En móvil, para foto horizontal usamos proporción 16:9 o 3:2
+      return Math.floor(containerWidth * 0.5625); // 16:9 ratio (más natural para fotos horizontales)
     } else {
       // En desktop, usamos relación de aspecto 16:9
       return Math.floor(containerWidth * 0.5625); // 9/16 = 0.5625
@@ -89,16 +91,21 @@ export class NosotrosComponent implements OnInit {
 
   getProfileImageWidth(): number {
     // Para profile-img, usamos el 30% del ancho de la pantalla (como en el CSS)
-    const containerWidth = Math.floor(this.innerWidth * 0.3);
-    // Limitamos el ancho máximo para optimizar el consumo de red
-    return Math.min(containerWidth, 600);
+    if (this.innerWidth <= 600) {
+      // En móvil, aumentamos el ancho para mejor calidad
+      return 400; // Aumentado para mejor calidad
+    } else {
+      const containerWidth = Math.floor(this.innerWidth * 0.3);
+      // Limitamos el ancho máximo para optimizar el consumo de red
+      return Math.min(containerWidth, 600);
+    }
   }
 
   getProfileImageHeight(): number {
     // Para profile-img, calculamos una altura proporcional
     // Usamos una relación de aspecto típica de retrato
     const containerWidth = this.getProfileImageWidth();
-    // Relación de aspecto 3:4 (más natural para fotos de perfil)
+    // Relación de aspecto 4:3 (más natural para fotos de perfil)
     return Math.floor(containerWidth * 1.33); // 4/3 = 1.33
   }
 }
