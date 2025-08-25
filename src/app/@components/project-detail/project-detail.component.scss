@@ -528,6 +528,7 @@
 }
 
 @media (max-width: 600px) {
+ 
   .project-landig {
     min-height: 100vh;
     gap: 0px;
@@ -567,6 +568,7 @@
   }
 
   .planta-image {
+    align-self: center;
     max-width: 250px !important;
   }
 
@@ -598,7 +600,7 @@
   .specs-container {
     flex-direction: column !important;
     gap: 10px !important;
-    align-items: center !important;
+    align-items: flex-end !important;
     box-sizing: border-box !important;
   }
 
@@ -624,7 +626,7 @@
   }
 
   .specs-container {
-    gap: 0 !important;
+    gap: 10px !important;
     min-height: auto !important;
     box-sizing: border-box !important;
   }

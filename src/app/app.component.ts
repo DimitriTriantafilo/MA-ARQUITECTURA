@@ -4,6 +4,7 @@ import {
   Inject,
   PLATFORM_ID,
   isDevMode,
+  OnInit,
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TopbarComponent } from './@components/topbar/topbar.component';
@@ -16,24 +17,40 @@ import { isPlatformBrowser } from '@angular/common';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   showWelcome = true;
   isMobile = false;
   loadVideo: boolean = false;
+
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     if (isPlatformBrowser(this.platformId)) {
       this.isMobile = window.innerWidth <= 600;
+    }
+  }
 
+  ngOnInit() {
+    if (isPlatformBrowser(this.platformId)) {
       // Optimize for production
       if (!isDevMode()) {
-        // Production: No splash screen delay for optimal LCP
-        this.showWelcome = false;
+        // Production: Show splash screen briefly for branding
+        this.showWelcome = true;
+        setTimeout(() => {
+          this.hideWelcome();
+        }, 4000); // 4 segundos para una animación más lenta y fluida
         // Preload critical resources
         this.preloadCriticalResources();
       } else {
-        this.showWelcome = false;
+        // Development: Show splash screen for testing
+        this.showWelcome = true;
+        setTimeout(() => {
+          this.hideWelcome();
+        }, 4000);
       }
     }
+  }
+
+  private hideWelcome() {
+    this.showWelcome = false;
   }
 
   private preloadCriticalResources(): void {

@@ -209,6 +209,16 @@
   }
 }
 @media (max-width: 600px) {
+  .videoOverlay {
+    span {
+      &.hero-text {
+        font-size: 1.2rem;
+      }
+    }
+  }
+  .hero-text {
+    font-size: 1.2rem;
+  }
   .featuredImg {
     height: 55vw;
   }

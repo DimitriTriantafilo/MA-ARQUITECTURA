@@ -1,6 +1,9 @@
 <main class="main">
-  <app-topbar [class.hidden]="isHidden"></app-topbar>
-  <!-- <div
+  <app-topbar
+    [class.hidden]="isHidden"
+    [class.initial-state]="showWelcome"
+  ></app-topbar>
+  <div
     class="welcome-container"
     *ngIf="showWelcome"
     [class.mobile]="isMobile"
@@ -18,6 +21,8 @@
       loading="eager"
       style="will-change: transform; contain: layout style paint"
     />
-  </div> -->
-  <router-outlet />
+  </div>
+  <div class="content-container" [class.hidden]="showWelcome">
+    <router-outlet />
+  </div>
 </main>

@@ -10,30 +10,34 @@
   align-items: center;
   background-color: rgba($deep-onyx, 0.65);
   color: white;
+  transition: background-color 4s ease-in-out, height 4s ease-in-out;
 }
 
 .logo-switcher {
   align-self: center;
-
   overflow: hidden;
   display: block;
   align-items: center;
   justify-content: center;
   height: 90px;
   cursor: pointer;
+  transition: height 4s ease-in-out;
 }
+
 .logo-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center; /* Centra la imagen horizontalmente */
-  transition: transform 0.3s ease;
+  transition: transform 4s ease-in-out, opacity 4s ease-in-out;
+  transform-origin: center;
 }
 
 .logo {
   width: 90px; /* Establece el tamaño base */
   height: auto;
-  transition: all 0.4s ease-in-out; /* Agrega una transición suave */
+  transition: width 4s ease-in-out, height 4s ease-in-out,
+    opacity 0.3s ease-in-out; /* Transición específica para hover */
 }
 
 .logo-switcher:hover .logo {
@@ -42,8 +46,11 @@
 
 .marca {
   font-family: "levenim";
-  transition: transform 0.7s ease-in-out; /* Agrega una transición suave */
+  transition: transform 4s ease-in-out, opacity 4s ease-in-out,
+    transform 0.3s ease-in-out; /* Transición específica para hover */
+  opacity: 1;
 }
+
 .logo-switcher:hover .marca {
   transform: translateY(-70px);
 }
@@ -55,8 +62,12 @@
   gap: 10px;
   margin: 0px;
   padding-right: 20px;
+  transition: opacity 0.5s ease-in-out;
+
   &-container {
     padding-left: 20px;
+    transition: opacity 0.5s ease-in-out;
+
     button {
       color: white;
       background-color: transparent;
@@ -130,6 +141,9 @@
   }
   .logo {
     width: 12vw;
+  }
+  .logo-switcher {
+    height: 12vw;
   }
 }
 
@@ -208,9 +222,6 @@
 }
 
 @media (max-width: 600px) {
-  .logo-switcher {
-    height: 12vw;
-  }
   .activeMenu {
     width: 100vw;
   }
