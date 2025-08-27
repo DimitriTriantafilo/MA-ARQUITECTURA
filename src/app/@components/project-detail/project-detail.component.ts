@@ -8,6 +8,7 @@ import {
   Inject,
   PLATFORM_ID,
   AfterViewInit,
+  HostListener,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { projects } from '../../app.routes';
@@ -19,6 +20,7 @@ import { WindowSizeService } from '../../window-size.service';
 import { BreakpointService } from '../../breakpoint.service';
 import { CloudinaryService } from '../../cloudinary.service';
 import { ImagePreloadService } from '../../image-preload.service';
+import { TranslationService } from '../../transltate/translation.service';
 import { TranslatePipe } from '../../transltate/translate.pipe';
 
 @Component({
@@ -61,7 +63,8 @@ export class ProjectDetailComponent
     public windowSize: WindowSizeService,
     public breakpoint: BreakpointService,
     private cloudinaryService: CloudinaryService,
-    private imagePreloadService: ImagePreloadService
+    private imagePreloadService: ImagePreloadService,
+    private translationService: TranslationService
   ) {
     this.innerWidth = this.windowSize.innerWidth();
     this.innerHeight = this.windowSize.innerHeight();
@@ -233,6 +236,59 @@ export class ProjectDetailComponent
     if (event.target === event.currentTarget) {
       this.openCarrouselFlag = false;
     }
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent): void {
+    // Solo manejar eventos del teclado cuando el carrusel está abierto
+    if (!this.openCarrouselFlag) {
+      return;
+    }
+
+    switch (event.key) {
+      case 'ArrowRight':
+        event.preventDefault();
+        this.nextImage();
+        break;
+      case 'ArrowLeft':
+        event.preventDefault();
+        this.prevImage();
+        break;
+      case 'Escape':
+        event.preventDefault();
+        this.closeCarrousel();
+        break;
+    }
+  }
+
+  getProjectDescription(): string {
+    if (!this.data) {
+      return '';
+    }
+
+    // Verificar si el idioma actual es inglés
+    const currentLanguage = this.translationService.currentLang();
+
+    if (currentLanguage === 'en' && this.data.descriptionEn) {
+      return this.data.descriptionEn;
+    }
+
+    return this.data.description || '';
+  }
+
+  getProjectName(): string {
+    if (!this.data) {
+      return '';
+    }
+
+    // Verificar si el idioma actual es inglés
+    const currentLanguage = this.translationService.currentLang();
+
+    if (currentLanguage === 'en' && this.data.nameEn) {
+      return this.data.nameEn;
+    }
+
+    return this.data.name;
   }
 
   ngOnDestroy() {

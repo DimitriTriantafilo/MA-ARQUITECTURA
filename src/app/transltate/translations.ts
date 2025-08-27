@@ -8,12 +8,12 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     services: 'SERVICIOS',
     contact: 'CONTACTO',
     proyects: 'PROYECTOS',
-    title: 'MA - ARQUITECTURA',
+    title: 'MA Arquitectura',
     close: 'CERRAR',
     home: 'INICIO',
     menu: 'MENU',
     estudioDescription:
-      'EN MA <strong>CREAMOS</strong> PROYECTOS PARA EL HABITAR QUE PERMANEZCAN EN EL TIEMPO <strong>DISEÑAMOS</strong> ESPACIOS CON SENTIDO, RESALTANDO LO ESENCIAL EN CADA UNO.<br> ESTAMOS EN LA BÚSQUEDA CONSTANTE DE <strong>EQUILIBRIO</strong> Y <strong>ARMONÍA</strong> PROYECTAMOS A MEDIDA Y GUSTO DE CADA CLIENTE.<br> <strong> CONSTRUIMOS </strong> ESPACIOS DE <strong>LUJO</strong> ADAPTÁNDONOS AL PRESUPUESTO DE CADA CLIENTE.<br> EN MA, SOMOS MUCHO MÁS QUE ARQUITECTURA: SOMOS <strong>ARTE</strong>, <strong>INNOVACIÓN</strong> Y <strong>DISEÑO</strong>.',
+      '"En MA <strong>CREAMOS</strong> proyectos para el habitar que permanezcan en el tiempo. <strong>DISEÑAMOS</strong> espacios con sentido, resaltando lo esencial en cada uno.<br> Estamos en la búsqueda constante de <strong>EQUILIBRIO</strong> y <strong>ARMONÍA</strong>. Proyectamos a medida y gusto de cada cliente.<br> <strong>CONSTRUIMOS</strong> espacios de <strong>LUJO</strong> adaptándonos al presupuesto de cada cliente.<br> En MA, somos mucho más que arquitectura: somos <strong>ARTE</strong>, <strong>INNOVACIÓN</strong> y <strong>DISEÑO</strong>."',
     agusDescription:
       '"Nos gusta estar en los detalles, para que cada cliente se sienta cómodo y acompañado durante todo el proceso de diseño y construcción"',
     manuDescription:
@@ -26,6 +26,10 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     plantaProyecto: 'PLANTA PROYECTO',
     cofounder: 'Cofounder',
     loadingImage: 'Cargando imagen...',
+    // Títulos del proyecto
+    year: 'Año',
+    dimension: 'Dimensión',
+    location: 'Ubicación',
     // Proyectos
     reformaMigueletes: 'REFORMA MIGUELETES',
     reformaBnb: 'REFORMA BNB',
@@ -121,12 +125,12 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     services: 'SERVICES',
     contact: 'CONTACT',
     proyects: 'PROJECTS',
-    title: 'MA - ARQUITECTURE',
+    title: 'MA Arquitecture',
     close: 'CLOSE',
     home: 'HOME',
     menu: 'MENU',
     estudioDescription:
-      'At MA, we <strong>CREATE</strong> projects for lasting living. We <strong>DESIGN</strong> spaces with meaning, highlighting the essential elements in each space. We constantly seek <strong>BALANCE</strong> and <strong>HARMONY</strong>. We design according to the needs and tastes of each client. We <strong>BUILD</strong> <strong>LUXURIOUS</strong> spaces, adapting to each client´s budget. At MA, we are much more than architecture: we are <strong>ART</strong>, <strong>INNOVATION</strong>, and <strong>DESIGN</strong>.',
+      'At MA, we <strong>CREATE</strong> projects for lasting living. </br> We <strong>DESIGN</strong> spaces with meaning, highlighting the essential elements in each space.  </br>  We constantly seek <strong>BALANCE</strong> and <strong>HARMONY</strong>.  </br>  We design according to the needs and tastes of each client.  </br>  We <strong>BUILD</strong> <strong>LUXURIOUS</strong> spaces, adapting to each client´s budget.  </br>  At MA, we are much more than architecture: we are <strong>ART</strong>, <strong>INNOVATION</strong>, and <strong>DESIGN</strong>.',
     manuDescription:
       'We believe that architecture is based on generating unique spaces of permanence, where design and innovation are protagonists.',
     agusDescription:
@@ -139,6 +143,10 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     plantaProyecto: 'PROJECT BLUEPRINT',
     cofounder: 'Cofounder',
     loadingImage: 'Loading image...',
+    // Títulos del proyecto
+    year: 'Year',
+    dimension: 'Dimension',
+    location: 'Location',
     // Proyectos
     reformaMigueletes: 'REFORMA MIGUELETES',
     reformaBnb: 'REFORMA BNB',

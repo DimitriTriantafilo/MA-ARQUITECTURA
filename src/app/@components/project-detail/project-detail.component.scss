@@ -190,6 +190,17 @@
   transform: translateX(80px);
 }
 
+.spec-label {
+  font-family: "manrope", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #756860;
+  line-height: 1.1;
+  text-transform: capitalize;
+  letter-spacing: 0.3px;
+  margin-right: 8px;
+}
+
 .spec-value {
   font-family: "manrope", sans-serif;
   font-size: 1.2rem;

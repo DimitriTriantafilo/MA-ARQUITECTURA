@@ -89,6 +89,7 @@ export class AppComponent implements OnInit {
 
 export interface Project {
   name: string;
+  nameEn?: string;
   m2: string;
   location: string;
   showImg: string;
@@ -98,6 +99,7 @@ export interface Project {
   };
   images: Image[];
   description?: string;
+  descriptionEn?: string;
   year?: number;
   rowSpan?: number;
   colSpan?: number;

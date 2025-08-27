@@ -9,7 +9,7 @@
     decoding="sync"
   />
   <div class="overlay"></div>
-  <span class="name">{{ data?.name }}</span>
+  <span class="name">{{ getProjectName() }}</span>
   <span class="m2" *ngIf="data?.m2">{{ data?.m2 }}m<sup>2</sup></span>
 </div>
 
@@ -72,8 +72,11 @@
     <!-- Contenido derecho: Descripción e Info del proyecto -->
     <div class="right-content">
       <!-- Descripción del proyecto -->
-      <div class="project-description" *ngIf="data?.description">
-        <p>{{ data?.description }}</p>
+      <div
+        class="project-description"
+        *ngIf="data?.description || data?.descriptionEn"
+      >
+        <p>{{ getProjectDescription() }}</p>
       </div>
 
       <!-- Información del proyecto -->
@@ -84,19 +87,22 @@
         <!-- Especificaciones del proyecto -->
         <div class="project-specs">
           <div class="specs-container">
+            <!-- Elemento Year -->
+            <div class="spec-item" *ngIf="data?.year">
+              <span class="spec-label">{{ "year" | translate }}:</span>
+              <span class="spec-value">{{ data?.year }}</span>
+            </div>
+
             <!-- Elemento M² -->
             <div class="spec-item" *ngIf="data?.m2">
+              <span class="spec-label">{{ "dimension" | translate }}:</span>
               <span class="spec-value">{{ data?.m2 }}M²</span>
             </div>
 
             <!-- Elemento Location -->
             <div class="spec-item" *ngIf="data?.location">
+              <span class="spec-label">{{ "location" | translate }}:</span>
               <span class="spec-value">{{ data?.location }}</span>
-            </div>
-
-            <!-- Elemento Year -->
-            <div class="spec-item" *ngIf="data?.year">
-              <span class="spec-value">{{ data?.year }}</span>
             </div>
 
             <!-- Elemento Style -->

@@ -92,22 +92,22 @@ export class ServiciosComponent implements OnInit, OnDestroy {
   getServicesImageUrl(): string {
     if (!this.innerWidth) return '';
 
-    // Optimizar el cálculo para evitar pixelación
+    // Optimizar el cálculo para mejor calidad
     let imageWidth: number;
     let imageHeight: number;
 
     if (this.innerWidth <= 768) {
-      // En móvil, usar un ancho más pequeño
-      imageWidth = Math.min(Math.floor(this.innerWidth * 0.6), 300);
-      imageHeight = Math.floor(imageWidth * 0.6); // Aspect ratio 5:3
+      // En móvil, usar un ancho más grande para mejor calidad
+      imageWidth = Math.min(Math.floor(this.innerWidth * 0.8), 400);
+      imageHeight = Math.floor(imageWidth * 0.75); // Aspect ratio 4:3
     } else if (this.innerWidth <= 1024) {
-      // En tablet, usar un ancho proporcional pero limitado
-      imageWidth = Math.min(Math.floor(this.innerWidth * 0.5), 400);
-      imageHeight = Math.floor(imageWidth * 0.6);
+      // En tablet, usar un ancho proporcional pero más grande
+      imageWidth = Math.min(Math.floor(this.innerWidth * 0.6), 500);
+      imageHeight = Math.floor(imageWidth * 0.75);
     } else {
-      // En desktop, usar el cálculo original pero con límites
-      imageWidth = Math.min(Math.floor(this.innerWidth * 0.4), 300);
-      imageHeight = Math.floor(imageWidth * 0.6);
+      // En desktop, usar un ancho más grande para mejor calidad
+      imageWidth = Math.min(Math.floor(this.innerWidth * 0.5), 600);
+      imageHeight = Math.floor(imageWidth * 0.75);
     }
 
     return this.cloudinaryService.generateGalleryUrl(

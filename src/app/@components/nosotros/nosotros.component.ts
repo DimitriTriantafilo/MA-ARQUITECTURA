@@ -35,6 +35,14 @@ export class NosotrosComponent implements OnInit {
 
   ngOnInit() {
     // Ya no es necesario asignar innerWidth manualmente
+
+    // Activar el efecto del parallax 2 inmediatamente al cargar el componente
+    setTimeout(() => {
+      const parallax2Image = document.querySelector('.profile-img2');
+      if (parallax2Image) {
+        parallax2Image.classList.add('parallax2-effect');
+      }
+    }, 100); // Pequeño delay para asegurar que el DOM esté listo
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -53,6 +61,20 @@ export class NosotrosComponent implements OnInit {
         img.classList.remove('parallax-effect');
       }
     });
+
+    // Efecto para parallax 2 (imagen del estudio)
+    const parallax2Image = document.querySelector('.profile-img2');
+    if (parallax2Image) {
+      const rect = parallax2Image.getBoundingClientRect();
+      const offset = rect.top - window.innerHeight;
+      const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+
+      if (isVisible) {
+        parallax2Image.classList.add('parallax2-effect');
+      } else {
+        parallax2Image.classList.remove('parallax2-effect');
+      }
+    }
   }
 
   getOptimizedImageUrl(

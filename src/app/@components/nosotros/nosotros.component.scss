@@ -149,6 +149,14 @@ $bg-color: #e3e2de;
     object-fit: cover;
     @include parallax-transition;
     z-index: 0;
+    opacity: 0;
+    transform: scale(0.8) translateY(30px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+    &.parallax2-effect {
+      opacity: 1;
+      transform: scale(1.05) translateY(0);
+    }
   }
 
   h2 {
@@ -395,6 +403,14 @@ $bg-color: #e3e2de;
       border-radius: 8px;
       flex-shrink: 0;
       margin: 0 auto; /* Centrar la imagen */
+      opacity: 0;
+      transform: scale(0.8) translateY(30px);
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+      &.parallax2-effect {
+        opacity: 1;
+        transform: scale(1.05) translateY(0);
+      }
     }
 
     h2 {

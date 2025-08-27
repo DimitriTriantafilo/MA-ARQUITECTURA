@@ -1,7 +1,7 @@
 <div class="project-display">
   <div class="overlay">
     <div class="project-info">
-      <h1 class="name">{{ project.name }}</h1>
+      <h1 class="name">{{ getProjectName() }}</h1>
       <span class="location">{{ project.location }}</span>
     </div>
     <div class="m2-container">
@@ -10,7 +10,7 @@
   </div>
   <img
     [src]="getProjectImageUrl()"
-    [alt]="'Imagen de ' + project.name"
+    [alt]="'Imagen de ' + getProjectName()"
     class="img"
     fetchpriority="high"
     loading="eager"

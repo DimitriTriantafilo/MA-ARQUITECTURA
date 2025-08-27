@@ -10,7 +10,7 @@
   align-items: center;
   background-color: rgba($deep-onyx, 0.65);
   color: white;
-  transition: background-color 4s ease-in-out, height 4s ease-in-out;
+  transition: background-color 1.5s ease-in-out, height 1.5s ease-in-out;
 }
 
 .logo-switcher {
@@ -21,7 +21,7 @@
   justify-content: center;
   height: 90px;
   cursor: pointer;
-  transition: height 4s ease-in-out;
+  transition: height 1.5s ease-in-out;
 }
 
 .logo-container {
@@ -29,14 +29,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center; /* Centra la imagen horizontalmente */
-  transition: transform 4s ease-in-out, opacity 4s ease-in-out;
+  transition: transform 1.5s ease-in-out, opacity 1.5s ease-in-out;
   transform-origin: center;
 }
 
 .logo {
   width: 90px; /* Establece el tamaño base */
   height: auto;
-  transition: width 4s ease-in-out, height 4s ease-in-out,
+  transition: width 1.5s ease-in-out, height 1.5s ease-in-out,
     opacity 0.3s ease-in-out; /* Transición específica para hover */
 }
 
@@ -46,7 +46,7 @@
 
 .marca {
   font-family: "levenim";
-  transition: transform 4s ease-in-out, opacity 4s ease-in-out,
+  transition: transform 1.5s ease-in-out, opacity 1.5s ease-in-out,
     transform 0.3s ease-in-out; /* Transición específica para hover */
   opacity: 1;
 }

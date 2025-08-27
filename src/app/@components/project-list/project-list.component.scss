@@ -21,7 +21,7 @@
 .projects-container {
   background-color: #e3e2de;
   display: grid;
-  grid-auto-rows: 140px; /* Aumentado para respetar rowSpan */
+  grid-auto-rows: 190px; /* Aumentado para respetar rowSpan */
   grid-template-columns: repeat(3, 1fr); /* Tres columnas fijas */
   gap: 20px; /* Espacio entre items */
 
@@ -30,6 +30,9 @@
 }
 
 @media (max-width: 600px) {
+  .lema {
+    margin-top: 40px;
+  }
   .projects-container {
     gap: 14px;
     grid-auto-rows: 250px; /* Altura fija para móvil */

@@ -3,6 +3,7 @@ import { Project } from '../../app.component';
 import { CommonModule } from '@angular/common';
 import { CloudinaryService } from '../../cloudinary.service';
 import { WindowSizeService } from '../../window-size.service';
+import { TranslationService } from '../../transltate/translation.service';
 
 @Component({
   selector: 'app-project-display',
@@ -18,7 +19,8 @@ export class ProjectDisplayComponent implements OnInit {
 
   constructor(
     private cloudinaryService: CloudinaryService,
-    private windowSize: WindowSizeService
+    private windowSize: WindowSizeService,
+    private translationService: TranslationService
   ) {}
 
   ngOnInit() {}
@@ -32,5 +34,23 @@ export class ProjectDisplayComponent implements OnInit {
       this.project.showImg,
       viewportWidth
     );
+  }
+
+  /**
+   * Obtiene el nombre del proyecto según el idioma actual
+   */
+  getProjectName(): string {
+    if (!this.project) {
+      return '';
+    }
+
+    // Verificar si el idioma actual es inglés
+    const currentLanguage = this.translationService.currentLang();
+
+    if (currentLanguage === 'en' && this.project.nameEn) {
+      return this.project.nameEn;
+    }
+
+    return this.project.name;
   }
 }
