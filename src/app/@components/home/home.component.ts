@@ -60,7 +60,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
   // Funciones de navegación para proyectos
   navigateToReformaMigueletes() {
-    this.router.navigate(['/migueletes']);
+    this.router.navigate(['/reforma-migueletes']);
   }
 
   navigateToReformaBnb() {
