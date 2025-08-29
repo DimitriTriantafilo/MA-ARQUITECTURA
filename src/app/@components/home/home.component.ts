@@ -6,26 +6,39 @@ import {
   PLATFORM_ID,
   AfterViewInit,
   OnDestroy,
+  OnInit,
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { WindowSizeService } from '../../window-size.service';
 import { TranslatePipe } from '../../transltate/translate.pipe';
+import { PrivacyFriendlyVideoComponent } from '../privacy-friendly-video/privacy-friendly-video.component';
+import { ImagePreloadService } from '../../image-preload.service';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, TranslatePipe],
+  imports: [CommonModule, TranslatePipe, PrivacyFriendlyVideoComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent implements AfterViewInit, OnDestroy {
+export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   private observers: IntersectionObserver[] = [];
 
   constructor(
     private el: ElementRef,
     @Inject(PLATFORM_ID) private platformId: Object,
     public windowSize: WindowSizeService,
-    private router: Router
+    private router: Router,
+    private imagePreloadService: ImagePreloadService
   ) {}
+
+  ngOnInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      // Precargar recursos críticos de forma asíncrona
+      setTimeout(() => {
+        this.imagePreloadService.preloadCriticalResources();
+      }, 100);
+    }
+  }
 
   get innerWidth() {
     return this.windowSize.innerWidth();
@@ -64,7 +77,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   }
 
   navigateToReformaBnb() {
-    this.router.navigate(['/bnb']);
+    this.router.navigate(['/reforma-bnb']);
   }
 
   navigateToCasaIgor() {
@@ -95,109 +108,120 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       // Delay para asegurar que el DOM esté completamente renderizado
       setTimeout(() => {
         this.setupIntersectionObservers();
-      }, 100);
+        this.setupLazyLoading();
+        this.setupProjectTextObserver();
+      }, 500); // Aumentado a 500ms para asegurar que todo esté cargado
     }
   }
 
   ngOnDestroy() {
+    // Limpiar todos los observers
     this.observers.forEach((observer) => observer.disconnect());
   }
 
-  private setupIntersectionObservers() {
-    // Observer para proyectos horizontales
-    const projectObserver = new IntersectionObserver(
+  private setupIntersectionObservers(): void {
+    // Configurar lazy loading para imágenes
+    const imageObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const img = entry.target as HTMLImageElement;
+            if (img.dataset['src']) {
+              img.setAttribute('src', img.dataset['src']);
+              img.removeAttribute('data-src');
+              imageObserver.unobserve(img);
+            }
+          }
+        });
+      },
+      {
+        rootMargin: '50px 0px',
+        threshold: 0.1,
+      }
+    );
+
+    // Observar todas las imágenes con data-src
+    const lazyImages = this.el.nativeElement.querySelectorAll('img[data-src]');
+    lazyImages.forEach((img: HTMLImageElement) => {
+      imageObserver.observe(img);
+    });
+
+    this.observers.push(imageObserver);
+  }
+
+  private setupLazyLoading(): void {
+    // Usar el servicio de preload para optimizar la carga de recursos
+    this.imagePreloadService.lazyLoadResources(
+      '.project-landig img, .vertical-image-container img',
+      (element) => {
+        const img = element as HTMLImageElement;
+        if (img.dataset['src']) {
+          img.setAttribute('src', img.dataset['src']);
+          img.removeAttribute('data-src');
+        }
+      }
+    );
+  }
+
+  private setupProjectTextObserver(): void {
+    // Observer para los textos de los proyectos
+    const projectTextObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const projectElement = entry.target as HTMLElement;
-            const nameElement = projectElement.querySelector('.name');
-            const divisorElement = projectElement.querySelector('.divisor');
-            const m2Element = projectElement.querySelector('.m2');
-
-            if (nameElement) {
-              nameElement.classList.add('in-view');
-            }
-            if (divisorElement) {
-              setTimeout(() => {
-                divisorElement.classList.add('in-view');
-              }, 100);
-            }
-            if (m2Element) {
-              setTimeout(() => {
-                m2Element.classList.add('in-view');
-              }, 200);
-            }
-
-            // Solo ejecutar una vez
-            projectObserver.unobserve(entry.target);
+            projectElement.classList.add('in-view');
+            console.log('Proyecto en vista:', projectElement.textContent);
+          } else {
+            // Opcional: remover la clase cuando sale del viewport
+            const projectElement = entry.target as HTMLElement;
+            projectElement.classList.remove('in-view');
           }
         });
       },
       {
-        threshold: 0.5, // Se activa cuando el 50% del elemento está visible
-        rootMargin: '0px 0px -200px 0px', // Se activa cuando el elemento esté más arriba
+        rootMargin: '0px 0px -50px 0px',
+        threshold: 0.1,
       }
     );
 
-    // Observer para proyectos verticales
-    const verticalProjectObserver = new IntersectionObserver(
+    // Observar todos los elementos de texto de los proyectos
+    const projectTexts = this.el.nativeElement.querySelectorAll(
+      '.name, .m2, .divisor'
+    );
+    console.log('Elementos de proyecto encontrados:', projectTexts.length);
+    projectTexts.forEach((textElement: Element) => {
+      projectTextObserver.observe(textElement);
+      console.log('Observando elemento:', textElement.textContent);
+    });
+
+    this.observers.push(projectTextObserver);
+  }
+
+  private setupHeroTextObserver(): void {
+    // Observer para el texto del hero
+    const heroTextObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const projectInfoElement = entry.target as HTMLElement;
-            const nameElement = projectInfoElement.querySelector('.name');
-            const divisorElement = projectInfoElement.querySelector('.divisor');
-            const m2Element = projectInfoElement.querySelector('.m2');
-
-            if (nameElement) {
-              nameElement.classList.add('in-view');
-            }
-            if (divisorElement) {
-              setTimeout(() => {
-                divisorElement.classList.add('in-view');
-              }, 100);
-            }
-            if (m2Element) {
-              setTimeout(() => {
-                m2Element.classList.add('in-view');
-              }, 200);
-            }
-
-            // Solo ejecutar una vez
-            verticalProjectObserver.unobserve(entry.target);
+            const heroText = entry.target as HTMLElement;
+            heroText.classList.add('in-view');
+            heroTextObserver.unobserve(heroText); // Solo una vez
           }
         });
       },
       {
-        threshold: 0.3,
         rootMargin: '0px 0px -50px 0px',
+        threshold: 0.1,
       }
     );
 
-    // Observar elementos de proyectos horizontales
-    const projectElements =
-      this.el.nativeElement.querySelectorAll('.project-landig');
-    projectElements.forEach((element: HTMLElement) => {
-      projectObserver.observe(element);
-    });
-
-    // Observar elementos de información de proyectos verticales
-    const projectInfoElements =
-      this.el.nativeElement.querySelectorAll('.project-info');
-    projectInfoElements.forEach((element: HTMLElement) => {
-      verticalProjectObserver.observe(element);
-    });
-
-    // Animar el mensaje hero inmediatamente
-    const heroElement =
-      this.el.nativeElement.querySelector('.videoOverlay span');
-    if (heroElement) {
-      // Pequeño delay para que la animación sea visible
-      setTimeout(() => {
-        heroElement.classList.add('in-view');
-      }, 500);
+    // Observar el texto del hero
+    const heroText = this.el.nativeElement.querySelector('.hero-text');
+    if (heroText) {
+      heroTextObserver.observe(heroText);
     }
 
-    this.observers.push(projectObserver, verticalProjectObserver);
+    this.observers.push(heroTextObserver);
   }
 }

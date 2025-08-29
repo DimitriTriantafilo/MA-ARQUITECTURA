@@ -102,7 +102,9 @@
             <!-- Elemento Location -->
             <div class="spec-item" *ngIf="data?.location">
               <span class="spec-label">{{ "location" | translate }}:</span>
-              <span class="spec-value">{{ data?.location }}</span>
+              <span class="spec-value">
+                {{ data?.district ?? "ARG" }} - {{ data?.location }}
+              </span>
             </div>
 
             <!-- Elemento Style -->

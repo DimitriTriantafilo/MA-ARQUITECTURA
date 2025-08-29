@@ -157,4 +157,25 @@
       vertical-align: baseline; /* Mantener alineación */
     }
   }
+
+  .project-display:hover .overlay {
+    .name {
+      opacity: 1;
+      font-size: 1.7rem; /* Aumentado ligeramente en hover */
+    }
+
+    .location {
+      opacity: 1;
+      font-size: 1.2rem; /* Mismo tamaño que m2 en hover */
+      line-height: 1; /* Mantener alineación */
+      vertical-align: baseline; /* Mantener alineación */
+    }
+
+    .m2 {
+      opacity: 1;
+      font-size: 1.2rem; /* Aumentado ligeramente en hover */
+      line-height: 1; /* Mantener alineación */
+      vertical-align: baseline; /* Mantener alineación */
+    }
+  }
 }

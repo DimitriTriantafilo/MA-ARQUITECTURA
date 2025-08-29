@@ -7,6 +7,18 @@
   overflow: hidden; /* Evita bordes indeseados */
   contain: layout style paint;
 
+  /* Estilos para el componente de video optimizado */
+  app-privacy-friendly-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    contain: layout style paint;
+    will-change: transform;
+  }
+
+  /* Mantener compatibilidad con iframe directo si se usa */
   iframe {
     position: absolute;
     top: 0;
@@ -34,7 +46,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh; /* Pantalla completa */
+  height: 100%; /* Solo el área del video */
 
   z-index: 2;
   display: flex;
@@ -240,6 +252,22 @@
     font-size: 1.5625rem; /* 25px */
     margin-right: 40px;
     padding: 0px 20px;
+  }
+
+  // Deshabilitar hover en móvil para proyectos principales
+  .project-landig.clickable {
+    &:hover {
+      transform: none;
+      filter: none;
+    }
+  }
+
+  // Deshabilitar hover en móvil para contenedores verticales
+  .vertical-image-container.clickable {
+    &:hover {
+      transform: none;
+      filter: none;
+    }
   }
 }
 

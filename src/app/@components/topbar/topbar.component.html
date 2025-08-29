@@ -37,11 +37,11 @@
   <!-- <button mat-button>Menu</button> -->
   <ul class="menu">
     @if(isMobile){
-    <div>
+    <li>
       <span class="menuButton"> {{ "menu" | translate }} </span>
-    </div>
+    </li>
     }
-    <div>
+    <li>
       <span
         (click)="changeLanguage()"
         class="language-switcher"
@@ -55,8 +55,8 @@
           <p>EN</p>
         </div>
       </span>
-    </div>
-    <div>
+    </li>
+    <li>
       <a
         target="_blank"
         rel="noopener"
@@ -73,7 +73,7 @@
           decoding="async"
         />
       </a>
-    </div>
+    </li>
   </ul>
   }
 </nav>

@@ -1,4 +1,10 @@
-import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  Inject,
+  HostListener,
+} from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { PLATFORM_ID } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
@@ -24,6 +30,7 @@ interface ServiceItem {
 export class ServiciosComponent implements OnInit, OnDestroy {
   public innerWidth: number;
   public innerHeight: number;
+  public servicesImageLoaded = false;
 
   constructor(
     public windowSize: WindowSizeService,
@@ -39,6 +46,11 @@ export class ServiciosComponent implements OnInit, OnDestroy {
     if (isPlatformBrowser(this.platformId)) {
       this.innerWidth = window.innerWidth;
       this.innerHeight = window.innerHeight;
+
+      // Activar la animación de la imagen de servicios después de un delay
+      setTimeout(() => {
+        this.servicesImageLoaded = true;
+      }, 200);
     }
   }
 

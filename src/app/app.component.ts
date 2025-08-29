@@ -106,6 +106,7 @@ export interface Project {
   plantaPreviaSrc?: string;
   plantaSrc?: string;
   style?: string;
+  district?: string;
 }
 
 export interface Image {

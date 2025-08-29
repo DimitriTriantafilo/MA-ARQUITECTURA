@@ -82,17 +82,17 @@ app-topbar:hover {
   height: 100vh;
   background-color: transparent;
   overflow: hidden;
-  animation: shrinkDisappear 4s ease-in-out forwards;
+  animation: shrinkDisappear 2s ease-in-out forwards;
 
   &.mobile {
     .welcome-logo {
-      animation: shrinkLogoMobile 4s ease-in-out forwards;
+      animation: shrinkLogoMobile 2s ease-in-out forwards;
     }
   }
 
   &.desktop {
     .welcome-logo {
-      animation: shrinkLogo 4s ease-in-out forwards;
+      animation: shrinkLogo 2s ease-in-out forwards;
     }
   }
 }
@@ -118,7 +118,7 @@ app-topbar:hover {
   height: 100vh;
   background-color: rgba($deep-onyx, 0.95);
   z-index: 1;
-  animation: shrinkBackground 4s ease-in-out forwards;
+  animation: shrinkBackground 2s ease-in-out forwards;
 }
 
 @keyframes shrinkDisappear {
@@ -269,7 +269,7 @@ app-topbar:not(.initial-state) {
 
   /* Ajustes del fondo oscuro para móvil */
   .welcome-container::before {
-    animation: shrinkBackgroundMobile 4s ease-in-out forwards;
+    animation: shrinkBackgroundMobile 2s ease-in-out forwards;
   }
 
   @keyframes shrinkBackgroundMobile {

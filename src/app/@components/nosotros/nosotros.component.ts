@@ -82,33 +82,36 @@ export class NosotrosComponent implements OnInit {
     width: number,
     height: number
   ): string {
-    // Mejorar calidad para móvil
-    const quality = this.innerWidth <= 600 ? 'q_auto:best' : 'q_auto:good';
-    return `https://res.cloudinary.com/dskkynwxb/c_scale,w_${width},h_${height}/${quality}/f_auto/${publicId}`;
+    // Usar mejor calidad para todas las pantallas
+    const quality = 'q_auto:best';
+    return `https://res.cloudinary.com/dskkynwxb/c_scale,w_${width},h_${height}/${quality}/f_auto,fl_force_strip,fl_progressive/${publicId}`;
   }
 
   getVerticalImageWidth(): number {
-    // Para profile-img2, usamos un ancho fijo más pequeño en móvil
+    // Para profile-img2, calculamos el ancho basado en el contenedor disponible
     if (this.innerWidth <= 600) {
-      // En móvil, aumentamos el ancho para mejor calidad
-      return 600; // Aumentado para mejor calidad
+      // En móvil, usar el ancho completo menos padding
+      return Math.min(this.innerWidth - 40, 800); // Aumentado para mejor calidad
+    } else if (this.innerWidth <= 900) {
+      // En pantallas web pequeñas, usar 50% del ancho disponible
+      const containerWidth = Math.floor(this.innerWidth * 0.5);
+      return Math.min(containerWidth, 700);
+    } else if (this.innerWidth <= 1200) {
+      // En pantallas web medianas, usar 45% del ancho
+      const containerWidth = Math.floor(this.innerWidth * 0.45);
+      return Math.min(containerWidth, 800);
     } else {
-      // En desktop, usamos el 35% del ancho de la pantalla
-      const containerWidth = Math.floor(this.innerWidth * 0.35);
-      return Math.min(containerWidth, 600);
+      // En desktop grande, usar 40% del ancho
+      const containerWidth = Math.floor(this.innerWidth * 0.4);
+      return Math.min(containerWidth, 900);
     }
   }
 
   getVerticalImageHeight(): number {
-    // Para profile-img2, calculamos una altura proporcional
+    // Para profile-img2, calculamos la altura basada en la proporción original de la imagen
     const containerWidth = this.getVerticalImageWidth();
-    if (this.innerWidth <= 600) {
-      // En móvil, para foto horizontal usamos proporción 16:9 o 3:2
-      return Math.floor(containerWidth * 0.5625); // 16:9 ratio (más natural para fotos horizontales)
-    } else {
-      // En desktop, usamos relación de aspecto 16:9
-      return Math.floor(containerWidth * 0.5625); // 9/16 = 0.5625
-    }
+    // Usar proporción 3:2 (más natural para fotos de estudio apaisadas)
+    return Math.floor(containerWidth * 0.667); // 2/3 = 0.667
   }
 
   getProfileImageWidth(): number {

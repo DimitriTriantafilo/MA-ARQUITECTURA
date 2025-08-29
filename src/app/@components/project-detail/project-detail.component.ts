@@ -93,7 +93,7 @@ export class ProjectDetailComponent
               this.fixedHeight
             )
           );
-        this.imagePreloadService.preloadCarouselImages(carouselUrls);
+        this.imagePreloadService.preloadImages(carouselUrls);
       }
     }
   }

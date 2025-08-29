@@ -5,9 +5,14 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development",
+    "build:prod": "ng build --configuration production",
+    "build:analyze": "ng build --configuration production --stats-json && npx webpack-bundle-analyzer dist/ma-arquitectura-landing/stats.json",
+    "serve:prod": "ng serve --configuration production",
     "test": "ng test",
-    "serve:ssr:ma-arquitectura-landing": "node dist/ma-arquitectura-landing/server/server.mjs"
+    "lint": "ng lint",
+    "e2e": "ng e2e",
+    "dev": "ng serve --configuration development",
+    "build:dev": "ng build --configuration development"
   },
   "private": true,
   "dependencies": {

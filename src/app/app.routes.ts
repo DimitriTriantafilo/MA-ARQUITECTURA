@@ -9,9 +9,10 @@ import { ProjectDetailComponent } from './@components/project-detail/project-det
 
 export const projects: Project[] = [
   {
-    name: 'BNB',
+    name: 'Reforma BNB',
     m2: '29',
     location: 'Parque Patricios',
+    district: 'CABA',
     year: 2023,
     showImg: 'v1747137660/xzdrqiss0g7gjvwb7krk.jpg',
     mainFeature: {
@@ -60,7 +61,8 @@ export const projects: Project[] = [
     name: 'REFORMA MIGUELETES',
     nameEn: 'MIGUELETES RENOVATION',
     m2: '42',
-    location: 'Colegiales',
+    location: 'Palermo',
+    district: 'CABA',
     year: 2024,
     showImg: 'v1747070360/xaks7ffpmupmhqrs0xwc.jpg',
     mainFeature: {
@@ -110,6 +112,7 @@ export const projects: Project[] = [
     name: 'AYACUCHO',
     m2: '140',
     location: 'Recoleta',
+    district: 'CABA',
     showImg: 'v1747245990/cdpluavxjbgdb6mhjebp.jpg',
     mainFeature: {
       type: 'image',
@@ -156,10 +159,60 @@ export const projects: Project[] = [
       'This period apartment in Recoleta was completely renovated to optimize functionality, luminosity and comfort. The renovation was reconfigured to integrate all elements, gain storage and unify the space with a white palette. The intermediate bathroom was expanded and the suite one was modernized with Calacatta-like coverings and cement-like floors. Wooden furniture provides the necessary warmth. In addition, storage and comfort needs were resolved in the living and bedroom areas. In the latter, outlets were relocated and specific furniture was designed, complementing the existing ones to optimize daily use and spatial harmony',
   },
   {
+    name: 'CAFÉ INFANTA VICTORIA',
+    m2: '290',
+    location: 'Villa Ballester',
+    district: 'GBA',
+    showImg: 'v1754421886/jxppbimotom9kg22bgox.jpg',
+    mainFeature: {
+      type: 'image',
+      link: 'v1754421886/jxppbimotom9kg22bgox.jpg',
+    },
+    rowSpan: 2, // Ocupa 1 fila según el diseño
+
+    images: [
+      { src: 'v1754421886/jxppbimotom9kg22bgox.jpg' },
+
+      { src: 'v1754421886/aiqqqdqyqnnabpxrqb5y.jpg' },
+
+      { src: 'v1754421904/pljj8eby6iwily4deuvz.jpg' },
+
+      { src: 'v1754421888/bzzzxih1khcti9ot4hbu.jpg' },
+
+      { src: 'v1754421894/e4puwmo7e3toseoxo5fm.jpg' },
+
+      { src: 'v1754421896/gylpxkjs0khshllesnha.jpg' },
+
+      { src: 'v1754421895/fhou41efkqjjpuos7gzs.jpg' },
+
+      { src: 'v1754421897/agntmzvjmngvsnc9afft.jpg' },
+
+      { src: 'v1754421900/vdsfp6pw5ttlyl4wil4q.jpg' },
+
+      { src: 'v1754421904/osk08i45q1tjqrhqxx2p.jpg' },
+
+      { src: 'v1754421910/homzbvchirifnzcywnga.jpg' },
+
+      { src: 'v1754421888/ui2g7betbtvdvxzjao1j.jpg' },
+
+      { src: 'v1754421887/afqqtiufrzrphndlaboa.jpg' },
+
+      { src: 'v1754421903/qbx7ku6bzdkqlpwjx6so.jpg' },
+
+      { src: 'v1754421911/vzcyvlkhrzaytyharmny.jpg' },
+    ],
+    plantaSrc: 'v1755785737/xon2qoujt0ocarpd3z77.png',
+    description:
+      'Ubicada en una casona antigua del centro de Villa Ballester, esta cafetería se diseñó en sintonía con la identidad del edificio, realzando su carácter original y sumando elementos contemporáneos. Intentando mantener la identidad del lugar, recuperamos la bovedilla existente y los pisos de madera fueron restaurados, contrastandolos con calcáreos en el área posterior.Los toques modernos se fueron generando con el nuevo mobiliario y el mostrador con tono menta, otorgando serenidad y personalidad. Hacia el fondo, una pared del mismo color refuerza la idea y el carácter del ambiente. El hierro y la vegetación, presentes en detalles sobre la barra y el muro principal, introducen un contraste moderno que dialoga con lo histórico, aportando frescura y vitalidad al conjunto.',
+    descriptionEn:
+      "Located in an old house in the center of Villa Ballester, this café was designed in harmony with the building's identity, enhancing its original character and adding contemporary elements. Trying to maintain the place's identity, we recovered the existing vault and the wooden floors were restored, contrasting them with limestone in the back area. Modern touches were generated with the new furniture and the mint-toned counter, providing serenity and personality. Towards the back, a wall of the same color reinforces the idea and character of the environment. Iron and vegetation, present in details on the bar and main wall, introduce a modern contrast that dialogues with the historical, bringing freshness and vitality to the whole.",
+  },
+  {
     name: 'CASA WIM',
     nameEn: 'WIM HOUSE',
     m2: '225',
     location: 'San Andrés de Giles',
+    district: 'GBA',
     year: 2025,
     showImg: 'v1754942701/ipo4oxlyv7kdjxz4gt4r.jpg',
     mainFeature: {
@@ -244,10 +297,63 @@ export const projects: Project[] = [
   },
 
   {
+    name: 'RIVERA',
+    m2: '35',
+    location: 'Villa Urquiza',
+    district: 'CABA',
+    showImg: 'v1754406923/wyy8nbmmub32u1vmbdnk.jpg',
+    mainFeature: {
+      type: 'image',
+      link: 'v1754406923/wyy8nbmmub32u1vmbdnk.jpg',
+    },
+    rowSpan: 2, // Ocupa 1 fila según el diseño
+
+    images: [
+      { src: 'v1754406923/wyy8nbmmub32u1vmbdnk.jpg' },
+
+      { src: 'v1754406924/jllskno9sjoua1kivsyh.jpg' },
+
+      { src: 'v1754406923/h8cc8wtprf66rcm1haof.jpg' },
+
+      { src: 'v1754406923/xbptcyaf4xmsfifasgfq.jpg' },
+
+      { src: 'v1754406923/udajnmvodc0eukoisb37.jpg' },
+
+      { src: 'v1754406924/atkswrjoiqgcj0vdirlu.jpg' },
+
+      { src: 'v1754406924/zunefg6jiwf4h2ckugko.jpg' },
+
+      { src: 'v1754406925/ml4be44odcc5covaeol2.jpg' },
+
+      { src: 'v1754406925/e99rbcnrdh2qbocmjchp.jpg' },
+
+      { src: 'v1754406923/pexpwa9agkyoqzohqumn.jpg' },
+
+      { src: 'v1754406925/vffb0tdyjutdzz5i1ior.jpg' },
+
+      { src: 'v1754406925/i5nirr5mfokil4msc94z.jpg' },
+
+      { src: 'v1754406925/c7ckpdq8r6d0kuzxizij.jpg' },
+
+      { src: 'v1754406925/kfjalqbqttmw6gqnm4zc.jpg' },
+
+      { src: 'v1754406924/mdfft5fzn0rowm2nh4km.jpg' },
+
+      { src: 'v1754406924/kc7bl7kvr7z8pohiw65y.jpg' },
+    ],
+    plantaSrc: 'v1755785866/lwe6gyvcvi4nan0b9nkp.png',
+    plantaPreviaSrc: 'v1755785850/ne3ijqntce8hxisqyayi.png',
+    description:
+      'En esta reforma se reorganizaron los espacios comunes para integrarlos a la cocina, generando una mayor amplitud visual y funcional, al tiempo que se otorgó mayor privacidad a la habitación y al baño. A pedido de la clienta, se incorporó una paleta de azules que recorre todo el departamento, combinada con tonos madera que aportan calidez y refuerzan una sensación de calma y equilibrio en los ambientes. Sumamos vigas de madera en los clielorrasos del living que completan el estilo mediterráneo del conjunto.',
+    descriptionEn:
+      "In this renovation, common spaces were reorganized to integrate them into the renovation, generating greater visual and functional spaciousness, while providing greater privacy to the bedroom and bathroom. At the client's request, a palette of blues was incorporated throughout the apartment, combined with wood tones that provide warmth and reinforce a sense of calm and balance in the environments. We added wooden beams in the living room ceilings that complete the Mediterranean style of the whole.",
+  },
+  {
     name: 'REFORMA SANFER',
     nameEn: 'SANFER RENOVATION',
     m2: '104',
     location: 'San Fernando',
+    district: 'GBA',
     year: 2025,
     showImg: 'v1754488157/ok303c1bzfm14dtmio5i.jpg',
     rowSpan: 3,
@@ -338,62 +444,11 @@ export const projects: Project[] = [
   },
 
   {
-    name: 'RIVERA',
-    m2: '35',
-    location: 'Villa Urquiza',
-    showImg: 'v1754406923/wyy8nbmmub32u1vmbdnk.jpg',
-    mainFeature: {
-      type: 'image',
-      link: 'v1754406923/wyy8nbmmub32u1vmbdnk.jpg',
-    },
-    rowSpan: 2, // Ocupa 1 fila según el diseño
-
-    images: [
-      { src: 'v1754406923/wyy8nbmmub32u1vmbdnk.jpg' },
-
-      { src: 'v1754406924/jllskno9sjoua1kivsyh.jpg' },
-
-      { src: 'v1754406923/h8cc8wtprf66rcm1haof.jpg' },
-
-      { src: 'v1754406923/xbptcyaf4xmsfifasgfq.jpg' },
-
-      { src: 'v1754406923/udajnmvodc0eukoisb37.jpg' },
-
-      { src: 'v1754406924/atkswrjoiqgcj0vdirlu.jpg' },
-
-      { src: 'v1754406924/zunefg6jiwf4h2ckugko.jpg' },
-
-      { src: 'v1754406925/ml4be44odcc5covaeol2.jpg' },
-
-      { src: 'v1754406925/e99rbcnrdh2qbocmjchp.jpg' },
-
-      { src: 'v1754406923/pexpwa9agkyoqzohqumn.jpg' },
-
-      { src: 'v1754406925/vffb0tdyjutdzz5i1ior.jpg' },
-
-      { src: 'v1754406925/i5nirr5mfokil4msc94z.jpg' },
-
-      { src: 'v1754406925/c7ckpdq8r6d0kuzxizij.jpg' },
-
-      { src: 'v1754406925/kfjalqbqttmw6gqnm4zc.jpg' },
-
-      { src: 'v1754406924/mdfft5fzn0rowm2nh4km.jpg' },
-
-      { src: 'v1754406924/kc7bl7kvr7z8pohiw65y.jpg' },
-    ],
-    plantaSrc: 'v1755785866/lwe6gyvcvi4nan0b9nkp.png',
-    plantaPreviaSrc: 'v1755785850/ne3ijqntce8hxisqyayi.png',
-    description:
-      'En esta reforma se reorganizaron los espacios comunes para integrarlos a la cocina, generando una mayor amplitud visual y funcional, al tiempo que se otorgó mayor privacidad a la habitación y al baño. A pedido de la clienta, se incorporó una paleta de azules que recorre todo el departamento, combinada con tonos madera que aportan calidez y refuerzan una sensación de calma y equilibrio en los ambientes. Sumamos vigas de madera en los clielorrasos del living que completan el estilo mediterráneo del conjunto.',
-    descriptionEn:
-      "In this renovation, common spaces were reorganized to integrate them into the renovation, generating greater visual and functional spaciousness, while providing greater privacy to the bedroom and bathroom. At the client's request, a palette of blues was incorporated throughout the apartment, combined with wood tones that provide warmth and reinforce a sense of calm and balance in the environments. We added wooden beams in the living room ceilings that complete the Mediterranean style of the whole.",
-  },
-
-  {
     name: 'REFORMA IGOR',
     nameEn: 'IGOR RENOVATION',
     m2: '260',
     location: 'Villa Ballester',
+    district: 'GBA',
     showImg: 'v1754402953/j9nvyhxngxppr4mr99dv.jpg',
     mainFeature: {
       type: 'image',
@@ -449,6 +504,7 @@ export const projects: Project[] = [
     rowSpan: 2,
     year: 2024,
     location: 'Recoleta',
+    district: 'CABA',
     showImg: 'v1754419115/o07v2lkp0sfdxcpobia5.jpg',
     mainFeature: {
       type: 'image',
@@ -496,57 +552,55 @@ export const projects: Project[] = [
   },
 
   {
-    name: 'CAFÉ INFANTA VICTORIA',
-    m2: '290',
-    location: 'Villa Ballester',
-    showImg: 'v1754421886/jxppbimotom9kg22bgox.jpg',
+    name: 'REFORMA SANTANA',
+    nameEn: 'SANTANA RENOVATION',
+    m2: '23',
+    year: 2022,
+    rowSpan: 2,
+    location: 'Villa Urquiza',
+    district: 'CABA',
+    showImg: 'v1754412407/rx2hiekjplsl0awx43oe.jpg',
     mainFeature: {
       type: 'image',
-      link: 'v1754421886/jxppbimotom9kg22bgox.jpg',
+      link: 'v1754412407/rx2hiekjplsl0awx43oe.jpg',
     },
-    rowSpan: 2, // Ocupa 1 fila según el diseño
 
     images: [
-      { src: 'v1754421886/jxppbimotom9kg22bgox.jpg' },
+      {
+        src: 'v1754412407/rx2hiekjplsl0awx43oe.jpg',
+      },
 
-      { src: 'v1754421886/aiqqqdqyqnnabpxrqb5y.jpg' },
+      {
+        src: 'v1754412403/jjmijyrlyjvyqjossnf1.jpg',
+      },
 
-      { src: 'v1754421904/pljj8eby6iwily4deuvz.jpg' },
+      {
+        src: 'v1754412403/xmzd8yvr8az3qtitmohz.jpg',
+      },
 
-      { src: 'v1754421888/bzzzxih1khcti9ot4hbu.jpg' },
+      {
+        src: 'v1754412404/vjleviywcbuahiiqnibw.jpg',
+      },
 
-      { src: 'v1754421894/e4puwmo7e3toseoxo5fm.jpg' },
+      {
+        src: 'v1754412378/nzvq8tecx6lyyegu1xzx.jpg',
+      },
 
-      { src: 'v1754421896/gylpxkjs0khshllesnha.jpg' },
-
-      { src: 'v1754421895/fhou41efkqjjpuos7gzs.jpg' },
-
-      { src: 'v1754421897/agntmzvjmngvsnc9afft.jpg' },
-
-      { src: 'v1754421900/vdsfp6pw5ttlyl4wil4q.jpg' },
-
-      { src: 'v1754421904/osk08i45q1tjqrhqxx2p.jpg' },
-
-      { src: 'v1754421910/homzbvchirifnzcywnga.jpg' },
-
-      { src: 'v1754421888/ui2g7betbtvdvxzjao1j.jpg' },
-
-      { src: 'v1754421887/afqqtiufrzrphndlaboa.jpg' },
-
-      { src: 'v1754421903/qbx7ku6bzdkqlpwjx6so.jpg' },
-
-      { src: 'v1754421911/vzcyvlkhrzaytyharmny.jpg' },
+      {
+        src: 'v1754412378/xjzmqsyzoedhfearqw4c.jpg',
+      },
     ],
-    plantaSrc: 'v1755785737/xon2qoujt0ocarpd3z77.png',
+    plantaSrc: 'v1755785516/dzi1owb9ehyxxvxeakki.png',
     description:
-      'Ubicada en una casona antigua del centro de Villa Ballester, esta cafetería se diseñó en sintonía con la identidad del edificio, realzando su carácter original y sumando elementos contemporáneos. Intentando mantener la identidad del lugar, recuperamos la bovedilla existente y los pisos de madera fueron restaurados, contrastandolos con calcáreos en el área posterior.Los toques modernos se fueron generando con el nuevo mobiliario y el mostrador con tono menta, otorgando serenidad y personalidad. Hacia el fondo, una pared del mismo color refuerza la idea y el carácter del ambiente. El hierro y la vegetación, presentes en detalles sobre la barra y el muro principal, introducen un contraste moderno que dialoga con lo histórico, aportando frescura y vitalidad al conjunto.',
+      'Ubicada en la planta baja de la vivienda, esta cocina requería mayor espacio de guardado y una mejor entrada de luz. La eliminación de un baño de servicio permitió ampliarla, integrando un nuevo sector para la heladera dentro de la cocina y generando un respaldo para el lavadero contiguo.El antiguo lugar de la heladera se transformó en un rincón de coffee break, que complementa al comedor diario y suma un gesto de confort cotidiano.La combinación de tonos blancos, piedras claras y madera aporta luminosidad y calidez, equilibrando funcionalidad y estética.',
     descriptionEn:
-      "Located in an old house in the center of Villa Ballester, this café was designed in harmony with the building's identity, enhancing its original character and adding contemporary elements. Trying to maintain the place's identity, we recovered the existing vault and the wooden floors were restored, contrasting them with limestone in the back area. Modern touches were generated with the new furniture and the mint-toned counter, providing serenity and personality. Towards the back, a wall of the same color reinforces the idea and character of the environment. Iron and vegetation, present in details on the bar and main wall, introduce a modern contrast that dialogues with the historical, bringing freshness and vitality to the whole.",
+      'Located on the ground floor of the house, this renovation required more storage space and better light entry. The elimination of a service bathroom allowed it to be expanded, integrating a new sector for the refrigerator within the renovation and generating a backing for the adjacent laundry room. The old refrigerator location was transformed into a coffee break corner, which complements the daily dining room and adds a gesture of daily comfort. The combination of white tones, light stones and wood provides luminosity and warmth, balancing functionality and aesthetics.',
   },
   {
     name: 'CONSULTORIO DEVOTO',
     m2: '31',
     location: 'Villa Devoto',
+    district: 'CABA',
     showImg: 'v1747140741/kqv2bfmtj1objuywa253.jpg',
     mainFeature: {
       type: 'image',
@@ -581,6 +635,7 @@ export const projects: Project[] = [
     nameEn: 'GURU RENOVATION',
     m2: '120',
     location: 'Villa Crespo',
+    district: 'CABA',
     year: 2024,
     showImg: 'v1754416489/geodafztsk0ehnj9zofc.jpg',
     mainFeature: {
@@ -624,6 +679,7 @@ export const projects: Project[] = [
     nameEn: 'SEGUI RENOVATION',
     m2: '28',
     location: 'Palermo',
+    district: 'CABA',
     showImg: 'v1747141705/uw6syhkdbs8uj2ccbity.jpg',
     mainFeature: {
       type: 'image',
@@ -663,6 +719,7 @@ export const projects: Project[] = [
       'In a gated community, this single-family home originated from the dialogue between the house and its environment, prioritizing its orientations and peculiar morphology. Its location was arranged to embrace a large trunk tree from the land that protects the living-dining room, generating privacy towards the street while allowing it to open to the front. The distribution is divided into three volumes: private area with bedrooms, common recreation area and articulating nexus of the house, and a services area closer to the entrance. The central volume stands out from the rest due to its greater height and is permeable to both ends of the land. This, added to sliding carpentry that accumulates, allows a dialogue between the front and back, thus coexisting in the same great space. The social areas were oriented to the northeast, privileging the entry of natural light throughout the day, while circulations and services were arranged towards the southwest, protecting the intimacy of the main spaces. From any environment it is possible to frame the landscape: the tree at the access or the calm of the private background. The natural elements on the exterior were a key point in the design: A wall of native stone that accompanies the entrance, added to a large solid wood door from floor to ceiling hidden, serve to provide texture, warmth and contemporaneity to the whole, thus completing a home that becomes one with its environment.',
     m2: '150',
     location: 'Exaltación de la Cruz - Barrio Amarylis',
+    district: 'GBA',
     showImg: 'v1747144222/id7azvdhqntcf1kji9ng.jpg',
     mainFeature: {
       type: 'image',
@@ -696,7 +753,8 @@ export const projects: Project[] = [
     descriptionEn:
       'The design of this kitchen started from a clear premise from the clients: intervene with the least possible work, knowing that they had to continue living in the home during the process. The general layout of the work area was maintained, reorganizing it to optimize its use. The sink and stove were separated, thus freeing up more workspace and space for an under-counter dishwasher, while the refrigerator and oven were located at both ends, framing the space. This allowed generating a central upper pantry of great capacity, doubling storage without reducing the feeling of spaciousness. White, chosen for furniture and walls, provides luminosity and reinforces the idea of open space. On the floors, an SPC covering was placed over the existing ones, avoiding wet work and speeding up execution. Finally, the TV area was redesigned, making an integral piece of furniture with multiple storage and coffee-break functions, establishing a new focal point that complements the space.',
     m2: '18',
-    location: '',
+    location: 'Belgrano',
+    district: 'CABA',
     showImg: 'v1747142269/zj56bhsy0rmzdx0akxf9.jpg',
     mainFeature: {
       type: 'image',
@@ -718,50 +776,6 @@ export const projects: Project[] = [
       { src: 'v1747142267/vvxfowj2xfbzo9erq6es.jpg' },
     ],
     plantaSrc: 'v1755785551/pigvzs9wcrkxled4cogb.png',
-  },
-  {
-    name: 'REFORMA SANTANA',
-    nameEn: 'SANTANA RENOVATION',
-    m2: '23',
-    year: 2022,
-    rowSpan: 2,
-    location: 'Villa Urquiza',
-    showImg: 'v1754412407/rx2hiekjplsl0awx43oe.jpg',
-    mainFeature: {
-      type: 'image',
-      link: 'v1754412407/rx2hiekjplsl0awx43oe.jpg',
-    },
-
-    images: [
-      {
-        src: 'v1754412407/rx2hiekjplsl0awx43oe.jpg',
-      },
-
-      {
-        src: 'v1754412403/jjmijyrlyjvyqjossnf1.jpg',
-      },
-
-      {
-        src: 'v1754412403/xmzd8yvr8az3qtitmohz.jpg',
-      },
-
-      {
-        src: 'v1754412404/vjleviywcbuahiiqnibw.jpg',
-      },
-
-      {
-        src: 'v1754412378/nzvq8tecx6lyyegu1xzx.jpg',
-      },
-
-      {
-        src: 'v1754412378/xjzmqsyzoedhfearqw4c.jpg',
-      },
-    ],
-    plantaSrc: 'v1755785516/dzi1owb9ehyxxvxeakki.png',
-    description:
-      'Ubicada en la planta baja de la vivienda, esta cocina requería mayor espacio de guardado y una mejor entrada de luz. La eliminación de un baño de servicio permitió ampliarla, integrando un nuevo sector para la heladera dentro de la cocina y generando un respaldo para el lavadero contiguo.El antiguo lugar de la heladera se transformó en un rincón de coffee break, que complementa al comedor diario y suma un gesto de confort cotidiano.La combinación de tonos blancos, piedras claras y madera aporta luminosidad y calidez, equilibrando funcionalidad y estética.',
-    descriptionEn:
-      'Located on the ground floor of the house, this renovation required more storage space and better light entry. The elimination of a service bathroom allowed it to be expanded, integrating a new sector for the refrigerator within the renovation and generating a backing for the adjacent laundry room. The old refrigerator location was transformed into a coffee break corner, which complements the daily dining room and adds a gesture of daily comfort. The combination of white tones, light stones and wood provides luminosity and warmth, balancing functionality and aesthetics.',
   },
 
   // {

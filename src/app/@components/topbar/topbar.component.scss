@@ -63,6 +63,9 @@
   margin: 0px;
   padding-right: 20px;
   transition: opacity 0.5s ease-in-out;
+  li {
+    list-style-type: none;
+  }
 
   &-container {
     padding-left: 20px;
@@ -144,6 +147,12 @@
   }
   .logo-switcher {
     height: 12vw;
+  }
+  .marca {
+    font-size: 3vw;
+  }
+  .logo-switcher:hover .marca {
+    transform: translateY(-45px);
   }
 }
 

@@ -144,9 +144,10 @@ $bg-color: #e3e2de;
   .profile-img2 {
     right: 0;
     position: absolute;
-    width: 35%;
-    height: 100%;
-    object-fit: cover;
+    width: 40%;
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
     @include parallax-transition;
     z-index: 0;
     opacity: 0;
@@ -396,8 +397,8 @@ $bg-color: #e3e2de;
       position: relative;
       width: 100%;
       height: auto; /* Altura automática para mantener proporción */
-      max-width: 400px; /* Limitar ancho máximo para evitar estiramiento */
-      object-fit: contain; /* Mantener proporción sin estirar */
+      max-width: 100%; /* Usar todo el ancho disponible */
+      object-fit: cover; /* Mantener proporción cubriendo el contenedor */
       @include parallax-transition;
       z-index: 0;
       border-radius: 8px;
@@ -423,7 +424,7 @@ $bg-color: #e3e2de;
       line-height: 1.4;
       font-size: 3vw; /* Achicado un poco el texto */
       font-weight: lighter;
-      font-family: "modeco";
+      font-family: "manrope";
       @include parallax-transition;
       margin: 0;
       padding: 0 20px; /* Respetar el padding actual */
@@ -467,5 +468,38 @@ $bg-color: #e3e2de;
   .agostina-profile {
     justify-content: flex-start !important;
     padding-top: 20% !important;
+  }
+}
+
+// Media queries para pantallas web pequeñas (no móviles)
+@media (min-width: 601px) and (max-width: 1200px) {
+  .parallax-container2 {
+    .profile-img2 {
+      width: 45%; /* Aumentar el ancho en pantallas web pequeñas */
+      height: auto;
+      max-height: 100%;
+      object-fit: contain; /* Cambiar a contain para no cortar la imagen */
+    }
+
+    h2 {
+      width: 50%; /* Ajustar el ancho del texto */
+      font-size: 1.3rem; /* Reducir ligeramente el tamaño del texto */
+    }
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .parallax-container2 {
+    .profile-img2 {
+      width: 50%; /* Aumentar aún más el ancho en pantallas más pequeñas */
+      height: auto;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    h2 {
+      width: 45%;
+      font-size: 1.2rem;
+    }
   }
 }
