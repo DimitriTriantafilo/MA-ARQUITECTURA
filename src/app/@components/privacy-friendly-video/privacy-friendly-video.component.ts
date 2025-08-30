@@ -4,7 +4,6 @@ import {
   OnInit,
   OnDestroy,
   ElementRef,
-  ViewChild,
   Inject,
   PLATFORM_ID,
   ChangeDetectorRef,
@@ -32,7 +31,7 @@ import { SafePipe } from '../../pipes/safe.pipe';
 
       <!-- Video de YouTube -->
       <iframe
-        *ngIf="showVideo && isInViewport"
+        *ngIf="showVideo"
         [src]="videoUrl | safe"
         [title]="videoTitle"
         [attr.aria-label]="videoTitle"
@@ -105,13 +104,46 @@ import { SafePipe } from '../../pipes/safe.pipe';
       }
 
       iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: none;
-        object-fit: cover;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        border: none !important;
+        object-fit: cover !important;
+        pointer-events: none !important;
+        user-select: none !important;
+        -webkit-user-select: none !important;
+        -moz-user-select: none !important;
+        -ms-user-select: none !important;
+        -webkit-touch-callout: none !important;
+        -webkit-tap-highlight-color: transparent !important;
+        touch-action: none !important;
+        cursor: default !important;
+      }
+
+      /* Ocultar elementos de YouTube que puedan aparecer */
+      iframe::before,
+      iframe::after {
+        display: none !important;
+      }
+
+      /* Prevenir cualquier interacción con el iframe */
+      iframe * {
+        pointer-events: none !important;
+        user-select: none !important;
+        -webkit-user-select: none !important;
+        -moz-user-select: none !important;
+        -ms-user-select: none !important;
+      }
+
+      /* Estilos adicionales para asegurar que no se pueda interactuar */
+      .video-container iframe {
+        pointer-events: none !important;
+        user-select: none !important;
+        -webkit-user-select: none !important;
+        -moz-user-select: none !important;
+        -ms-user-select: none !important;
       }
     `,
   ],
@@ -139,21 +171,77 @@ export class PrivacyFriendlyVideoComponent implements OnInit, OnDestroy {
     if (isPlatformBrowser(this.platformId)) {
       console.log('Inicializando componente de video...');
       this.generateOptimizedVideoUrl();
-      this.setupIntersectionObserver();
-      // Mostrar el video después de un pequeño delay para mejorar UX
-      setTimeout(() => {
-        this.showVideo = true;
-        this.cdr.detectChanges();
-        console.log('Video mostrado, URL:', this.videoUrl);
+      this.showVideo = true;
+      this.cdr.detectChanges();
+      console.log('Video mostrado, URL:', this.videoUrl);
 
-        // Establecer un timeout para detectar si el video no carga
-        this.loadTimeout = setTimeout(() => {
-          if (!this.videoLoaded) {
-            console.warn('Timeout: El video no se cargó en 10 segundos');
-            this.onVideoError();
-          }
-        }, 10000);
-      }, 100);
+      // Prevenir interacciones con el iframe después de que se cargue
+      setTimeout(() => {
+        this.preventIframeInteractions();
+      }, 1000);
+    }
+  }
+
+  private preventIframeInteractions(): void {
+    const iframe = this.elementRef.nativeElement.querySelector('iframe');
+    if (iframe) {
+      // Prevenir eventos de mouse y touch
+      iframe.addEventListener(
+        'click',
+        (e: Event) => {
+          e.preventDefault();
+          e.stopPropagation();
+          return false;
+        },
+        true
+      );
+
+      iframe.addEventListener(
+        'mousedown',
+        (e: Event) => {
+          e.preventDefault();
+          e.stopPropagation();
+          return false;
+        },
+        true
+      );
+
+      iframe.addEventListener(
+        'mouseup',
+        (e: Event) => {
+          e.preventDefault();
+          e.stopPropagation();
+          return false;
+        },
+        true
+      );
+
+      iframe.addEventListener(
+        'touchstart',
+        (e: Event) => {
+          e.preventDefault();
+          e.stopPropagation();
+          return false;
+        },
+        true
+      );
+
+      iframe.addEventListener(
+        'touchend',
+        (e: Event) => {
+          e.preventDefault();
+          e.stopPropagation();
+          return false;
+        },
+        true
+      );
+
+      // Establecer atributos para prevenir interacciones
+      iframe.setAttribute(
+        'style',
+        iframe.getAttribute('style') +
+          '; pointer-events: none !important; user-select: none !important; -webkit-user-select: none !important; -moz-user-select: none !important; -ms-user-select: none !important; -webkit-touch-callout: none !important; -webkit-tap-highlight-color: transparent !important; touch-action: none !important; cursor: default !important;'
+      );
     }
   }
 
@@ -173,70 +261,10 @@ export class PrivacyFriendlyVideoComponent implements OnInit, OnDestroy {
 
     // Usar video de YouTube con la URL proporcionada
     const youtubeVideoId = 'V8PNccdgA-g';
-    this.videoUrl = `https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&mute=1&loop=1&playlist=${youtubeVideoId}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1`;
+    this.videoUrl = `https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&mute=1&loop=1&playlist=${youtubeVideoId}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&disablekb=1&fs=0&iv_load_policy=3&cc_load_policy=0&color=white&start=0&end=0&vq=hd720`;
 
-    console.log('URL del video de YouTube generada:', this.videoUrl);
-    console.log('Video ID:', youtubeVideoId);
-
-    // No necesitamos verificar URL ni soporte de video para YouTube
+    // Para YouTube, no necesitamos verificar URL ni soporte de video
     this.videoLoaded = true;
-  }
-
-  private tryAlternativeVideoUrls(): void {
-    // Para YouTube, no necesitamos URLs alternativas
-    console.log('YouTube no requiere URLs alternativas');
-  }
-
-  private testVideoUrl(): void {
-    if (!this.videoUrl) return;
-
-    // Hacer una petición HEAD para verificar si el video existe
-    fetch(this.videoUrl, { method: 'HEAD' })
-      .then((response) => {
-        if (!response.ok) {
-          console.error('Video URL no accesible:', this.videoUrl);
-          console.error('Status:', response.status, response.statusText);
-          // Intentar URLs alternativas si la principal falla
-          setTimeout(() => {
-            this.tryAlternativeVideoUrls();
-          }, 1000);
-        } else {
-          console.log('Video URL accesible:', this.videoUrl);
-        }
-      })
-      .catch((error) => {
-        console.error('Error verificando video URL:', error);
-        // Intentar URLs alternativas si hay error de red
-        setTimeout(() => {
-          this.tryAlternativeVideoUrls();
-        }, 1000);
-      });
-  }
-
-  private setupIntersectionObserver(): void {
-    if (!isPlatformBrowser(this.platformId)) {
-      return;
-    }
-
-    this.intersectionObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            this.isInViewport = true;
-            this.cdr.detectChanges();
-          } else {
-            this.isInViewport = false;
-            this.cdr.detectChanges();
-          }
-        });
-      },
-      {
-        rootMargin: '50px 0px', // Cargar 50px antes de que sea visible
-        threshold: 0.1,
-      }
-    );
-
-    this.intersectionObserver.observe(this.elementRef.nativeElement);
   }
 
   onVideoLoad(): void {
@@ -246,10 +274,7 @@ export class PrivacyFriendlyVideoComponent implements OnInit, OnDestroy {
   }
 
   onVideoError(): void {
-    console.error('Error al cargar el video de YouTube');
-    console.error('Video URL:', this.videoUrl);
-
-    // En caso de error, mostrar el placeholder
+    // En caso de error, mantener el placeholder
     this.videoLoaded = false;
     this.cdr.detectChanges();
   }
