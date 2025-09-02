@@ -2,7 +2,7 @@
   <app-privacy-friendly-video
     videoTitle="Video de presentación MA Arquitectura"
     [autoplay]="true"
-    [muted]="true"
+    [muted]="false"
     [loop]="true"
   ></app-privacy-friendly-video>
 </section>
@@ -31,9 +31,9 @@
         style="object-fit: cover; position: absolute; inset: 0; z-index: 0"
       />
       <div class="overlay"></div>
-      <span class="name">{{ "casaWim" | translate }}</span>
+      <span class="name">{{ getCasaWimName() }}</span>
       <div class="divisor"></div>
-      <span class="m2">{{ "sanAndresGiles" | translate }}</span>
+      <span class="m2">{{ getSanAndresGilesLocation() }}</span>
     </div>
   </div>
 
@@ -100,7 +100,7 @@
         />
         <div class="image-overlay"></div>
         <div class="project-info">
-          <span class="name">{{ "reformaSanfer" | translate }}</span>
+          <span class="name">{{ getReformaSanferName() }}</span>
           <div class="divisor"></div>
           <span class="m2">{{ "sanFernando" | translate }}</span>
         </div>
@@ -130,7 +130,7 @@
         style="object-fit: cover; position: absolute; inset: 0; z-index: 0"
       />
       <div class="overlay"></div>
-      <span class="name">{{ "reformaSanfer" | translate }}</span>
+      <span class="name">{{ getReformaSanferName() }}</span>
       <div class="divisor"></div>
       <span class="m2">{{ "sanFernando" | translate }}</span>
     </div>

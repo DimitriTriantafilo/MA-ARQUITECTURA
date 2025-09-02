@@ -13,7 +13,7 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     home: 'INICIO',
     menu: 'MENU',
     estudioDescription:
-      '"En MA <strong>CREAMOS</strong> proyectos para el habitar que permanezcan en el tiempo. <strong>DISEÑAMOS</strong> espacios con sentido, resaltando lo esencial en cada uno.<br> Estamos en la búsqueda constante de <strong>EQUILIBRIO</strong> y <strong>ARMONÍA</strong>. Proyectamos a medida y gusto de cada cliente.<br> <strong>CONSTRUIMOS</strong> espacios de <strong>LUJO</strong> adaptándonos al presupuesto de cada cliente.<br> En MA, somos mucho más que arquitectura: somos <strong>ARTE</strong>, <strong>INNOVACIÓN</strong> y <strong>DISEÑO</strong>."',
+      '"En MA <strong>CREAMOS</strong> proyectos para el habitar que permanezcan en el tiempo. <br> <strong>DISEÑAMOS</strong> espacios con sentido, resaltando lo esencial en cada uno.<br> Estamos en la búsqueda constante de <strong>EQUILIBRIO</strong> y <strong>ARMONÍA</strong>. <br>Proyectamos a medida y gusto de cada cliente.<br> <strong>CONSTRUIMOS</strong> espacios de <strong>LUJO</strong> adaptándonos al presupuesto de cada cliente.<br> En MA, somos mucho más que arquitectura: somos <strong>ARTE</strong>, <strong>INNOVACIÓN</strong> y <strong>DISEÑO</strong>."',
     agusDescription:
       '"Nos gusta estar en los detalles, para que cada cliente se sienta cómodo y acompañado durante todo el proceso de diseño y construcción"',
     manuDescription:
@@ -148,11 +148,11 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     dimension: 'Dimension',
     location: 'Location',
     // Proyectos
-    reformaMigueletes: 'REFORMA MIGUELETES',
-    reformaBnb: 'REFORMA BNB',
-    reformaSanfer: 'REFORMA SANFER',
-    casaIgor: 'REFORMA IGOR',
-    casaWim: 'CASA WIM',
+    reformaMigueletes: 'MIGUELETES RENOVATION',
+    reformaBnb: 'BNB RENOVATION',
+    reformaSanfer: 'SANFER RENOVATION',
+    casaIgor: 'IGOR RENOVATION',
+    casaWim: 'WIM HOUSE',
     // Ubicaciones
     colegiales: 'Colegiales',
     villaCrespo: 'VILLA CRESPO',

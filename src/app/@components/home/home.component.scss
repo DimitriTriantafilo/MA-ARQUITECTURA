@@ -31,6 +31,18 @@
   }
 }
 
+/* Estilos específicos para móviles */
+@media (max-width: 768px) {
+  .featuredImg {
+    height: 55vw; /* Altura responsive para móviles */
+    max-height: 100vh;
+  }
+
+  app-privacy-friendly-video {
+    height: 100%;
+  }
+}
+
 .videoOverlay {
   .cover {
     position: absolute;

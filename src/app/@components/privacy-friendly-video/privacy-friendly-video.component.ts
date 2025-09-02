@@ -145,13 +145,102 @@ import { SafePipe } from '../../pipes/safe.pipe';
         -moz-user-select: none !important;
         -ms-user-select: none !important;
       }
+
+      /* Media queries para móviles */
+      @media (max-width: 768px) {
+        .video-container {
+          height: 55vw;
+          max-height: 100vh;
+        }
+      }
+
+      /* Ocultar completamente la interfaz de YouTube */
+      iframe {
+        /* Ocultar controles de YouTube */
+        &::-webkit-media-controls,
+        &::-webkit-media-controls-panel,
+        &::-webkit-media-controls-play-button,
+        &::-webkit-media-controls-timeline,
+        &::-webkit-media-controls-current-time-display,
+        &::-webkit-media-controls-time-remaining-display,
+        &::-webkit-media-controls-mute-button,
+        &::-webkit-media-controls-volume-slider,
+        &::-webkit-media-controls-fullscreen-button {
+          display: none !important;
+        }
+      }
+
+      /* Ocultar elementos específicos de YouTube */
+      .video-container iframe {
+        /* Ocultar botón de YouTube */
+        &[src*='youtube'] {
+          /* Ocultar logo de YouTube */
+          &::after {
+            content: none !important;
+          }
+        }
+      }
+
+      /* Ocultar cualquier overlay de YouTube */
+      .video-container iframe + *,
+      .video-container iframe ~ * {
+        display: none !important;
+      }
+
+      /* Ocultar elementos específicos de YouTube usando CSS más agresivo */
+      .video-container iframe {
+        /* Ocultar cualquier elemento que YouTube pueda insertar */
+        & > * {
+          display: none !important;
+        }
+      }
+
+      /* Ocultar controles de YouTube usando selectores más específicos */
+      .video-container iframe[src*='youtube'] {
+        /* Ocultar controles nativos de YouTube */
+        &::-webkit-media-controls {
+          display: none !important;
+        }
+
+        &::-webkit-media-controls-panel {
+          display: none !important;
+        }
+
+        &::-webkit-media-controls-play-button {
+          display: none !important;
+        }
+
+        &::-webkit-media-controls-timeline {
+          display: none !important;
+        }
+
+        &::-webkit-media-controls-current-time-display {
+          display: none !important;
+        }
+
+        &::-webkit-media-controls-time-remaining-display {
+          display: none !important;
+        }
+
+        &::-webkit-media-controls-mute-button {
+          display: none !important;
+        }
+
+        &::-webkit-media-controls-volume-slider {
+          display: none !important;
+        }
+
+        &::-webkit-media-controls-fullscreen-button {
+          display: none !important;
+        }
+      }
     `,
   ],
 })
 export class PrivacyFriendlyVideoComponent implements OnInit, OnDestroy {
   @Input() videoTitle: string = 'Video de presentación MA Arquitectura';
   @Input() autoplay: boolean = true;
-  @Input() muted: boolean = true;
+  @Input() muted: boolean = false; // Cambiado a false para habilitar sonido
   @Input() loop: boolean = true;
 
   videoUrl: string = '';
@@ -185,7 +274,7 @@ export class PrivacyFriendlyVideoComponent implements OnInit, OnDestroy {
   private preventIframeInteractions(): void {
     const iframe = this.elementRef.nativeElement.querySelector('iframe');
     if (iframe) {
-      // Prevenir eventos de mouse y touch
+      // Prevenir eventos de mouse y touch con event listeners pasivos
       iframe.addEventListener(
         'click',
         (e: Event) => {
@@ -193,7 +282,7 @@ export class PrivacyFriendlyVideoComponent implements OnInit, OnDestroy {
           e.stopPropagation();
           return false;
         },
-        true
+        { passive: false, capture: true }
       );
 
       iframe.addEventListener(
@@ -203,7 +292,7 @@ export class PrivacyFriendlyVideoComponent implements OnInit, OnDestroy {
           e.stopPropagation();
           return false;
         },
-        true
+        { passive: false, capture: true }
       );
 
       iframe.addEventListener(
@@ -213,9 +302,10 @@ export class PrivacyFriendlyVideoComponent implements OnInit, OnDestroy {
           e.stopPropagation();
           return false;
         },
-        true
+        { passive: false, capture: true }
       );
 
+      // Event listeners touch pasivos para evitar warnings
       iframe.addEventListener(
         'touchstart',
         (e: Event) => {
@@ -223,7 +313,7 @@ export class PrivacyFriendlyVideoComponent implements OnInit, OnDestroy {
           e.stopPropagation();
           return false;
         },
-        true
+        { passive: false, capture: true }
       );
 
       iframe.addEventListener(
@@ -233,7 +323,7 @@ export class PrivacyFriendlyVideoComponent implements OnInit, OnDestroy {
           e.stopPropagation();
           return false;
         },
-        true
+        { passive: false, capture: true }
       );
 
       // Establecer atributos para prevenir interacciones
@@ -259,9 +349,43 @@ export class PrivacyFriendlyVideoComponent implements OnInit, OnDestroy {
       return;
     }
 
-    // Usar video de YouTube con la URL proporcionada
+    // Usar video de YouTube con configuración optimizada para autoplay
     const youtubeVideoId = 'V8PNccdgA-g';
-    this.videoUrl = `https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&mute=1&loop=1&playlist=${youtubeVideoId}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&disablekb=1&fs=0&iv_load_policy=3&cc_load_policy=0&color=white&start=0&end=0&vq=hd720`;
+
+    // Parámetros para forzar autoplay y ocultar controles
+    const params = [
+      'autoplay=1',
+      'mute=1', // Mute es necesario para autoplay en la mayoría de dispositivos
+      'loop=1',
+      `playlist=${youtubeVideoId}`,
+      'controls=0', // Sin controles
+      'showinfo=0', // Sin información
+      'rel=0', // Sin videos relacionados
+      'modestbranding=1', // Branding mínimo
+      'playsinline=1', // Reproducción en línea
+      'disablekb=1', // Deshabilitar teclado
+      'fs=0', // Sin pantalla completa
+      'iv_load_policy=3', // Sin anotaciones
+      'cc_load_policy=0', // Sin subtítulos
+      'color=white', // Color del reproductor
+      'start=0', // Inicio desde 0
+      'end=0', // Sin fin específico
+      'enablejsapi=1', // Habilitar API
+      'origin=' + encodeURIComponent(window.location.origin),
+      'widget_referrer=' + encodeURIComponent(window.location.href),
+      'autohide=1', // Ocultar controles automáticamente
+      'wmode=transparent', // Modo transparente
+      'allowfullscreen=0', // Sin pantalla completa
+      'allowtransparency=true', // Permitir transparencia
+      'vq=hd720', // Calidad HD
+    ];
+
+    this.videoUrl = `https://www.youtube.com/embed/${youtubeVideoId}?${params.join(
+      '&'
+    )}`;
+
+    console.log('URL del video generada:', this.videoUrl);
+    console.log('Configuración: autoplay=1, mute=1, controls=0');
 
     // Para YouTube, no necesitamos verificar URL ni soporte de video
     this.videoLoaded = true;
@@ -274,6 +398,7 @@ export class PrivacyFriendlyVideoComponent implements OnInit, OnDestroy {
   }
 
   onVideoError(): void {
+    console.error('Error al cargar el video de YouTube');
     // En caso de error, mantener el placeholder
     this.videoLoaded = false;
     this.cdr.detectChanges();

@@ -10,6 +10,7 @@ import { ProjectDetailComponent } from './@components/project-detail/project-det
 export const projects: Project[] = [
   {
     name: 'Reforma BNB',
+    nameEn: 'BNB Renovation',
     m2: '29',
     location: 'Parque Patricios',
     district: 'CABA',
@@ -109,8 +110,10 @@ export const projects: Project[] = [
       'This two-room apartment was intervened to expand both its physical space and visual perception. The balcony was integrated into the renovation, generating greater luminosity and a sense of spaciousness in the living-dining room. In the bedroom, a custom wardrobe and a makeup area with additional storage space were incorporated. The selection of earth tones and wood in furniture and walls unifies the whole, consolidating the sought-after Mediterranean style.',
   },
   {
-    name: 'AYACUCHO',
+    name: 'Reforma Ayacucho',
+    nameEn: 'Ayacucho Renovation',
     m2: '140',
+    year: 2024,
     location: 'Recoleta',
     district: 'CABA',
     showImg: 'v1747245990/cdpluavxjbgdb6mhjebp.jpg',
@@ -160,7 +163,9 @@ export const projects: Project[] = [
   },
   {
     name: 'CAFÉ INFANTA VICTORIA',
+    nameEn: 'INFANTA VICTORIA CAFÉ',
     m2: '290',
+    year: 2023,
     location: 'Villa Ballester',
     district: 'GBA',
     showImg: 'v1754421886/jxppbimotom9kg22bgox.jpg',
@@ -297,8 +302,10 @@ export const projects: Project[] = [
   },
 
   {
-    name: 'RIVERA',
+    name: 'Reforma Rivera',
+    nameEn: 'Rivera Renovation',
     m2: '35',
+    year: 2024,
     location: 'Villa Urquiza',
     district: 'CABA',
     showImg: 'v1754406923/wyy8nbmmub32u1vmbdnk.jpg',
@@ -447,6 +454,7 @@ export const projects: Project[] = [
     name: 'REFORMA IGOR',
     nameEn: 'IGOR RENOVATION',
     m2: '260',
+    year: 2023,
     location: 'Villa Ballester',
     district: 'GBA',
     showImg: 'v1754402953/j9nvyhxngxppr4mr99dv.jpg',
@@ -600,6 +608,7 @@ export const projects: Project[] = [
     name: 'CONSULTORIO DEVOTO',
     m2: '31',
     location: 'Villa Devoto',
+    year: 2023,
     district: 'CABA',
     showImg: 'v1747140741/kqv2bfmtj1objuywa253.jpg',
     mainFeature: {
@@ -678,6 +687,7 @@ export const projects: Project[] = [
     name: 'REFORMA SEGUI',
     nameEn: 'SEGUI RENOVATION',
     m2: '28',
+    year: 2022,
     location: 'Palermo',
     district: 'CABA',
     showImg: 'v1747141705/uw6syhkdbs8uj2ccbity.jpg',
@@ -713,6 +723,7 @@ export const projects: Project[] = [
   {
     name: 'CASA F',
     nameEn: 'F HOUSE',
+    year: 2022,
     description:
       'En un barrio cerrado, esta vivienda unifamiliar tuvo su origen en el dialogo entre la casa y su entorno, priorizando sus orientaciones y su morfología peculiar. Su ubicación fue dispuesta para abrazar un gran árbol troncal del terreno que resguarda el living-comedor generando privacidad hacia la calle, pero permitiendo a su vez abrirse al frente. La distribución está dividida en tres volúmenes: área privada con habitaciones, área común de esparcimiento y nexo articulante de la casa, y un área de servicios más próximo al ingreso. El volumen central destaca del resto por su mayor altura y es permeable para ambos extremos del terreno. Esto último, sumado a carpinterías corredizas que se acumulan, permite una dialogo entre el frente y el fondo, conviviendo así en un mismo gran espacio. Las áreas sociales se orientaron al noreste, privilegiando la entrada de luz natural durante todo el día, mientras que circulaciones y servicios se dispusieron hacia el suroeste, resguardando la intimidad de los espacios principales. Desde cualquier ambiente es posible enmarcar el paisaje: el árbol en el acceso o la calma del fondo privado. Los elementos naturales en el exterior fueron un punto clave en el diseño: Un muro de piedra autóctona que acompaña el ingreso, sumado a una gran puerta de madera maciza de piso a techo escondida, sirven para aportar textura, calidez y contemporaneidad al conjunto, completando así una vivienda que se vuelve una con su entorno.',
     descriptionEn:

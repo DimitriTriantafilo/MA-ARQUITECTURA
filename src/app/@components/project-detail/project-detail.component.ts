@@ -50,6 +50,9 @@ export class ProjectDetailComponent
   public innerWidth: number;
   public innerHeight: number;
   public plantaImageLoaded: boolean = false;
+  public plantaImageError: boolean = false;
+  public plantaPreviaImageLoaded: boolean = false;
+  public plantaPreviaImageError: boolean = false;
   private plantaObserver: IntersectionObserver | null = null;
 
   @ViewChild('carrousel') carrouselRef?: ElementRef<HTMLDivElement>;
@@ -74,6 +77,9 @@ export class ProjectDetailComponent
     if (isPlatformBrowser(this.platformId)) {
       this.innerWidth = window.innerWidth;
       this.innerHeight = window.innerHeight;
+
+      // Hacer scroll al top de la página cuando se carga el componente
+      window.scrollTo(0, 0);
     }
 
     // Obtener el proyecto desde los datos de la ruta
@@ -95,12 +101,27 @@ export class ProjectDetailComponent
           );
         this.imagePreloadService.preloadImages(carouselUrls);
       }
+
+      // Precarga de planos con prioridad alta
+      this.preloadPlantaImages();
     }
+
+    // Suscribirse a los cambios de ruta para asegurar scroll al top
+    this.route.params.subscribe(() => {
+      if (isPlatformBrowser(this.platformId)) {
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 50);
+      }
+    });
   }
 
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
       setTimeout(() => {
+        // Asegurar scroll al top después de que la vista se haya renderizado
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
         this.setupPlantaObserver();
         this.cdRef.detectChanges();
       }, 100);
@@ -284,11 +305,15 @@ export class ProjectDetailComponent
     // Verificar si el idioma actual es inglés
     const currentLanguage = this.translationService.currentLang();
 
+    let projectName: string;
     if (currentLanguage === 'en' && this.data.nameEn) {
-      return this.data.nameEn;
+      projectName = this.data.nameEn;
+    } else {
+      projectName = this.data.name;
     }
 
-    return this.data.name;
+    // Retornar el nombre en mayúsculas
+    return projectName.toUpperCase();
   }
 
   ngOnDestroy() {
@@ -400,6 +425,80 @@ export class ProjectDetailComponent
     console.error('Error loading planta image:', event);
     console.log('PlantaSrc:', this.data?.plantaSrc);
     console.log('Generated URL:', this.getPlantaImageUrl());
+    this.plantaImageError = true;
+  }
+
+  onPlantaPreviaImageLoad(event: Event): void {
+    console.log('Planta previa image loaded successfully:', event);
+    this.plantaPreviaImageLoaded = true;
+  }
+
+  onPlantaPreviaImageError(event: Event): void {
+    console.error('Error loading planta previa image:', event);
+    console.log('PlantaPreviaSrc:', this.data?.plantaPreviaSrc);
+    console.log('Generated URL:', this.getPlantaPreviaImageUrl());
+    this.plantaPreviaImageError = true;
+  }
+
+  /**
+   * Precarga las imágenes de planos con prioridad alta
+   */
+  private preloadPlantaImages(): void {
+    if (!this.data) return;
+
+    const plantaUrls: string[] = [];
+
+    // Precargar planta previa si existe
+    if (this.data.plantaPreviaSrc) {
+      const previaUrl = this.getPlantaPreviaImageUrl();
+      if (previaUrl) {
+        plantaUrls.push(previaUrl);
+        this.preloadImage(previaUrl, 'planta-previa');
+      }
+    }
+
+    // Precargar planta del proyecto si existe
+    if (this.data.plantaSrc) {
+      const plantaUrl = this.getPlantaImageUrl();
+      if (plantaUrl) {
+        plantaUrls.push(plantaUrl);
+        this.preloadImage(plantaUrl, 'planta-proyecto');
+      }
+    }
+
+    // Usar el servicio de precarga para las URLs
+    if (plantaUrls.length > 0) {
+      this.imagePreloadService.preloadImages(plantaUrls);
+    }
+  }
+
+  /**
+   * Precarga una imagen individual con manejo de eventos
+   */
+  private preloadImage(url: string, type: string): void {
+    const img = new Image();
+
+    img.onload = () => {
+      console.log(`${type} image preloaded successfully:`, url);
+      // Marcar como cargada según el tipo
+      if (type === 'planta-previa') {
+        this.plantaPreviaImageLoaded = true;
+      } else if (type === 'planta-proyecto') {
+        this.plantaImageLoaded = true;
+      }
+    };
+
+    img.onerror = () => {
+      console.error(`Error preloading ${type} image:`, url);
+      // Marcar error según el tipo
+      if (type === 'planta-previa') {
+        this.plantaPreviaImageError = true;
+      } else if (type === 'planta-proyecto') {
+        this.plantaImageError = true;
+      }
+    };
+
+    img.src = url;
   }
 
   getGalleryImageUrl(imageSrc: string): string {

@@ -80,13 +80,17 @@ export class CloudinaryService {
    * Genera URL para planos optimizada respetando la relación de aspecto
    */
   generatePlantaUrl(imageId: string, containerWidth?: number): string {
-    // Para planos, solo especificamos el ancho y dejamos que Cloudinary mantenga la relación de aspecto
-    const width = containerWidth ? Math.min(containerWidth, 1200) : 600;
+    // Para planos, optimizamos para mejor calidad y velocidad
+    // Asegurar que el width sea siempre un entero para evitar problemas de carga
+    const width = containerWidth
+      ? Math.floor(Math.min(containerWidth, 1200))
+      : 600;
 
     return this.generateImageUrl(imageId, {
       width: width,
-      crop: 'c_scale,w_auto',
-      quality: 'q_auto:best', // Mejorado para mejor calidad
+      crop: 'c_fill,g_auto', // Mantener proporciones y evitar decimales
+      quality: 'q_auto:good', // Balance entre calidad y velocidad
+      format: 'f_auto', // Formato automático (WebP si es compatible)
     });
   }
 

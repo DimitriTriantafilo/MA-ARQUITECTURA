@@ -47,10 +47,14 @@ export class ProjectDisplayComponent implements OnInit {
     // Verificar si el idioma actual es inglés
     const currentLanguage = this.translationService.currentLang();
 
+    let projectName: string;
     if (currentLanguage === 'en' && this.project.nameEn) {
-      return this.project.nameEn;
+      projectName = this.project.nameEn;
+    } else {
+      projectName = this.project.name;
     }
 
-    return this.project.name;
+    // Retornar el nombre en mayúsculas
+    return projectName.toUpperCase();
   }
 }

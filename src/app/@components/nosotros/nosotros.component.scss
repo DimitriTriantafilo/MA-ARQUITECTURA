@@ -153,6 +153,7 @@ $bg-color: #e3e2de;
     opacity: 0;
     transform: scale(0.8) translateY(30px);
     transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border-radius: 8px;
 
     &.parallax2-effect {
       opacity: 1;

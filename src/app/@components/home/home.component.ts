@@ -13,6 +13,7 @@ import { WindowSizeService } from '../../window-size.service';
 import { TranslatePipe } from '../../transltate/translate.pipe';
 import { PrivacyFriendlyVideoComponent } from '../privacy-friendly-video/privacy-friendly-video.component';
 import { ImagePreloadService } from '../../image-preload.service';
+import { TranslationService } from '../../transltate/translation.service';
 
 @Component({
   selector: 'app-home',
@@ -28,7 +29,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     @Inject(PLATFORM_ID) private platformId: Object,
     public windowSize: WindowSizeService,
     private router: Router,
-    private imagePreloadService: ImagePreloadService
+    private imagePreloadService: ImagePreloadService,
+    private translationService: TranslationService
   ) {}
 
   ngOnInit() {
@@ -69,6 +71,27 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     height: number
   ): string {
     return `https://res.cloudinary.com/dskkynwxb/c_scale,w_${width},h_${height}/q_auto:good/f_auto,fl_force_strip,fl_progressive/${publicId}`;
+  }
+
+  /**
+   * Obtiene el nombre del proyecto Casa Wim según el idioma actual
+   */
+  getCasaWimName(): string {
+    return this.translationService.translate('casaWim').toUpperCase();
+  }
+
+  /**
+   * Obtiene el nombre del proyecto Reforma Sanfer según el idioma actual
+   */
+  getReformaSanferName(): string {
+    return this.translationService.translate('reformaSanfer').toUpperCase();
+  }
+
+  /**
+   * Obtiene la ubicación San Andrés de Giles según el idioma actual
+   */
+  getSanAndresGilesLocation(): string {
+    return this.translationService.translate('sanAndresGiles').toUpperCase();
   }
 
   // Funciones de navegación para proyectos

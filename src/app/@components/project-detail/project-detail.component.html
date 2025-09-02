@@ -1,3 +1,25 @@
+<!-- Preload de imágenes de planos para mejor rendimiento -->
+<div
+  *ngIf="data?.plantaPreviaSrc || data?.plantaSrc"
+  class="preload-links"
+  style="display: none"
+>
+  <link
+    *ngIf="data?.plantaPreviaSrc"
+    rel="preload"
+    [href]="getPlantaPreviaImageUrl()"
+    as="image"
+    type="image/png"
+  />
+  <link
+    *ngIf="data?.plantaSrc"
+    rel="preload"
+    [href]="getPlantaImageUrl()"
+    as="image"
+    type="image/png"
+  />
+</div>
+
 <!-- Imagen principal como <img> para SEO -->
 <div *ngIf="innerWidth && innerHeight" class="project-landig">
   <img
