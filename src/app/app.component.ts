@@ -47,6 +47,7 @@ export class AppComponent implements OnInit {
         }, 4000);
       }
     }
+    console.log(` Desarrollado por Dimitri Triantafilo con <3 para MA. `);
   }
 
   private hideWelcome() {
