@@ -3,7 +3,7 @@
 .featuredImg {
   position: relative;
   width: 100%;
-  height: 100vh; /* Pantalla completa */
+  height: 100dvh; /* Pantalla completa - usa dynamic viewport height */
   overflow: hidden; /* Evita bordes indeseados */
   contain: layout style paint;
 
@@ -35,7 +35,7 @@
 @media (max-width: 768px) {
   .featuredImg {
     height: 55vw; /* Altura responsive para móviles */
-    max-height: 100vh;
+    max-height: 100dvh;
   }
 
   app-privacy-friendly-video {
@@ -98,7 +98,7 @@
 
 .fullWidthImage {
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
   img {
     width: 100%;
     height: auto;
@@ -108,7 +108,7 @@
   position: relative;
   overflow-x: hidden; /* Evita scroll horizontal en toda la página */
   background-color: #e3e2de; /* Mismo color que project-list */
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 .backgroundImagesContainer {
   position: absolute;

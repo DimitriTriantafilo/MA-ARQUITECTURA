@@ -51,7 +51,7 @@ import { SafePipe } from '../../pipes/safe.pipe';
         top: 0;
         left: 0;
         width: 100%;
-        height: 100vh;
+        height: 100dvh;
         background: #000;
         overflow: hidden;
         z-index: 0;
@@ -150,7 +150,7 @@ import { SafePipe } from '../../pipes/safe.pipe';
       @media (max-width: 768px) {
         .video-container {
           height: 55vw;
-          max-height: 100vh;
+          max-height: 100dvh;
         }
       }
 

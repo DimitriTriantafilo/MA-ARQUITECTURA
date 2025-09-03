@@ -24,7 +24,7 @@ $golden-basketry: #ad9371;
   // background-color: #f1f1f1;
   // background-color: #f4f4f4;
   background-color: #e3e2de;
-  min-height: 100vh;
+  min-height: 100dvh;
   width: 100%;
 }
 
@@ -79,7 +79,7 @@ app-topbar:hover {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
   background-color: transparent;
   overflow: hidden;
   animation: shrinkDisappear 2s ease-in-out forwards;
@@ -115,7 +115,7 @@ app-topbar:hover {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
   background-color: rgba($deep-onyx, 0.95);
   z-index: 1;
   animation: shrinkBackground 2s ease-in-out forwards;
@@ -123,7 +123,7 @@ app-topbar:hover {
 
 @keyframes shrinkDisappear {
   0% {
-    height: 100vh;
+    height: 100dvh;
     background-color: transparent;
   }
   100% {
@@ -134,7 +134,7 @@ app-topbar:hover {
 
 @keyframes shrinkBackground {
   0% {
-    height: 100vh;
+    height: 100dvh;
     background-color: rgba($deep-onyx, 0.95);
   }
   100% {
@@ -219,7 +219,7 @@ app-topbar:not(.initial-state) {
 }
 .division {
   width: 100%;
-  height: 20vh;
+  height: 20dvh;
   background: #393936;
   background: linear-gradient(
     rgba(57, 57, 54, 1) 50%,
@@ -242,7 +242,7 @@ app-topbar:not(.initial-state) {
   }
   .division {
     width: 100%;
-    height: 20vh;
+    height: 20dvh;
     background: #393936;
     background: linear-gradient(
       170deg,
@@ -274,7 +274,7 @@ app-topbar:not(.initial-state) {
 
   @keyframes shrinkBackgroundMobile {
     0% {
-      height: 100vh;
+      height: 100dvh;
       background-color: rgba($deep-onyx, 0.95);
     }
     100% {

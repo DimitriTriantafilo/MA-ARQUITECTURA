@@ -29,7 +29,7 @@ import { OrientationService } from '../../orientation.service.js';
         top: 0;
         left: 0;
         width: 100vw;
-        height: 100vh;
+        height: 100dvh;
         background: #e3e2de;
         display: flex;
         align-items: center;
