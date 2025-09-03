@@ -1,9 +1,21 @@
 @use "../../../assets/styles/variables.scss" as *;
 
+/* Solo para móvil: prevenir cambios de tamaño dinámicos en las imágenes de proyectos */
+@media (max-width: 768px) {
+  .project-landig,
+  .project-vertical,
+  .vertical-image-container {
+    /* El tamaño se fijará dinámicamente con JavaScript SOLO en móvil */
+    height: 100vh;
+    min-height: 100vh;
+    max-height: 100vh;
+  }
+}
+
 .featuredImg {
   position: relative;
   width: 100%;
-  height: 100dvh; /* Pantalla completa - usa dynamic viewport height */
+  height: 100vh; /* Altura fija que no cambia */
   overflow: hidden; /* Evita bordes indeseados */
   contain: layout style paint;
 
@@ -28,18 +40,6 @@
     object-fit: cover; /* Cubre todo el contenedor, puede recortar pero no deja espacios */
     contain: layout style paint;
     will-change: transform;
-  }
-}
-
-/* Estilos específicos para móviles */
-@media (max-width: 768px) {
-  .featuredImg {
-    height: 55vw; /* Altura responsive para móviles */
-    max-height: 100dvh;
-  }
-
-  app-privacy-friendly-video {
-    height: 100%;
   }
 }
 
@@ -98,7 +98,7 @@
 
 .fullWidthImage {
   width: 100%;
-  height: 100dvh;
+  height: 100vh; /* Altura fija que no cambia */
   img {
     width: 100%;
     height: auto;
@@ -108,7 +108,7 @@
   position: relative;
   overflow-x: hidden; /* Evita scroll horizontal en toda la página */
   background-color: #e3e2de; /* Mismo color que project-list */
-  min-height: 100dvh;
+  min-height: 100vh;
 }
 .backgroundImagesContainer {
   position: absolute;

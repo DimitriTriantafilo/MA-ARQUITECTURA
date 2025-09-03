@@ -39,6 +39,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       setTimeout(() => {
         this.imagePreloadService.preloadCriticalResources();
       }, 100);
+
+      // Fijar el tamaño de las imágenes para prevenir cambios dinámicos
+      this.fixImageHeights();
     }
   }
 
@@ -94,6 +97,68 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.translationService.translate('sanAndresGiles').toUpperCase();
   }
 
+  /**
+   * Fija el tamaño de las imágenes de proyectos SOLO en móvil para prevenir cambios dinámicos
+   * cuando se muestra/oculta la barra de navegación del navegador
+   */
+  private fixImageHeights(): void {
+    // Solo ejecutar en móvil
+    if (this.innerWidth > 768) {
+      return;
+    }
+
+    // Esperar a que el DOM esté listo
+    setTimeout(() => {
+      // SOLO las imágenes de proyectos, NO el video principal
+      const projectImageContainers = this.el.nativeElement.querySelectorAll(
+        '.project-landig, .project-vertical, .vertical-image-container'
+      );
+
+      projectImageContainers.forEach((container: HTMLElement) => {
+        // Obtener el tamaño inicial del viewport
+        const initialHeight = window.innerHeight;
+
+        // Fijar el tamaño de manera definitiva SOLO en móvil
+        container.style.height = `${initialHeight}px`;
+        container.style.minHeight = `${initialHeight}px`;
+        container.style.maxHeight = `${initialHeight}px`;
+      });
+
+      // Escuchar cambios en el tamaño de la ventana para mantener el tamaño fijo
+      window.addEventListener('resize', this.onWindowResize);
+    }, 100);
+  }
+
+  /**
+   * Maneja el evento de resize de la ventana SOLO para proyectos en móvil
+   */
+  private onWindowResize = (): void => {
+    // Solo ejecutar en móvil
+    if (this.innerWidth > 768) {
+      return;
+    }
+
+    // SOLO las imágenes de proyectos, NO el video principal
+    const projectImageContainers = this.el.nativeElement.querySelectorAll(
+      '.project-landig, .project-vertical, .vertical-image-container'
+    );
+
+    // Solo actualizar si es un cambio significativo (no cambios menores por viewport dinámico)
+    const currentHeight = window.innerHeight;
+    const previousHeight = parseInt(
+      projectImageContainers[0]?.style.height || '0'
+    );
+
+    if (Math.abs(currentHeight - previousHeight) > 50) {
+      // Es un cambio real de orientación o tamaño de ventana
+      projectImageContainers.forEach((container: HTMLElement) => {
+        container.style.height = `${currentHeight}px`;
+        container.style.minHeight = `${currentHeight}px`;
+        container.style.maxHeight = `${currentHeight}px`;
+      });
+    }
+  };
+
   // Funciones de navegación para proyectos
   navigateToReformaMigueletes() {
     this.router.navigate(['/reforma-migueletes']);
@@ -133,6 +198,10 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
         this.setupIntersectionObservers();
         this.setupLazyLoading();
         this.setupProjectTextObserver();
+        this.setupHeroTextObserver();
+
+        // Fijar el tamaño de las imágenes después de que el DOM esté completamente listo
+        this.fixImageHeights();
       }, 500); // Aumentado a 500ms para asegurar que todo esté cargado
     }
   }
@@ -140,6 +209,11 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy() {
     // Limpiar todos los observers
     this.observers.forEach((observer) => observer.disconnect());
+
+    // Limpiar event listener de resize
+    if (isPlatformBrowser(this.platformId)) {
+      window.removeEventListener('resize', this.onWindowResize);
+    }
   }
 
   private setupIntersectionObservers(): void {
