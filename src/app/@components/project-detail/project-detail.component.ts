@@ -22,6 +22,7 @@ import { CloudinaryService } from '../../cloudinary.service';
 import { ImagePreloadService } from '../../image-preload.service';
 import { TranslationService } from '../../transltate/translation.service';
 import { TranslatePipe } from '../../transltate/translate.pipe';
+import { SafePipe } from '../../pipes/safe.pipe';
 
 @Component({
   selector: 'app-project-detail',
@@ -31,6 +32,7 @@ import { TranslatePipe } from '../../transltate/translate.pipe';
     MatIconModule,
     MatProgressSpinnerModule,
     TranslatePipe,
+    SafePipe,
   ],
   templateUrl: './project-detail.component.html',
   styleUrls: ['./project-detail.component.scss'],
@@ -359,7 +361,6 @@ export class ProjectDetailComponent
 
   getPlantaImageUrl(): string {
     if (!this.data?.plantaSrc || !this.innerWidth) {
-      console.log('No plantaSrc found in data:', this.data);
       return '';
     }
 
@@ -384,11 +385,6 @@ export class ProjectDetailComponent
       this.data.plantaSrc,
       containerWidth
     );
-
-    console.log('Generated planta URL:', url);
-    console.log('Original plantaSrc:', this.data.plantaSrc);
-    console.log('Calculated container width:', containerWidth);
-    console.log('Has planta previa:', !!this.data?.plantaPreviaSrc);
 
     return url;
   }
@@ -417,26 +413,20 @@ export class ProjectDetailComponent
   }
 
   onPlantaImageLoad(event: Event): void {
-    console.log('Planta image loaded successfully:', event);
     this.plantaImageLoaded = true;
   }
 
   onPlantaImageError(event: Event): void {
     console.error('Error loading planta image:', event);
-    console.log('PlantaSrc:', this.data?.plantaSrc);
-    console.log('Generated URL:', this.getPlantaImageUrl());
     this.plantaImageError = true;
   }
 
   onPlantaPreviaImageLoad(event: Event): void {
-    console.log('Planta previa image loaded successfully:', event);
     this.plantaPreviaImageLoaded = true;
   }
 
   onPlantaPreviaImageError(event: Event): void {
     console.error('Error loading planta previa image:', event);
-    console.log('PlantaPreviaSrc:', this.data?.plantaPreviaSrc);
-    console.log('Generated URL:', this.getPlantaPreviaImageUrl());
     this.plantaPreviaImageError = true;
   }
 
@@ -479,7 +469,6 @@ export class ProjectDetailComponent
     const img = new Image();
 
     img.onload = () => {
-      console.log(`${type} image preloaded successfully:`, url);
       // Marcar como cargada según el tipo
       if (type === 'planta-previa') {
         this.plantaPreviaImageLoaded = true;

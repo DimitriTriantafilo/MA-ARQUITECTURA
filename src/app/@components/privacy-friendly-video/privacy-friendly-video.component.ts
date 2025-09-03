@@ -258,11 +258,9 @@ export class PrivacyFriendlyVideoComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
-      console.log('Inicializando componente de video...');
       this.generateOptimizedVideoUrl();
       this.showVideo = true;
       this.cdr.detectChanges();
-      console.log('Video mostrado, URL:', this.videoUrl);
 
       // Prevenir interacciones con el iframe después de que se cargue
       setTimeout(() => {
@@ -384,15 +382,11 @@ export class PrivacyFriendlyVideoComponent implements OnInit, OnDestroy {
       '&'
     )}`;
 
-    console.log('URL del video generada:', this.videoUrl);
-    console.log('Configuración: autoplay=1, mute=1, controls=0');
-
     // Para YouTube, no necesitamos verificar URL ni soporte de video
     this.videoLoaded = true;
   }
 
   onVideoLoad(): void {
-    console.log('Video de YouTube cargado exitosamente');
     this.videoLoaded = true;
     this.cdr.detectChanges();
   }

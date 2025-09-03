@@ -194,7 +194,6 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
           if (entry.isIntersecting) {
             const projectElement = entry.target as HTMLElement;
             projectElement.classList.add('in-view');
-            console.log('Proyecto en vista:', projectElement.textContent);
           } else {
             // Opcional: remover la clase cuando sale del viewport
             const projectElement = entry.target as HTMLElement;
@@ -212,10 +211,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     const projectTexts = this.el.nativeElement.querySelectorAll(
       '.name, .m2, .divisor'
     );
-    console.log('Elementos de proyecto encontrados:', projectTexts.length);
+
     projectTexts.forEach((textElement: Element) => {
       projectTextObserver.observe(textElement);
-      console.log('Observando elemento:', textElement.textContent);
     });
 
     this.observers.push(projectTextObserver);

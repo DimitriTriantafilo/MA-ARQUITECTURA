@@ -62,19 +62,6 @@ export class VideoLoadingService {
     // Detección de navegador
     this.isSafari = /safari/i.test(userAgent) && !/chrome/i.test(userAgent);
     this.isChrome = /chrome/i.test(userAgent);
-
-    // Solo loggear si la configuración ya está disponible
-    if (this.config && this.config.enableDebugLogging) {
-      console.log('Capacidades del dispositivo detectadas:', {
-        isMobile: this.isMobile,
-        isIOS: this.isIOS,
-        isAndroid: this.isAndroid,
-        isSafari: this.isSafari,
-        isChrome: this.isChrome,
-        userAgent: userAgent,
-        config: this.config,
-      });
-    }
   }
 
   generateYouTubeUrl(videoId: string, options: VideoLoadOptions): string {
@@ -182,18 +169,6 @@ export class VideoLoadingService {
     const url = `https://www.youtube.com/embed/${videoId}?${baseParams.join(
       '&'
     )}`;
-
-    if (this.config.enableDebugLogging) {
-      console.log('URL de YouTube generada:', url);
-      console.log('Opciones aplicadas:', options);
-      console.log('Dispositivo detectado:', {
-        isMobile: this.isMobile,
-        isIOS: this.isIOS,
-        isAndroid: this.isAndroid,
-        isSafari: this.isSafari,
-        isChrome: this.isChrome,
-      });
-    }
 
     return url;
   }

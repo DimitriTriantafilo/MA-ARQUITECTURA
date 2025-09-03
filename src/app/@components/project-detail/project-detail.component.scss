@@ -69,7 +69,7 @@
     .planta-image-container {
       width: 60%;
       max-height: 40vh;
-      min-height: 280px; // Más espacio cuando hay dos planos
+      min-height: 280px;
     }
 
     .planta-previa,
@@ -92,9 +92,8 @@
   transform: scale(0.95);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 
-  // Reservar espacio para evitar shift
-  aspect-ratio: 4/3; // Proporción típica de planos arquitectónicos
-  min-height: 200px; // 160px del fallback + 20px margin + 20px margin del info
+  aspect-ratio: 4/3;
+  min-height: 200px;
 }
 
 .planta-image {
@@ -520,7 +519,10 @@
     border-radius: 100%;
   }
 
-  .planta-container {
+  .planta-container,
+  .planta-content,
+  .right-content,
+  .planta-section {
     flex-direction: column !important;
     gap: 40px !important;
     padding: 60px 20px !important;
@@ -528,7 +530,6 @@
   }
 
   .planta-content {
-    flex-direction: column !important;
     gap: 30px !important;
   }
 
@@ -542,21 +543,17 @@
     width: 100% !important;
   }
 
-  .planta-image {
+  .planta-image,
+  .planta-image-container {
     align-self: center;
     max-width: 250px !important;
-
-    // En móvil, mantener proporciones y espacio reservado
-    height: auto !important;
-    min-height: 200px !important;
-    aspect-ratio: 4/3 !important;
-  }
-
-  .planta-image-container {
-    // En móvil, ajustar el contenedor para mantener proporciones
     min-height: 200px !important;
     aspect-ratio: 4/3 !important;
     width: 100% !important;
+  }
+
+  .planta-image {
+    height: auto !important;
   }
 
   .planta-fallback {
@@ -587,97 +584,60 @@
     align-items: center;
 
     .planta-image-container {
-      min-height: 240px !important; // Más espacio para dos planos en móvil
+      min-height: 240px !important;
     }
   }
 
   .planta-info {
     justify-content: center;
-    margin-top: 0px !important;
+    margin-top: 0 !important;
     z-index: 2 !important;
   }
 
-  .project-description {
+  .project-description,
+  .project-info {
     text-align: center !important;
     color: #969591 !important;
   }
 
   .project-info {
     align-self: center !important;
-    text-align: center !important;
   }
 
   .project-description p {
     font-size: 1.1rem !important;
-    color: #969591 !important;
   }
 
   .specs-container {
     flex-direction: column !important;
     gap: 10px !important;
     align-items: flex-end !important;
-  }
-
-  .spec-item {
-    transform: translateY(20px) !important;
-  }
-
-  .planta-image-container {
-    flex: none !important;
-    width: 100% !important;
-    animation-delay: 0.1s !important;
-  }
-
-  .project-info {
-    gap: 40px !important;
-  }
-
-  .project-specs {
-    gap: 0 !important;
-  }
-
-  .specs-container {
-    gap: 10px !important;
     min-height: auto !important;
   }
 
   .spec-item {
+    transform: translateY(20px) !important;
     margin-bottom: 0 !important;
   }
 
+  .planta-image-container {
+    flex: none !important;
+    animation-delay: 0.1s !important;
+  }
+
+  .project-info { gap: 40px !important; }
+  .project-specs { gap: 0 !important; }
+
   .planta-container.in-view {
-    .planta-image-container {
-      transition-delay: 0.1s !important;
-    }
-
-    .spec-item {
-      transition-delay: 0.2s !important;
-    }
-
-    .project-description {
-      transition-delay: 0.6s !important;
-    }
+    .planta-image-container { transition-delay: 0.1s !important; }
+    .spec-item { transition-delay: 0.2s !important; }
+    .project-description { transition-delay: 0.6s !important; }
   }
 
-  .specs-divider {
-    margin: 15px 0 !important;
-  }
-
-  .spec-value {
-    font-size: 1.4rem !important;
-  }
-
-  .spec-label {
-    font-size: 0.9rem !important;
-  }
-
-  .spec-value {
-    font-size: 0.8rem !important;
-  }
-
-  .project-description p {
-    font-size: 1rem !important;
-  }
+  .specs-divider { margin: 15px 0 !important; }
+  .spec-value { font-size: 0.8rem !important; }
+  .spec-label { font-size: 0.9rem !important; }
+  .project-description p { font-size: 1rem !important; }
 
   .images-container {
     grid-template-columns: 1fr !important;
@@ -700,7 +660,7 @@
   .m2 {
     font-size: 1.5625rem;
     margin-right: 40px;
-    margin-bottom: 80px; /* Agregar margen inferior para subirlo */
-    align-self: flex-end; /* Asegurar que esté al final */
+    margin-bottom: 80px;
+    align-self: flex-end;
   }
 }

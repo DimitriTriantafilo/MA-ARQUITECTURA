@@ -7,14 +7,14 @@
   <link
     *ngIf="data?.plantaPreviaSrc"
     rel="preload"
-    [href]="getPlantaPreviaImageUrl()"
+    [href]="getPlantaPreviaImageUrl() | safe"
     as="image"
     type="image/png"
   />
   <link
     *ngIf="data?.plantaSrc"
     rel="preload"
-    [href]="getPlantaImageUrl()"
+    [href]="getPlantaImageUrl() | safe"
     as="image"
     type="image/png"
   />
@@ -23,7 +23,7 @@
 <!-- Imagen principal como <img> para SEO -->
 <div *ngIf="innerWidth && innerHeight" class="project-landig">
   <img
-    [src]="getMainImageUrl()"
+    [src]="getMainImageUrl() | safe"
     [alt]="'Imagen principal de ' + data?.name"
     class="main-image"
     loading="eager"
@@ -53,7 +53,7 @@
         *ngIf="data?.plantaPreviaSrc"
       >
         <img
-          [src]="getPlantaPreviaImageUrl()"
+          [src]="getPlantaPreviaImageUrl() | safe"
           [alt]="'Plano original de ' + data?.name"
           class="planta-image"
           loading="lazy"
@@ -69,7 +69,7 @@
             <span class="loading-text">{{ "loadingPlano" | translate }}</span>
           </div>
         </div>
-        <div class="planta-info">
+        <div class="planta-info" *ngIf="plantaPreviaImageLoaded">
           <span class="planta-label">{{ "plantaOriginal" | translate }}</span>
         </div>
       </div>
@@ -80,7 +80,7 @@
         *ngIf="data?.plantaSrc"
       >
         <img
-          [src]="getPlantaImageUrl()"
+          [src]="getPlantaImageUrl() | safe"
           [alt]="'Plano de proyecto de ' + data?.name"
           class="planta-image"
           loading="lazy"
@@ -97,7 +97,9 @@
           </div>
         </div>
         <div class="planta-info">
-          <span class="planta-label">{{ "plantaProyecto" | translate }}</span>
+          <span class="planta-label" *ngIf="plantaImageLoaded">{{
+            "plantaProyecto" | translate
+          }}</span>
         </div>
       </div>
     </div>
@@ -164,7 +166,7 @@
     @if(!breakpoint.isMobile()){
     <img
       class="image-desktop"
-      [src]="getGalleryImageUrl(image.src)"
+      [src]="getGalleryImageUrl(image.src) | safe"
       [alt]="'Imagen de ' + data?.name + ' - Foto ' + (i + 1)"
       [loading]="i < 6 ? 'eager' : 'lazy'"
       decoding="async"
@@ -173,7 +175,7 @@
     } @else if(innerWidth > 0 && getGalleryImageUrl(image.src)) {
     <img
       class="image-mobile"
-      [src]="getGalleryImageUrl(image.src)"
+      [src]="getGalleryImageUrl(image.src) | safe"
       [alt]="'Imagen de ' + data?.name + ' - Foto ' + (i + 1)"
       [width]="innerWidth"
       [height]="300"
