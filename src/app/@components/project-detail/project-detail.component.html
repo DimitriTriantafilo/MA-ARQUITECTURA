@@ -58,7 +58,17 @@
           class="planta-image"
           loading="lazy"
           decoding="async"
+          (error)="onPlantaPreviaImageError($event)"
+          (load)="onPlantaPreviaImageLoad($event)"
         />
+        <!-- Fallback si la imagen no carga -->
+        <div class="planta-fallback" *ngIf="!plantaPreviaImageLoaded">
+          <div class="fallback-content">
+            <mat-spinner diameter="40" strokeWidth="3" class="planta-spinner">
+            </mat-spinner>
+            <span class="loading-text">{{ "loadingPlano" | translate }}</span>
+          </div>
+        </div>
         <div class="planta-info">
           <span class="planta-label">{{ "plantaOriginal" | translate }}</span>
         </div>
@@ -81,8 +91,9 @@
         <!-- Fallback si la imagen no carga -->
         <div class="planta-fallback" *ngIf="!plantaImageLoaded">
           <div class="fallback-content">
-            <span>Plano del proyecto</span>
-            <small>{{ data?.plantaSrc }}</small>
+            <mat-spinner diameter="40" strokeWidth="3" class="planta-spinner">
+            </mat-spinner>
+            <span class="loading-text">{{ "loadingPlano" | translate }}</span>
           </div>
         </div>
         <div class="planta-info">

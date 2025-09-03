@@ -26,6 +26,7 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     plantaProyecto: 'PLANTA PROYECTO',
     cofounder: 'Cofounder',
     loadingImage: 'Cargando imagen...',
+    loadingPlano: 'Cargando plano...',
     // Títulos del proyecto
     year: 'Año',
     dimension: 'Dimensión',
@@ -143,6 +144,7 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     plantaProyecto: 'PROJECT BLUEPRINT',
     cofounder: 'Cofounder',
     loadingImage: 'Loading image...',
+    loadingPlano: 'Loading blueprint...',
     // Títulos del proyecto
     year: 'Year',
     dimension: 'Dimension',

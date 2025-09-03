@@ -69,6 +69,7 @@
     .planta-image-container {
       width: 60%;
       max-height: 40vh;
+      min-height: 280px; // Más espacio cuando hay dos planos
     }
 
     .planta-previa,
@@ -92,8 +93,8 @@
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 
   // Reservar espacio para evitar shift
-  min-height: 300px; // Altura mínima para reservar espacio
   aspect-ratio: 4/3; // Proporción típica de planos arquitectónicos
+  min-height: 200px; // 160px del fallback + 20px margin + 20px margin del info
 }
 
 .planta-image {
@@ -104,38 +105,47 @@
   object-fit: contain;
   border-radius: 2px;
   display: block;
+  position: relative;
+  z-index: 2;
 }
 
 .planta-fallback {
   width: 100%;
   max-width: 300px;
   min-width: 200px;
-  height: 200px;
+  height: 160px;
   border-radius: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: rgba(255, 255, 255, 0.05);
-  margin-bottom: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 
 .fallback-content {
   text-align: center;
   color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
 
-  span {
+  .planta-spinner {
+    ::ng-deep .mat-mdc-progress-spinner-circle {
+      stroke: #969591 !important;
+    }
+  }
+
+  .loading-text {
     display: block;
     font-family: "manrope", sans-serif;
     font-size: 1rem;
-    margin-bottom: 10px;
-  }
-
-  small {
-    display: block;
-    font-family: "manrope", sans-serif;
-    font-size: 0.7rem;
     color: #969591;
-    word-break: break-all;
+    font-weight: 400;
+    margin: 0;
   }
 }
 
@@ -143,10 +153,13 @@
   display: flex;
   justify-content: flex-start;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 0px;
   color: #969591;
   font-family: "manrope", sans-serif;
   font-size: 1.4rem;
+  align-self: flex-start;
+  position: relative;
+  z-index: 2;
 }
 
 .planta-label {
@@ -512,7 +525,6 @@
     gap: 40px !important;
     padding: 60px 20px !important;
     min-height: auto !important;
-    max-height: unset;
   }
 
   .planta-content {
@@ -547,14 +559,42 @@
     width: 100% !important;
   }
 
+  .planta-fallback {
+    height: 140px !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: 1 !important;
+
+    .fallback-content {
+      gap: 12px !important;
+
+      .planta-spinner {
+        ::ng-deep .mat-mdc-progress-spinner-circle {
+          stroke: #969591 !important;
+        }
+      }
+
+      .loading-text {
+        font-size: 0.9rem !important;
+      }
+    }
+  }
+
   .planta-section.has-previa .planta-previa,
   .planta-section.has-previa .planta-proyecto {
     align-self: flex-start;
     align-items: center;
+
+    .planta-image-container {
+      min-height: 240px !important; // Más espacio para dos planos en móvil
+    }
   }
 
   .planta-info {
     justify-content: center;
+    margin-top: 0px !important;
+    z-index: 2 !important;
   }
 
   .project-description {
