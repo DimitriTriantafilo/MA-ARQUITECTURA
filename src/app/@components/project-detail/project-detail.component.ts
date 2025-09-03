@@ -49,13 +49,18 @@ export class ProjectDetailComponent
   hasCalculatedDimensions: boolean = false; // Bandera de control
   isLoadingImage: boolean = false;
   currentImageLoaded: boolean = false;
-  public innerWidth: number;
-  public innerHeight: number;
+
   public plantaImageLoaded: boolean = false;
   public plantaImageError: boolean = false;
   public plantaPreviaImageLoaded: boolean = false;
   public plantaPreviaImageError: boolean = false;
   private plantaObserver: IntersectionObserver | null = null;
+
+  // DIMENSIONES FIJAS: Se calculan UNA sola vez al inicializar
+  // Esto evita recargas innecesarias de imágenes de Cloudinary cuando cambia el tamaño de la pantalla
+  // (como cuando se cierra/abre la barra de navegación del navegador)
+  public readonly fixedViewportWidth: number;
+  public readonly fixedViewportHeight: number;
 
   @ViewChild('carrousel') carrouselRef?: ElementRef<HTMLDivElement>;
   private imageLoaders: Map<string, HTMLImageElement> = new Map();
@@ -71,15 +76,14 @@ export class ProjectDetailComponent
     private imagePreloadService: ImagePreloadService,
     private translationService: TranslationService
   ) {
-    this.innerWidth = this.windowSize.innerWidth();
-    this.innerHeight = this.windowSize.innerHeight();
+    // CALCULAR DIMENSIONES UNA SOLA VEZ en el constructor
+    // Esto evita recargas innecesarias de imágenes de Cloudinary
+    this.fixedViewportWidth = this.windowSize.innerWidth();
+    this.fixedViewportHeight = this.windowSize.innerHeight();
   }
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
-      this.innerWidth = window.innerWidth;
-      this.innerHeight = window.innerHeight;
-
       // Hacer scroll al top de la página cuando se carga el componente
       window.scrollTo(0, 0);
     }
@@ -168,6 +172,11 @@ export class ProjectDetailComponent
   }
 
   private preloadCurrentImage() {
+    // SOLO ejecutar en el navegador para evitar errores de SSR
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
     if (!this.data?.images?.[this.currentImageIndex]?.src) {
       this.isLoadingImage = false;
       return;
@@ -351,16 +360,16 @@ export class ProjectDetailComponent
 
   // Métodos para generar URLs de imágenes
   getMainImageUrl(): string {
-    if (!this.data?.showImg || !this.innerWidth || !this.innerHeight) return '';
+    if (!this.data?.showImg) return '';
     return this.cloudinaryService.generateBackgroundUrl(
       this.data.showImg,
-      this.innerWidth,
-      this.innerHeight
+      this.fixedViewportWidth,
+      this.fixedViewportHeight
     );
   }
 
   getPlantaImageUrl(): string {
-    if (!this.data?.plantaSrc || !this.innerWidth) {
+    if (!this.data?.plantaSrc) {
       return '';
     }
 
@@ -369,11 +378,13 @@ export class ProjectDetailComponent
 
     if (this.breakpoint.isMobile()) {
       // En móvil, usar un ancho más grande para mejor calidad
-      containerWidth = Math.min(this.innerWidth * 0.9, 600); // 90% del ancho de pantalla, máximo 600px
+      containerWidth = Math.min(this.fixedViewportWidth * 0.9, 600); // 90% del ancho de pantalla, máximo 600px
     } else {
       // El contenedor planta-section tiene width: 50% y hay un gap de 60px
       // La imagen tiene max-width: 80% dentro del contenedor
-      containerWidth = Math.floor((this.innerWidth * 0.94 - 60) * 0.5 * 0.8);
+      containerWidth = Math.floor(
+        (this.fixedViewportWidth * 0.94 - 60) * 0.5 * 0.8
+      );
     }
 
     // Si hay planta previa, ajustar el ancho para que ambas imágenes quepan mejor
@@ -390,17 +401,19 @@ export class ProjectDetailComponent
   }
 
   getPlantaPreviaImageUrl(): string {
-    if (!this.data?.plantaPreviaSrc || !this.innerWidth) return '';
+    if (!this.data?.plantaPreviaSrc) return '';
 
     // Calcula el ancho real del contenedor de la planta
     let containerWidth: number;
 
     if (this.breakpoint.isMobile()) {
       // En móvil, usar un ancho más grande para mejor calidad
-      containerWidth = Math.min(this.innerWidth * 0.9, 600); // 90% del ancho de pantalla, máximo 600px
+      containerWidth = Math.min(this.fixedViewportWidth * 0.9, 600); // 90% del ancho de pantalla, máximo 600px
     } else {
       // Mismo cálculo que getPlantaImageUrl
-      containerWidth = Math.floor((this.innerWidth * 0.94 - 60) * 0.5 * 0.8);
+      containerWidth = Math.floor(
+        (this.fixedViewportWidth * 0.94 - 60) * 0.5 * 0.8
+      );
     }
 
     // Reducir el ancho para que ambas imágenes quepan mejor
@@ -432,8 +445,14 @@ export class ProjectDetailComponent
 
   /**
    * Precarga las imágenes de planos con prioridad alta
+   * SOLO se ejecuta en el navegador para evitar errores de SSR
    */
   private preloadPlantaImages(): void {
+    // SOLO ejecutar en el navegador para evitar errores de SSR
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
     if (!this.data) return;
 
     const plantaUrls: string[] = [];
@@ -464,8 +483,14 @@ export class ProjectDetailComponent
 
   /**
    * Precarga una imagen individual con manejo de eventos
+   * SOLO se ejecuta en el navegador para evitar errores de SSR
    */
   private preloadImage(url: string, type: string): void {
+    // SOLO ejecutar en el navegador para evitar errores de SSR
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
     const img = new Image();
 
     img.onload = () => {
@@ -491,17 +516,19 @@ export class ProjectDetailComponent
   }
 
   getGalleryImageUrl(imageSrc: string): string {
-    if (!imageSrc || !this.innerWidth) return '';
+    if (!imageSrc) return '';
 
     if (this.breakpoint.isMobile()) {
       // En móvil, usar el ancho completo de la pantalla para mejor calidad
       return this.cloudinaryService.generateMobileUrl(
         imageSrc,
-        this.innerWidth
+        this.fixedViewportWidth
       );
     } else {
       // Calcula el ancho real de cada columna del grid
-      const containerWidth = Math.floor((this.innerWidth * 0.92 - 80) / 3); // 92% del ancho, menos padding y gap
+      const containerWidth = Math.floor(
+        (this.fixedViewportWidth * 0.92 - 80) / 3
+      ); // 92% del ancho, menos padding y gap
       return this.cloudinaryService.generateGalleryUrl(
         imageSrc,
         containerWidth

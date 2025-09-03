@@ -5,10 +5,20 @@
   .project-landig,
   .project-vertical,
   .vertical-image-container {
-    /* El tamaño se fijará dinámicamente con JavaScript SOLO en móvil */
-    height: 100vh;
-    min-height: 100vh;
-    max-height: 100vh;
+    /* Usar lvh (logical viewport height) para mayor estabilidad */
+    /* lvh es más estable que vh y no cambia con la barra de navegación */
+    height: 100lvh;
+    min-height: 100lvh;
+    max-height: 100lvh;
+
+    /* Fallback para navegadores que no soportan lvh */
+    height: var(--lvh, 100vh);
+    min-height: var(--lvh, 100vh);
+    max-height: var(--lvh, 100vh);
+
+    /* Prevenir cambios dinámicos */
+    contain: layout style paint;
+    will-change: auto;
   }
 }
 
@@ -144,7 +154,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10%;
+  gap: 3%;
   position: relative;
   justify-content: center;
   color: white;

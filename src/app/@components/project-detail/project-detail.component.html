@@ -21,7 +21,7 @@
 </div>
 
 <!-- Imagen principal como <img> para SEO -->
-<div *ngIf="innerWidth && innerHeight" class="project-landig">
+<div class="project-landig">
   <img
     [src]="getMainImageUrl() | safe"
     [alt]="'Imagen principal de ' + data?.name"
@@ -152,7 +152,7 @@
     </div>
   </div>
 </section>
-<section class="images-container" *ngIf="innerWidth && innerHeight">
+<section class="images-container">
   @for (image of data?.images; track $index; let i = $index) {
   <div
     [ngStyle]="{
@@ -172,12 +172,12 @@
       decoding="async"
       [attr.fetchpriority]="i < 3 ? 'high' : i < 6 ? 'auto' : 'low'"
     />
-    } @else if(innerWidth > 0 && getGalleryImageUrl(image.src)) {
+    } @else if(getGalleryImageUrl(image.src)) {
     <img
       class="image-mobile"
       [src]="getGalleryImageUrl(image.src) | safe"
       [alt]="'Imagen de ' + data?.name + ' - Foto ' + (i + 1)"
-      [width]="innerWidth"
+      [width]="fixedViewportWidth"
       [height]="300"
       [loading]="i < 4 ? 'eager' : 'lazy'"
       decoding="async"

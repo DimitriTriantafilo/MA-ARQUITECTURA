@@ -11,6 +11,7 @@ import {
 import { Router } from '@angular/router';
 import { WindowSizeService } from '../../window-size.service';
 import { TranslatePipe } from '../../transltate/translate.pipe';
+// @ts-ignore: Suppress error if type declarations are missing
 import { PrivacyFriendlyVideoComponent } from '../privacy-friendly-video/privacy-friendly-video.component';
 import { ImagePreloadService } from '../../image-preload.service';
 import { TranslationService } from '../../transltate/translation.service';
@@ -24,6 +25,12 @@ import { TranslationService } from '../../transltate/translation.service';
 export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   private observers: IntersectionObserver[] = [];
 
+  // DIMENSIONES FIJAS: Se calculan UNA sola vez al inicializar
+  // Esto evita recargas innecesarias de imágenes de Cloudinary cuando cambia el tamaño de la pantalla
+  // (como cuando se cierra/abre la barra de navegación del navegador)
+  public readonly fixedViewportWidth: number;
+  public readonly fixedViewportHeight: number;
+
   constructor(
     private el: ElementRef,
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -31,7 +38,12 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     private router: Router,
     private imagePreloadService: ImagePreloadService,
     private translationService: TranslationService
-  ) {}
+  ) {
+    // CALCULAR DIMENSIONES UNA SOLA VEZ en el constructor
+    // Esto evita recargas innecesarias de imágenes de Cloudinary
+    this.fixedViewportWidth = this.windowSize.innerWidth();
+    this.fixedViewportHeight = this.windowSize.innerHeight();
+  }
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
@@ -45,16 +57,13 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  get innerWidth() {
-    return this.windowSize.innerWidth();
-  }
-  get innerHeight() {
-    return this.windowSize.innerHeight();
-  }
+  // ELIMINADOS: Los getters dinámicos que causaban recargas innecesarias
+  // get innerWidth() { return this.windowSize.innerWidth(); }
+  // get innerHeight() { return this.windowSize.innerHeight(); }
 
   getVerticalImageWidth(): number {
     // Calculamos el ancho real del contenedor (1/3 del ancho total menos gaps y padding)
-    const containerWidth = Math.floor((this.innerWidth - 40) / 3); // 40px = padding + gaps
+    const containerWidth = Math.floor((this.fixedViewportWidth - 40) / 3); // 40px = padding + gaps
     // Limitamos el ancho máximo para optimizar el consumo de red
     return Math.min(containerWidth, 600);
   }
@@ -103,7 +112,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
    */
   private fixImageHeights(): void {
     // Solo ejecutar en móvil
-    if (this.innerWidth > 768) {
+    if (this.fixedViewportWidth > 768) {
       return;
     }
 
@@ -123,41 +132,11 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
         container.style.minHeight = `${initialHeight}px`;
         container.style.maxHeight = `${initialHeight}px`;
       });
-
-      // Escuchar cambios en el tamaño de la ventana para mantener el tamaño fijo
-      window.addEventListener('resize', this.onWindowResize);
     }, 100);
   }
 
-  /**
-   * Maneja el evento de resize de la ventana SOLO para proyectos en móvil
-   */
-  private onWindowResize = (): void => {
-    // Solo ejecutar en móvil
-    if (this.innerWidth > 768) {
-      return;
-    }
-
-    // SOLO las imágenes de proyectos, NO el video principal
-    const projectImageContainers = this.el.nativeElement.querySelectorAll(
-      '.project-landig, .project-vertical, .vertical-image-container'
-    );
-
-    // Solo actualizar si es un cambio significativo (no cambios menores por viewport dinámico)
-    const currentHeight = window.innerHeight;
-    const previousHeight = parseInt(
-      projectImageContainers[0]?.style.height || '0'
-    );
-
-    if (Math.abs(currentHeight - previousHeight) > 50) {
-      // Es un cambio real de orientación o tamaño de ventana
-      projectImageContainers.forEach((container: HTMLElement) => {
-        container.style.height = `${currentHeight}px`;
-        container.style.minHeight = `${currentHeight}px`;
-        container.style.maxHeight = `${currentHeight}px`;
-      });
-    }
-  };
+  // ELIMINADO: Ya no se necesita el event listener de resize
+  // Las alturas se fijan UNA sola vez al inicializar
 
   // Funciones de navegación para proyectos
   navigateToReformaMigueletes() {
@@ -210,10 +189,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     // Limpiar todos los observers
     this.observers.forEach((observer) => observer.disconnect());
 
-    // Limpiar event listener de resize
-    if (isPlatformBrowser(this.platformId)) {
-      window.removeEventListener('resize', this.onWindowResize);
-    }
+    // ELIMINADO: Ya no hay event listener de resize que limpiar
+    // Las alturas se fijan UNA sola vez al inicializar
   }
 
   private setupIntersectionObservers(): void {

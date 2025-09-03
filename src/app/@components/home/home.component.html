@@ -7,7 +7,7 @@
   ></app-privacy-friendly-video>
 </section>
 
-<ng-container *ngIf="innerWidth > 0 && innerHeight > 0">
+<ng-container>
   <div class="project-wrapper">
     <div
       class="project-landig clickable"
@@ -18,9 +18,9 @@
       <img
         [src]="
           'https://res.cloudinary.com/dskkynwxb/c_fill,g_auto,w_' +
-          innerWidth +
+          fixedViewportWidth +
           ',h_' +
-          innerHeight +
+          fixedViewportHeight +
           '/q_auto:good/f_auto,fl_progressive/v1754942701/ipo4oxlyv7kdjxz4gt4r.jpg'
         "
         alt="Imagen de Reforma BNB"
@@ -37,9 +37,9 @@
     </div>
   </div>
 
-  <ng-container *ngIf="innerWidth > 0 && innerHeight > 0">
+  <ng-container>
     <!-- Desktop: 3 imágenes en fila -->
-    <div class="project-vertical" *ngIf="innerWidth > 600">
+    <div class="project-vertical" *ngIf="fixedViewportWidth > 600">
       <div
         class="vertical-image-container clickable"
         (click)="navigateToReformaSanfer()"
@@ -110,7 +110,7 @@
     <!-- Móvil: 1 imagen como las otras secciones -->
     <div
       class="project-landig clickable"
-      *ngIf="innerWidth <= 600"
+      *ngIf="fixedViewportWidth <= 600"
       (click)="navigateToReformaSanfer()"
       (mouseenter)="onProjectHover($event)"
       (mouseleave)="onProjectLeave($event)"
@@ -118,9 +118,9 @@
       <img
         [src]="
           'https://res.cloudinary.com/dskkynwxb/c_fill,g_auto,w_' +
-          innerWidth +
+          fixedViewportWidth +
           ',h_' +
-          innerHeight +
+          fixedViewportHeight +
           '/q_auto:good/f_auto/v1754489409/frmnllkumg1734je5ut2.jpg'
         "
         alt="Imagen de Proyecto Vertical"
@@ -146,9 +146,9 @@
       <img
         [src]="
           'https://res.cloudinary.com/dskkynwxb/c_fill,g_auto,w_' +
-          innerWidth +
+          fixedViewportWidth +
           ',h_' +
-          innerHeight +
+          fixedViewportHeight +
           '/q_auto:good/f_auto/v1747070360/xaks7ffpmupmhqrs0xwc.jpg'
         "
         alt="Imagen de Reforma Ayacucho"
@@ -165,9 +165,9 @@
   </div>
 
   <!-- Nueva sección con 3 imágenes verticales -->
-  <ng-container *ngIf="innerWidth > 0 && innerHeight > 0">
+  <ng-container *ngIf="fixedViewportWidth > 0 && fixedViewportHeight > 0">
     <!-- Desktop: 3 imágenes en fila -->
-    <div class="project-vertical" *ngIf="innerWidth > 600">
+    <div class="project-vertical" *ngIf="fixedViewportWidth > 600">
       <div
         class="vertical-image-container clickable"
         (click)="navigateToReformaBnb()"
@@ -238,7 +238,7 @@
     <!-- Móvil: 1 imagen como las otras secciones -->
     <div
       class="project-landig clickable"
-      *ngIf="innerWidth <= 600"
+      *ngIf="fixedViewportWidth <= 600"
       (click)="navigateToReformaBnb()"
       (mouseenter)="onProjectHover($event)"
       (mouseleave)="onProjectLeave($event)"
@@ -246,9 +246,9 @@
       <img
         [src]="
           'https://res.cloudinary.com/dskkynwxb/c_fill,g_auto,w_' +
-          innerWidth +
+          fixedViewportWidth +
           ',h_' +
-          innerHeight +
+          fixedViewportHeight +
           '/q_auto:good/f_auto/v1754400083/lnsotxqxbcqx7rq3h1q6.jpg'
         "
         alt="Imagen de Proyecto Vertical"
@@ -274,9 +274,9 @@
       <img
         [src]="
           'https://res.cloudinary.com/dskkynwxb/c_fill,g_auto,w_' +
-          innerWidth +
+          fixedViewportWidth +
           ',h_' +
-          innerHeight +
+          fixedViewportHeight +
           '/q_auto:good/f_auto/v1754402953/j9nvyhxngxppr4mr99dv.jpg'
         "
         alt="Imagen de Reforma Igor"
@@ -298,9 +298,9 @@
     <img
       [src]="
         'https://res.cloudinary.com/dskkynwxb/c_fill,g_auto,w_' +
-        innerWidth +
+        fixedViewportWidth +
         ',h_' +
-        innerHeight +
+        fixedViewportHeight +
         '/q_auto:good/f_auto/v1754406923/wyy8nbmmub32u1vmbdnk.jpg'
       "
       alt="Imagen de Casa Igor"

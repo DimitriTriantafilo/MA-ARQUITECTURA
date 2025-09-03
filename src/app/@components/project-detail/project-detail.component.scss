@@ -523,7 +523,7 @@
   .planta-section {
     flex-direction: column !important;
     gap: 40px !important;
-    padding: 10px 20px !important;
+    padding: 10px 10px !important;
     min-height: auto !important;
   }
 
@@ -606,7 +606,9 @@
   }
 
   .planta-container.in-view {
+    align-self: center;
     .planta-image-container {
+      align-self: center;
       transition-delay: 0.1s !important;
     }
     .spec-item {
@@ -643,12 +645,24 @@
     align-self: flex-start;
     margin-top: 20%;
     padding-left: 20px;
+    max-width: none; /* Permitir que el nombre se expanda naturalmente */
+    white-space: normal; /* Permitir quiebre de línea natural */
+    overflow: visible; /* Mostrar todo el texto sin cortes */
+    word-wrap: normal; /* Quiebre de palabras solo cuando sea necesario */
+    word-break: keep-all; /* EVITAR que las palabras se corten por la mitad */
+    line-height: 1.1; /* Ajustar el interlineado para mejor legibilidad */
+    /* Asegurar que el texto se expanda por encima del m² si es necesario */
+    z-index: 15; /* Mayor z-index que el m² para que esté por encima */
   }
 
   .m2 {
     font-size: 1.5625rem;
-    margin-right: 40px;
-    margin-bottom: 80px;
-    align-self: flex-end;
+    position: absolute !important; /* Posicionamiento absoluto para evitar que el nombre lo afecte */
+    bottom: 40px !important; /* Distancia fija desde abajo */
+    right: 40px !important; /* Distancia fija desde la derecha */
+    margin: 0 !important; /* Eliminar márgenes que puedan causar problemas */
+    z-index: 10; /* Asegurar que esté por encima de otros elementos */
+    /* SIN fondo oscuro - igual que antes */
+    color: white; /* Mantener el color blanco original */
   }
 }

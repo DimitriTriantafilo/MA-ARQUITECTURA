@@ -37,16 +37,24 @@ export class NosotrosComponent implements OnInit {
     // Ya no es necesario asignar innerWidth manualmente
 
     // Activar el efecto del parallax 2 inmediatamente al cargar el componente
-    setTimeout(() => {
-      const parallax2Image = document.querySelector('.profile-img2');
-      if (parallax2Image) {
-        parallax2Image.classList.add('parallax2-effect');
-      }
-    }, 100); // Pequeño delay para asegurar que el DOM esté listo
+    // SOLO ejecutar en el navegador para evitar errores de SSR
+    if (isPlatformBrowser(this.platformId)) {
+      setTimeout(() => {
+        const parallax2Image = document.querySelector('.profile-img2');
+        if (parallax2Image) {
+          parallax2Image.classList.add('parallax2-effect');
+        }
+      }, 100); // Pequeño delay para asegurar que el DOM esté listo
+    }
   }
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
+    // SOLO ejecutar en el navegador para evitar errores de SSR
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
     const scrollY = window.scrollY;
     document.documentElement.style.setProperty('--scroll-y', `${scrollY}px`);
 
@@ -82,16 +90,25 @@ export class NosotrosComponent implements OnInit {
     width: number,
     height: number
   ): string {
-    // Usar mejor calidad para todas las pantallas
-    const quality = 'q_auto:best';
-    return `https://res.cloudinary.com/dskkynwxb/c_scale,w_${width},h_${height}/${quality}/f_auto,fl_force_strip,fl_progressive/${publicId}`;
+    // En móvil, usar máxima calidad para compensar las pantallas de alta densidad
+    let quality = 'q_auto:best';
+    let format = 'f_auto,fl_force_strip,fl_progressive';
+
+    if (this.innerWidth <= 600) {
+      // En móvil, usar calidad máxima y formato WebP si está disponible
+      quality = 'q_auto:best';
+      format = 'f_auto,fl_force_strip,fl_progressive,fl_lossy';
+    }
+
+    return `https://res.cloudinary.com/dskkynwxb/c_scale,w_${width},h_${height}/${quality}/${format}/${publicId}`;
   }
 
   getVerticalImageWidth(): number {
     // Para profile-img2, calculamos el ancho basado en el contenedor disponible
     if (this.innerWidth <= 600) {
-      // En móvil, usar el ancho completo menos padding
-      return Math.min(this.innerWidth - 40, 800); // Aumentado para mejor calidad
+      // En móvil, usar el ancho completo de la pantalla para máxima calidad
+      // No limitar a 800px para asegurar que la imagen se vea nítida
+      return this.innerWidth;
     } else if (this.innerWidth <= 900) {
       // En pantallas web pequeñas, usar 50% del ancho disponible
       const containerWidth = Math.floor(this.innerWidth * 0.5);
@@ -117,8 +134,9 @@ export class NosotrosComponent implements OnInit {
   getProfileImageWidth(): number {
     // Para profile-img, usamos el 30% del ancho de la pantalla (como en el CSS)
     if (this.innerWidth <= 600) {
-      // En móvil, aumentamos el ancho para mejor calidad
-      return 400; // Aumentado para mejor calidad
+      // En móvil, usar el ancho completo de la pantalla para máxima calidad
+      // Esto asegura que la imagen se vea nítida en dispositivos de alta densidad
+      return this.innerWidth;
     } else {
       const containerWidth = Math.floor(this.innerWidth * 0.3);
       // Limitamos el ancho máximo para optimizar el consumo de red

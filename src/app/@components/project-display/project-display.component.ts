@@ -17,22 +17,28 @@ export class ProjectDisplayComponent implements OnInit {
 
   hovering: boolean = false;
 
+  // DIMENSIÓN FIJA: Se calcula UNA sola vez al inicializar
+  private readonly fixedViewportWidth: number;
+
   constructor(
     private cloudinaryService: CloudinaryService,
     private windowSize: WindowSizeService,
     private translationService: TranslationService
-  ) {}
+  ) {
+    // CALCULAR DIMENSIÓN UNA SOLA VEZ en el constructor
+    this.fixedViewportWidth = this.windowSize.innerWidth();
+  }
 
   ngOnInit() {}
 
   /**
    * Genera URL optimizada para la imagen del proyecto
+   * Usa dimensiones fijas para evitar recargas innecesarias
    */
   getProjectImageUrl(): string {
-    const viewportWidth = this.windowSize.innerWidth();
     return this.cloudinaryService.generateFeaturedUrl(
       this.project.showImg,
-      viewportWidth
+      this.fixedViewportWidth
     );
   }
 
