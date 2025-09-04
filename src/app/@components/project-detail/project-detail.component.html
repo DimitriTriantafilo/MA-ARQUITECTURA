@@ -5,14 +5,14 @@
   style="display: none"
 >
   <link
-    *ngIf="data?.plantaPreviaSrc"
+    *ngIf="data?.plantaPreviaSrc && getPlantaPreviaImageUrl()"
     rel="preload"
     [href]="getPlantaPreviaImageUrl() | safe"
     as="image"
     type="image/png"
   />
   <link
-    *ngIf="data?.plantaSrc"
+    *ngIf="data?.plantaSrc && getPlantaImageUrl()"
     rel="preload"
     [href]="getPlantaImageUrl() | safe"
     as="image"

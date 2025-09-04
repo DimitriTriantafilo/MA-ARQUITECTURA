@@ -84,6 +84,15 @@
   [ngClass]="openMenu ? 'activeMenu' : null"
   [attr.aria-label]="'mainMenu' | translate"
 >
+  <!-- Botón de cerrar -->
+  <button
+    class="close-menu-btn"
+    (click)="openMenu = false"
+    [attr.aria-label]="'closeMenu' | translate"
+  >
+    <mat-icon aria-hidden="true">close</mat-icon>
+  </button>
+
   <div
     class="burgerMenu-option"
     [routerLink]="['/proyectos']"

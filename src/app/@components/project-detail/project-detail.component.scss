@@ -652,7 +652,7 @@
     word-break: keep-all; /* EVITAR que las palabras se corten por la mitad */
     line-height: 1.1; /* Ajustar el interlineado para mejor legibilidad */
     /* Asegurar que el texto se expanda por encima del m² si es necesario */
-    z-index: 15; /* Mayor z-index que el m² para que esté por encima */
+    z-index: 2; /* Mayor z-index que el m² para que esté por encima */
   }
 
   .m2 {
@@ -661,7 +661,7 @@
     bottom: 40px !important; /* Distancia fija desde abajo */
     right: 40px !important; /* Distancia fija desde la derecha */
     margin: 0 !important; /* Eliminar márgenes que puedan causar problemas */
-    z-index: 10; /* Asegurar que esté por encima de otros elementos */
+    z-index: 2; /* Asegurar que esté por encima de otros elementos */
     /* SIN fondo oscuro - igual que antes */
     color: white; /* Mantener el color blanco original */
   }

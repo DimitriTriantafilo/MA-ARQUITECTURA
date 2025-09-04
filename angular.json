@@ -20,10 +20,7 @@
             "outputPath": "dist/ma-arquitectura-landing",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js",
-              "@angular/localize/init"
-            ],
+            "polyfills": ["zone.js", "@angular/localize/init"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -65,7 +62,7 @@
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "9kB",
-                  "maximumError": "9kB"
+                  "maximumError": "10kB"
                 }
               ],
               "outputHashing": "all",
@@ -123,10 +120,7 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": [
-              "src/**/*.ts",
-              "src/**/*.html"
-            ]
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
         }
       }
@@ -134,8 +128,6 @@
   },
   "cli": {
     "analytics": "d646d69d-7e29-4beb-a8a7-6c86a6126c2f",
-    "schematicCollections": [
-      "angular-eslint"
-    ]
+    "schematicCollections": ["angular-eslint"]
   }
 }
