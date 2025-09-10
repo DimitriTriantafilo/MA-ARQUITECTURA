@@ -105,3 +105,41 @@ body {
     }
   }
 }
+
+/* Scrollbar personalizado - línea fina elegante */
+::-webkit-scrollbar {
+  width: 6px; /* Ancho de la línea del scrollbar */
+  background: transparent; /* Fondo completamente transparente */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* Track completamente transparente */
+  border: none; /* Sin bordes */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #756860; /* Color marrón del logo de WhatsApp */
+  border-radius: 3px; /* Bordes redondeados para suavidad */
+  transition: background 0.3s ease; /* Transición suave */
+  border: none; /* Sin bordes en el thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #5a4f47; /* Color más oscuro al hacer hover */
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent; /* Esquinas transparentes */
+}
+
+/* Para Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #756860 transparent;
+}
+
+/* Para navegadores que soportan scrollbar-color */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #756860 transparent;
+}

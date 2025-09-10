@@ -8,12 +8,19 @@ import {
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TopbarComponent } from './@components/topbar/topbar.component';
+import { WhatsappFloatComponent } from './@components/whatsapp-float/whatsapp-float.component';
 import { CommonModule } from '@angular/common';
 import { CloudinaryModule } from '@cloudinary/ng';
 import { isPlatformBrowser } from '@angular/common';
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CommonModule, TopbarComponent, CloudinaryModule],
+  imports: [
+    RouterOutlet,
+    CommonModule,
+    TopbarComponent,
+    WhatsappFloatComponent,
+    CloudinaryModule,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

@@ -81,6 +81,19 @@
       max-height: 35vh;
     }
   }
+
+  // Estilos específicos para Casa WIM - limitar altura del plano en desktop
+  &.casa-wim {
+    .planta-image-container {
+      max-height: 50vh;
+      overflow: hidden;
+
+      .planta-image {
+        max-height: 45vh;
+        object-fit: contain;
+      }
+    }
+  }
 }
 
 .planta-image-container {
@@ -575,6 +588,17 @@
 
   .planta-section.has-previa .planta-image-container {
     min-height: 240px !important;
+  }
+
+  // Estilos específicos para Casa WIM - limitar altura del plano
+  .planta-section.casa-wim .planta-image-container {
+    max-height: 50vh !important;
+    overflow: hidden !important;
+
+    .planta-image {
+      max-height: 45vh !important;
+      object-fit: contain !important;
+    }
   }
 
   .planta-info {

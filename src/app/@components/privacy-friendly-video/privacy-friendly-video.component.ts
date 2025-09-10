@@ -38,6 +38,7 @@ import { SafePipe } from '../../pipes/safe.pipe';
           [title]="videoTitle"
           [attr.aria-label]="videoTitle"
           frameborder="0"
+          modestbranding="1"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
           loading="lazy"

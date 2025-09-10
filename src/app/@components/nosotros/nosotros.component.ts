@@ -90,45 +90,64 @@ export class NosotrosComponent implements OnInit {
     width: number,
     height: number
   ): string {
-    // En móvil, usar máxima calidad para compensar las pantallas de alta densidad
+    // Usar c_fill para mantener proporciones sin distorsión
+    let quality = 'q_auto:good';
+    let format = 'f_auto,fl_force_strip,fl_progressive';
+
+    if (this.innerWidth <= 600) {
+      // En móvil, usar calidad optimizada para mejor rendimiento
+      quality = 'q_auto:good';
+      format = 'f_auto,fl_force_strip,fl_progressive';
+    }
+
+    // Usar c_fill para mantener proporciones originales sin estiramiento
+    return `https://res.cloudinary.com/dskkynwxb/c_fill,w_${width},h_${height},g_auto/${quality}/${format}/${publicId}`;
+  }
+
+  getHighQualityImageUrl(
+    publicId: string,
+    width: number,
+    height: number
+  ): string {
+    // Método específico para la imagen del estudio con máxima calidad
     let quality = 'q_auto:best';
     let format = 'f_auto,fl_force_strip,fl_progressive';
 
     if (this.innerWidth <= 600) {
-      // En móvil, usar calidad máxima y formato WebP si está disponible
+      // En móvil, usar calidad máxima y formato WebP para mejor compresión
       quality = 'q_auto:best';
-      format = 'f_auto,fl_force_strip,fl_progressive,fl_lossy';
+      format = 'f_webp,fl_force_strip,fl_progressive';
     }
 
+    // Usar c_scale para mantener la calidad original como antes
     return `https://res.cloudinary.com/dskkynwxb/c_scale,w_${width},h_${height}/${quality}/${format}/${publicId}`;
   }
 
   getVerticalImageWidth(): number {
     // Para profile-img2, calculamos el ancho basado en el contenedor disponible
     if (this.innerWidth <= 600) {
-      // En móvil, usar el ancho completo de la pantalla para máxima calidad
-      // No limitar a 800px para asegurar que la imagen se vea nítida
-      return this.innerWidth;
+      // En móvil, usar 2x el ancho de pantalla para pantallas de alta densidad
+      return this.innerWidth * 2;
     } else if (this.innerWidth <= 900) {
       // En pantallas web pequeñas, usar 50% del ancho disponible
       const containerWidth = Math.floor(this.innerWidth * 0.5);
-      return Math.min(containerWidth, 700);
+      return Math.min(containerWidth, 800);
     } else if (this.innerWidth <= 1200) {
       // En pantallas web medianas, usar 45% del ancho
       const containerWidth = Math.floor(this.innerWidth * 0.45);
-      return Math.min(containerWidth, 800);
+      return Math.min(containerWidth, 900);
     } else {
       // En desktop grande, usar 40% del ancho
       const containerWidth = Math.floor(this.innerWidth * 0.4);
-      return Math.min(containerWidth, 900);
+      return Math.min(containerWidth, 1000);
     }
   }
 
   getVerticalImageHeight(): number {
     // Para profile-img2, calculamos la altura basada en la proporción original de la imagen
     const containerWidth = this.getVerticalImageWidth();
-    // Usar proporción 3:2 (más natural para fotos de estudio apaisadas)
-    return Math.floor(containerWidth * 0.667); // 2/3 = 0.667
+    // Usar proporción 16:9 (más natural para fotos de equipo apaisadas)
+    return Math.floor(containerWidth * 0.5625); // 9/16 = 0.5625
   }
 
   getProfileImageWidth(): number {

@@ -171,7 +171,7 @@ $bg-color: #e3e2de;
     justify-self: flex-start;
     font-size: 1.5rem;
     font-weight: lighter;
-    font-family: "modeco";
+    font-family: "manrope";
     @include parallax-transition;
     white-space: 2px;
 
@@ -397,7 +397,7 @@ $bg-color: #e3e2de;
     .profile-img2 {
       position: relative;
       width: 100%;
-      height: auto; /* Altura automática para mantener proporción */
+      height: 300px; /* Altura fija para mantener proporción */
       max-width: 100%; /* Usar todo el ancho disponible */
       object-fit: cover; /* Mantener proporción cubriendo el contenedor */
       @include parallax-transition;

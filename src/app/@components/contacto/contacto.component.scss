@@ -281,9 +281,28 @@
     box-sizing: border-box;
   }
 
+  .contact-header {
+    flex-direction: column; /* Cambiar a columna en móvil */
+    align-items: flex-start; /* Alinear a la izquierda */
+    gap: 15px; /* Espaciado entre contact-info y social-media */
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 20px;
+  }
+
   .contact-info {
     font-size: 0.8rem;
     gap: 8px;
+    flex-direction: column; /* Cambiar a columna vertical */
+    align-items: flex-start; /* Alinear a la izquierda */
+    gap: 8px; /* Espaciado entre elementos */
+
+    .separator {
+      display: none; /* Ocultar separadores en móvil */
+    }
+
+    mat-icon {
+      display: none; /* Ocultar ícono del teléfono en móvil */
+    }
   }
 
   .social-media {

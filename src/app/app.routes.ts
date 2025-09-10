@@ -606,6 +606,7 @@ export const projects: Project[] = [
   },
   {
     name: 'CONSULTORIO DEVOTO',
+    nameEn: 'DEVOTO OFFICE',
     m2: '31',
     location: 'Villa Devoto',
     year: 2023,

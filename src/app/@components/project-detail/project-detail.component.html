@@ -45,6 +45,7 @@
     <div
       class="planta-section"
       [class.has-previa]="data?.plantaPreviaSrc"
+      [class.casa-wim]="data?.name === 'CASA WIM'"
       *ngIf="data?.plantaSrc || data?.plantaPreviaSrc"
     >
       <!-- Planta Original (Previa) -->
