@@ -292,6 +292,27 @@
     </div>
   </div>
 
+  <!-- Botón Ver Más Proyectos -->
+  <div class="view-more-section">
+    <button
+      class="view-more-button"
+      (click)="navigateToProjects()"
+      (mouseenter)="onViewMoreHover($event)"
+      (mouseleave)="onViewMoreLeave($event)"
+    >
+      <span class="view-more-text">{{ "viewMoreProjects" | translate }}</span>
+      <svg
+        class="arrow-icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path d="M5 12h14M12 5l7 7-7 7" />
+      </svg>
+    </button>
+  </div>
+
   <!-- Nueva sección con 3 imágenes verticales -->
 
   <!-- <div class="project-landig">

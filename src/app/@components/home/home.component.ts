@@ -159,6 +159,10 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     this.router.navigate(['/casa-wim']);
   }
 
+  navigateToProjects() {
+    this.router.navigate(['/proyectos']);
+  }
+
   // Funciones de hover
   onProjectHover(event: MouseEvent) {
     const element = event.currentTarget as HTMLElement;
@@ -166,6 +170,16 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onProjectLeave(event: MouseEvent) {
+    const element = event.currentTarget as HTMLElement;
+    element.classList.remove('hovered');
+  }
+
+  onViewMoreHover(event: MouseEvent) {
+    const element = event.currentTarget as HTMLElement;
+    element.classList.add('hovered');
+  }
+
+  onViewMoreLeave(event: MouseEvent) {
     const element = event.currentTarget as HTMLElement;
     element.classList.remove('hovered');
   }

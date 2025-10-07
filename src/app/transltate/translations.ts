@@ -116,6 +116,7 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     direccionObraItem1: 'Supervisar el avance de los trabajos',
     direccionObraItem2: 'Gestionar pedidos y entregas de materiales',
     direccionObraItem3: 'Administrar y optimizar el presupuesto disponible',
+    viewMoreProjects: 'VER MÁS PROYECTOS',
   },
   en: {
     welcome: 'Welcome',
@@ -232,6 +233,7 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     direccionObraItem1: 'Supervising the progress of the work',
     direccionObraItem2: 'Managing material orders and deliveries',
     direccionObraItem3: 'Administering and optimizing the available budget',
+    viewMoreProjects: 'VIEW MORE PROJECTS',
   },
 };
 

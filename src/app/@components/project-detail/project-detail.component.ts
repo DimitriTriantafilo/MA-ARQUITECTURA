@@ -65,6 +65,21 @@ export class ProjectDetailComponent
   @ViewChild('carrousel') carrouselRef?: ElementRef<HTMLDivElement>;
   private imageLoaders: Map<string, HTMLImageElement> = new Map();
 
+  // Zoom y Pan para imágenes móviles
+  private imageZoomStates: Map<
+    number,
+    {
+      scale: number;
+      translateX: number;
+      translateY: number;
+      lastDistance: number;
+      lastTouchX: number;
+      lastTouchY: number;
+    }
+  > = new Map();
+  private readonly MIN_SCALE = 1;
+  private readonly MAX_SCALE = 4;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -629,5 +644,148 @@ export class ProjectDetailComponent
 
     // Alternar entre izquierda (índice par) y derecha (índice impar)
     return elementIndex % 2 === 0 ? 'left' : 'right';
+  }
+
+  /**
+   * Métodos para manejar zoom y pan en imágenes móviles
+   */
+
+  private getImageState(imageIndex: number) {
+    if (!this.imageZoomStates.has(imageIndex)) {
+      this.imageZoomStates.set(imageIndex, {
+        scale: 1,
+        translateX: 0,
+        translateY: 0,
+        lastDistance: 0,
+        lastTouchX: 0,
+        lastTouchY: 0,
+      });
+    }
+    return this.imageZoomStates.get(imageIndex)!;
+  }
+
+  private getTouchDistance(touch1: Touch, touch2: Touch): number {
+    const dx = touch1.clientX - touch2.clientX;
+    const dy = touch1.clientY - touch2.clientY;
+    return Math.sqrt(dx * dx + dy * dy);
+  }
+
+  private getTouchCenter(
+    touch1: Touch,
+    touch2: Touch
+  ): { x: number; y: number } {
+    return {
+      x: (touch1.clientX + touch2.clientX) / 2,
+      y: (touch1.clientY + touch2.clientY) / 2,
+    };
+  }
+
+  onTouchStart(event: TouchEvent, imageIndex: number): void {
+    if (!this.breakpoint.isMobile()) return;
+
+    const state = this.getImageState(imageIndex);
+
+    if (event.touches.length === 2) {
+      // Pinch zoom starting
+      event.preventDefault();
+      state.lastDistance = this.getTouchDistance(
+        event.touches[0],
+        event.touches[1]
+      );
+    } else if (event.touches.length === 1 && state.scale > 1) {
+      // Pan starting (only when zoomed)
+      event.preventDefault();
+      state.lastTouchX = event.touches[0].clientX;
+      state.lastTouchY = event.touches[0].clientY;
+    }
+  }
+
+  onTouchMove(event: TouchEvent, imageIndex: number): void {
+    if (!this.breakpoint.isMobile()) return;
+
+    const state = this.getImageState(imageIndex);
+
+    if (event.touches.length === 2) {
+      // Pinch zoom
+      event.preventDefault();
+      const currentDistance = this.getTouchDistance(
+        event.touches[0],
+        event.touches[1]
+      );
+
+      if (state.lastDistance > 0) {
+        const delta = currentDistance / state.lastDistance;
+        let newScale = state.scale * delta;
+        newScale = Math.max(this.MIN_SCALE, Math.min(this.MAX_SCALE, newScale));
+
+        state.scale = newScale;
+
+        // Reset position if zoom is back to 1
+        if (newScale === 1) {
+          state.translateX = 0;
+          state.translateY = 0;
+        }
+      }
+
+      state.lastDistance = currentDistance;
+      this.cdRef.detectChanges();
+    } else if (event.touches.length === 1 && state.scale > 1) {
+      // Pan (only when zoomed)
+      event.preventDefault();
+      const deltaX = event.touches[0].clientX - state.lastTouchX;
+      const deltaY = event.touches[0].clientY - state.lastTouchY;
+
+      state.translateX += deltaX;
+      state.translateY += deltaY;
+
+      // Limit pan to reasonable bounds
+      const maxTranslate = 100 * state.scale;
+      state.translateX = Math.max(
+        -maxTranslate,
+        Math.min(maxTranslate, state.translateX)
+      );
+      state.translateY = Math.max(
+        -maxTranslate,
+        Math.min(maxTranslate, state.translateY)
+      );
+
+      state.lastTouchX = event.touches[0].clientX;
+      state.lastTouchY = event.touches[0].clientY;
+
+      this.cdRef.detectChanges();
+    }
+  }
+
+  onTouchEnd(event: TouchEvent, imageIndex: number): void {
+    if (!this.breakpoint.isMobile()) return;
+
+    const state = this.getImageState(imageIndex);
+
+    if (event.touches.length < 2) {
+      state.lastDistance = 0;
+    }
+
+    if (event.touches.length === 0) {
+      state.lastTouchX = 0;
+      state.lastTouchY = 0;
+
+      // If scale is close to minimum, snap back to 1
+      if (state.scale < 1.1) {
+        state.scale = 1;
+        state.translateX = 0;
+        state.translateY = 0;
+        this.cdRef.detectChanges();
+      }
+    }
+  }
+
+  getImageTransform(imageIndex: number): string {
+    const state = this.getImageState(imageIndex);
+    return `translate(${state.translateX}px, ${state.translateY}px) scale(${state.scale})`;
+  }
+
+  isImageZoomed(imageIndex: number): boolean {
+    const state = this.imageZoomStates.get(imageIndex);
+    return state ? state.scale > 1 : false;
   }
 }

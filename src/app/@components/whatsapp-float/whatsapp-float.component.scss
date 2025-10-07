@@ -2,7 +2,7 @@
 .whatsapp-float {
   position: fixed;
   bottom: 20px;
-  right: 20px;
+  right: 100px; // Movido más hacia la izquierda para no tapar controles del video
   width: 70px; // Agrandado para desktop
   height: 70px;
   background-color: #756860; // Mismo color que el título de contacto

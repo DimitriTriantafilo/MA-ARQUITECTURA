@@ -31,6 +31,20 @@ import { SafePipe } from '../../pipes/safe.pipe';
           </div>
         </div>
 
+        <!-- Botón de play manual (aparece cuando autoplay está bloqueado) -->
+        <div
+          *ngIf="showPlayButton && !isPlaying"
+          class="manual-play-overlay"
+          (click)="playVideo()"
+        >
+          <div class="manual-play-button">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </div>
+          <p class="manual-play-text">Toca para reproducir</p>
+        </div>
+
         <!-- Video de YouTube -->
         <iframe
           *ngIf="showVideo"
@@ -52,6 +66,7 @@ import { SafePipe } from '../../pipes/safe.pipe';
         class="volume-toggle"
         (click)="toggleVolume()"
         [class.muted]="isMuted"
+        *ngIf="isPlaying"
       >
         <svg
           *ngIf="isMuted"
@@ -141,6 +156,62 @@ import { SafePipe } from '../../pipes/safe.pipe';
 
       .video-container.loaded .video-placeholder {
         display: none;
+      }
+
+      /* Overlay de play manual (cuando autoplay está bloqueado) */
+      .manual-play-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 100;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .manual-play-overlay:hover {
+        background: rgba(0, 0, 0, 0.8);
+      }
+
+      .manual-play-overlay:hover .manual-play-button {
+        transform: scale(1.1);
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .manual-play-button {
+        width: 100px;
+        height: 100px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+      }
+
+      .manual-play-button svg {
+        width: 50px;
+        height: 50px;
+        color: white;
+        margin-left: 5px; /* Centrar visualmente el triángulo */
+      }
+
+      .manual-play-text {
+        font-size: 18px;
+        color: white;
+        margin: 0;
+        opacity: 0.9;
+        font-weight: 500;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
       }
 
       /* Botón de volumen toggle - POSICIONADO FUERA del contenedor del video */
@@ -253,6 +324,20 @@ import { SafePipe } from '../../pipes/safe.pipe';
           width: 18px;
           height: 18px;
         }
+
+        .manual-play-button {
+          width: 80px;
+          height: 80px;
+        }
+
+        .manual-play-button svg {
+          width: 40px;
+          height: 40px;
+        }
+
+        .manual-play-text {
+          font-size: 16px;
+        }
       }
 
       /* Ocultar completamente la interfaz de YouTube */
@@ -349,9 +434,13 @@ export class PrivacyFriendlyVideoComponent implements OnInit, OnDestroy {
   showVideo = false;
   isInViewport = false;
   isMuted = true; // Estado del mute
+  showPlayButton = false; // Mostrar botón de play manual cuando autoplay falle
+  isPlaying = false; // Estado de reproducción
   private intersectionObserver?: IntersectionObserver;
   private loadTimeout?: any;
   private youtubePlayer: any; // Player de YouTube API
+  private autoplayAttempts = 0; // Contador de intentos de autoplay
+  private readonly MAX_AUTOPLAY_ATTEMPTS = 3;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -398,16 +487,87 @@ export class PrivacyFriendlyVideoComponent implements OnInit, OnDestroy {
             // El player está listo
             this.videoLoaded = true;
             this.cdr.detectChanges();
+
+            // Intentar reproducir automáticamente
+            this.attemptAutoplay();
           },
           onStateChange: (event: any) => {
+            const YT = (window as any)['YT'];
+
             // Manejar cambios de estado del video
-            if (event.data === (window as any)['YT'].PlayerState.PLAYING) {
+            if (event.data === YT.PlayerState.PLAYING) {
+              this.isPlaying = true;
+              this.showPlayButton = false; // Ocultar botón si está reproduciéndose
               this.videoLoaded = true;
               this.cdr.detectChanges();
+            } else if (
+              event.data === YT.PlayerState.PAUSED ||
+              event.data === YT.PlayerState.CUED
+            ) {
+              this.isPlaying = false;
+
+              // Si el video no está reproduciéndose después de un tiempo, mostrar botón
+              setTimeout(() => {
+                if (
+                  !this.isPlaying &&
+                  this.autoplayAttempts >= this.MAX_AUTOPLAY_ATTEMPTS
+                ) {
+                  this.showPlayButton = true;
+                  this.cdr.detectChanges();
+                }
+              }, 2000);
             }
           },
         },
       });
+    }
+  }
+
+  private attemptAutoplay(): void {
+    if (
+      !this.youtubePlayer ||
+      this.autoplayAttempts >= this.MAX_AUTOPLAY_ATTEMPTS
+    ) {
+      this.showPlayButton = true;
+      this.cdr.detectChanges();
+      return;
+    }
+
+    this.autoplayAttempts++;
+
+    try {
+      // Intentar reproducir
+      this.youtubePlayer.playVideo();
+
+      // Verificar si está reproduciéndose después de un segundo
+      setTimeout(() => {
+        const playerState = this.youtubePlayer.getPlayerState();
+        const YT = (window as any)['YT'];
+
+        if (playerState !== YT.PlayerState.PLAYING) {
+          // No está reproduciéndose, intentar de nuevo
+          if (this.autoplayAttempts < this.MAX_AUTOPLAY_ATTEMPTS) {
+            this.attemptAutoplay();
+          } else {
+            // Mostrar botón de play manual
+            this.showPlayButton = true;
+            this.cdr.detectChanges();
+          }
+        }
+      }, 1000);
+    } catch (error) {
+      console.warn('Autoplay bloqueado, mostrando botón de play manual', error);
+      this.showPlayButton = true;
+      this.cdr.detectChanges();
+    }
+  }
+
+  playVideo(): void {
+    if (this.youtubePlayer && this.youtubePlayer.playVideo) {
+      this.youtubePlayer.playVideo();
+      this.showPlayButton = false;
+      this.isPlaying = true;
+      this.cdr.detectChanges();
     }
   }
 

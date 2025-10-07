@@ -163,6 +163,7 @@
     }"
     (click)="openCarrousel($index)"
     class="image-container"
+    [class.zoomed]="isImageZoomed(i)"
   >
     @if(!breakpoint.isMobile()){
     <img
@@ -174,16 +175,25 @@
       [attr.fetchpriority]="i < 3 ? 'high' : i < 6 ? 'auto' : 'low'"
     />
     } @else if(getGalleryImageUrl(image.src)) {
-    <img
-      class="image-mobile"
-      [src]="getGalleryImageUrl(image.src) | safe"
-      [alt]="'Imagen de ' + data?.name + ' - Foto ' + (i + 1)"
-      [width]="fixedViewportWidth"
-      [height]="300"
-      [loading]="i < 4 ? 'eager' : 'lazy'"
-      decoding="async"
-      [attr.fetchpriority]="i < 2 ? 'high' : i < 4 ? 'auto' : 'low'"
-    />
+    <div
+      class="image-mobile-wrapper"
+      [class.zoomed]="isImageZoomed(i)"
+      (touchstart)="onTouchStart($event, i)"
+      (touchmove)="onTouchMove($event, i)"
+      (touchend)="onTouchEnd($event, i)"
+    >
+      <img
+        class="image-mobile"
+        [src]="getGalleryImageUrl(image.src) | safe"
+        [alt]="'Imagen de ' + data?.name + ' - Foto ' + (i + 1)"
+        [width]="fixedViewportWidth"
+        [height]="300"
+        [loading]="i < 4 ? 'eager' : 'lazy'"
+        decoding="async"
+        [attr.fetchpriority]="i < 2 ? 'high' : i < 4 ? 'auto' : 'low'"
+        [style.transform]="getImageTransform(i)"
+      />
+    </div>
     }
   </div>
   }
