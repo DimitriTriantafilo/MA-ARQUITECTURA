@@ -75,10 +75,13 @@ export class ProjectDetailComponent
       lastDistance: number;
       lastTouchX: number;
       lastTouchY: number;
+      lastTapTime: number;
+      isZooming: boolean;
     }
   > = new Map();
   private readonly MIN_SCALE = 1;
   private readonly MAX_SCALE = 4;
+  private readonly DOUBLE_TAP_DELAY = 300; // ms
 
   constructor(
     private route: ActivatedRoute,
@@ -102,6 +105,9 @@ export class ProjectDetailComponent
       // Hacer scroll al top de la página cuando se carga el componente
       window.scrollTo(0, 0);
     }
+
+    // IMPORTANTE: Limpiar cualquier estado de zoom residual
+    this.imageZoomStates.clear();
 
     // Obtener el proyecto desde los datos de la ruta
     this.data = this.route.snapshot.data['project'];
@@ -134,6 +140,8 @@ export class ProjectDetailComponent
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }, 50);
       }
+      // Limpiar zoom states al cambiar de proyecto
+      this.imageZoomStates.clear();
     });
   }
 
@@ -659,9 +667,21 @@ export class ProjectDetailComponent
         lastDistance: 0,
         lastTouchX: 0,
         lastTouchY: 0,
+        lastTapTime: 0,
+        isZooming: false,
       });
     }
     return this.imageZoomStates.get(imageIndex)!;
+  }
+
+  private resetZoom(imageIndex: number): void {
+    const state = this.getImageState(imageIndex);
+    state.scale = 1;
+    state.translateX = 0;
+    state.translateY = 0;
+    state.lastDistance = 0;
+    state.isZooming = false;
+    this.cdRef.detectChanges();
   }
 
   private getTouchDistance(touch1: Touch, touch2: Touch): number {
@@ -686,17 +706,39 @@ export class ProjectDetailComponent
     const state = this.getImageState(imageIndex);
 
     if (event.touches.length === 2) {
-      // Pinch zoom starting
+      // Pinch zoom starting - SOLO prevenir cuando hay 2 dedos
       event.preventDefault();
       state.lastDistance = this.getTouchDistance(
         event.touches[0],
         event.touches[1]
       );
-    } else if (event.touches.length === 1 && state.scale > 1) {
-      // Pan starting (only when zoomed)
-      event.preventDefault();
+      state.isZooming = true;
+    } else if (event.touches.length === 1) {
+      // Single touch
+      if (state.scale > 1.5) {
+        // Solo prevenir scroll si hay zoom significativo
+        event.preventDefault();
+      }
+
       state.lastTouchX = event.touches[0].clientX;
       state.lastTouchY = event.touches[0].clientY;
+
+      // Check for double tap
+      const now = Date.now();
+      const timeSinceLastTap = now - state.lastTapTime;
+
+      if (
+        timeSinceLastTap < this.DOUBLE_TAP_DELAY &&
+        timeSinceLastTap > 0 &&
+        state.scale > 1
+      ) {
+        this.resetZoom(imageIndex);
+        state.lastTapTime = 0;
+        event.preventDefault();
+        return;
+      }
+
+      state.lastTapTime = now;
     }
   }
 
@@ -706,8 +748,10 @@ export class ProjectDetailComponent
     const state = this.getImageState(imageIndex);
 
     if (event.touches.length === 2) {
-      // Pinch zoom
+      // Pinch zoom - SOLO prevenir cuando hay 2 dedos
       event.preventDefault();
+      state.isZooming = true;
+
       const currentDistance = this.getTouchDistance(
         event.touches[0],
         event.touches[1]
@@ -721,7 +765,7 @@ export class ProjectDetailComponent
         state.scale = newScale;
 
         // Reset position if zoom is back to 1
-        if (newScale === 1) {
+        if (newScale <= 1.05) {
           state.translateX = 0;
           state.translateY = 0;
         }
@@ -729,9 +773,10 @@ export class ProjectDetailComponent
 
       state.lastDistance = currentDistance;
       this.cdRef.detectChanges();
-    } else if (event.touches.length === 1 && state.scale > 1) {
-      // Pan (only when zoomed)
+    } else if (event.touches.length === 1 && state.scale > 1.5) {
+      // Pan SOLO cuando hay zoom significativo
       event.preventDefault();
+
       const deltaX = event.touches[0].clientX - state.lastTouchX;
       const deltaY = event.touches[0].clientY - state.lastTouchY;
 
@@ -754,6 +799,7 @@ export class ProjectDetailComponent
 
       this.cdRef.detectChanges();
     }
+    // Si es 1 dedo y scale <= 1.5, NO hacer nada - permitir scroll normal
   }
 
   onTouchEnd(event: TouchEvent, imageIndex: number): void {
@@ -763,19 +809,22 @@ export class ProjectDetailComponent
 
     if (event.touches.length < 2) {
       state.lastDistance = 0;
+      state.isZooming = false; // IMPORTANTE: resetear inmediatamente
     }
 
     if (event.touches.length === 0) {
+      // All touches ended - RESETEAR TODO
       state.lastTouchX = 0;
       state.lastTouchY = 0;
+      state.isZooming = false; // Asegurar que esté en false
 
-      // If scale is close to minimum, snap back to 1
-      if (state.scale < 1.1) {
-        state.scale = 1;
-        state.translateX = 0;
-        state.translateY = 0;
-        this.cdRef.detectChanges();
+      // Reset zoom agresivamente si está cerca de 1
+      if (state.scale < 1.2) {
+        this.resetZoom(imageIndex);
       }
+
+      // Forzar detección de cambios para actualizar las clases inmediatamente
+      this.cdRef.detectChanges();
     }
   }
 
@@ -786,6 +835,12 @@ export class ProjectDetailComponent
 
   isImageZoomed(imageIndex: number): boolean {
     const state = this.imageZoomStates.get(imageIndex);
-    return state ? state.scale > 1 : false;
+    // SOLO considerar "zoomed" si hay zoom significativo Y está activamente zooming
+    return state ? state.scale > 1.8 && state.isZooming : false;
+  }
+
+  isImageZooming(imageIndex: number): boolean {
+    const state = this.imageZoomStates.get(imageIndex);
+    return state ? state.isZooming && state.scale > 1.2 : false;
   }
 }

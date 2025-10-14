@@ -399,22 +399,31 @@
 .image-mobile-wrapper {
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow: hidden !important; /* SIEMPRE oculto para forzar contención */
   position: relative;
-  touch-action: pan-y; /* Permite scroll vertical por defecto */
+  touch-action: auto; /* Permite todo por defecto - scroll y zoom nativo */
   -webkit-user-select: none;
   user-select: none;
+  pointer-events: auto;
+  z-index: 1; /* Z-index bajo por defecto */
 
   &.zoomed {
-    touch-action: none; /* Solo bloquea scroll cuando está ampliada */
+    overflow: visible !important; /* SOLO cuando hay zoom real */
+    z-index: 100 !important; /* Por encima de todo SOLO con zoom */
   }
 }
 
 .image-mobile {
-  transition: none;
+  transition: transform 0.25s ease-out;
   transform-origin: center center;
   will-change: transform;
-  touch-action: inherit; /* Hereda del wrapper */
+  touch-action: auto; /* Permite scroll normal */
+  pointer-events: auto;
+  width: 100% !important; /* Ocupa todo el ancho */
+  height: auto !important; /* Altura automática basada en la proporción */
+  max-height: 80vh; /* Máximo para imágenes muy altas */
+  object-fit: contain; /* Mantiene proporciones sin deformar */
+  display: block;
 }
 
 .comented {
@@ -683,32 +692,39 @@
     grid-template-columns: 1fr !important;
     gap: 7px;
     padding: 0;
-    grid-auto-rows: auto;
+    grid-auto-rows: minmax(250px, auto); /* Mínimo 250px, máximo auto */
   }
 
   .image-container {
     width: 100%;
-    overflow: visible;
+    overflow: hidden !important; /* FORZAR oculto */
+    position: relative;
+    z-index: 1; /* Z-index bajo por defecto */
+
+    &.zoomed {
+      overflow: visible !important;
+      z-index: 100 !important; /* Por encima solo con zoom */
+    }
   }
 
   .image-mobile-wrapper {
     width: 100%;
-    height: 300px;
+    height: auto; /* Altura automática basada en la imagen */
+    min-height: 250px; /* Mínimo para imágenes pequeñas */
+    max-height: 80vh; /* Máximo para imágenes muy altas */
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: visible;
+    overflow: hidden !important; /* FORZAR oculto por defecto */
     position: relative;
 
     &.zoomed {
-      overflow: visible;
-      z-index: 10;
+      overflow: visible !important; /* Solo visible con zoom real */
     }
   }
 
   .image-mobile {
     cursor: default;
-    max-width: 100%;
     position: relative;
     z-index: 1;
   }

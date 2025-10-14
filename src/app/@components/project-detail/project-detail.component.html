@@ -184,10 +184,11 @@
     >
       <img
         class="image-mobile"
+        [class.zooming]="isImageZooming(i)"
         [src]="getGalleryImageUrl(image.src) | safe"
         [alt]="'Imagen de ' + data?.name + ' - Foto ' + (i + 1)"
-        [width]="fixedViewportWidth"
-        [height]="300"
+        width="100%"
+        height="auto"
         [loading]="i < 4 ? 'eager' : 'lazy'"
         decoding="async"
         [attr.fetchpriority]="i < 2 ? 'high' : i < 4 ? 'auto' : 'low'"
