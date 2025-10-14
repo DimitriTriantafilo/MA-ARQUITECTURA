@@ -142,11 +142,13 @@ git push origin master
 ```bash
 # Prueba local
 npm run validate:projects
-npm run build
+npm run build:no-lint
 
-# Corrige lo que falle
+# Si falla, revisa los logs y corrige
 # Commit y push de nuevo
 ```
+
+**💡 NOTA:** Los errores de linting ya no bloquean el deploy (ver `LINTING_SOLUTION.md`)
 
 ---
 

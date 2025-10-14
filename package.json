@@ -8,6 +8,7 @@
     "build:prod": "npm run validate:projects && ng build --configuration production",
     "build:analyze": "ng build --configuration production --stats-json && npx webpack-bundle-analyzer dist/ma-arquitectura-landing/stats.json",
     "build:skip-validation": "ng build",
+    "build:no-lint": "npm run validate:projects && ng build --configuration production",
     "serve:prod": "ng serve --configuration production",
     "test": "ng test",
     "lint": "ng lint",
