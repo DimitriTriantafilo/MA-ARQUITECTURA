@@ -4,15 +4,18 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "build:prod": "ng build --configuration production",
+    "build": "npm run validate:projects && ng build",
+    "build:prod": "npm run validate:projects && ng build --configuration production",
     "build:analyze": "ng build --configuration production --stats-json && npx webpack-bundle-analyzer dist/ma-arquitectura-landing/stats.json",
+    "build:skip-validation": "ng build",
     "serve:prod": "ng serve --configuration production",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "dev": "ng serve --configuration development",
-    "build:dev": "ng build --configuration development"
+    "build:dev": "ng build --configuration development",
+    "validate:projects": "node scripts/validate-projects.js",
+    "add:project": "node scripts/add-project.js"
   },
   "private": true,
   "dependencies": {

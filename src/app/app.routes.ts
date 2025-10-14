@@ -1,14 +1,14 @@
 import { Routes } from '@angular/router';
-// import { ProjectDetailComponent } from './project-detail/project-detail.component';
-// import { HomeComponent } from './home/home.component';
 import { Project } from './app.component';
 import { ProjectListComponent } from './@components/project-list/project-list.component';
 import { NosotrosComponent } from './@components/nosotros/nosotros.component';
 import { HomeComponent } from './@components/home/home.component';
 import { ProjectDetailComponent } from './@components/project-detail/project-detail.component';
+import { projectResolver } from './resolvers/project.resolver';
 
 export const projects: Project[] = [
   {
+    id: 'reforma-bnb',
     name: 'Reforma BNB',
     nameEn: 'BNB Renovation',
     m2: '29',
@@ -59,6 +59,7 @@ export const projects: Project[] = [
   },
 
   {
+    id: 'reforma-migueletes',
     name: 'REFORMA MIGUELETES',
     nameEn: 'MIGUELETES RENOVATION',
     m2: '42',
@@ -110,6 +111,7 @@ export const projects: Project[] = [
       'This two-room apartment was intervened to expand both its physical space and visual perception. The balcony was integrated into the renovation, generating greater luminosity and a sense of spaciousness in the living-dining room. In the bedroom, a custom wardrobe and a makeup area with additional storage space were incorporated. The selection of earth tones and wood in furniture and walls unifies the whole, consolidating the sought-after Mediterranean style.',
   },
   {
+    id: 'reforma-ayacucho',
     name: 'Reforma Ayacucho',
     nameEn: 'Ayacucho Renovation',
     m2: '140',
@@ -162,6 +164,7 @@ export const projects: Project[] = [
       'This period apartment in Recoleta was completely renovated to optimize functionality, luminosity and comfort. The renovation was reconfigured to integrate all elements, gain storage and unify the space with a white palette. The intermediate bathroom was expanded and the suite one was modernized with Calacatta-like coverings and cement-like floors. Wooden furniture provides the necessary warmth. In addition, storage and comfort needs were resolved in the living and bedroom areas. In the latter, outlets were relocated and specific furniture was designed, complementing the existing ones to optimize daily use and spatial harmony',
   },
   {
+    id: 'cafe-infanta-victoria',
     name: 'CAFÉ INFANTA VICTORIA',
     nameEn: 'INFANTA VICTORIA CAFÉ',
     m2: '290',
@@ -213,6 +216,7 @@ export const projects: Project[] = [
       "Located in an old house in the center of Villa Ballester, this café was designed in harmony with the building's identity, enhancing its original character and adding contemporary elements. Trying to maintain the place's identity, we recovered the existing vault and the wooden floors were restored, contrasting them with limestone in the back area. Modern touches were generated with the new furniture and the mint-toned counter, providing serenity and personality. Towards the back, a wall of the same color reinforces the idea and character of the environment. Iron and vegetation, present in details on the bar and main wall, introduce a modern contrast that dialogues with the historical, bringing freshness and vitality to the whole.",
   },
   {
+    id: 'casa-wim',
     name: 'CASA WIM',
     nameEn: 'WIM HOUSE',
     m2: '225',
@@ -302,6 +306,7 @@ export const projects: Project[] = [
   },
 
   {
+    id: 'reforma-rivera',
     name: 'Reforma Rivera',
     nameEn: 'Rivera Renovation',
     m2: '35',
@@ -356,6 +361,7 @@ export const projects: Project[] = [
       "In this renovation, common spaces were reorganized to integrate them into the renovation, generating greater visual and functional spaciousness, while providing greater privacy to the bedroom and bathroom. At the client's request, a palette of blues was incorporated throughout the apartment, combined with wood tones that provide warmth and reinforce a sense of calm and balance in the environments. We added wooden beams in the living room ceilings that complete the Mediterranean style of the whole.",
   },
   {
+    id: 'reforma-sanfer',
     name: 'REFORMA SANFER',
     nameEn: 'SANFER RENOVATION',
     m2: '104',
@@ -451,6 +457,7 @@ export const projects: Project[] = [
   },
 
   {
+    id: 'reforma-igor',
     name: 'REFORMA IGOR',
     nameEn: 'IGOR RENOVATION',
     m2: '260',
@@ -506,6 +513,7 @@ export const projects: Project[] = [
       "In Villa Ballester, this house and its quincho were rethought as a whole, seeking that each space would gain in functionality, warmth and character. The intervention covered renovation, bathrooms, floors and the quincho, with an integral approach that balanced the existing with the new. The renovation opened towards the living-dining room through a meeting bar, with quartz countertops that bring modernity and fronts that dialogue with the original aesthetics of the house. The bathrooms were renovated with a serene and warm language. In the girls' one, light tones amplify the space and convey freshness. The quincho, completely demolished and rebuilt, now offers comfort in any season thanks to its thermal insulation. Its aesthetic language is inspired by Scandinavian simplicity, with a renovation and a grill area that breathe clarity and order. The bathroom, relocated to optimize circulation, adopts a neutral palette that subtly and coherently integrates the whole.",
   },
   {
+    id: 'reforma-french',
     name: 'REFORMA FRENCH',
     nameEn: 'FRENCH RENOVATION',
     m2: '98',
@@ -560,6 +568,7 @@ export const projects: Project[] = [
   },
 
   {
+    id: 'reforma-santana',
     name: 'REFORMA SANTANA',
     nameEn: 'SANTANA RENOVATION',
     m2: '23',
@@ -605,6 +614,7 @@ export const projects: Project[] = [
       'Located on the ground floor of the house, this renovation required more storage space and better light entry. The elimination of a service bathroom allowed it to be expanded, integrating a new sector for the refrigerator within the renovation and generating a backing for the adjacent laundry room. The old refrigerator location was transformed into a coffee break corner, which complements the daily dining room and adds a gesture of daily comfort. The combination of white tones, light stones and wood provides luminosity and warmth, balancing functionality and aesthetics.',
   },
   {
+    id: 'consultorio-devoto',
     name: 'CONSULTORIO DEVOTO',
     nameEn: 'DEVOTO OFFICE',
     m2: '31',
@@ -641,6 +651,7 @@ export const projects: Project[] = [
   },
 
   {
+    id: 'reforma-guru',
     name: 'REFORMA GURU',
     nameEn: 'GURU RENOVATION',
     m2: '120',
@@ -685,6 +696,7 @@ export const projects: Project[] = [
   },
 
   {
+    id: 'reforma-segui',
     name: 'REFORMA SEGUI',
     nameEn: 'SEGUI RENOVATION',
     m2: '28',
@@ -722,6 +734,7 @@ export const projects: Project[] = [
   },
 
   {
+    id: 'casa-f',
     name: 'CASA F',
     nameEn: 'F HOUSE',
     year: 2022,
@@ -757,6 +770,7 @@ export const projects: Project[] = [
     plantaSrc: 'v1755785892/im3pldsi5y6xhieucrh5.png',
   },
   {
+    id: 'reforma-ugarte',
     name: 'REFORMA UGARTE',
     nameEn: 'UGARTE RENOVATION',
     year: 2022,
@@ -845,10 +859,12 @@ export const routes: Routes = [
         (m) => m.ServiciosComponent
       ),
   },
+  // Rutas de proyectos generadas dinámicamente
+  // Cada proyecto en el array projects se convierte en una ruta prerrenderizada
   ...projects.map((project) => ({
-    path: generateSlug(project.name),
+    path: project.id || generateSlug(project.name),
     component: ProjectDetailComponent,
-    data: { project },
+    resolve: { project: projectResolver },
   })),
 
   { path: '**', redirectTo: '' },
@@ -859,7 +875,6 @@ export function generateSlug(name: string): string {
     .toLowerCase()
     .replace(/\s+/g, '-')
     .replace(/[^\w\-]+/g, '')
-    .replace(/\-\-+/g, '-')
     .replace(/^-+/, '')
     .replace(/-+$/, '');
 }

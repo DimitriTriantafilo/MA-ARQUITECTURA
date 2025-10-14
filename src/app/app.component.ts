@@ -96,6 +96,7 @@ export class AppComponent implements OnInit {
 }
 
 export interface Project {
+  id: string; // Identificador único para rutas dinámicas
   name: string;
   nameEn?: string;
   m2: string;
