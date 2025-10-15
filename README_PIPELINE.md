@@ -30,7 +30,7 @@
     server: ${{ secrets.FTP_SERVER }} # ← Cambiar aquí
     username: ${{ secrets.FTP_USERNAME }}
     password: ${{ secrets.FTP_PASSWORD }}
-    server-dir: / # ← Directorio de destino
+    server-dir: /domains/estudiomaarquitectura.com/public_html/ # ← Directorio de destino
 ```
 
 ### **Modificar Reglas de Linting:**

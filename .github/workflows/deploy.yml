@@ -148,7 +148,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./deploy/
-          server-dir: /public_html/
+          server-dir: /domains/estudiomaarquitectura.com/public_html/
           state-name: .ftp-deploy-sync-state.json
           dangerous-clean-slate: true
           log-level: verbose
@@ -163,7 +163,7 @@ jobs:
         run: |
           echo "🔍 Debugging FTP deployment:"
           echo "  - Server: Hidden for security"
-          echo "  - Target dir: /public_html/"
+          echo "  - Target dir: /domains/estudiomaarquitectura.com/public_html/"
           echo "  - Clean slate: ENABLED (will upload all files)"
           echo "  - This ensures all files are uploaded regardless of cache"
 
@@ -171,7 +171,7 @@ jobs:
         run: |
           echo "✅ FTP upload completed"
           echo "📝 Files uploaded from: ./deploy/"
-          echo "📝 Files uploaded to: /public_html/"
+          echo "📝 Files uploaded to: /domains/estudiomaarquitectura.com/public_html/"
           echo "🔍 Check your site to verify changes"
 
       - name: Verify deployment on live site
