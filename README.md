@@ -2,6 +2,8 @@
 
 Modern landing page developed for MA Arquitectura studio, featuring visual design excellence, internationalization, contact system, and dynamic project management with automated deployment.
 
+<!-- Deploy Test: $(date) -->
+
 **[📖 Documentación en Español](./README.es.md)**
 
 ---

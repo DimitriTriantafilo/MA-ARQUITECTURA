@@ -174,11 +174,21 @@ jobs:
           echo "📝 Files uploaded to: /public_html/"
           echo "🔍 Check your site to verify changes"
 
+      - name: Verify deployment on live site
+        run: |
+          echo "🔍 Verificando deploy en https://estudiomaarquitectura.com/"
+          echo "⏳ Esperando 30 segundos para que el sitio se actualice..."
+          sleep 30
+          echo "🌐 Verificando que el sitio esté funcionando..."
+          curl -s -o /dev/null -w "%{http_code}" https://estudiomaarquitectura.com/ || echo "❌ Error al verificar el sitio"
+          echo "✅ Verificación completada"
+
       - name: Notify deployment success
         if: success()
         run: |
           echo "✅ Deployment successful!"
-          echo "🌐 Site should be live at your domain"
+          echo "🌐 Site should be live at https://estudiomaarquitectura.com/"
+          echo "🔍 Revisa el sitio para confirmar que los cambios se aplicaron"
 
       - name: Notify deployment failure
         if: failure()
