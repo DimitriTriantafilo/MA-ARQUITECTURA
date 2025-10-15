@@ -44,6 +44,8 @@ Los proyectos se gestionan desde `src/assets/data/projects.json`:
 3. **Commit y push** a la rama `master`
 4. **Deploy automático** se ejecutará (~5 minutos)
 
+**Nota:** Las rutas se generan automáticamente desde el archivo JSON durante el build mediante `scripts/generate-routes.js`
+
 ### **🔧 Validación**
 
 Validar proyectos antes de hacer commit:
@@ -177,6 +179,7 @@ src/
   server.ts             # Servidor Express con optimizaciones
 scripts/
   validate-projects.js   # 🆕 Validador de proyectos
+  generate-routes.js    # 🆕 Generador de rutas dinámicas
 .github/
   workflows/
     deploy.yml          # 🆕 Pipeline CI/CD automatizado

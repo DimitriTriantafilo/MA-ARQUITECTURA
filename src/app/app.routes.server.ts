@@ -6,6 +6,7 @@ import { projectResolver } from './resolvers/project.resolver';
 /**
  * Rutas específicas del servidor para SSR/Prerendering
  * Estas rutas se generan en build time para prerenderizar todos los proyectos
+ * Los proyectos se cargan desde el archivo generado (generated-routes.ts)
  */
 export const serverRoutes: Routes = [
   ...projects.map((project: Project) => ({

@@ -44,6 +44,8 @@ Projects are managed from `src/assets/data/projects.json`:
 3. **Commit and push** to `master` branch
 4. **Automatic deployment** will trigger (~5 minutes)
 
+**Note:** Routes are automatically generated from the JSON file during build time via `scripts/generate-routes.js`
+
 ### **🔧 Validation**
 
 Validate projects before committing:
@@ -177,6 +179,7 @@ src/
   server.ts             # Express server with optimizations
 scripts/
   validate-projects.js   # 🆕 Project validator
+  generate-routes.js    # 🆕 Dynamic route generator
 .github/
   workflows/
     deploy.yml          # 🆕 Automated CI/CD pipeline
