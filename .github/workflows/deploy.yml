@@ -34,7 +34,7 @@ jobs:
 
       - name: Run linter
         run: npm run lint
-        continue-on-error: true
+        continue-on-error: false
 
   build:
     name: Build Application
@@ -54,7 +54,7 @@ jobs:
         run: npm ci
 
       - name: Build production
-        run: npm run build:no-lint
+        run: npm run build:prod
         env:
           NODE_OPTIONS: "--max_old_space_size=4096"
 
@@ -98,6 +98,15 @@ jobs:
           tar -xzf deploy.tar.gz -C deploy
           ls -lh deploy/
 
+      - name: Debug deploy directory
+        run: |
+          echo "=== Deploy directory contents ==="
+          ls -la deploy/
+          echo "=== File count ==="
+          find deploy/ -type f | wc -l
+          echo "=== Total size ==="
+          du -sh deploy/
+
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -105,8 +114,9 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./deploy/
-          server-dir: /public_html/
+          server-dir: /
           dangerous-clean-slate: false
+          log-level: verbose
           exclude: |
             **/.git*
             **/.git*/**

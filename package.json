@@ -15,8 +15,7 @@
     "e2e": "ng e2e",
     "dev": "ng serve --configuration development",
     "build:dev": "ng build --configuration development",
-    "validate:projects": "node scripts/validate-projects.js",
-    "add:project": "node scripts/add-project.js"
+    "validate:projects": "node scripts/validate-projects.js"
   },
   "private": true,
   "dependencies": {
@@ -52,6 +51,7 @@
     "@types/jasmine": "~5.1.0",
     "@types/node": "^18.18.0",
     "angular-eslint": "20.2.0",
+    "basic-ftp": "^5.0.5",
     "eslint": "^9.33.0",
     "jasmine-core": "~5.5.0",
     "karma": "~6.4.0",

@@ -1,242 +1,113 @@
-# 🚀 Sistema de Proyectos Dinámicos + CI/CD - MA Arquitectura
+# 🔄 Pipeline CI/CD - Guía de Modificación
 
-## ✨ ¿Qué se implementó?
+## 📋 **Archivos del Pipeline**
 
-Un sistema completo que te permite **agregar y editar proyectos sin tocar código**, con **deploy automático a Hostinger** en 5 minutos.
+### **Workflow Principal:**
 
----
+- `.github/workflows/deploy.yml` - Configuración completa del pipeline
 
-## 🎯 Para Empezar AHORA
+### **Scripts de Validación:**
 
-### **Opción 1: Setup Completo (Primera Vez)**
+- `scripts/validate-projects.js` - Validador de proyectos
+- `scripts/add-project.js` - Creador de proyectos
 
-👉 Lee: **`PASOS_INMEDIATOS.md`**
+### **Configuración:**
 
-### **Opción 2: Solo Agregar Proyectos (Después del setup)**
-
-👉 Lee: **`QUICK_START.md`**
-
----
-
-## 📁 Estructura de Archivos
-
-```
-ma-arquitectura-landing/
-├── 📄 PASOS_INMEDIATOS.md       ⭐ EMPIEZA AQUÍ (Setup inicial)
-├── 📄 QUICK_START.md             → Guía rápida de uso diario
-├── 📄 PROJECTS_MANAGEMENT.md     → Gestión detallada
-├── 📄 DEPLOYMENT_SETUP.md        → Setup del pipeline
-├── 📄 SISTEMA_IMPLEMENTADO.md    → Overview técnico
-│
-├── .github/workflows/
-│   └── deploy.yml                → Pipeline CI/CD automático
-│
-├── src/assets/data/
-│   └── projects.json             → ⭐ EDITA ESTO para agregar proyectos
-│
-├── src/app/
-│   ├── services/
-│   │   └── projects.service.ts   → Carga proyectos dinámicamente
-│   └── resolvers/
-│       └── project.resolver.ts   → Resuelve rutas automáticamente
-│
-└── scripts/
-    ├── validate-projects.js      → Validación automática
-    └── add-project.js            → Helper para agregar proyectos
-```
+- `eslint.config.js` - Reglas de linting
+- `package.json` - Scripts de build y validación
 
 ---
 
-## 🎬 Flujo de Trabajo (Después del Setup)
+## ⚙️ **Modificaciones Comunes**
 
+### **Cambiar Servidor FTP:**
+
+```yaml
+# En .github/workflows/deploy.yml
+- name: Deploy via FTP
+  uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+  with:
+    server: ${{ secrets.FTP_SERVER }} # ← Cambiar aquí
+    username: ${{ secrets.FTP_USERNAME }}
+    password: ${{ secrets.FTP_PASSWORD }}
+    server-dir: / # ← Directorio de destino
 ```
-┌─────────────────────────────────────────────────────────┐
-│ 1. Editas projects.json en GitHub                      │
-│    (Clic en Edit, modificas, Commit)                   │
-└──────────────────┬──────────────────────────────────────┘
-                   ↓
-┌─────────────────────────────────────────────────────────┐
-│ 2. GitHub Actions se activa automáticamente            │
-└──────────────────┬──────────────────────────────────────┘
-                   ↓
-┌─────────────────────────────────────────────────────────┐
-│ 3. Validación (1 min)                                  │
-│    ✅ JSON válido                                       │
-│    ✅ Campos requeridos                                 │
-│    ✅ Sin duplicados                                    │
-│    ✅ Linter pasa                                       │
-└──────────────────┬──────────────────────────────────────┘
-                   ↓
-┌─────────────────────────────────────────────────────────┐
-│ 4. Build Producción (2-3 min)                          │
-│    ✅ Compilar Angular                                  │
-│    ✅ Prerenderizar 20+ rutas                          │
-│    ✅ Optimizar bundles                                │
-└──────────────────┬──────────────────────────────────────┘
-                   ↓
-┌─────────────────────────────────────────────────────────┐
-│ 5. Deploy a Hostinger (1-2 min)                        │
-│    ✅ Subir archivos vía FTP                           │
-│    ✅ Verificar deploy exitoso                         │
-└──────────────────┬──────────────────────────────────────┘
-                   ↓
-┌─────────────────────────────────────────────────────────┐
-│ 6. ✅ Sitio actualizado                                │
-│    Tiempo total: ~5 minutos                            │
-│    🌐 https://tudominio.com                            │
-└─────────────────────────────────────────────────────────┘
+
+### **Modificar Reglas de Linting:**
+
+```javascript
+// En eslint.config.js
+rules: {
+  "regla-que-quieres-cambiar": "error", // o "warn" o "off"
+  // ... otras reglas
+}
+```
+
+### **Agregar Nuevos Scripts:**
+
+```json
+// En package.json
+"scripts": {
+  "nuevo-comando": "node scripts/nuevo-script.js",
+  // ... otros scripts
+}
+```
+
+### **Cambiar Validaciones de Proyectos:**
+
+```javascript
+// En scripts/validate-projects.js
+const REQUIRED_FIELDS = [
+  "id",
+  "name",
+  "description",
+  // ← Agregar/quitar campos requeridos
+];
 ```
 
 ---
 
-## 🎨 Ejemplo Rápido: Agregar Proyecto
+## 🔧 **GitHub Secrets Requeridos**
 
-### **En GitHub Web (2 minutos):**
+Para que el pipeline funcione, configurar en GitHub → Settings → Secrets:
 
-1. Ve a `src/assets/data/projects.json`
-2. Clic en **Edit** (ícono lápiz)
-3. Al final del array, agrega:
-   ```json
-   ,{
-     "id": "casa-nueva-belgrano",
-     "name": "CASA NUEVA BELGRANO",
-     "m2": "200",
-     "location": "Belgrano",
-     "district": "CABA",
-     "year": 2024,
-     "showImg": "v1234567890/tu-imagen.jpg",
-     "mainFeature": {
-       "type": "image",
-       "link": "v1234567890/tu-imagen.jpg"
-     },
-     "images": [
-       { "src": "v1234567890/img1.jpg" },
-       { "src": "v1234567890/img2.jpg" }
-     ],
-     "description": "Descripción del proyecto..."
-   }
-   ```
-4. Scroll abajo → **Commit changes**
-5. Espera 5 minutos
-6. Ve a `https://tudominio.com/casa-nueva-belgrano` ✅
-
----
-
-## 🛠️ Comandos Útiles
-
-```bash
-# Validar proyectos
-npm run validate:projects
-
-# Agregar proyecto interactivamente
-npm run add:project
-
-# Build con validación
-npm run build
-
-# Build sin validación (testing)
-npm run build:skip-validation
+```
+FTP_SERVER: tu-servidor-ftp.com
+FTP_USERNAME: tu-usuario-ftp
+FTP_PASSWORD: tu-password-ftp
 ```
 
 ---
 
-## 📊 Estado Actual
+## 🚨 **Troubleshooting Rápido**
 
-| Componente          | Estado                   |
-| ------------------- | ------------------------ |
-| Migración a JSON    | ✅ Completo              |
-| ProjectsService     | ✅ Completo              |
-| Routing dinámico    | ✅ Completo              |
-| GitHub Actions      | ✅ Completo              |
-| Validación          | ✅ Completo              |
-| Scripts helper      | ✅ Completo              |
-| Documentación       | ✅ Completo              |
-| Build test          | ✅ Exitoso (20 rutas)    |
-| **Setup en GitHub** | ⏳ **Pendiente** (5 min) |
-| **Primer deploy**   | ⏳ **Pendiente** (5 min) |
+### **Pipeline falla:**
 
----
+1. Revisar logs en GitHub Actions
+2. Verificar GitHub Secrets
+3. Comprobar `projects.json` con `npm run validate:projects`
 
-## 🎯 Acción Inmediata
+### **Deploy no funciona:**
 
-### **Haz ESTO ahora:**
+1. Verificar credenciales FTP
+2. Comprobar directorio `server-dir`
+3. Revisar permisos de archivos
 
-1. **Abre:** `PASOS_INMEDIATOS.md`
-2. **Sigue:** Los 5 pasos (20 minutos total)
-3. **Resultado:** Sistema funcionando end-to-end
+### **Linting falla:**
 
-### **Después (uso diario):**
-
-1. **Abre:** `QUICK_START.md`
-2. **Edita:** `projects.json` en GitHub
-3. **Commit:** Y espera 5 min
-4. **✅ Listo**
+1. Ejecutar `npm run lint` localmente
+2. Ajustar reglas en `eslint.config.js`
+3. Usar `npm run build:skip-validation` para debug
 
 ---
 
-## 💰 Costos
+## 📝 **Notas Importantes**
 
-- GitHub Actions: **GRATIS** ✅
-- Hosting: **Ya lo tienes** ✅
-- Mantenimiento: **GRATIS** ✅
-
-**Total adicional:** $0 USD/mes 🎉
-
----
-
-## 🎓 Curva de Aprendizaje
-
-| Usuario           | Tiempo para aprender |
-| ----------------- | -------------------- |
-| Desarrollador     | 5 minutos            |
-| No técnico        | 15 minutos           |
-| Cliente/Diseñador | 20 minutos           |
-
-**Con QUICK_START.md, cualquiera puede agregar proyectos** 🙌
+- ✅ **No modificar** la estructura básica del pipeline
+- ✅ **Siempre probar** cambios localmente primero
+- ✅ **Mantener** compatibilidad con el sistema de proyectos
+- ✅ **Documentar** cambios importantes en commits
 
 ---
 
-## 🔥 Ventajas vs Sistema Anterior
-
-| Aspecto                | Antes           | Ahora         |
-| ---------------------- | --------------- | ------------- |
-| **Agregar proyecto**   | 30 min + código | 2 min + JSON  |
-| **Deploy**             | FTP manual      | Automático    |
-| **Validación**         | Manual          | Automática    |
-| **Rollback**           | Complicado      | 1 clic        |
-| **Quién puede editar** | Solo devs       | Cualquiera    |
-| **Tiempo de deploy**   | Variable        | Siempre 5 min |
-
----
-
-## 📞 Ayuda
-
-**¿No funciona?**
-
-1. Revisa `PASOS_INMEDIATOS.md`
-2. Sección de troubleshooting
-3. Verifica logs en GitHub Actions
-
-**¿Quieres agregar features?**
-
-- El sistema es extensible
-- Fácil migrar a Firebase en el futuro
-- Posible agregar panel admin visual
-
----
-
-## ✅ Test Final Pasado
-
-```
-✅ 15 proyectos validados
-✅ 20 rutas prerenderizadas
-✅ Build exitoso
-✅ Scripts funcionando
-✅ Documentación completa
-```
-
-**El sistema está listo para usar** 🚀
-
----
-
-**👉 SIGUIENTE PASO: Abre `PASOS_INMEDIATOS.md` y empieza el setup**
+**Para modificaciones complejas, consultar la documentación completa en README.md**

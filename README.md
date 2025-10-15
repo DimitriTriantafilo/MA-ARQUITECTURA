@@ -1,425 +1,451 @@
 # MA Arquitectura - Landing Page
 
-Landing page desarrollada para el estudio de arquitectura MA Arquitectura, con enfoque en diseño visual, internacionalización, sistema de contacto y optimización de rendimiento.
+Modern landing page developed for MA Arquitectura studio, featuring visual design excellence, internationalization, contact system, and dynamic project management with automated deployment.
+
+**[📖 Documentación en Español](./README.es.md)**
 
 ---
 
-## Estructura del Proyecto
+## 🚀 **Dynamic Project Management & CI/CD**
+
+### **🎯 Key Features**
+
+- ✅ **Dynamic project management** from external JSON
+- ✅ **Automatic routes** generated for each project
+- ✅ **Automated deployment** to Hostinger via GitHub Actions
+- ✅ **Project validation** before each build
+- ✅ **Complete pipeline** with linting and testing
+
+### **📁 Data Structure**
+
+Projects are managed from `src/assets/data/projects.json`:
+
+```json
+[
+  {
+    "id": "unique-project-id",
+    "name": "Project Name",
+    "description": "Project description...",
+    "image": "path/to/image.jpg",
+    "gallery": ["img1.jpg", "img2.jpg"],
+    "location": "Location",
+    "year": "2024",
+    "type": "Project type",
+    "area": "Area in m²",
+    "status": "Project status"
+  }
+]
+```
+
+### **✏️ How to Add/Edit Projects**
+
+1. **Edit** `src/assets/data/projects.json`
+2. **Add or modify** project data
+3. **Commit and push** to `master` branch
+4. **Automatic deployment** will trigger (~5 minutes)
+
+### **🔧 Validation**
+
+Validate projects before committing:
+
+```bash
+npm run validate:projects
+```
+
+This checks:
+
+- ✅ Required fields
+- ✅ Unique IDs
+- ✅ Correct slugs
+
+---
+
+## 🔄 **Automated CI/CD Pipeline**
+
+### **GitHub Actions Workflow**
+
+The pipeline runs automatically on every push to `master`:
+
+```yaml
+# .github/workflows/deploy.yml
+1. ✅ Project validation
+2. ✅ Linting (ESLint)
+3. ✅ Production build
+4. ✅ Automated deployment to Hostinger
+```
+
+### **Required GitHub Secrets**
+
+Configure in GitHub → Settings → Secrets:
+
+```
+FTP_SERVER: your-ftp-server.com
+FTP_USERNAME: your-ftp-username
+FTP_PASSWORD: your-ftp-password
+```
+
+### **Pipeline Monitoring**
+
+- ✅ **Total time:** ~5 minutes
+- ✅ **Notifications:** Automatic email on failure
+- ✅ **Detailed logs:** Available in GitHub Actions
+- ✅ **Rollback:** Manual from Hostinger if needed
+
+---
+
+## 🛠️ **Technologies**
+
+### **🎯 Core**
+
+- **Angular 19**: Main framework with SSR
+- **TypeScript**: Statically typed language
+- **Sass (SCSS)**: CSS preprocessor with variables and mixins
+- **Angular Material & CDK**: UI components and utilities
+
+### **🖼️ Image Management**
+
+- **Cloudinary**: Automatic image optimization
+- **WebP**: Modern image format for better performance
+- **Lazy Loading**: Deferred image loading
+- **Pinch-to-zoom**: Native zoom for mobile project gallery
+
+### **📧 Contact System**
+
+- **EmailJS**: Send emails from frontend
+- **Google reCAPTCHA v3**: Invisible spam protection
+- **Reactive Forms**: Reactive forms with validation
+
+### **⚡ Performance Optimization**
+
+- **Gzip Compression**: Static file compression
+- **Resource Hints**: Preload, preconnect and dns-prefetch
+- **Lazy Loading**: Deferred route and component loading
+- **CSS Containment**: Rendering optimization
+
+### **🌐 Internationalization & SSR**
+
+- **i18n**: Custom translation system
+- **Express.js**: SSR server with optimizations
+- **Platform Detection**: Platform detection for SSR
+
+### **🎥 Optimized Video**
+
+- **YouTube Iframe API**: Optimized videos with lazy loading
+- **Smart autoplay**: Automatic retry in battery saver mode
+- **Custom controls**: Manual play button as fallback
+
+---
+
+## 📁 **Project Structure**
 
 ```
 src/
   app/
     @components/
-      home/              # Página principal con proyectos destacados
-      topbar/            # Barra de navegación superior
-      project-list/      # Listado de proyectos
-      project-detail/    # Detalle de cada proyecto con planta
-      project-display/   # Visualización de proyectos destacados
-      nosotros/          # Sección "Sobre nosotros"
-      servicios/         # Página de servicios con acordeón
-      contacto/          # Página de contacto con formulario
-      footer/            # Pie de página
-    transltate/          # Módulo de internacionalización (i18n)
+      home/              # Home page with featured projects
+      topbar/            # Top navigation bar
+      project-list/      # Project listing
+      project-detail/    # Project detail with mobile zoom
+      project-display/   # Featured project display
+      nosotros/          # About section
+      servicios/         # Services page with accordion
+      contacto/          # Contact page with form
+      footer/            # Footer
+      privacy-friendly-video/ # Optimized video with controls
+    services/
+      projects.service.ts # Project management service
+    resolvers/
+      project.resolver.ts # Resolver for dynamic routes
+    translate/           # Internationalization module (i18n)
       translation.service.ts
       translate.pipe.ts
       translations.ts
     config/
-      email.config.ts    # Configuración de EmailJS y reCAPTCHA
-    app.component.*      # Componente raíz de la aplicación
-    app.routes.*         # Definición de rutas con lazy loading
-    cloudinary.service.ts# Servicio para integración con Cloudinary
+      email.config.ts    # EmailJS and reCAPTCHA config
+    app.component.*      # Root component
+    app.routes.*         # Dynamic route definition
+    cloudinary.service.ts# Cloudinary integration service
   assets/
-    fonts/               # Fuentes personalizadas
-    styles/variables.scss# Variables de estilos globales
-    logo-blanco.webp     # Logo optimizado en WebP
-    *.jpg, *.png         # Imágenes y recursos gráficos
+    data/
+      projects.json      # 🆕 Project data (EDITABLE)
+    fonts/               # Custom fonts
+    styles/variables.scss# Global style variables
+    logo-blanco.webp     # Optimized WebP logo
   environments/
-    environment.ts       # Configuración de desarrollo
-    environment.prod.ts  # Configuración de producción
-  server.ts             # Servidor Express con optimizaciones
+    environment.ts       # Development config
+    environment.prod.ts  # Production config
+  server.ts             # Express server with optimizations
+scripts/
+  validate-projects.js   # 🆕 Project validator
+.github/
+  workflows/
+    deploy.yml          # 🆕 Automated CI/CD pipeline
 ```
 
 ---
 
-## Tecnologías Utilizadas
+## 🚀 **Development & Usage**
 
-### 🎯 **Core Technologies**
-
-- **Angular 19**: Framework principal con SSR (Server-Side Rendering)
-- **TypeScript**: Lenguaje principal con tipado estático
-- **Sass (SCSS)**: Preprocesador CSS con variables y mixins
-- **Angular Material & CDK**: Componentes UI y utilidades
-
-### 🖼️ **Gestión de Imágenes**
-
-- **Cloudinary**: Optimización automática de imágenes con transformaciones
-- **WebP**: Formato de imagen moderno para mejor rendimiento
-- **Lazy Loading**: Carga diferida de imágenes para optimizar LCP
-
-### 📧 **Sistema de Contacto**
-
-- **EmailJS**: Envío de emails desde el frontend sin backend
-- **Google reCAPTCHA v3**: Protección invisible contra spam
-- **Reactive Forms**: Formularios reactivos con validación
-
-### ⚡ **Optimización de Rendimiento**
-
-- **Gzip Compression**: Compresión de archivos estáticos
-- **Resource Hints**: Preload, preconnect y dns-prefetch
-- **Lazy Loading**: Carga diferida de rutas y componentes
-- **CSS Containment**: Optimización de renderizado
-- **Font Optimization**: Carga optimizada de fuentes web
-
-### 🌐 **Internacionalización & SSR**
-
-- **i18n**: Sistema propio de traducciones
-- **Express.js**: Servidor SSR con optimizaciones
-- **Platform Detection**: Detección de plataforma para SSR
-
-### 🧪 **Testing & Deployment**
-
-- **Karma & Jasmine**: Testing unitario
-- **Netlify**: Despliegue automático
-- **Lighthouse**: Auditoría de rendimiento
-
-### 🎨 **Diseño & UX**
-
-- **Fuentes personalizadas**: Cormorant, Manrope, Blair ITC, ModecoTrial, Ivnm
-- **Animaciones CSS**: Transiciones y efectos visuales
-- **Responsive Design**: Diseño adaptativo para todos los dispositivos
-
----
-
-## 🚀 **Uso y Desarrollo**
-
-### **Servidor de desarrollo**
+### **Development Server**
 
 ```bash
 npm run serve
 ```
 
-Abre tu navegador en `http://localhost:4200/`. La aplicación se recargará automáticamente.
-
-### **Compilación y Build**
-
-```bash
-# Desarrollo
-npm run build
-
-# Producción con optimizaciones
-npm run build:prod
-
-# Servidor de producción
-npm run serve:prod
-```
+Opens your browser at `http://localhost:4200/`. The app will reload automatically.
 
 ### **Testing**
 
 ```bash
-# Pruebas unitarias
+# Unit tests
 npm run test
 
-# Pruebas con coverage
-npm run test:coverage
+# Linting
+npm run lint
 
-# Pruebas e2e
-npm run e2e
+# Bundle analysis
+npm run analyze
+```
+
+### **Production Build**
+
+```bash
+# Optimized build with validation
+npm run build:prod
+
+# Production server
+npm run serve:prod
 ```
 
 ---
 
-## ⚙️ **Configuración de Tecnologías**
+## ⚙️ **Service Configuration**
 
-### 📧 **Sistema de Email (EmailJS)**
+### 📧 **Email System (EmailJS)**
 
-#### **Configuración Inicial:**
+#### **Initial Setup:**
 
-1. Crear cuenta en [EmailJS](https://www.emailjs.com/)
-2. Obtener **Public Key** desde Account → API Keys
-3. Crear **Email Service** (Gmail, Outlook, etc.)
-4. Crear **Email Template** con variables:
+1. Create account at [EmailJS](https://www.emailjs.com/)
+2. Get **Public Key** from Account → API Keys
+3. Create **Email Service** (Gmail, Outlook, etc.)
+4. Create **Email Template** with variables:
    ```html
-   Nombre: {{name}} Email: {{email}} Teléfono: {{phone}} Mensaje: {{message}}
+   Name: {{name}} Email: {{email}} Phone: {{phone}} Message: {{message}}
    ```
 
-#### **Archivos de Configuración:**
+#### **Configuration Files:**
 
-- `src/environments/environment.ts` - Desarrollo
-- `src/environments/environment.prod.ts` - Producción
-- `src/app/config/email.config.ts` - Configuración centralizada
+- `src/environments/environment.ts` - Development
+- `src/environments/environment.prod.ts` - Production
+- `src/app/config/email.config.ts` - Centralized config
 
-#### **Variables Requeridas:**
+#### **Required Variables:**
 
 ```typescript
 emailjs: {
-  publicKey: 'tu_public_key',
-  serviceId: 'tu_service_id',
-  templateId: 'tu_template_id',
+  publicKey: 'your_public_key',
+  serviceId: 'your_service_id',
+  templateId: 'your_template_id',
 }
 ```
 
 ### 🛡️ **reCAPTCHA v3**
 
-#### **Configuración:**
+#### **Configuration:**
 
-1. Ir a [Google reCAPTCHA Admin](https://www.google.com/recaptcha/admin)
-2. Crear nuevo sitio con **reCAPTCHA v3**
-3. Agregar dominios: `localhost` (dev), `tu-dominio.com` (prod)
-4. Copiar **Site Key**
+1. Go to [Google reCAPTCHA Admin](https://www.google.com/recaptcha/admin)
+2. Create new site with **reCAPTCHA v3**
+3. Add domains: `localhost` (dev), `your-domain.com` (prod)
+4. Copy **Site Key**
 
-#### **Implementación:**
+### 🖼️ **Image Optimization (Cloudinary)**
 
-- Invisible para el usuario
-- Se ejecuta automáticamente al enviar formulario
-- Protección contra bots y spam
-
-### 🖼️ **Optimización de Imágenes (Cloudinary)**
-
-#### **Transformaciones Disponibles:**
+#### **Available Transformations:**
 
 ```typescript
-// Optimización automática
+// Automatic optimization
 getOptimizedImageUrl(publicId, width, height);
 
-// Parámetros disponibles:
-// - c_scale: Escalado
-// - q_auto: Calidad automática
-// - f_auto: Formato automático (WebP)
-// - fl_force_strip: Eliminar metadata
-// - fl_progressive: Carga progresiva
+// Available parameters:
+// - c_scale: Scaling
+// - q_auto: Automatic quality
+// - f_auto: Automatic format (WebP)
+// - fl_force_strip: Remove metadata
+// - fl_progressive: Progressive loading
 ```
 
-#### **Uso en Componentes:**
+### 🎥 **Optimized Video**
 
-```typescript
-// En templates
-[src]="getOptimizedImageUrl('image-id', 800, 600)"
+#### **Features:**
 
-// Con lazy loading
-loading="lazy" decoding="async"
-```
-
-### ⚡ **Optimizaciones de Rendimiento**
-
-#### **Resource Hints:**
-
-```html
-<!-- Preload críticos -->
-<link rel="preload" href="assets/logo-blanco.webp" as="image" />
-
-<!-- Preconnect a dominios externos -->
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-
-<!-- DNS prefetch -->
-<link rel="dns-prefetch" href="//res.cloudinary.com" />
-```
-
-#### **CSS Optimizations:**
-
-```scss
-// Containment para mejor rendimiento
-contain: layout style paint;
-
-// Will-change para animaciones
-will-change: transform, opacity;
-
-// Font optimization
-font-display: swap;
-```
-
-### 🌐 **Server-Side Rendering (SSR)**
-
-#### **Configuración del Servidor:**
-
-- `src/server.ts` - Servidor Express optimizado
-- Compresión gzip automática
-- Headers de seguridad
-- Caching optimizado
-
-#### **Platform Detection:**
-
-```typescript
-// Para código que solo debe ejecutarse en browser
-if (isPlatformBrowser(this.platformId)) {
-  // Código específico del navegador
-}
-```
+- **Lazy loading**: Loads only when visible
+- **Smart autoplay**: Automatic retry in battery saver mode
+- **Custom controls**: Manual play button as fallback
+- **YouTube Iframe API**: Full player control
 
 ---
 
-## 📁 **Estructura de Archivos Importantes**
+## 📱 **Mobile Features**
 
-### **Configuración:**
+### **Pinch-to-Zoom in Projects**
 
-- `angular.json` - Configuración de build y optimizaciones
-- `src/environments/` - Variables por entorno
-- `src/app/config/` - Configuraciones centralizadas
+- ✅ **Native zoom**: Pinch to zoom images in gallery
+- ✅ **Smooth pan**: Pan while zoomed
+- ✅ **Auto reset**: Double tap to reset zoom
+- ✅ **Preserved scroll**: Normal navigation when not zoomed
 
-### **Componentes Nuevos:**
+### **Mobile-Optimized Video**
 
-- `src/app/@components/servicios/` - Página de servicios
-- `src/app/@components/contacto/` - Formulario de contacto
-- `src/app/config/email.config.ts` - Configuración de email
-
-### **Optimizaciones:**
-
-- `src/index.html` - Resource hints y optimizaciones
-- `src/server.ts` - Servidor SSR optimizado
-- `src/styles.scss` - Estilos globales optimizados
+- ✅ **Adaptive autoplay**: Works in battery saver mode
+- ✅ **Touch controls**: Large, accessible play button
+- ✅ **Lazy loading**: Deferred loading for better performance
 
 ---
 
-## 🔧 **Comandos Útiles**
+## 🔧 **Useful Commands**
 
-### **Desarrollo:**
+### **Development:**
 
 ```bash
-# Servidor de desarrollo
+# Development server
 npm run serve
 
-# Build de desarrollo
+# Development build
 npm run build
 
 # Testing
 npm run test
+
+# Linting
+npm run lint
 ```
 
-### **Producción:**
+### **Production:**
 
 ```bash
-# Build optimizado
+# Optimized build with validation
 npm run build:prod
 
-# Servidor de producción
+# Production server
 npm run serve:prod
 
-# Análisis de bundle
+# Bundle analysis
 npm run analyze
 ```
 
-### **Lighthouse:**
+### **Project Management:**
 
 ```bash
-# Auditoría de rendimiento
-npx lighthouse http://localhost:4200 --output html
+# Validate projects
+npm run validate:projects
+
+# Build without validation (debug)
+npm run build:skip-validation
 ```
 
 ---
 
-## 🚨 **Consideraciones Importantes**
+## 🚨 **Important Considerations**
 
-### **Seguridad:**
+### **Security:**
 
-- ✅ **EmailJS**: Solo usa claves públicas (seguras en frontend)
-- ✅ **reCAPTCHA**: Site key es pública por diseño
-- ✅ **Validación**: Formularios con validación del lado cliente
-- ✅ **Headers**: Headers de seguridad configurados
+- ✅ **EmailJS**: Uses only public keys (safe in frontend)
+- ✅ **reCAPTCHA**: Site key is public by design
+- ✅ **GitHub Secrets**: Protected FTP credentials
+- ✅ **Validation**: Client-side form validation
 
-### **Rendimiento:**
+### **Performance:**
 
-- ✅ **Lazy Loading**: Rutas y componentes cargados bajo demanda
-- ✅ **Compresión**: Gzip habilitado en servidor
-- ✅ **Caching**: Headers de cache optimizados
-- ✅ **Imágenes**: WebP y optimización automática
+- ✅ **Lazy Loading**: Routes and components loaded on demand
+- ✅ **Compression**: Gzip enabled on server
+- ✅ **Caching**: Optimized cache headers
+- ✅ **Images**: WebP and automatic optimization
+- ✅ **SSR**: Prerendering for better SEO
 
-### **SSR:**
+### **Automated Deployment:**
 
-- ✅ **Platform Detection**: Código browser-only protegido
-- ✅ **Hydration**: Hidratación correcta del cliente
-- ✅ **SEO**: Meta tags y estructura optimizada
-
-### **Accesibilidad:**
-
-- ✅ **ARIA Labels**: Etiquetas de accesibilidad
-- ✅ **Semantic HTML**: Estructura semántica correcta
-- ✅ **Keyboard Navigation**: Navegación por teclado
-- ✅ **Screen Readers**: Compatibilidad con lectores de pantalla
+- ✅ **Complete pipeline**: Validate → Lint → Build → Deploy
+- ✅ **Rollback**: Manual from Hostinger if needed
+- ✅ **Monitoring**: Detailed logs in GitHub Actions
+- ✅ **Notifications**: Automatic email on failure
 
 ---
 
 ## 🔧 **Troubleshooting**
 
-### **Problemas Comunes:**
+### **Common Issues:**
 
-#### **EmailJS no funciona:**
+#### **Pipeline fails in GitHub Actions:**
 
-- Verificar que las claves estén correctas en `environment.ts`
-- Comprobar que el template tenga las variables correctas
-- Revisar la consola del navegador para errores
+- Verify GitHub Secrets are configured
+- Check logs in GitHub Actions for specific errors
+- Ensure `projects.json` is valid
 
-#### **reCAPTCHA no carga:**
+#### **Projects don't load:**
 
-- Verificar que el dominio esté configurado en Google reCAPTCHA Admin
-- Comprobar que la site key sea correcta
-- Asegurar que no haya bloqueadores de anuncios activos
+- Run `npm run validate:projects` to verify data
+- Check that IDs are unique
+- Verify image paths exist
 
-#### **Imágenes no se optimizan:**
+#### **Deployment doesn't update files:**
 
-- Verificar que las URLs de Cloudinary sean correctas
-- Comprobar que los parámetros de transformación sean válidos
-- Revisar la conexión a internet
+- Verify FTP credentials in GitHub Secrets
+- Check that target directory is correct
+- Review workflow logs for connection errors
 
-#### **Errores de SSR:**
+#### **EmailJS doesn't work:**
 
-- Usar `isPlatformBrowser()` para código browser-only
-- Verificar que no haya referencias directas a `window` o `document`
-- Comprobar que los scripts externos se carguen solo en browser
+- Verify keys are correct in `environment.ts`
+- Check that template has correct variables
+- Review browser console for errors
 
-#### **Problemas de rendimiento:**
+#### **Video doesn't play on mobile:**
 
-- Ejecutar Lighthouse para identificar cuellos de botella
-- Verificar que la compresión gzip esté habilitada
-- Comprobar que las imágenes estén optimizadas
-
-### **Logs Útiles:**
-
-```bash
-# Ver logs del servidor
-npm run serve:prod
-
-# Analizar bundle
-npm run analyze
-
-# Test de rendimiento
-npx lighthouse http://localhost:4200
-```
+- Check if device is in battery saver mode
+- Verify manual play button works
+- Review YouTube Iframe API logs
 
 ---
 
-## 📚 **Recursos Adicionales**
+## 📚 **Additional Resources**
 
-### **Documentación Oficial:**
+### **Official Documentation:**
 
-- [Angular](https://angular.dev/) - Framework principal
-- [EmailJS](https://www.emailjs.com/docs/) - Sistema de email
-- [Google reCAPTCHA](https://developers.google.com/recaptcha) - Protección anti-spam
-- [Cloudinary](https://cloudinary.com/documentation) - Gestión de imágenes
-- [Lighthouse](https://developers.google.com/web/tools/lighthouse) - Auditoría de rendimiento
+- [Angular](https://angular.dev/) - Main framework
+- [EmailJS](https://www.emailjs.com/docs/) - Email system
+- [Google reCAPTCHA](https://developers.google.com/recaptcha) - Anti-spam protection
+- [Cloudinary](https://cloudinary.com/documentation) - Image management
+- [YouTube Iframe API](https://developers.youtube.com/iframe_api_reference) - Video control
+- [GitHub Actions](https://docs.github.com/en/actions) - Automated CI/CD
 
-### **Herramientas de Desarrollo:**
+### **Development Tools:**
 
-- [Angular DevTools](https://angular.dev/tools/devtools) - Herramientas de desarrollo
-- [Lighthouse CI](https://github.com/GoogleChrome/lighthouse-ci) - CI/CD para rendimiento
-- [WebPageTest](https://www.webpagetest.org/) - Análisis de rendimiento
-
----
-
-## 📄 **Licencia**
-
-Este proyecto está desarrollado para MA Arquitectura. Todos los derechos reservados.
+- [Angular DevTools](https://angular.dev/tools/devtools) - Development tools
+- [Lighthouse CI](https://github.com/GoogleChrome/lighthouse-ci) - Performance CI/CD
+- [WebPageTest](https://www.webpagetest.org/) - Performance analysis
 
 ---
 
-## 🤝 **Contribución**
+## 📄 **License**
 
-Para contribuir al proyecto:
-
-1. Fork el repositorio
-2. Crea una rama para tu feature
-3. Commit tus cambios
-4. Push a la rama
-5. Abre un Pull Request
+This project is developed for MA Arquitectura. All rights reserved.
 
 ---
 
-**Desarrollado con ❤️ para MA Arquitectura**
+## 🤝 **Contributing**
+
+To contribute to the project:
+
+1. Fork the repository
+2. Create a branch for your feature
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
+
+**The CI/CD pipeline will run automatically to validate and deploy changes.**
+
+---
+
+**Developed with ❤️ for MA Arquitectura**
+
+_Complete project management system with automated deployment_
