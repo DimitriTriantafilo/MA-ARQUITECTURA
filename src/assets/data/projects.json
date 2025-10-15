@@ -18,11 +18,7 @@
       { "src": "v1747137657/rw4kewrndyix1fcmgaw6.jpg" }
     ],
     "description": "Proyecto de prueba para verificar el deploy automático",
-    "descriptionEn": "Test project to verify automatic deployment",
-    "features": ["Test Feature 1", "Test Feature 2"],
-    "featuresEn": ["Test Feature 1", "Test Feature 2"],
-    "tags": ["test", "deploy"],
-    "tagsEn": ["test", "deploy"]
+    "descriptionEn": "Test project to verify automatic deployment"
   },
   {
     "id": "reforma-bnb",
