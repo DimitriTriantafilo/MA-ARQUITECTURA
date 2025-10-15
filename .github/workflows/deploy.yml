@@ -5,9 +5,11 @@ on:
     branches: [master, main]
     paths:
       - "src/**"
+      - "scripts/**"
       - "package.json"
       - "angular.json"
       - "tsconfig.json"
+      - ".github/workflows/deploy.yml"
   pull_request:
     branches: [master, main]
   workflow_dispatch: # Permite ejecución manual
@@ -114,14 +116,23 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./deploy/
-          server-dir: /
+          server-dir: /public_html/
+          state-name: .ftp-deploy-sync-state.json
           dangerous-clean-slate: false
           log-level: verbose
+          dry-run: false
           exclude: |
             **/.git*
             **/.git*/**
             **/node_modules/**
             **/.DS_Store
+
+      - name: Verify deployment
+        run: |
+          echo "✅ FTP upload completed"
+          echo "📝 Files uploaded from: ./deploy/"
+          echo "📝 Files uploaded to: /public_html/"
+          echo "🔍 Check your site to verify changes"
 
       - name: Notify deployment success
         if: success()
