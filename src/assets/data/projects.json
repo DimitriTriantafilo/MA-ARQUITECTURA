@@ -1,26 +1,5 @@
 [
   {
-    "id": "test-deploy-project",
-    "name": "Proyecto Test Deploy",
-    "nameEn": "Test Deploy Project",
-    "m2": "50",
-    "location": "Test Location",
-    "district": "Test District",
-    "year": 2025,
-    "showImg": "v1747137660/xzdrqiss0g7gjvwb7krk.jpg",
-    "mainFeature": {
-      "type": "image",
-      "link": "v1747137660/xzdrqiss0g7gjvwb7krk.jpg"
-    },
-    "rowSpan": 2,
-    "images": [
-      { "src": "v1747137658/kc9soy8lwlnz8udcgxsq.jpg" },
-      { "src": "v1747137657/rw4kewrndyix1fcmgaw6.jpg" }
-    ],
-    "description": "Proyecto de prueba para verificar el deploy automático",
-    "descriptionEn": "Test project to verify automatic deployment"
-  },
-  {
     "id": "reforma-bnb",
     "name": "Reforma BNB",
     "nameEn": "BNB Renovation",
