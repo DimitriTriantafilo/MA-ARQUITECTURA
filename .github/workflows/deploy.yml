@@ -118,7 +118,7 @@ jobs:
           local-dir: ./deploy/
           server-dir: /public_html/
           state-name: .ftp-deploy-sync-state.json
-          dangerous-clean-slate: false
+          dangerous-clean-slate: true
           log-level: verbose
           dry-run: false
           exclude: |
@@ -126,6 +126,14 @@ jobs:
             **/.git*/**
             **/node_modules/**
             **/.DS_Store
+
+      - name: Debug FTP deployment
+        run: |
+          echo "🔍 Debugging FTP deployment:"
+          echo "  - Server: Hidden for security"
+          echo "  - Target dir: /public_html/"
+          echo "  - Clean slate: ENABLED (will upload all files)"
+          echo "  - This ensures all files are uploaded regardless of cache"
 
       - name: Verify deployment
         run: |
