@@ -88,8 +88,8 @@ export class ProjectDetailComponent
   // Breakpoints para cambio de calidad de imagen
   private readonly QUALITY_BREAKPOINTS = [
     { scale: 1.0, quality: 1 }, // Calidad normal
-    { scale: 1.4, quality: 2 }, // Calidad media - más realista para móvil
-    { scale: 2.0, quality: 3 }, // Calidad alta - ajustado para uso móvil
+    { scale: 1.2, quality: 2 }, // Calidad media - más realista para móvil
+    { scale: 1.5, quality: 3 }, // Calidad alta - ajustado para uso móvil
   ];
 
   // Cache de imágenes de alta calidad
