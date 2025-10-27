@@ -867,6 +867,23 @@ export class ProjectDetailComponent
     });
   }
 
+  /**
+   * Maneja el tap fuera de la imagen zoomed para cerrar el zoom
+   */
+  onImageWrapperClick(event: MouseEvent, imageIndex: number): void {
+    if (!this.breakpoint.isMobile()) return;
+
+    const state = this.getImageState(imageIndex);
+
+    // Solo cerrar si hay zoom significativo
+    if (state.scale > 1.2) {
+      // Verificar si el click fue en el wrapper (no en la imagen)
+      if (event.target === event.currentTarget) {
+        this.resetZoom(imageIndex);
+      }
+    }
+  }
+
   private getTouchDistance(touch1: Touch, touch2: Touch): number {
     const dx = touch1.clientX - touch2.clientX;
     const dy = touch1.clientY - touch2.clientY;
@@ -1013,14 +1030,13 @@ export class ProjectDetailComponent
       state.lastTouchX = 0;
       state.lastTouchY = 0;
 
-      // Solo resetear isZooming después de un pequeño delay para evitar parpadeos
-      setTimeout(() => {
-        state.isZooming = false;
-        this.cdRef.detectChanges();
-      }, 100);
-
-      // Reset zoom agresivamente si está cerca de 1
-      if (state.scale < 1.2) {
+      // Si hay zoom significativo, mantener el estado de zoom activo
+      if (state.scale > 1.2) {
+        // Mantener el zoom activo - NO resetear isZooming
+        // La imagen quedará visible como overlay hasta que se toque fuera o se haga zoom out
+        state.isZooming = false; // Solo resetear el flag de "activamente zooming"
+      } else {
+        // Si el zoom es mínimo, resetear completamente
         this.resetZoom(imageIndex);
       }
 
@@ -1036,8 +1052,8 @@ export class ProjectDetailComponent
 
   isImageZoomed(imageIndex: number): boolean {
     const state = this.imageZoomStates.get(imageIndex);
-    // SOLO considerar "zoomed" si hay zoom significativo Y está activamente zooming
-    return state ? state.scale > 1.8 && state.isZooming : false;
+    // Considerar "zoomed" si hay zoom significativo (persistente o activo)
+    return state ? state.scale > 1.2 : false;
   }
 
   isImageZooming(imageIndex: number): boolean {
