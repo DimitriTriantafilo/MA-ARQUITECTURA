@@ -77,11 +77,23 @@ export class ProjectDetailComponent
       lastTouchY: number;
       lastTapTime: number;
       isZooming: boolean;
+      currentQualityLevel: number;
+      highQualityLoaded: boolean;
     }
   > = new Map();
   private readonly MIN_SCALE = 1;
   private readonly MAX_SCALE = 4;
   private readonly DOUBLE_TAP_DELAY = 300; // ms
+
+  // Breakpoints para cambio de calidad de imagen
+  private readonly QUALITY_BREAKPOINTS = [
+    { scale: 1.0, quality: 1 }, // Calidad normal
+    { scale: 2.0, quality: 2 }, // Calidad media
+    { scale: 3.0, quality: 3 }, // Calidad alta
+  ];
+
+  // Cache de imágenes de alta calidad
+  private highQualityImageCache: Map<string, string> = new Map();
 
   constructor(
     private route: ActivatedRoute,
@@ -152,6 +164,7 @@ export class ProjectDetailComponent
         window.scrollTo({ top: 0, behavior: 'smooth' });
 
         this.setupPlantaObserver();
+        this.fixImageHeights(); // Fijar alturas de imágenes para evitar cambios dinámicos
         this.cdRef.detectChanges();
       }, 100);
     }
@@ -381,6 +394,44 @@ export class ProjectDetailComponent
     }
   }
 
+  /**
+   * Fija el tamaño de la imagen principal SOLO en móvil para prevenir cambios dinámicos
+   * cuando se muestra/oculta la barra de navegación del navegador
+   */
+  private fixImageHeights(): void {
+    // Solo ejecutar en móvil
+    if (this.fixedViewportWidth > 768) {
+      return;
+    }
+
+    // Esperar a que el DOM esté listo
+    setTimeout(() => {
+      // Fijar la altura de la imagen principal del proyecto
+      const projectLanding = document.querySelector(
+        '.project-landig'
+      ) as HTMLElement;
+
+      if (projectLanding) {
+        // Obtener el tamaño inicial del viewport
+        const initialHeight = window.innerHeight;
+
+        // Fijar el tamaño de manera definitiva SOLO en móvil
+        projectLanding.style.height = `${initialHeight}px`;
+        projectLanding.style.minHeight = `${initialHeight}px`;
+        projectLanding.style.maxHeight = `${initialHeight}px`;
+
+        // También fijar el host para evitar cambios en el contenedor principal
+        const hostElement = document.querySelector(
+          'app-project-detail'
+        ) as HTMLElement;
+        if (hostElement) {
+          hostElement.style.height = `${initialHeight}px`;
+          hostElement.style.minHeight = `${initialHeight}px`;
+        }
+      }
+    }, 100);
+  }
+
   // Métodos para generar URLs de imágenes
   getMainImageUrl(): string {
     if (!this.data?.showImg) return '';
@@ -538,8 +589,16 @@ export class ProjectDetailComponent
     img.src = url;
   }
 
-  getGalleryImageUrl(imageSrc: string): string {
+  getGalleryImageUrl(imageSrc: string, imageIndex?: number): string {
     if (!imageSrc) return '';
+
+    // Si tenemos el índice y hay zoom con alta calidad cargada, usar esa imagen
+    if (imageIndex !== undefined && this.breakpoint.isMobile()) {
+      const state = this.imageZoomStates.get(imageIndex);
+      if (state && state.highQualityLoaded && state.scale > 1.5) {
+        return this.getHighQualityImageUrl(imageSrc, state.currentQualityLevel);
+      }
+    }
 
     if (this.breakpoint.isMobile()) {
       // En móvil, usar el ancho completo de la pantalla para mejor calidad
@@ -669,6 +728,8 @@ export class ProjectDetailComponent
         lastTouchY: 0,
         lastTapTime: 0,
         isZooming: false,
+        currentQualityLevel: 1,
+        highQualityLoaded: false,
       });
     }
     return this.imageZoomStates.get(imageIndex)!;
@@ -681,7 +742,114 @@ export class ProjectDetailComponent
     state.translateY = 0;
     state.lastDistance = 0;
     state.isZooming = false;
+    state.currentQualityLevel = 1;
     this.cdRef.detectChanges();
+  }
+
+  /**
+   * Determina el nivel de calidad necesario basado en el scale actual
+   */
+  private getRequiredQualityLevel(scale: number): number {
+    for (let i = this.QUALITY_BREAKPOINTS.length - 1; i >= 0; i--) {
+      if (scale >= this.QUALITY_BREAKPOINTS[i].scale) {
+        return this.QUALITY_BREAKPOINTS[i].quality;
+      }
+    }
+    return 1;
+  }
+
+  /**
+   * Genera URL de imagen con calidad específica para zoom
+   */
+  private getHighQualityImageUrl(
+    imageSrc: string,
+    qualityLevel: number
+  ): string {
+    if (!imageSrc) return '';
+
+    const cacheKey = `${imageSrc}_quality_${qualityLevel}`;
+
+    // Verificar si ya está en caché
+    if (this.highQualityImageCache.has(cacheKey)) {
+      return this.highQualityImageCache.get(cacheKey)!;
+    }
+
+    let multiplier: number;
+    let quality: string;
+
+    switch (qualityLevel) {
+      case 2:
+        multiplier = 1.5;
+        quality = 'q_auto:best';
+        break;
+      case 3:
+        multiplier = 2.0;
+        quality = 'q_auto:best';
+        break;
+      default:
+        multiplier = 1.0;
+        quality = 'q_auto:good';
+    }
+
+    const width = Math.floor(this.fixedViewportWidth * multiplier);
+    const url = this.cloudinaryService.generateImageUrl(imageSrc, {
+      width: width,
+      crop: 'c_fill,g_auto',
+      quality: quality,
+    });
+
+    // Guardar en caché
+    this.highQualityImageCache.set(cacheKey, url);
+
+    return url;
+  }
+
+  /**
+   * Precarga imagen de alta calidad si es necesario
+   */
+  private preloadHighQualityImage(
+    imageIndex: number,
+    imageSrc: string,
+    qualityLevel: number
+  ): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
+    const state = this.getImageState(imageIndex);
+
+    // Solo precargar si no está ya cargada
+    if (state.highQualityLoaded || qualityLevel <= state.currentQualityLevel) {
+      return;
+    }
+
+    const highQualityUrl = this.getHighQualityImageUrl(imageSrc, qualityLevel);
+    const img = new Image();
+
+    img.onload = () => {
+      state.highQualityLoaded = true;
+      state.currentQualityLevel = qualityLevel;
+      this.cdRef.detectChanges();
+    };
+
+    img.onerror = () => {
+      console.warn('Error loading high quality image:', highQualityUrl);
+    };
+
+    img.src = highQualityUrl;
+  }
+
+  /**
+   * Maneja el scroll fuera de la imagen para resetear zoom
+   */
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll(): void {
+    if (!this.breakpoint.isMobile()) return;
+
+    // Resetear zoom en todas las imágenes si se hace scroll significativo
+    this.imageZoomStates.forEach((state, imageIndex) => {
+      if (state.scale > 1.1) {
+        this.resetZoom(imageIndex);
+      }
+    });
   }
 
   private getTouchDistance(touch1: Touch, touch2: Touch): number {
@@ -764,6 +932,19 @@ export class ProjectDetailComponent
 
         state.scale = newScale;
 
+        // Verificar si necesitamos cambiar la calidad de la imagen
+        const requiredQuality = this.getRequiredQualityLevel(newScale);
+        if (
+          requiredQuality > state.currentQualityLevel &&
+          this.data?.images?.[imageIndex]?.src
+        ) {
+          this.preloadHighQualityImage(
+            imageIndex,
+            this.data.images[imageIndex].src,
+            requiredQuality
+          );
+        }
+
         // Reset position if zoom is back to 1
         if (newScale <= 1.05) {
           state.translateX = 0;
@@ -809,14 +990,19 @@ export class ProjectDetailComponent
 
     if (event.touches.length < 2) {
       state.lastDistance = 0;
-      state.isZooming = false; // IMPORTANTE: resetear inmediatamente
+      // NO resetear isZooming inmediatamente - mantenerlo hasta que se confirme el final
     }
 
     if (event.touches.length === 0) {
-      // All touches ended - RESETEAR TODO
+      // All touches ended - manejar el estado final
       state.lastTouchX = 0;
       state.lastTouchY = 0;
-      state.isZooming = false; // Asegurar que esté en false
+
+      // Solo resetear isZooming después de un pequeño delay para evitar parpadeos
+      setTimeout(() => {
+        state.isZooming = false;
+        this.cdRef.detectChanges();
+      }, 100);
 
       // Reset zoom agresivamente si está cerca de 1
       if (state.scale < 1.2) {

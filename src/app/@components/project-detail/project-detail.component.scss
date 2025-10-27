@@ -2,9 +2,9 @@
 
 :host {
   width: 100%;
-  height: 100dvh;
+  height: 100vh; /* Cambiar de 100dvh a 100vh para evitar cambios dinámicos */
   background-color: #e3e2de;
-  min-height: 100dvh;
+  min-height: 100vh; /* Cambiar de 100dvh a 100vh */
 }
 
 .project-landig {
@@ -410,6 +410,12 @@
   &.zoomed {
     overflow: visible !important; /* SOLO cuando hay zoom real */
     z-index: 100 !important; /* Por encima de todo SOLO con zoom */
+    position: fixed !important; /* Cambiar a fixed para evitar problemas de overflow */
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: rgba(0, 0, 0, 0.8) !important; /* Fondo semi-transparente */
   }
 }
 
@@ -550,7 +556,7 @@
 
 @media (max-width: 600px) {
   .project-landig {
-    min-height: 100dvh;
+    min-height: 100vh; /* Cambiar de 100dvh a 100vh para evitar cambios dinámicos */
     gap: 0;
   }
 
@@ -720,6 +726,13 @@
 
     &.zoomed {
       overflow: visible !important; /* Solo visible con zoom real */
+      position: fixed !important; /* Cambiar a fixed para evitar problemas de overflow */
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      background: rgba(0, 0, 0, 0.8) !important; /* Fondo semi-transparente */
+      z-index: 1000 !important; /* Z-index muy alto para móvil */
     }
   }
 
@@ -727,6 +740,10 @@
     cursor: default;
     position: relative;
     z-index: 1;
+
+    &.zooming {
+      transition: none !important; /* Sin transición durante el zoom para mejor rendimiento */
+    }
   }
 
   .name {

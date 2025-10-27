@@ -185,7 +185,7 @@
       <img
         class="image-mobile"
         [class.zooming]="isImageZooming(i)"
-        [src]="getGalleryImageUrl(image.src) | safe"
+        [src]="getGalleryImageUrl(image.src, i) | safe"
         [alt]="'Imagen de ' + data?.name + ' - Foto ' + (i + 1)"
         width="100%"
         height="auto"
