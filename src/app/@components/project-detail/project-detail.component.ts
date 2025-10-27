@@ -89,7 +89,7 @@ export class ProjectDetailComponent
   private readonly QUALITY_BREAKPOINTS = [
     { scale: 1.0, quality: 1 }, // Calidad normal
     { scale: 1.2, quality: 2 }, // Calidad media - más realista para móvil
-    { scale: 1.5, quality: 3 }, // Calidad alta - ajustado para uso móvil
+    { scale: 1.3, quality: 3 }, // Calidad alta - ajustado para uso móvil
   ];
 
   // Cache de imágenes de alta calidad
@@ -776,19 +776,23 @@ export class ProjectDetailComponent
 
     let multiplier: number;
     let quality: string;
+    let format: string;
 
     switch (qualityLevel) {
       case 2:
-        multiplier = 1.5;
+        multiplier = 2.5; // Aumentado de 1.5 a 2.5 para mejor calidad
         quality = 'q_auto:best';
+        format = 'f_webp'; // Usar WebP para mejor compresión
         break;
       case 3:
-        multiplier = 2.0;
+        multiplier = 4.0; // Aumentado de 2.0 a 4.0 para máxima calidad
         quality = 'q_auto:best';
+        format = 'f_webp'; // Usar WebP para mejor compresión
         break;
       default:
         multiplier = 1.0;
         quality = 'q_auto:good';
+        format = 'f_auto';
     }
 
     const width = Math.floor(this.fixedViewportWidth * multiplier);
@@ -796,6 +800,7 @@ export class ProjectDetailComponent
       width: width,
       crop: 'c_fill,g_auto',
       quality: quality,
+      format: format,
     });
 
     // Guardar en caché
@@ -824,6 +829,10 @@ export class ProjectDetailComponent
     const highQualityUrl = this.getHighQualityImageUrl(imageSrc, qualityLevel);
     const img = new Image();
 
+    // Configurar para máxima calidad
+    img.crossOrigin = 'anonymous';
+    img.decoding = 'sync';
+
     img.onload = () => {
       state.highQualityLoaded = true;
       state.currentQualityLevel = qualityLevel;
@@ -832,6 +841,12 @@ export class ProjectDetailComponent
 
     img.onerror = () => {
       console.warn('Error loading high quality image:', highQualityUrl);
+      // Fallback: intentar con formato automático
+      const fallbackUrl = this.getHighQualityImageUrl(
+        imageSrc,
+        qualityLevel
+      ).replace('f_webp', 'f_auto');
+      img.src = fallbackUrl;
     };
 
     img.src = highQualityUrl;
