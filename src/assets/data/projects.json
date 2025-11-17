@@ -1,5 +1,52 @@
 [
   {
+    "id": "reforma-newbery",
+    "name": "Reforma Newbery",
+    "nameEn": "Newbery Renovation",
+    "m2": "175",
+    "location": "Cañitas",
+    "district": "CABA",
+    "year": 2025,
+    "showImg": "v1747137660/xzdrqiss0g7gjvwb7krk.jpg",
+    "mainFeature": {
+      "type": "image",
+      "link": "v1763408989/saez3vfgvsrepfe3zc6f.jpg"
+    },
+    "rowSpan": 3,
+    "images": [
+      { "src": "v1763407132/b0lwxqu2nunhdcjlabfz.jpg" },
+      { "src": "v1763407137/bikc1uxjyh4y8feshdsu.jpg" },
+      { "src": "v1763407132/efkcifonzix2qq9ade8v.jpg" },
+      { "src": "v1763408989/saez3vfgvsrepfe3zc6f.jpg" },
+      { "src": "v1763407142/pvzohj1yynbamxlxse7d.jpg" },
+      { "src": "v1763407126/x4pu6gksjmjws2vf86ne.jpg" },
+      { "src": "v1763407131/dhl7epa7upgmkfq6al9l.jpg" },
+      { "src": "v1763407120/l6lcwffc22ie1ragh0kn.jpg" },
+      { "src": "v1763407127/usu0pubdt70t2bkpuvjj.jpg" },
+      { "src": "v1763407130/t6kq6q8qhb09s08q4nn4.jpg" },
+      { "src": "v1763407142/fya7olhpaacydsv2rlxo.jpg" },
+      { "src": "v1763407120/t8woohjsiene7iwc5vpd.jpg" },
+      { "src": "v1763407123/fd04voej3ci9asdwqysl.jpg" },
+      { "src": "v1763407126/bj9j3j6rsjmh3bbmbt1p.jpg" },
+      { "src": "v1763407138/hqtmwkfkfmn4ksgzzbqt.jpg" },
+      { "src": "v1763407136/frmj4ghdrjcahzwbibmk.jpg" },
+      { "src": "v1763407122/w4ntsygnql5wwfkce1em.jpg" },
+      { "src": "v1763407143/ppcmoz5svpugq5kamjnp.jpg" },
+      { "src": "v1763407124/xrqhsdij3busxjyefqu1.jpg" },
+      { "src": "v1763407135/mul91qgmu3ignusykona.jpg" },
+      { "src": "v1763407122/icgbpj2ttkzke5i3orl9.jpg" },
+      { "src": "v1763407127/qcsqs6hfocdvlfx7zwcf.jpg" },
+      { "src": "v1763407131/b674yht93ij3crwydlwb.jpg" },
+      { "src": "v1763407135/eiz8ziynxbwavimfzwnh.jpg" },
+      { "src": "v1763407122/b9evnfonebozovduh005.jpg" },
+      { "src": "v1763407128/c6fuebcedvpz2zlck54t.jpg" },
+      { "src": "v1763407119/dlzevu5vseas6ixjvbgo.jpg" }
+    ],
+    "description": "Este departamento de cinco ambientes con dependencia fue completamente renovado para adaptarse a un estilo contemporáneo. La cocina se integró al living-comedor y se reconfiguró el acceso al lavadero, generando mayor amplitud visual, más luz natural y sumando una barra desayunadora que optimiza la circulación y la superficie de trabajo. Se eligieron tonos claros en pisos y mobiliario, combinados con piezas de madera a medida en el área social, logrando un ambiente luminoso, cálido y sofisticado. En la suite principal se rediseñó el acceso para incorporar un vestidor, aumentar la privacidad del baño y ampliar su superficie, permitiendo alojar dos camas queen con mobiliario a medida.Las habitaciones infantiles fueron diseñadas según las necesidades de cada usuario, con un lenguaje moderno y minimalista, en sintonía con el baño compartido.",
+    "descriptionEn": "This five-room apartment with a service quarter was fully renovated to suit a contemporary style. The kitchen was integrated into the living–dining area, and the access to the laundry room was reconfigured, creating a greater sense of openness, more natural light, and adding a breakfast bar that optimizes circulation and workspace. Light tones were chosen for the floors and furniture, combined with custom wood pieces in the social area, resulting in a bright, warm, and sophisticated atmosphere. In the primary suite, the entrance was redesigned to incorporate a walk-in closet, increase the bathroom’s privacy, and expand its area, allowing space for two queen beds with custom furniture. The children’s bedrooms were designed according to each user’s needs, with a modern and minimalist aesthetic in harmony with the shared bathroom.",
+    "plantaSrc": "v1763411721/kp7xxdidf4jj3ymblrbe.png"
+  },
+  {
     "id": "reforma-bnb",
     "name": "Reforma BNB",
     "nameEn": "BNB Renovation",
@@ -12,7 +59,7 @@
       "type": "image",
       "link": "v1747137660/xzdrqiss0g7gjvwb7krk.jpg"
     },
-    "rowSpan": 3,
+    "rowSpan": 2,
     "images": [
       { "src": "v1747137658/kc9soy8lwlnz8udcgxsq.jpg" },
       { "src": "v1747137657/rw4kewrndyix1fcmgaw6.jpg" },
