@@ -14,7 +14,8 @@ export const projectResolver: ResolveFn<Project | null> = (
 ): Observable<Project | null> => {
   const projectsService = inject(ProjectsService);
   const router = inject(Router);
-  const slug = route.paramMap.get('slug') || route.url.join('/');
+  // Obtener el slug del path de la ruta (el último segmento de la URL)
+  const slug = route.url.length > 0 ? route.url[route.url.length - 1].path : '';
 
   console.log(`🔍 Resolving project with slug: ${slug}`);
 

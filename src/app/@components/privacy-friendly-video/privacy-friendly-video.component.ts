@@ -99,6 +99,8 @@ import { SafePipe } from '../../pipes/safe.pipe';
         width: 100%;
         height: 100dvh;
         overflow: hidden;
+        margin: 0;
+        padding: 0;
       }
 
       .video-container {
@@ -110,6 +112,8 @@ import { SafePipe } from '../../pipes/safe.pipe';
         background: #000;
         overflow: hidden;
         z-index: 1;
+        margin: 0;
+        padding: 0;
       }
 
       .video-placeholder {
@@ -264,12 +268,9 @@ import { SafePipe } from '../../pipes/safe.pipe';
       /* IFRAME CON Z-INDEX BAJO PARA QUE NO CUBRA EL BOTÓN */
       iframe {
         position: absolute !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
+        top: 50% !important;
+        left: 50% !important;
         border: none !important;
-        object-fit: cover !important;
         pointer-events: none !important;
         user-select: none !important;
         -webkit-user-select: none !important;
@@ -280,6 +281,28 @@ import { SafePipe } from '../../pipes/safe.pipe';
         touch-action: none !important;
         cursor: default !important;
         z-index: 1 !important;
+        transform: translate(-50%, -50%) !important;
+      }
+
+      /* Para escritorio: asegurar que el video cubra todo el espacio sin bordes negros */
+      @media (min-width: 769px) {
+        iframe {
+          /* Calcular dimensiones para cubrir todo el espacio (similar a background-size: cover) */
+          /* Si el viewport es más ancho que 16:9, usar altura como base */
+          width: 177.77777778vh !important; /* 16/9 * 100vh = 177.78vh */
+          height: 100vh !important;
+          min-width: 100vw !important; /* Asegurar que cubra el ancho completo */
+          /* Si el ancho calculado es menor que 100vw, el min-width lo ajustará */
+        }
+
+        /* Si el viewport es más estrecho que 16:9, usar ancho como base */
+        @media (max-aspect-ratio: 16/9) {
+          iframe {
+            width: 100vw !important;
+            height: 56.25vw !important; /* 9/16 * 100vw = 56.25vw */
+            min-height: 100vh !important; /* Asegurar que cubra la altura completa */
+          }
+        }
       }
 
       /* Ocultar elementos de YouTube que puedan aparecer */
@@ -306,11 +329,38 @@ import { SafePipe } from '../../pipes/safe.pipe';
         -ms-user-select: none !important;
       }
 
-      /* Media queries para móviles - CAMBIO: Botón más pequeño */
+      /* Media queries para móviles - Video vertical (YouTube Short) */
       @media (max-width: 768px) {
         .video-wrapper {
-          height: 55vw;
-          max-height: 100dvh;
+          height: 100dvh; /* Altura completa de la pantalla */
+          width: 100vw; /* Ancho completo */
+          position: relative;
+          overflow: hidden;
+        }
+
+        .video-container {
+          width: 100%;
+          height: 100%;
+        }
+
+        /* Para video vertical (YouTube Short), ajustar para que ocupe toda la pantalla */
+        iframe {
+          width: 100vw !important; /* Ancho completo del viewport */
+          height: 177.77777778vw !important; /* Altura proporcional 9:16 (formato vertical) */
+          min-height: 100vh !important; /* Si la altura calculada es menor, usar 100vh */
+          min-width: 56.25vh !important; /* Si el ancho calculado es menor, usar el basado en altura */
+          top: 50% !important;
+          left: 50% !important;
+          transform: translate(-50%, -50%) !important;
+        }
+
+        /* Si el viewport es más alto que 9:16, usar altura como base */
+        @media (min-aspect-ratio: 9/16) {
+          iframe {
+            width: 56.25vh !important; /* 9/16 * 100vh = 56.25vh */
+            height: 100vh !important;
+            min-width: 100vw !important; /* Asegurar que cubra el ancho completo */
+          }
         }
 
         .volume-toggle {
@@ -436,6 +486,7 @@ export class PrivacyFriendlyVideoComponent implements OnInit, OnDestroy {
   isMuted = true; // Estado del mute
   showPlayButton = false; // Mostrar botón de play manual cuando autoplay falle
   isPlaying = false; // Estado de reproducción
+  isMobile = false; // Detectar si es dispositivo móvil
   private intersectionObserver?: IntersectionObserver;
   private loadTimeout?: any;
   private youtubePlayer: any; // Player de YouTube API
@@ -450,12 +501,47 @@ export class PrivacyFriendlyVideoComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
+      // Detectar si es dispositivo móvil
+      this.isMobile = window.innerWidth <= 768;
+
+      // Escuchar cambios de tamaño de ventana para actualizar la detección
+      window.addEventListener('resize', this.onWindowResize.bind(this));
+
       this.generateOptimizedVideoUrl();
       this.showVideo = true;
       this.cdr.detectChanges();
 
       // Cargar YouTube API y inicializar el player
       this.loadYouTubeAPI();
+    }
+  }
+
+  private onWindowResize(): void {
+    const wasMobile = this.isMobile;
+    this.isMobile = window.innerWidth <= 768;
+
+    // Si cambió de móvil a desktop o viceversa, regenerar la URL del video y reinicializar el player
+    if (wasMobile !== this.isMobile) {
+      // Destruir el player anterior si existe
+      if (this.youtubePlayer && this.youtubePlayer.destroy) {
+        this.youtubePlayer.destroy();
+        this.youtubePlayer = null;
+      }
+
+      // Resetear estados
+      this.videoLoaded = false;
+      this.isPlaying = false;
+      this.showPlayButton = false;
+      this.autoplayAttempts = 0;
+
+      // Regenerar URL del video
+      this.generateOptimizedVideoUrl();
+      this.cdr.detectChanges();
+
+      // Reinicializar el player con el nuevo video
+      setTimeout(() => {
+        this.loadYouTubeAPI();
+      }, 100);
     }
   }
 
@@ -636,6 +722,10 @@ export class PrivacyFriendlyVideoComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    if (isPlatformBrowser(this.platformId)) {
+      // Remover listener de resize
+      window.removeEventListener('resize', this.onWindowResize.bind(this));
+    }
     if (this.intersectionObserver) {
       this.intersectionObserver.disconnect();
     }
@@ -653,8 +743,10 @@ export class PrivacyFriendlyVideoComponent implements OnInit, OnDestroy {
       return;
     }
 
-    // Usar video de YouTube con configuración optimizada para autoplay
-    const youtubeVideoId = 'V8PNccdgA-g';
+    // Usar video diferente según el dispositivo
+    // Móvil: YouTube Short (formato vertical)
+    // Desktop: Video original (formato horizontal)
+    const youtubeVideoId = this.isMobile ? 'lul91zywRWE' : 'QISbQ0RTZsg';
 
     // Parámetros para forzar autoplay y ocultar controles
     const params = [

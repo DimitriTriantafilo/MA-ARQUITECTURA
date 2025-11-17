@@ -10,7 +10,7 @@ import { projectResolver } from './resolvers/project.resolver';
  */
 export const serverRoutes: Routes = [
   ...projects.map((project: Project) => ({
-    path: project.id || generateSlug(project.name),
+    path: generateSlug(project.name), // IMPORTANTE: Usar siempre generateSlug(project.name) para que coincida con las rutas
     loadComponent: () =>
       import('./@components/project-detail/project-detail.component').then(
         (m) => m.ProjectDetailComponent

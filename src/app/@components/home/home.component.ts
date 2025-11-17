@@ -8,13 +8,14 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { WindowSizeService } from '../../window-size.service';
 import { TranslatePipe } from '../../transltate/translate.pipe';
 // @ts-ignore: Suppress error if type declarations are missing
 import { PrivacyFriendlyVideoComponent } from '../privacy-friendly-video/privacy-friendly-video.component';
 import { ImagePreloadService } from '../../image-preload.service';
 import { TranslationService } from '../../transltate/translation.service';
+import { generateSlug, projects } from '../../app.routes';
 
 @Component({
   selector: 'app-home',
@@ -36,6 +37,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     @Inject(PLATFORM_ID) private platformId: Object,
     public windowSize: WindowSizeService,
     private router: Router,
+    private route: ActivatedRoute,
     private imagePreloadService: ImagePreloadService,
     private translationService: TranslationService
   ) {
@@ -47,6 +49,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
+      // Hacer scroll al top de la página cuando se carga el componente
+      window.scrollTo(0, 0);
+      
       // Precargar recursos críticos de forma asíncrona
       setTimeout(() => {
         this.imagePreloadService.preloadCriticalResources();
@@ -55,6 +60,15 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       // Fijar el tamaño de las imágenes para prevenir cambios dinámicos
       this.fixImageHeights();
     }
+
+    // Suscribirse a los cambios de ruta para asegurar scroll al top
+    this.route.params.subscribe(() => {
+      if (isPlatformBrowser(this.platformId)) {
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 50);
+      }
+    });
   }
 
   // ELIMINADOS: Los getters dinámicos que causaban recargas innecesarias
@@ -139,24 +153,57 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   // Las alturas se fijan UNA sola vez al inicializar
 
   // Funciones de navegación para proyectos
+  // IMPORTANTE: Usar generateSlug(project.name) para que coincida con las rutas generadas
   navigateToReformaMigueletes() {
-    this.router.navigate(['/reforma-migueletes']);
+    const project = projects.find((p) => 
+      p.name.toLowerCase().includes('migueletes') || 
+      p.id === 'reforma-migueletes'
+    );
+    if (project) {
+      this.router.navigate(['/' + generateSlug(project.name)]);
+    }
   }
 
   navigateToReformaBnb() {
-    this.router.navigate(['/reforma-bnb']);
+    const project = projects.find((p) => 
+      p.name.toLowerCase().includes('bnb') || 
+      p.id === 'reforma-bnb'
+    );
+    if (project) {
+      this.router.navigate(['/' + generateSlug(project.name)]);
+    }
   }
 
   navigateToCasaIgor() {
-    this.router.navigate(['/reforma-igor']);
+    const project = projects.find((p) => 
+      p.name.toLowerCase().includes('igor') || 
+      p.id === 'reforma-igor' || 
+      p.id === 'casa-igor'
+    );
+    if (project) {
+      this.router.navigate(['/' + generateSlug(project.name)]);
+    }
   }
 
   navigateToReformaSanfer() {
-    this.router.navigate(['/reforma-sanfer']);
+    const project = projects.find((p) => 
+      p.name.toLowerCase().includes('sanfer') || 
+      p.name.toLowerCase().includes('san fer') ||
+      p.id === 'reforma-sanfer'
+    );
+    if (project) {
+      this.router.navigate(['/' + generateSlug(project.name)]);
+    }
   }
 
   navigateToCasaWim() {
-    this.router.navigate(['/casa-wim']);
+    const project = projects.find((p) => 
+      p.name.toLowerCase().includes('wim') || 
+      p.id === 'casa-wim'
+    );
+    if (project) {
+      this.router.navigate(['/' + generateSlug(project.name)]);
+    }
   }
 
   navigateToProjects() {

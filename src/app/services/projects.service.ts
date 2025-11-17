@@ -61,17 +61,21 @@ export class ProjectsService {
 
   /**
    * Obtiene un proyecto por su slug (generado del nombre)
+   * IMPORTANTE: Usa siempre generateSlug(project.name) para coincidir con las rutas
    */
   getProjectBySlug(slug: string): Observable<Project | null> {
     return this.getProjects().pipe(
       map((projects) => {
+        // Buscar por slug generado del nombre (prioridad)
         const project = projects.find(
-          (p) => this.generateSlug(p.name) === slug || p.id === slug
+          (p) => this.generateSlug(p.name) === slug
         );
-        if (!project) {
+        // Fallback: buscar por id si no se encuentra (para compatibilidad)
+        const projectById = project || projects.find((p) => p.id === slug);
+        if (!projectById) {
           console.warn(`⚠️ Project not found with slug: ${slug}`);
         }
-        return project || null;
+        return projectById || null;
       })
     );
   }

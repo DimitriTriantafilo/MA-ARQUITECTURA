@@ -49,6 +49,9 @@ export class ContactoComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
+      // Hacer scroll al top de la página cuando se carga el componente
+      window.scrollTo(0, 0);
+      
       this.loadEmailJS();
       this.loadRecaptcha();
     }

@@ -129,6 +129,11 @@
   height: 100vh; /* Altura fija que no cambia */
   overflow: hidden; /* Evita bordes indeseados */
   contain: layout style paint;
+  z-index: 1; /* Por debajo del header (z-index: 3) pero por encima de otros elementos de contenido */
+  /* Asegurar que sea el primer elemento en el flujo del documento */
+  display: block;
+  margin: 0;
+  padding: 0;
 
   /* Estilos para el componente de video optimizado */
   app-privacy-friendly-video {
@@ -139,6 +144,7 @@
     height: 100%;
     contain: layout style paint;
     will-change: transform;
+    z-index: 1;
   }
 
   /* Mantener compatibilidad con iframe directo si se usa */
@@ -244,6 +250,8 @@
 .project-wrapper {
   width: 100%;
   overflow: hidden; /* Contenedor wrapper para evitar scroll horizontal */
+  position: relative;
+  z-index: 1; /* Asegurar que esté por debajo del video */
 }
 
 .project-landig {
@@ -355,7 +363,8 @@
     font-size: 1.2rem;
   }
   .featuredImg {
-    height: 55vw;
+    height: 100vh; /* Altura completa para video vertical en móvil */
+    height: 100dvh; /* Usar dvh para mejor compatibilidad con navegadores móviles */
   }
   .videoOverlay {
     height: 55vw;
@@ -405,6 +414,8 @@
   box-sizing: border-box;
   background-color: $deep-onyx; /* Fondo dark onyx */
   overflow: hidden; /* Evita scroll horizontal en hover */
+  position: relative;
+  z-index: 1; /* Asegurar que esté por debajo del video */
 }
 
 .vertical-image-container {

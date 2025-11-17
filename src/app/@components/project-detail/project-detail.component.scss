@@ -666,7 +666,28 @@
     z-index: 2 !important;
   }
 
-  .project-description,
+  .project-description {
+    text-align: justify !important;
+    color: #969591 !important;
+    
+    p {
+      text-align: justify !important;
+      hyphens: none !important; /* Sin separación de palabras con guiones */
+      word-break: break-word !important; /* Cortar palabras si es necesario */
+      overflow-wrap: break-word !important; /* Asegurar que las palabras largas se corten */
+      text-justify: inter-word !important; /* Distribución entre palabras */
+      /* Establecer un espaciado base que el navegador usará como referencia */
+      word-spacing: 0.1em !important; /* Espaciado base - el navegador ajustará desde aquí */
+      letter-spacing: 0.01em !important; /* Mínimo ajuste de letras para ayudar en la distribución */
+      text-align-last: justify !important; /* Justificar también la última línea */
+      /* Usar un ancho que permita más palabras por línea = menos variación */
+      width: 100% !important;
+      line-height: 1.7 !important; /* Interlineado que ayuda visualmente */
+      /* Forzar que el texto use el espacio disponible de manera más uniforme */
+      text-rendering: optimizeLegibility !important;
+    }
+  }
+  
   .project-info {
     text-align: center !important;
     color: #969591 !important;

@@ -46,8 +46,9 @@ export const routes: Routes = [
   },
   // Rutas de proyectos generadas dinámicamente desde JSON
   // Cada proyecto en el array projects se convierte en una ruta prerrenderizada
+  // IMPORTANTE: Usar siempre generateSlug(project.name) para que coincida con la navegación
   ...projects.map((project) => ({
-    path: project.id || generateSlug(project.name),
+    path: generateSlug(project.name),
     component: ProjectDetailComponent,
     resolve: { project: projectResolver },
   })),

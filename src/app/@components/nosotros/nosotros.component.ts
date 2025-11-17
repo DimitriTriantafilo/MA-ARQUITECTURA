@@ -34,7 +34,10 @@ export class NosotrosComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // Ya no es necesario asignar innerWidth manualmente
+    // Hacer scroll al top de la página cuando se carga el componente
+    if (isPlatformBrowser(this.platformId)) {
+      window.scrollTo(0, 0);
+    }
 
     // Activar el efecto del parallax 2 inmediatamente al cargar el componente
     // SOLO ejecutar en el navegador para evitar errores de SSR
