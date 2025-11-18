@@ -7,7 +7,7 @@
     "location": "Cañitas",
     "district": "CABA",
     "year": 2025,
-    "showImg": "v1763408989/saez3vfgvsrepfe3zc6f.jpg",
+    "showImg": "v1763407142/pvzohj1yynbamxlxse7d.jpg",
     "mainFeature": {
       "type": "image",
       "link": "v1763408989/saez3vfgvsrepfe3zc6f.jpg"
@@ -19,6 +19,7 @@
       { "src": "v1763407132/efkcifonzix2qq9ade8v.jpg" },
       { "src": "v1763408989/saez3vfgvsrepfe3zc6f.jpg" },
       { "src": "v1763407142/pvzohj1yynbamxlxse7d.jpg" },
+      { "src": "v1763478207/kjiapfldtz75wtxvsibb.jpg" },
       { "src": "v1763407126/x4pu6gksjmjws2vf86ne.jpg" },
       { "src": "v1763407131/dhl7epa7upgmkfq6al9l.jpg" },
       { "src": "v1763407120/l6lcwffc22ie1ragh0kn.jpg" },
@@ -395,30 +396,31 @@
     "descriptionEn": "The intervention consisted of a comprehensive space update, replacing the original parquet with wood-like porcelain tiles throughout the apartment, including bathrooms. This coating choice, applied continuously, contributes to a perception of greater spaciousness and visual coherence in each environment. In the bathrooms, beige and neutral coverings were chosen, providing a warm and serene atmosphere. The patio was completely renovated, incorporating a new natural Kiri roofing system and a translucent sheet ceiling. The space is complemented with custom furniture —including sofa and table— designed to adapt to different usage situations, both social and daily."
   },
   {
-    "id": "reforma-santana",
-    "name": "REFORMA SANTANA",
-    "nameEn": "SANTANA RENOVATION",
-    "m2": "23",
+    "id": "casa-f",
+    "name": "CASA F",
+    "nameEn": "F HOUSE",
     "year": 2022,
-    "rowSpan": 2,
-    "location": "Villa Urquiza",
-    "district": "CABA",
-    "showImg": "v1754412407/rx2hiekjplsl0awx43oe.jpg",
+    "description": "En un barrio cerrado, esta vivienda unifamiliar tuvo su origen en el dialogo entre la casa y su entorno, priorizando sus orientaciones y su morfología peculiar. Su ubicación fue dispuesta para abrazar un gran árbol troncal del terreno que resguarda el living-comedor generando privacidad hacia la calle, pero permitiendo a su vez abrirse al frente. La distribución está dividida en tres volúmenes: área privada con habitaciones, área común de esparcimiento y nexo articulante de la casa, y un área de servicios más próximo al ingreso. El volumen central destaca del resto por su mayor altura y es permeable para ambos extremos del terreno. Esto último, sumado a carpinterías corredizas que se acumulan, permite una dialogo entre el frente y el fondo, conviviendo así en un mismo gran espacio. Las áreas sociales se orientaron al noreste, privilegiando la entrada de luz natural durante todo el día, mientras que circulaciones y servicios se dispusieron hacia el suroeste, resguardando la intimidad de los espacios principales. Desde cualquier ambiente es posible enmarcar el paisaje: el árbol en el acceso o la calma del fondo privado. Los elementos naturales en el exterior fueron un punto clave en el diseño: Un muro de piedra autóctona que acompaña el ingreso, sumado a una gran puerta de madera maciza de piso a techo escondida, sirven para aportar textura, calidez y contemporaneidad al conjunto, completando así una vivienda que se vuelve una con su entorno.",
+    "descriptionEn": "In a gated community, this single-family home originated from the dialogue between the house and its environment, prioritizing its orientations and peculiar morphology. Its location was arranged to embrace a large trunk tree from the land that protects the living-dining room, generating privacy towards the street while allowing it to open to the front. The distribution is divided into three volumes: private area with bedrooms, common recreation area and articulating nexus of the house, and a services area closer to the entrance. The central volume stands out from the rest due to its greater height and is permeable to both ends of the land. This, added to sliding carpentry that accumulates, allows a dialogue between the front and back, thus coexisting in the same great space. The social areas were oriented to the northeast, privileging the entry of natural light throughout the day, while circulations and services were arranged towards the southwest, protecting the intimacy of the main spaces. From any environment it is possible to frame the landscape: the tree at the access or the calm of the private background. The natural elements on the exterior were a key point in the design: A wall of native stone that accompanies the entrance, added to a large solid wood door from floor to ceiling hidden, serve to provide texture, warmth and contemporaneity to the whole, thus completing a home that becomes one with its environment.",
+    "m2": "150",
+    "location": "Exaltación de la Cruz - Barrio Amarylis",
+    "district": "GBA",
+    "showImg": "v1747144222/id7azvdhqntcf1kji9ng.jpg",
     "mainFeature": {
       "type": "image",
-      "link": "v1754412407/rx2hiekjplsl0awx43oe.jpg"
+      "link": "v1747144222/id7azvdhqntcf1kji9ng.jpg"
     },
+    "rowSpan": 2,
     "images": [
-      { "src": "v1754412407/rx2hiekjplsl0awx43oe.jpg" },
-      { "src": "v1754412403/jjmijyrlyjvyqjossnf1.jpg" },
-      { "src": "v1754412403/xmzd8yvr8az3qtitmohz.jpg" },
-      { "src": "v1754412404/vjleviywcbuahiiqnibw.jpg" },
-      { "src": "v1754412378/nzvq8tecx6lyyegu1xzx.jpg" },
-      { "src": "v1754412378/xjzmqsyzoedhfearqw4c.jpg" }
+      { "src": "v1747144222/id7azvdhqntcf1kji9ng.jpg" },
+      { "src": "v1747144132/upjnf83depf0scax2sao.jpg" },
+      { "src": "v1747248418/neq6uwcbuapjyy4gav7c.jpg" },
+      { "src": "v1747144215/tokwzsywjurmkjbs7xxi.jpg" },
+      { "src": "v1747144968/xbgj74txhntr0picvhd3.jpg" },
+      { "src": "v1747144969/xvfb0bxewna4synp1uye.jpg" },
+      { "src": "v1747144970/jgk1vcclfziznl9qmxt5.jpg" }
     ],
-    "plantaSrc": "v1755785516/dzi1owb9ehyxxvxeakki.png",
-    "description": "Ubicada en la planta baja de la vivienda, esta cocina requería mayor espacio de guardado y una mejor entrada de luz. La eliminación de un baño de servicio permitió ampliarla, integrando un nuevo sector para la heladera dentro de la cocina y generando un respaldo para el lavadero contiguo.El antiguo lugar de la heladera se transformó en un rincón de coffee break, que complementa al comedor diario y suma un gesto de confort cotidiano.La combinación de tonos blancos, piedras claras y madera aporta luminosidad y calidez, equilibrando funcionalidad y estética.",
-    "descriptionEn": "Located on the ground floor of the house, this renovation required more storage space and better light entry. The elimination of a service bathroom allowed it to be expanded, integrating a new sector for the refrigerator within the renovation and generating a backing for the adjacent laundry room. The old refrigerator location was transformed into a coffee break corner, which complements the daily dining room and adds a gesture of daily comfort. The combination of white tones, light stones and wood provides luminosity and warmth, balancing functionality and aesthetics."
+    "plantaSrc": "v1755785892/im3pldsi5y6xhieucrh5.png"
   },
   {
     "id": "consultorio-devoto",
@@ -479,87 +481,6 @@
     "descriptionEn": "The renovation optimized the renovation by integrating a coffee break area at the client's request, daily dining room and laundry room in a single environment, through the relocation of the area and the redefinition of circulations. In the living room, a large custom library houses the client's book collection, which also functions as a divider with the dining room. The bedroom for two children incorporates a play area and a multifunctional bed furniture with storage, resolved in blue tones that bring life to the space."
   },
   {
-    "id": "reforma-segui",
-    "name": "REFORMA SEGUI",
-    "nameEn": "SEGUI RENOVATION",
-    "m2": "28",
-    "year": 2022,
-    "location": "Palermo",
-    "district": "CABA",
-    "showImg": "v1747141705/uw6syhkdbs8uj2ccbity.jpg",
-    "mainFeature": {
-      "type": "image",
-      "link": "v1747141705/uw6syhkdbs8uj2ccbity.jpg"
-    },
-    "rowSpan": 2,
-    "images": [
-      { "src": "v1747141707/a3qryt4psy9fkadfzql0.jpg" },
-      { "src": "v1747141711/elglwlylfcktuqajvcxc.jpg" },
-      { "src": "v1747141705/wwcfro77d2zvrwk0se0v.jpg" },
-      { "src": "v1747141707/njuf4ww6lzrenqcc9pak.jpg" },
-      { "src": "v1747141708/wekjcrywboofyluzgydj.jpg" },
-      { "src": "v1747141709/r23jtt2dix6velwype8b.jpg" },
-      { "src": "v1747141708/krvuvy9q8gtnnr1c1dcj.jpg" }
-    ],
-    "plantaPreviaSrc": "v1755785578/ikqefu6xraztxjin2fdn.png",
-    "plantaSrc": "v1755785597/wtqzr1gtft1inppx3rj5.png",
-    "description": "En este departamento de tres ambientes se optimizó la funcionalidad de la cocina y se renovó por completo el baño. La supresión de la habitación de servicio y la reubicación del lavadero permitieron ampliar significativamente la cocina, que se resolvió con una paleta clara con algunos detalles en madera para darle modernidad. En el baño, los revestimientos en tonos tierra crean una atmósfera serena, equilibrada por una mesada y estantería en guatambú natural junto a un mueble blanco laqueado, generando armonía entre calma y modernidad.",
-    "descriptionEn": "In this three-room apartment, the functionality of the renovation was optimized and the bathroom was completely renovated. The suppression of the service room and the relocation of the laundry room allowed to significantly expand the renovation, which was resolved with a clear palette with some wood details to give it modernity. In the bathroom, earth-tone coverings create a serene atmosphere, balanced by a natural guatambú countertop and shelf next to a white lacquered piece of furniture, generating harmony between calm and modernity."
-  },
-  {
-    "id": "casa-f",
-    "name": "CASA F",
-    "nameEn": "F HOUSE",
-    "year": 2022,
-    "description": "En un barrio cerrado, esta vivienda unifamiliar tuvo su origen en el dialogo entre la casa y su entorno, priorizando sus orientaciones y su morfología peculiar. Su ubicación fue dispuesta para abrazar un gran árbol troncal del terreno que resguarda el living-comedor generando privacidad hacia la calle, pero permitiendo a su vez abrirse al frente. La distribución está dividida en tres volúmenes: área privada con habitaciones, área común de esparcimiento y nexo articulante de la casa, y un área de servicios más próximo al ingreso. El volumen central destaca del resto por su mayor altura y es permeable para ambos extremos del terreno. Esto último, sumado a carpinterías corredizas que se acumulan, permite una dialogo entre el frente y el fondo, conviviendo así en un mismo gran espacio. Las áreas sociales se orientaron al noreste, privilegiando la entrada de luz natural durante todo el día, mientras que circulaciones y servicios se dispusieron hacia el suroeste, resguardando la intimidad de los espacios principales. Desde cualquier ambiente es posible enmarcar el paisaje: el árbol en el acceso o la calma del fondo privado. Los elementos naturales en el exterior fueron un punto clave en el diseño: Un muro de piedra autóctona que acompaña el ingreso, sumado a una gran puerta de madera maciza de piso a techo escondida, sirven para aportar textura, calidez y contemporaneidad al conjunto, completando así una vivienda que se vuelve una con su entorno.",
-    "descriptionEn": "In a gated community, this single-family home originated from the dialogue between the house and its environment, prioritizing its orientations and peculiar morphology. Its location was arranged to embrace a large trunk tree from the land that protects the living-dining room, generating privacy towards the street while allowing it to open to the front. The distribution is divided into three volumes: private area with bedrooms, common recreation area and articulating nexus of the house, and a services area closer to the entrance. The central volume stands out from the rest due to its greater height and is permeable to both ends of the land. This, added to sliding carpentry that accumulates, allows a dialogue between the front and back, thus coexisting in the same great space. The social areas were oriented to the northeast, privileging the entry of natural light throughout the day, while circulations and services were arranged towards the southwest, protecting the intimacy of the main spaces. From any environment it is possible to frame the landscape: the tree at the access or the calm of the private background. The natural elements on the exterior were a key point in the design: A wall of native stone that accompanies the entrance, added to a large solid wood door from floor to ceiling hidden, serve to provide texture, warmth and contemporaneity to the whole, thus completing a home that becomes one with its environment.",
-    "m2": "150",
-    "location": "Exaltación de la Cruz - Barrio Amarylis",
-    "district": "GBA",
-    "showImg": "v1747144222/id7azvdhqntcf1kji9ng.jpg",
-    "mainFeature": {
-      "type": "image",
-      "link": "v1747144222/id7azvdhqntcf1kji9ng.jpg"
-    },
-    "rowSpan": 2,
-    "images": [
-      { "src": "v1747144222/id7azvdhqntcf1kji9ng.jpg" },
-      { "src": "v1747144132/upjnf83depf0scax2sao.jpg" },
-      { "src": "v1747248418/neq6uwcbuapjyy4gav7c.jpg" },
-      { "src": "v1747144215/tokwzsywjurmkjbs7xxi.jpg" },
-      { "src": "v1747144968/xbgj74txhntr0picvhd3.jpg" },
-      { "src": "v1747144969/xvfb0bxewna4synp1uye.jpg" },
-      { "src": "v1747144970/jgk1vcclfziznl9qmxt5.jpg" }
-    ],
-    "plantaSrc": "v1755785892/im3pldsi5y6xhieucrh5.png"
-  },
-  {
-    "id": "reforma-ugarte",
-    "name": "REFORMA UGARTE",
-    "nameEn": "UGARTE RENOVATION",
-    "year": 2022,
-    "description": "El diseño de esta cocina partió de una premisa clara por parte de los clientes: intervenir con la menor obra posible, sabiendo que debían continuar habitando la vivienda durante el proceso. Se mantuvo la disposición general del área de trabajo, reorganizándola para optimizar su uso. La bacha y el anafe se separaron, liberando así mayor espacio de trabajo y espacio para un lavavajillas bajo mesada, mientras que la heladera y el horno se ubicaron en ambos extremos, encuadrando el espacio. Esto permitió generar una alacena superior central de gran capacidad, duplicando el guardado sin reducir la sensación de amplitud. El blanco, elegido para mobiliario y muros, aporta luminosidad y refuerza la idea de espacio abierto. En los pisos, se colocó un revestimiento SPC sobre los existentes, evitando obra húmeda y agilizando la ejecución. Finalmente, el área de TV fue replanteada, haciendo un mueble integral con múltiples funciones de guardado y coffee-break, estableciendo un nuevo punto focal que complementa el espacio.",
-    "descriptionEn": "The design of this kitchen started from a clear premise from the clients: intervene with the least possible work, knowing that they had to continue living in the home during the process. The general layout of the work area was maintained, reorganizing it to optimize its use. The sink and stove were separated, thus freeing up more workspace and space for an under-counter dishwasher, while the refrigerator and oven were located at both ends, framing the space. This allowed generating a central upper pantry of great capacity, doubling storage without reducing the feeling of spaciousness. White, chosen for furniture and walls, provides luminosity and reinforces the idea of open space. On the floors, an SPC covering was placed over the existing ones, avoiding wet work and speeding up execution. Finally, the TV area was redesigned, making an integral piece of furniture with multiple storage and coffee-break functions, establishing a new focal point that complements the space.",
-    "m2": "18",
-    "location": "Belgrano",
-    "district": "CABA",
-    "showImg": "v1747142269/zj56bhsy0rmzdx0akxf9.jpg",
-    "mainFeature": {
-      "type": "image",
-      "link": "v1747142269/zj56bhsy0rmzdx0akxf9.jpg"
-    },
-    "rowSpan": 2,
-    "images": [
-      { "src": "v1747142269/zj56bhsy0rmzdx0akxf9.jpg" },
-      { "src": "v1747142268/drxul3mlgkzomouyffqv.jpg" },
-      { "src": "v1747142268/dv73ki51qfus84twar5q.jpg" },
-      { "src": "v1747142269/sxsvdwqmhd4blmb130dc.jpg" },
-      { "src": "v1747142266/j05qmj1wgntd6bzdv6ey.jpg" },
-      { "src": "v1747142267/vvxfowj2xfbzo9erq6es.jpg" }
-    ],
-    "plantaSrc": "v1755785551/pigvzs9wcrkxled4cogb.png"
-  },
-  {
     "id": "reforma-ayacucho",
     "name": "Reforma Ayacucho",
     "nameEn": "Ayacucho Renovation",
@@ -594,5 +515,85 @@
     "plantaSrc": "v1755785797/p9w9h9japwlhk0rldvpz.png",
     "description": "Este departamento de época en Recoleta fue renovado integralmente para optimizar funcionalidad, luminosidad y confort. La cocina se reconfiguró para integrar todos los elementos, ganar almacenamiento y unificar el espacio con una paleta blanca. El baño intermedio se amplió y el de la suite se modernizó con revestimientos símil Calacatta y pisos símil cemento. Los muebles en madera otorgan la calidez necesaria. Además se resolvieron necesidades de almacenamiento y confort en las áreas de living y dormitorios. En estos últimos, se reubicaron tomacorrientes y se diseñaron muebles específicos complementándolos con los existentes para optimizar el uso cotidiano y la armonía espacial",
     "descriptionEn": "This period apartment in Recoleta was completely renovated to optimize functionality, luminosity and comfort. The renovation was reconfigured to integrate all elements, gain storage and unify the space with a white palette. The intermediate bathroom was expanded and the suite one was modernized with Calacatta-like coverings and cement-like floors. Wooden furniture provides the necessary warmth. In addition, storage and comfort needs were resolved in the living and bedroom areas. In the latter, outlets were relocated and specific furniture was designed, complementing the existing ones to optimize daily use and spatial harmony"
+  },
+  {
+    "id": "reforma-santana",
+    "name": "REFORMA SANTANA",
+    "nameEn": "SANTANA RENOVATION",
+    "m2": "23",
+    "year": 2022,
+    "rowSpan": 2,
+    "location": "Villa Urquiza",
+    "district": "CABA",
+    "showImg": "v1754412407/rx2hiekjplsl0awx43oe.jpg",
+    "mainFeature": {
+      "type": "image",
+      "link": "v1754412407/rx2hiekjplsl0awx43oe.jpg"
+    },
+    "images": [
+      { "src": "v1754412407/rx2hiekjplsl0awx43oe.jpg" },
+      { "src": "v1754412403/jjmijyrlyjvyqjossnf1.jpg" },
+      { "src": "v1754412403/xmzd8yvr8az3qtitmohz.jpg" },
+      { "src": "v1754412404/vjleviywcbuahiiqnibw.jpg" },
+      { "src": "v1754412378/nzvq8tecx6lyyegu1xzx.jpg" },
+      { "src": "v1754412378/xjzmqsyzoedhfearqw4c.jpg" }
+    ],
+    "plantaSrc": "v1755785516/dzi1owb9ehyxxvxeakki.png",
+    "description": "Ubicada en la planta baja de la vivienda, esta cocina requería mayor espacio de guardado y una mejor entrada de luz. La eliminación de un baño de servicio permitió ampliarla, integrando un nuevo sector para la heladera dentro de la cocina y generando un respaldo para el lavadero contiguo.El antiguo lugar de la heladera se transformó en un rincón de coffee break, que complementa al comedor diario y suma un gesto de confort cotidiano.La combinación de tonos blancos, piedras claras y madera aporta luminosidad y calidez, equilibrando funcionalidad y estética.",
+    "descriptionEn": "Located on the ground floor of the house, this renovation required more storage space and better light entry. The elimination of a service bathroom allowed it to be expanded, integrating a new sector for the refrigerator within the renovation and generating a backing for the adjacent laundry room. The old refrigerator location was transformed into a coffee break corner, which complements the daily dining room and adds a gesture of daily comfort. The combination of white tones, light stones and wood provides luminosity and warmth, balancing functionality and aesthetics."
+  },
+  {
+    "id": "reforma-ugarte",
+    "name": "REFORMA UGARTE",
+    "nameEn": "UGARTE RENOVATION",
+    "year": 2022,
+    "description": "El diseño de esta cocina partió de una premisa clara por parte de los clientes: intervenir con la menor obra posible, sabiendo que debían continuar habitando la vivienda durante el proceso. Se mantuvo la disposición general del área de trabajo, reorganizándola para optimizar su uso. La bacha y el anafe se separaron, liberando así mayor espacio de trabajo y espacio para un lavavajillas bajo mesada, mientras que la heladera y el horno se ubicaron en ambos extremos, encuadrando el espacio. Esto permitió generar una alacena superior central de gran capacidad, duplicando el guardado sin reducir la sensación de amplitud. El blanco, elegido para mobiliario y muros, aporta luminosidad y refuerza la idea de espacio abierto. En los pisos, se colocó un revestimiento SPC sobre los existentes, evitando obra húmeda y agilizando la ejecución. Finalmente, el área de TV fue replanteada, haciendo un mueble integral con múltiples funciones de guardado y coffee-break, estableciendo un nuevo punto focal que complementa el espacio.",
+    "descriptionEn": "The design of this kitchen started from a clear premise from the clients: intervene with the least possible work, knowing that they had to continue living in the home during the process. The general layout of the work area was maintained, reorganizing it to optimize its use. The sink and stove were separated, thus freeing up more workspace and space for an under-counter dishwasher, while the refrigerator and oven were located at both ends, framing the space. This allowed generating a central upper pantry of great capacity, doubling storage without reducing the feeling of spaciousness. White, chosen for furniture and walls, provides luminosity and reinforces the idea of open space. On the floors, an SPC covering was placed over the existing ones, avoiding wet work and speeding up execution. Finally, the TV area was redesigned, making an integral piece of furniture with multiple storage and coffee-break functions, establishing a new focal point that complements the space.",
+    "m2": "18",
+    "location": "Belgrano",
+    "district": "CABA",
+    "showImg": "v1747142269/zj56bhsy0rmzdx0akxf9.jpg",
+    "mainFeature": {
+      "type": "image",
+      "link": "v1747142269/zj56bhsy0rmzdx0akxf9.jpg"
+    },
+    "rowSpan": 2,
+    "images": [
+      { "src": "v1747142269/zj56bhsy0rmzdx0akxf9.jpg" },
+      { "src": "v1747142268/drxul3mlgkzomouyffqv.jpg" },
+      { "src": "v1747142268/dv73ki51qfus84twar5q.jpg" },
+      { "src": "v1747142269/sxsvdwqmhd4blmb130dc.jpg" },
+      { "src": "v1747142266/j05qmj1wgntd6bzdv6ey.jpg" },
+      { "src": "v1747142267/vvxfowj2xfbzo9erq6es.jpg" }
+    ],
+    "plantaSrc": "v1755785551/pigvzs9wcrkxled4cogb.png"
+  },
+  {
+    "id": "reforma-segui",
+    "name": "REFORMA SEGUI",
+    "nameEn": "SEGUI RENOVATION",
+    "m2": "28",
+    "year": 2022,
+    "location": "Palermo",
+    "district": "CABA",
+    "showImg": "v1747141705/uw6syhkdbs8uj2ccbity.jpg",
+    "mainFeature": {
+      "type": "image",
+      "link": "v1747141705/uw6syhkdbs8uj2ccbity.jpg"
+    },
+    "rowSpan": 2,
+    "images": [
+      { "src": "v1747141707/a3qryt4psy9fkadfzql0.jpg" },
+      { "src": "v1747141711/elglwlylfcktuqajvcxc.jpg" },
+      { "src": "v1747141705/wwcfro77d2zvrwk0se0v.jpg" },
+      { "src": "v1747141707/njuf4ww6lzrenqcc9pak.jpg" },
+      { "src": "v1747141708/wekjcrywboofyluzgydj.jpg" },
+      { "src": "v1747141709/r23jtt2dix6velwype8b.jpg" },
+      { "src": "v1747141708/krvuvy9q8gtnnr1c1dcj.jpg" }
+    ],
+    "plantaPreviaSrc": "v1755785578/ikqefu6xraztxjin2fdn.png",
+    "plantaSrc": "v1755785597/wtqzr1gtft1inppx3rj5.png",
+    "description": "En este departamento de tres ambientes se optimizó la funcionalidad de la cocina y se renovó por completo el baño. La supresión de la habitación de servicio y la reubicación del lavadero permitieron ampliar significativamente la cocina, que se resolvió con una paleta clara con algunos detalles en madera para darle modernidad. En el baño, los revestimientos en tonos tierra crean una atmósfera serena, equilibrada por una mesada y estantería en guatambú natural junto a un mueble blanco laqueado, generando armonía entre calma y modernidad.",
+    "descriptionEn": "In this three-room apartment, the functionality of the renovation was optimized and the bathroom was completely renovated. The suppression of the service room and the relocation of the laundry room allowed to significantly expand the renovation, which was resolved with a clear palette with some wood details to give it modernity. In the bathroom, earth-tone coverings create a serene atmosphere, balanced by a natural guatambú countertop and shelf next to a white lacquered piece of furniture, generating harmony between calm and modernity."
   }
 ]
