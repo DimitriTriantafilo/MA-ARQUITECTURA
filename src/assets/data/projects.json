@@ -463,6 +463,45 @@
     "descriptionEn": "In this project, a psychology office and a residence were integrated in a reduced space, optimizing every square meter with functional and aesthetically harmonious solutions. A multifunctional piece of furniture hides bed and wardrobe, incorporates a removable sofa and is complemented with a dual-use table and a high-capacity library. The warm tones of wood provide the serenity and warmth necessary to link the professional with the domestic sphere."
   },
   {
+    "id": "reforma-baez",
+    "name": "REFORMA BAEZ",
+    "nameEn": "BAEZ RENOVATION",
+    "m2": "44",
+    "location": "Cañitas",
+    "district": "CABA",
+    "year": 2026,
+    "showImg": "v1794855272/zkp24gi81gqumt90mbha.jpg",
+    "mainFeature": {
+      "type": "image",
+      "link": "v1794855274/cnbpnetrvdgxqfyeoxnu.jpg"
+    },
+    "rowSpan": 2,
+    "images": [
+      { "src": "v1794855272/zkp24gi81gqumt90mbha.jpg" },
+      { "src": "v1794855272/zkp24gi81gqumt90mbha.jpg" },
+      { "src": "v1794855254/bpag5ylrj4lyzwoivnib.jpg" },
+      { "src": "v1794855253/jtjgekd7e58tpff2wpx2.jpg" },
+      { "src": "v1794855256/bvv1v22cdxpnhy6sse5p.jpg" },
+      { "src": "v1794855259/uuhivm4ukh372argscg2.jpg" },
+      { "src": "v1794855260/gkf0olvqsnsissyjxykv.jpg" },
+      { "src": "v1794855261/xk6s8mto0ahxobnbtsjd.jpg" },
+      { "src": "v1794855262/u3p01jjxftyqcdyjpx0h.jpg" },
+      { "src": "v1794855263/ivbsczppf5ppv35yglpl.jpg" },
+      { "src": "v1794855257/opsrkvxobweguthvghkq.jpg" },
+      { "src": "v1794855255/cwfihj0vpvtq5iz26ghg.jpg" },
+      { "src": "v1794855253/keauwal9w0otnv07okpy.jpg" },
+      { "src": "v1794855258/ddyuafkpobatyv7jxvar.jpg" },
+      { "src": "v1794855265/lof2hpffhhnptqmcelhn.jpg" },
+      { "src": "v1794855268/zdue5lqarwiq5xwvnvbv.jpg" },
+      { "src": "v1794855266/a9x7tqdzymcdpvvxfho8.jpg" },
+      { "src": "v1794855267/rb8x6cuas4drpfi1fam0.jpg" },
+      { "src": "v1794855270/nbqblztl5nxnspxcvzbu.jpg" }
+    ],
+    "plantaSrc": "v1755785680/suo2g3xhd8q1z4eoqukz.png",
+    "description": "La reforma optimizó la cocina integrando un area de coffee break a pedido del cliente, comedor diario y lavadero en un solo ambiente, mediante la reubicación del área y la redefinición de circulaciones.  En el living, una gran biblioteca a medida alberga la colección de libros del cliente, que funciona a su vez como divisor con el comedor. El dormitorio para dos niños incorpora zona de juego y un mueble cama multifuncional con guardado, resuelto en tonos azules que aportan vida al espacio.",
+    "descriptionEn": "The renovation optimized the renovation by integrating a coffee break area at the client's request, daily dining room and laundry room in a single environment, through the relocation of the area and the redefinition of circulations. In the living room, a large custom library houses the client's book collection, which also functions as a divider with the dining room. The bedroom for two children incorporates a play area and a multifunctional bed furniture with storage, resolved in blue tones that bring life to the space."
+  },
+  {
     "id": "reforma-guru",
     "name": "REFORMA GURU",
     "nameEn": "GURU RENOVATION",
